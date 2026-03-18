@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Incertae Sedis | Incertae Sedis</title>
-    <link rel="icon" type="image/png" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%231c9391' width='100' height='100' rx='20'/><text y='.9em' font-size='70' x='50%' text-anchor='middle' fill='white'>DS</text></svg>">
+    <link rel="icon" type="image/svg+xml" href="/incico.svg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         :root {
             --primary: #1c9391ff;
-            --accent: #d38d5fff;
+            --accent: rgb(215, 177, 96);
             --dark: #1a1a2e;
             --light: #f5f5f5;
             --text: #333333;
@@ -37,7 +37,7 @@
             padding: 0 20px;
         }
 
-/* --- HEADER DINÁMICO --- */
+/* --- HEADER DINÁMICO --- 
 #mainHeader {
     background-color: transparent;
     transition: all 0.4s ease;
@@ -55,9 +55,9 @@
 #mainHeader.scrolled .nav-links a {
     color: var(--dark) !important;
 }
+*/
 
-
-/* --- GALERÍA TRANSICIÓN (B&N a Color) --- */
+/* --- GALERÍA TRANSICIÓN (B&N a Color) --- 
 .gallery-item img {
     filter: grayscale(100%);
     transition: all 0.6s ease;
@@ -109,12 +109,12 @@ header.scrolled .nav-links a {
     object-fit: cover;
     filter: grayscale(100%); /* Blanco y negro por defecto 
     transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-}*/
+}
 
 .gallery-item:hover img {
-    filter: grayscale(0%); /* Cobra color */
+    filter: grayscale(0%); /* Cobra color 
     transform: scale(1.1);
-}
+}*/
 
 
         nav {
@@ -460,7 +460,9 @@ header.scrolled .nav-links a {
 
         .portfolio-image {
             height: 200px;
-            background: linear-gradient(135deg, var(--primary) 0%, #167a78ff 100%);
+
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent) 100%);
+            /* background: linear-gradient(135deg, var(--primary) 0%, #167a78ff 100%); */
             display: flex;
             align-items: center;
             justify-content: center;
@@ -639,7 +641,7 @@ header.scrolled .nav-links a {
 }
 
 .about-section .section-title span {
-    color: var(--accent) !important; /* El toque de color en 'Nosotros' */
+    color: var(--white) !important; /* El toque de color en 'Nosotros' */
 }
 
 /* Asegurar que el contenido del hero tenga el fade-in 
@@ -1045,7 +1047,7 @@ header.scrolled .nav-links a {
         }
 
         [data-theme="dark"] .about-section {
-    background: linear-gradient(135deg, #0f1720 0%, #1a1a2e 100%);
+    background: linear-gradient(135deg, #0e52a0 0%, #15b09b 100%);
 }
         body {
             transition: background-color 200ms ease, color 200ms ease;
@@ -1152,7 +1154,7 @@ header.scrolled .nav-links a {
     <div class="container">
         <div class="gallery-grid">
             <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=2070&auto=format&fit=crop" alt="Talento">
+                <img src="https://images.unsplash.com/photo-1738737271801-d404a575d870?q=80&w=687&auto=format&fit=crop" alt="Talento">
                 <div class="gallery-overlay">
                     <span class="lang-es">Asesoría Especializada</span>
                     <span class="lang-en">Expert Consulting</span>
@@ -1166,7 +1168,7 @@ header.scrolled .nav-links a {
                 </div>
             </div>
             <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=2070&auto=format&fit=crop" alt="Colaboración">
+                <img src="https://images.unsplash.com/photo-1650648065204-0b8d52b18447?q=80&w=1171&auto=format&fit=crop" alt="Colaboración">
                 <div class="gallery-overlay">
                     <span class="lang-es">Educación y Ciencia</span>
                     <span class="lang-en">Science & Education</span>
@@ -1191,7 +1193,7 @@ header.scrolled .nav-links a {
                 <div class="img-caption lang-en">Cutting-edge Development</div>
             </div>
             <div class="img-card">
-                <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=500&q=80" alt="Equipo">
+                <img src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?q=80&w=1170&auto=format&fit=crop&w=500&q=80" alt="Equipo">
                 <div class="img-caption lang-es">Soporte Continuo</div>
                 <div class="img-caption lang-en">Continuous Support</div>
             </div>
@@ -1202,20 +1204,20 @@ header.scrolled .nav-links a {
     <section class="about-section" id="about">
         <div class="container">
             <h2 class="section-title">
-                <span class="lang-es">Sobre</span>
-                <span class="lang-en">About</span> <span class="lang-es">Nosotros</span>
+                <span class="lang-es">Quienes</span>
+                <span class="lang-en">About</span> <span class="lang-es">Somos</span>
                 <span class="lang-en">Us</span>
             </h2>
             <div class="about-content">
                 <div class="about-text">
-                    <h2 class="lang-es">Innovación Digital para tu Empresa</h2>
-                    <h2 class="lang-en">Digital Innovation for Your Business</h2>
-                    <p class="lang-es">En Servicios Digitales somos un equipo de profesionales especializados en transformar ideas en soluciones digitales innovadoras. Con años de experiencia en el mercado mexicano e internacional, nos dedicamos a ayudar a empresas de todos los tamaños a alcanzar su máximo potencial tecnológico.</p>
+                    <h2 class="lang-es">Innovación Social Digital para tu Empresa</h2>
+                    <h2 class="lang-en">Digital Social Innovation for Your Business</h2>
+                    <p class="lang-es">Incertae Sedis, lugar incierto. Una frase utilizada en biología para referirse a una especie cuyas características no podemos clasificar. En otras palabras: única. Creemos que todas las personas tenemos algo que aportar y todas las voces merecen ser escuchadas. Por eso transformamos ideas en soluciones digitales innovadoras enfocadas en el desarrollo social y crear comunidad. Nos dedicamos a ayudar a empresas de todos los tamaños a alcanzar su máximo potencial tecnológico y sobre todo a favorecer el desarrollo integral de todas las personas.</p>
                     <p class="lang-en">At Digital Services we are a team of professionals specialized in turning ideas into innovative digital solutions. With years of experience in the Mexican and international market, we help companies of all sizes reach their full technological potential.</p>
-                    <p class="lang-es">Nuestra misión es proporcionar servicios de alta calidad que impulsen la transformación digital de nuestros clientes, utilizando las tecnologías más modernas y mejores prácticas de la industria.</p>
+                    <p class="lang-es">Nuestra misión es utilizar la tecnología para ser más humanos. Desarrollando herramientas que ayuden a la inclusión e impulsen la transformación digital de nuestros clientes.</p>
                     <p class="lang-en">Our mission is to provide high-quality services that drive the digital transformation of our clients, using the most modern technologies and industry best practices.</p>
                 </div>
-                <div class="about-stats">
+                <!-- <div class="about-stats">
                     <div class="stat-card">
                         <i class="fas fa-users"></i>
                         <h3>50+</h3>
@@ -1240,7 +1242,7 @@ header.scrolled .nav-links a {
                         <p class="lang-es">Países</p>
                         <p class="lang-en">Countries</p>
                     </div>
-                </div>
+                </div> 
             </div>
             <div class="team-grid">
                 <div class="team-member">
@@ -1263,7 +1265,7 @@ header.scrolled .nav-links a {
                     <h4 class="lang-en">Project Director</h4>
                     <p class="lang-es">Gestión y metodología ágil</p>
                     <p class="lang-en">Management and agile methodology</p>
-                </div>
+                </div>-->
             </div>
         </div>
     </section>
@@ -1324,7 +1326,8 @@ header.scrolled .nav-links a {
         </div>
     </section>
 
-    <section class="section" id="portfolio">
+    <!-- <section class="section" id="portfolio" style="background: var(--primary);"> -->
+    <section class="about-section" id="portfolio">
         <div class="container">
             <h2 class="section-title">
                 <span class="lang-es">Nuestro</span>
