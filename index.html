@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Incertae Sedis | Incertae Sedis</title>
-    <link rel="icon" type="image/svg+xml" href="/incico.svg">
+    <link rel="icon" type="image/svg+xml" href="/incico2.svg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         :root {
@@ -121,7 +121,7 @@ header.scrolled .nav-links a {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1rem 0;
+            padding: 0.6rem 0;
         }
 
         .logo {
@@ -132,8 +132,23 @@ header.scrolled .nav-links a {
 
         .nav-links {
             display: flex;
-            gap: 2rem;
+            gap: 1rem;
             list-style: none;
+        }
+
+        /* Show menu when activated (used by hamburger toggle) */
+        .nav-links.active {
+            display: flex;
+            flex-direction: column;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background: var(--white);
+            padding: 1rem 0;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+            gap: 0.5rem;
+            z-index: 1000;
         }
 
         .nav-links a {
@@ -141,6 +156,8 @@ header.scrolled .nav-links a {
             color: var(--text);
             font-weight: 500;
             transition: color 0.3s;
+            padding: 0.25rem 0.4rem;
+            font-size: 0.95rem;
         }
 
         .nav-links a:hover {
@@ -151,10 +168,11 @@ header.scrolled .nav-links a {
             background: none;
             border: 1px solid var(--primary);
             color: var(--primary);
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
+            padding: 0.35rem 0.7rem;
+            border-radius: 18px;
             cursor: pointer;
             transition: all 0.3s;
+            font-size: 0.9rem;
         }
 
         .lang-switch button.active {
@@ -988,6 +1006,7 @@ header.scrolled .nav-links a {
                 background: var(--white);
                 padding: 1rem 0;
                 box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+                gap: 0.5rem;
             }
 
             .nav-links.active {
@@ -995,22 +1014,17 @@ header.scrolled .nav-links a {
             }
 
             .nav-links li {
-                text-align: center;
-                width: 100%;
-                padding: 0.5rem 0;
+                list-style: none;
             }
 
             .hamburger {
                 display: block;
+                font-size: 1.25rem;
+                padding: 0.25rem 0.5rem;
             }
 
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .hero p {
-                font-size: 1rem;
-            }
+            .hero h1 { font-size: 2rem; }
+            .hero p { font-size: 1rem; }
 
             .cookie-banner .container {
                 flex-direction: column;
@@ -1067,6 +1081,36 @@ header.scrolled .nav-links a {
         }
 
         .theme-toggle:focus { outline: none; }
+
+             /* Precios */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .price-card {
+            padding: 3rem 2rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .price-card.popular {
+            border: 2px solid var(--accent);
+            transform: scale(1.05);
+            background: var(--white);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .price-card h3 { margin-top: 0; font-size: 1.5rem; }
+        .price { font-size: 2.5rem; font-weight: 800; color: var(--brand-main); margin: 1rem 0; }
+        .price span { font-size: 1rem; color: var(--gray); }
+
+        .price-card ul { list-style: none; padding: 0; margin: 2rem 0; color: var(--gray); }
+        .price-card li { margin-bottom: 0.8rem; }
+
     </style>
 </head>
 <body>
@@ -1144,6 +1188,50 @@ header.scrolled .nav-links a {
         </div>
     </div>
 </section>
+
+
+<section id="precios" class="container">
+    <div class="section-title">
+        <h2>Planes y Precios</h2>
+        <div class="underline"></div>
+    </div>
+    <div class="pricing-grid">
+        <div class="price-card">
+            <h3>Básico</h3>
+            <div class="price">$499<span>/mes</span></div>
+            <ul>
+                <li>Gestión de Redes Sociales</li>
+                <li>Reporte Mensual</li>
+                <li>Soporte vía Email</li>
+            </ul>
+            <a href="#contacto" class="btn">Elegir Plan</a>
+        </div>
+        <div class="price-card popular">
+            <span style="background:var(--accent); color:white; padding:4px 12px; border-radius:20px; font-size:0.8rem;">RECOMENDADO</span>
+            <h3>Profesional</h3>
+            <div class="price">$999<span>/mes</span></div>
+            <ul>
+                <li>Todo lo del Básico</li>
+                <li>SEO Avanzado</li>
+                <li>Campaña Ads ($200 incl.)</li>
+                <li>Soporte 24/7</li>
+            </ul>
+            <a href="#contacto" class="btn" style="background:var(--accent)">Elegir Plan</a>
+        </div>
+        <div class="price-card">
+            <h3>Empresarial</h3>
+            <div class="price">$1999<span>/mes</span></div>
+            <ul>
+                <li>Todo lo del Profesional</li>
+                <li>Desarrollo Web Custom</li>
+                <li>Estrategia de Contenido</li>
+                <li>Account Manager Dedicado</li>
+            </ul>
+            <a href="#contacto" class="btn">Elegir Plan</a>
+        </div>
+    </div>
+</section>
+
 
 <a href="https://wa.me/521234567890?text=Hola!%20Vi%20tu%20página%20web%20y%20me%20gustaría%20recibir%20más%20información%20sobre%20tus%20servicios%20digitales." class="whatsapp-float" target="_blank" rel="noopener noreferrer">
     <i class="fab fa-whatsapp"></i>
@@ -1830,8 +1918,57 @@ header.scrolled .nav-links a {
         }
 
         function toggleMenu() {
-            document.querySelector('.nav-links').classList.toggle('active');
+            const navLinks = document.querySelector('.nav-links');
+            const hamburger = document.querySelector('.hamburger');
+            if (!navLinks) return;
+            navLinks.classList.toggle('active');
+            // toggle icon between bars and times for visual feedback
+            if (hamburger) {
+                const icon = hamburger.querySelector('i');
+                if (icon) {
+                    if (icon.classList.contains('fa-bars')) {
+                        icon.classList.remove('fa-bars');
+                        icon.classList.add('fa-times');
+                    } else {
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    }
+                }
+            }
         }
+
+        // Close mobile menu when a nav link is clicked (common UX expectation)
+        (function attachNavLinkHandlers(){
+            const navLinks = document.querySelectorAll('.nav-links a');
+            const navContainer = document.querySelector('.nav-links');
+            if (!navContainer) return;
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (navContainer.classList.contains('active')) {
+                        navContainer.classList.remove('active');
+                        const hamburgerIcon = document.querySelector('.hamburger i');
+                        if (hamburgerIcon) {
+                            hamburgerIcon.classList.remove('fa-times');
+                            hamburgerIcon.classList.add('fa-bars');
+                        }
+                    }
+                });
+            });
+        })();
+
+        // Ensure menu resets if viewport resized beyond mobile breakpoint
+        window.addEventListener('resize', () => {
+            const navContainer = document.querySelector('.nav-links');
+            if (!navContainer) return;
+            if (window.innerWidth > 768 && navContainer.classList.contains('active')) {
+                navContainer.classList.remove('active');
+                const hamburgerIcon = document.querySelector('.hamburger i');
+                if (hamburgerIcon) {
+                    hamburgerIcon.classList.remove('fa-times');
+                    hamburgerIcon.classList.add('fa-bars');
+                }
+            }
+        });
 
         function switchLang(currentLang) {
             setLanguage(currentLang === 'es' ? 'en' : 'es');
