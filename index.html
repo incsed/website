@@ -37,32 +37,6 @@
             padding: 0 20px;
         }
 
-        
-/* --- HEADER DINÁMICO --- 
-#mainHeader {
-    background-color: transparent;
-    transition: all 0.4s ease;
-    position: fixed;
-    width: 100%;
-    z-index: 1000;
-}
-
-#mainHeader.scrolled {
-    background-color: var(--white);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-}
-
-#mainHeader.scrolled .logo, 
-#mainHeader.scrolled .nav-links a {
-    color: var(--dark) !important;
-}
-*/
-
-/* --- GALERÍA TRANSICIÓN (B&N a Color) --- 
-.gallery-item img {
-    filter: grayscale(100%);
-    transition: all 0.6s ease;
-}
 
 /* --- HEADER DINÁMICO --- */
 header {
@@ -81,7 +55,9 @@ header.scrolled {
     padding: 10px 0;
 }
 
-header.scrolled .logo, header.scrolled .nav-links a {
+/* Cambiar color del logo y enlaces cuando hay scroll */
+header.scrolled .logo, 
+header.scrolled .nav-links a {
     color: var(--dark) !important;
 }
 
@@ -89,41 +65,6 @@ header.scrolled .logo, header.scrolled .nav-links a {
         header, #mainHeader { height: 96px; }
         header .container { height: 96px; display: flex; align-items: center; }
         nav { height: 96px; }
-
-
-        /* --- NAVEGACIÓN DINÁMICA --- 
-header {
-    background-color: transparent; /* Inicialmente transparente 
-    transition: all 0.4s ease;
-    padding: 20px 0;
-}
-
-header.scrolled {
-    background-color: var(--white);
-    padding: 10px 0;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-}
-
-/* Cambiar color del logo y enlaces cuando hay scroll 
-header.scrolled .logo, 
-header.scrolled .nav-links a {
-    color: var(--dark) !important;
-}
-*/
-/* --- ESTILOS DE GALERÍA (B&N a Color) --- 
-.gallery-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: grayscale(100%); /* Blanco y negro por defecto 
-    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.gallery-item:hover img {
-    filter: grayscale(0%); /* Cobra color 
-    transform: scale(1.1);
-}*/
-
 
         nav {
             display: flex;
@@ -440,6 +381,23 @@ header.scrolled .nav-links a {
             font-size: 1.2rem;
         }
 
+        /* Accent line under footer headings */
+        .footer-col h4 {
+            position: relative;
+            padding-bottom: 0.6rem;
+        }
+
+        .footer-col h4::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0.15rem;
+            width: 48px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 3px;
+        }
+
         .footer-col ul {
             list-style: none;
         }
@@ -465,6 +423,67 @@ header.scrolled .nav-links a {
             color: #aaa;
         }
 
+        /* Social icons in footer */
+        .social-icons {
+            display: flex;
+            gap: 0.8rem;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .social-icons a {
+            color: #aaa;
+            font-size: 1.15rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            transition: background 0.18s, color 0.18s, transform 0.12s;
+        }
+
+        .social-icons a:hover {
+            color: var(--white);
+            background: rgba(0,0,0,0.12);
+            transform: translateY(-2px);
+        }
+
+        /* Contact list in footer */
+        .contact-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: #ccc;
+            font-size: 0.95rem;
+        }
+
+        .contact-item i {
+            color: var(--accent);
+            font-size: 1.05rem;
+            width: 22px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .contact-item a {
+            color: #ccc;
+            text-decoration: none;
+        }
+
+        .contact-item a:hover { color: var(--white); }
+
         .portfolio-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -486,7 +505,6 @@ header.scrolled .nav-links a {
 
         .portfolio-image {
             height: 200px;
-
     background: linear-gradient(135deg, var(--accent) 0%, var(--accent) 100%);
             /* background: linear-gradient(135deg, var(--primary) 0%, #167a78ff 100%); */
             display: flex;
@@ -614,6 +632,8 @@ header.scrolled .nav-links a {
     text-align: center;
 }
 
+
+/* --- ESTILOS DE GALERÍA (B&N a Color) --- */
 /* --- GALERÍA DE TRANSICIÓN --- */
 .mid-gallery {
     padding: 60px 0;
@@ -670,62 +690,7 @@ header.scrolled .nav-links a {
     color: var(--white) !important; /* El toque de color en 'Nosotros' */
 }
 
-/* Asegurar que el contenido del hero tenga el fade-in 
-.animate-fade-in {
-    animation: fadeInReveal 1.5s ease-out forwards;
-}
-
-@keyframes fadeInReveal {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-*/
-/* Estilos para la nueva galería */
-/*
-.mid-gallery {
-    padding: 40px 0;
-    background-color: var(--white);
-}
-
-.gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-}
-
-.gallery-item {
-    position: relative;
-    height: 300px;
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-}
-
-.gallery-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s ease;
-}
-
-.gallery-item:hover img {
-    transform: scale(1.1);
-}
-
-.gallery-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to top, rgba(28, 147, 145, 0.8), transparent);
-    display: flex;
-    align-items: flex-end;
-    padding: 20px;
-    color: white;
-    font-weight: bold;
-    font-size: 1.2rem;
-}
-
 /* --- HERO CON FILTRO BLUR --- */
-
 /* --- HERO PARALLAX --- */
 .hero {
     position: relative;
@@ -784,77 +749,6 @@ header.scrolled .nav-links a {
 @media (max-width: 768px) {
     .hero-parallax-bg { background-attachment: scroll; }
     .hero { height: 70vh; }
-}
-
-/* --- BOTÓN WHATSAPP --- */
-.whatsapp-float {
-    position: fixed;
-    bottom: 40px;
-    right: 40px;
-    background-color: #25d366;
-    color: white;
-    width: 60px;
-    height: 60px;
-    border-radius: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 30px;
-    box-shadow: 2px 2px 15px rgba(0,0,0,0.3);
-    z-index: 2000;
-    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.whatsapp-float:hover {
-    transform: scale(1.15);
-    color: white;
-}
-
-/* Tooltip for WhatsApp floating button */
-.whatsapp-float {
-    position: fixed;
-}
-.whatsapp-float::after {
-    content: attr(data-tooltip);
-    position: absolute;
-    right: 100%;
-    margin-right: 12px;
-    top: 50%;
-    transform: translateY(-50%) translateY(6px);
-    background: var(--accent);
-    color: #fff;
-    padding: 6px 10px;
-    border-radius: 6px;
-    font-size: 0.85rem;
-    white-space: nowrap;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.15s ease, transform 0.15s ease;
-    z-index: 2001;
-}
-.whatsapp-float::before {
-    content: '';
-    position: absolute;
-    right: calc(100% - 6px);
-    top: 50%;
-    transform: translateY(-50%);
-    border-width: 6px;
-    border-style: solid;
-    border-color: transparent rgba(0,0,0,0.85) transparent transparent;
-    opacity: 0;
-    transition: opacity 0.15s ease;
-    z-index: 2001;
-}
-.whatsapp-float:hover::after,
-.whatsapp-float:focus::after,
-.whatsapp-float:focus-visible::after {
-    opacity: 1;
-    transform: translateY(-50%) translateY(0);
-}
-.whatsapp-float:hover::before,
-.whatsapp-float:focus::before,
-.whatsapp-float:focus-visible::before {
-    opacity: 1;
 }
 
 /* Estilo para los iconos de los miembros del equipo */
@@ -1166,6 +1060,80 @@ header.scrolled .nav-links a {
         .price-card ul { list-style: none; padding: 0; margin: 2rem 0; color: var(--gray); }
         .price-card li { margin-bottom: 0.8rem; }
 
+
+/* --- BOTÓN WHATSAPP --- */
+/*
+.whatsapp-float {
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    background-color: #25d366;
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    box-shadow: 2px 2px 15px rgba(0,0,0,0.3);
+    z-index: 2000;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.15);
+    color: white;
+}
+*/
+/* Tooltip for WhatsApp floating button */
+/*
+.whatsapp-float {
+    position: fixed;
+}
+.whatsapp-float::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    right: 100%;
+    margin-right: 12px;
+    top: 50%;
+    transform: translateY(-50%) translateY(6px);
+    background: var(--accent);
+    color: #fff;
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.15s ease, transform 0.15s ease;
+    z-index: 2001;
+}
+.whatsapp-float::before {
+    content: '';
+    position: absolute;
+    right: calc(100% - 6px);
+    top: 50%;
+    transform: translateY(-50%);
+    border-width: 6px;
+    border-style: solid;
+    border-color: transparent rgba(0,0,0,0.85) transparent transparent;
+    opacity: 0;
+    transition: opacity 0.15s ease;
+    z-index: 2001;
+}
+.whatsapp-float:hover::after,
+.whatsapp-float:focus::after,
+.whatsapp-float:focus-visible::after {
+    opacity: 1;
+    transform: translateY(-50%) translateY(0);
+}
+.whatsapp-float:hover::before,
+.whatsapp-float:focus::before,
+.whatsapp-float:focus-visible::before {
+    opacity: 1;
+}
+*/
         /* 1. Main Styles */
   .wa-container {
     position: fixed;
@@ -1193,7 +1161,7 @@ header.scrolled .nav-links a {
     transform: scale(0);
     transform-origin: bottom right;
     transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  }
+}
 
   .wa-bubble.show { transform: scale(1); }
 
@@ -1258,33 +1226,6 @@ header.scrolled .nav-links a {
     </style>
 </head>
 <body>
-    <!-- <header>
-        <div class="container">
-            <nav>
-                <div class="logo">
-                    <span >Incertæ Sedis</span>
-                </div>
-                <ul class="nav-links">
-                    <li><a href="#home" onclick="switchLang(lang)">Inicio</a></li>
-                    <li><a href="#about" onclick="switchLang(lang)">Nosotros</a></li>
-                    <li><a href="#services" onclick="switchLang(lang)">Servicios</a></li>
-                    <li><a href="#portfolio" onclick="switchLang(lang)">Portafolio</a></li>
-                    <li><a href="#blog" onclick="switchLang(lang)">Blog</a></li>
-                    <li><a href="#courses" onclick="switchLang(lang)">Cursos</a></li>
-                    <li><a href="#contact" onclick="switchLang(lang)">Contacto</a></li>
-                    <li class="lang-switch">
-                        <button class="active" onclick="setLanguage('es')" id="btn-es">ES</button>
-                        <button onclick="setLanguage('en')" id="btn-en">EN</button>
-                        <button id="themeToggle" class="theme-toggle" onclick="toggleTheme()" title="Toggle dark / light">
-                            <i id="themeIcon" class="fas fa-moon"></i>
-                        </button>
-                    </li>
-                </ul>
-                <div class="hamburger" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
-            </nav>
-        </div>
-    </header> -->
-
 <header id="mainHeader">
     <div class="container" style="display: flex; justify-content: space-between; align-items: center; padding: 0 20px;">
         <nav>
@@ -1379,19 +1320,40 @@ header.scrolled .nav-links a {
 <div id="wa-widget" class="wa-container">
   
   <div id="wa-bubble" class="wa-bubble">
-    <button onclick="closeBubble()" class="wa-close">✕</button>
     <p>¡Hola! 👋 ¿Tienes alguna duda? Escríbenos por WhatsApp.</p>
     <div class="wa-arrow"></div>
   </div>
 
-  <a href="https://wa.me/52555555555" target="_blank" class="wa-button" aria-label="Contactar por WhatsApp">
+  <a href="https://wa.me/5255555555?text=¡Hola!%20Me%20gustaría%20recibir%20más%20información%20sobre%20sus%20servicios." target="_blank" class="wa-button" 
+  data-tooltip="Escríbenos por WhatsApp" 
+  aria-label="Contactar por WhatsApp"
+     onmouseenter="showBubble()" 
+     onmouseleave="hideBubble()">
+
+    <div class="wa-ping"></div>
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"></path></svg>
+  </a>
+</div>
+<!-- 
+<div id="wa-widget" class="wa-container">
+  
+  <div id="wa-bubble" class="wa-bubble">
+    <p>¡Hola! 👋 ¿En qué puedo ayudarte?</p>
+    <div class="wa-arrow"></div>
+  </div>
+
+  <a href="https://wa.me/5217292395666" 
+     target="_blank" 
+     class="wa-button" 
+     id="wa-main-btn"
+     onmouseenter="showBubble()" 
+     onmouseleave="hideBubble()">
     <div class="wa-ping"></div>
     <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"></path></svg>
   </a>
 </div>
 
-<!-- 
-<a href="https://wa.me/521234567890?text=Hola!%20Vi%20tu%20página%20web%20y%20me%20gustaría%20recibir%20más%20información%20sobre%20tus%20servicios%20digitales." class="whatsapp-float" data-tooltip="Escríbenos por WhatsApp" aria-label="WhatsApp" target="_blank" rel="noopener noreferrer">
+<a href="https://wa.me/5255555555?text=Hola!%20Vi%20tu%20página%20web%20y%20me%20gustaría%20recibir%20más%20información%20sobre%20tus%20servicios%20digitales." class="whatsapp-float" data-tooltip="Escríbenos por WhatsApp" aria-label="WhatsApp" target="_blank" rel="noopener noreferrer">
     <i class="fab fa-whatsapp"></i>
 </a> -->
 
@@ -1806,6 +1768,15 @@ header.scrolled .nav-links a {
                     <p class="lang-es">Ciudad de México, México</p>
                     <p class="lang-en">Mexico City, Mexico</p>
                 </div>
+                <li class="contact-item">
+                            <div class="social-icons" style="margin:0;">
+                                <a href="https://twitter.com/" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                                <a href="https://facebook.com/" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                                <a href="https://instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                                <a href="https://linkedin.com/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="https://github.com/" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                            </div>
+                        </li>
             </div>
             <form class="contact-form" onsubmit="event.preventDefault(); alert('Gracias por contactarnos. Nos pondremos en contacto contigo pronto.');">
                 <div class="form-group">
@@ -1887,8 +1858,33 @@ header.scrolled .nav-links a {
                         <li><a href="#" onclick="showTerms(); return false;"><span class="lang-es">Términos y Condiciones</span><span class="lang-en">Terms & Conditions</span></a></li>
                     </ul>
                 </div>
+                <div class="footer-col">
+                    <h4 class="lang-es">Contacto</h4>
+                    <h4 class="lang-en">Contact</h4>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> <a href="mailto:info@example.com">info@example.com</a></li>
+                        <li><i class="fas fa-phone"></i> <a href="tel:+525555555555">+52 55 5555 5555</a></li>
+                        <li><i class="fas fa-map-marker-alt"></i> <a href="https://www.google.com/maps" target="_blank" rel="noopener noreferrer">Ciudad de México, MX</a></li>
+                        <li>
+                            <div class="social-icons" style="margin:0;">
+                                <a href="https://twitter.com/" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                                <a href="https://facebook.com/" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                                <a href="https://instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                                <a href="https://linkedin.com/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="https://github.com/" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
             </div>
             <div class="footer-bottom">
+                <div class="social-icons">
+                    <a href="https://twitter.com/" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="https://facebook.com/" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://linkedin.com/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://github.com/" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                </div>
                 <p class="lang-es">© 2026 Servicios Digitales. Todos los derechos reservados.</p>
                 <p class="lang-en">© 2026 Digital Services. All rights reserved.</p>
             </div>
@@ -2170,21 +2166,20 @@ header.scrolled .nav-links a {
             updateMenuLinks();
             checkCookies();
             applyStoredTheme();
-        });
+            // Asegurar color del título About al cargar
+    const aboutTitle = document.querySelector('.about-section .section-title');
+    if(aboutTitle) {
+        aboutTitle.style.setProperty('color', 'var(--white)', 'important');
+    }
 
+        });
+/*
         window.addEventListener('scroll', function() {
     const header = document.getElementById('mainHeader');
     if (window.scrollY > 100) {
         header.classList.add('scrolled');
     } else {
         header.classList.remove('scrolled');
-    }
-});
-// Asegurar color del título About al cargar
-document.addEventListener('DOMContentLoaded', function() {
-    const aboutTitle = document.querySelector('.about-section .section-title');
-    if(aboutTitle) {
-        aboutTitle.style.setProperty('color', 'var(--white)', 'important');
     }
 });
 
@@ -2197,7 +2192,7 @@ document.addEventListener('DOMContentLoaded', function() {
         nav.classList.remove('scrolled');
     }
 };
-
+*/
 window.addEventListener('scroll', function() {
     const scrollPos = window.scrollY;
     const header = document.querySelector('header');
@@ -2231,16 +2226,24 @@ window.onload = function() {
     setTimeout(() => {
       bubble.classList.add('show');
     }, 2500);
+
+
+    // Pop bubble after 5s
+    setTimeout(() => {
+      bubble.classList.remove('show');
+    }, 5000);
   };
 
-  function closeBubble() {
-    document.getElementById('wa-bubble').classList.remove('show');
-  }
-// Asegurar que el título de About sea blanco si hay errores de carga
-/*document.addEventListener('DOMContentLoaded', () => {
-    const aboutTitle = document.querySelector('.about-section .section-title');
-    if(aboutTitle) aboutTitle.style.color = "var(--white)";
-});*/
+    function showBubble() {
+            const bubble = document.getElementById('wa-bubble');
+            if (bubble) bubble.classList.add('show');
+    }
+
+    function hideBubble() {
+        const bubble = document.getElementById('wa-bubble');
+        if (bubble) bubble.classList.remove('show');
+    }
+
     </script>
 </body>
 </html>
