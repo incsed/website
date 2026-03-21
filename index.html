@@ -37,6 +37,7 @@
             padding: 0 20px;
         }
 
+        
 /* --- HEADER DINÁMICO --- 
 #mainHeader {
     background-color: transparent;
@@ -66,13 +67,15 @@
 /* --- HEADER DINÁMICO --- */
 header {
     background-color: transparent;
-    transition: all 0.4s ease;
+    transition: transform 0.35s ease, background-color 0.35s ease, box-shadow 0.35s ease, padding 0.2s ease;
     position: fixed;
     width: 100%;
     z-index: 1000;
+    transform: translateY(-100%); /* hidden above viewport by default */
 }
 
 header.scrolled {
+    transform: translateY(0); /* slide into view */
     background-color: var(--white);
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     padding: 10px 0;
@@ -81,6 +84,11 @@ header.scrolled {
 header.scrolled .logo, header.scrolled .nav-links a {
     color: var(--dark) !important;
 }
+
+/* Keep header height constant and vertically center contents */
+        header, #mainHeader { height: 96px; }
+        header .container { height: 96px; display: flex; align-items: center; }
+        nav { height: 96px; }
 
 
         /* --- NAVEGACIÓN DINÁMICA --- 
@@ -123,13 +131,13 @@ header.scrolled .nav-links a {
             align-items: center;
             padding: 0.6rem 0;
         }
-
+/*
         .logo {
             font-size: 1.5rem;
             font-weight: bold;
             color: var(--primary);
         }
-
+*/
         .nav-links {
             display: flex;
             gap: 1rem;
@@ -802,6 +810,53 @@ header.scrolled .nav-links a {
     color: white;
 }
 
+/* Tooltip for WhatsApp floating button */
+.whatsapp-float {
+    position: fixed;
+}
+.whatsapp-float::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    right: 100%;
+    margin-right: 12px;
+    top: 50%;
+    transform: translateY(-50%) translateY(6px);
+    background: var(--accent);
+    color: #fff;
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.15s ease, transform 0.15s ease;
+    z-index: 2001;
+}
+.whatsapp-float::before {
+    content: '';
+    position: absolute;
+    right: calc(100% - 6px);
+    top: 50%;
+    transform: translateY(-50%);
+    border-width: 6px;
+    border-style: solid;
+    border-color: transparent rgba(0,0,0,0.85) transparent transparent;
+    opacity: 0;
+    transition: opacity 0.15s ease;
+    z-index: 2001;
+}
+.whatsapp-float:hover::after,
+.whatsapp-float:focus::after,
+.whatsapp-float:focus-visible::after {
+    opacity: 1;
+    transform: translateY(-50%) translateY(0);
+}
+.whatsapp-float:hover::before,
+.whatsapp-float:focus::before,
+.whatsapp-float:focus-visible::before {
+    opacity: 1;
+}
+
 /* Estilo para los iconos de los miembros del equipo */
 .team-member div i {
     color: var(--primary);
@@ -1111,6 +1166,95 @@ header.scrolled .nav-links a {
         .price-card ul { list-style: none; padding: 0; margin: 2rem 0; color: var(--gray); }
         .price-card li { margin-bottom: 0.8rem; }
 
+        /* 1. Main Styles */
+  .wa-container {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    visibility: hidden; /* Hidden until JS runs */
+  }
+
+  /* 2. Chat Bubble */
+  .wa-bubble {
+    background: white;
+    color: #333;
+    padding: 12px 16px;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    margin-bottom: 12px;
+    max-width: 220px;
+    font-family: sans-serif;
+    font-size: 14px;
+    position: relative;
+    transform: scale(0);
+    transform-origin: bottom right;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+
+  .wa-bubble.show { transform: scale(1); }
+
+  .wa-close {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    width: 20px;
+    height: 20px;
+    background: #eee;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 10px;
+  }
+
+  .wa-arrow {
+    position: absolute;
+    bottom: -6px;
+    right: 20px;
+    width: 12px;
+    height: 12px;
+    background: white;
+    transform: rotate(45deg);
+    box-shadow: 2px 2px 2px rgba(0,0,0,0.03);
+  }
+
+  /* 3. The Button */
+  .wa-button {
+    background-color: #25D366;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease;
+    position: relative;
+  }
+
+  .wa-button:hover { transform: scale(1.1); background-color: #128C7E; }
+
+  .wa-button svg { width: 32px; height: 32px; fill: white; z-index: 2; }
+
+  /* 4. Pulsing Animation */
+  .wa-ping {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #25D366;
+    border-radius: 50%;
+    opacity: 0.3;
+    animation: wa-ping-anim 2s infinite;
+  }
+
+  @keyframes wa-ping-anim {
+    0% { transform: scale(1); opacity: 0.4; }
+    100% { transform: scale(1.6); opacity: 0; }
+  }
     </style>
 </head>
 <body>
@@ -1145,7 +1289,7 @@ header.scrolled .nav-links a {
     <div class="container" style="display: flex; justify-content: space-between; align-items: center; padding: 0 20px;">
         <nav>
                 <div class="logo">
-                    <span >Incertæ Sedis</span>
+                <img src="/incico.svg" alt="Logo for Incertae Sedis showing a decorative script wordmark reading Incertae Sedis with teal and aqua gradient accents and warm gold highlights, layered ornamental flourishes and subtle shadows on a white background, elegant professional and warm tone" style="height: 256px;">
                 </div>
                 <ul class="nav-links">
                     <li><a href="#home" onclick="switchLang(lang)">Inicio</a></li>
@@ -1172,7 +1316,7 @@ header.scrolled .nav-links a {
     <div class="hero-parallax-bg"></div>
     <div class="hero-overlay"></div>
     <div class="container hero-content animate-fade-in">
-
+<img src="/incico.svg" alt="Logo for Incertae Sedis showing a decorative script wordmark reading Incertae Sedis with teal and aqua gradient accents and warm gold highlights, layered ornamental flourishes and subtle shadows on a white background, elegant professional and warm tone" >                
         <h1 class="lang-es">Transforma tu Presencia Digital</h1>
         <h1 class="lang-en">Transform Your Digital Presence</h1>
         <p class="lang-es">Soluciones expertas en desarrollo, educación tecnológica y consultoría científica.</p>
@@ -1232,10 +1376,24 @@ header.scrolled .nav-links a {
     </div>
 </section>
 
+<div id="wa-widget" class="wa-container">
+  
+  <div id="wa-bubble" class="wa-bubble">
+    <button onclick="closeBubble()" class="wa-close">✕</button>
+    <p>¡Hola! 👋 ¿Tienes alguna duda? Escríbenos por WhatsApp.</p>
+    <div class="wa-arrow"></div>
+  </div>
 
-<a href="https://wa.me/521234567890?text=Hola!%20Vi%20tu%20página%20web%20y%20me%20gustaría%20recibir%20más%20información%20sobre%20tus%20servicios%20digitales." class="whatsapp-float" target="_blank" rel="noopener noreferrer">
+  <a href="https://wa.me/52555555555" target="_blank" class="wa-button" aria-label="Contactar por WhatsApp">
+    <div class="wa-ping"></div>
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"></path></svg>
+  </a>
+</div>
+
+<!-- 
+<a href="https://wa.me/521234567890?text=Hola!%20Vi%20tu%20página%20web%20y%20me%20gustaría%20recibir%20más%20información%20sobre%20tus%20servicios%20digitales." class="whatsapp-float" data-tooltip="Escríbenos por WhatsApp" aria-label="WhatsApp" target="_blank" rel="noopener noreferrer">
     <i class="fab fa-whatsapp"></i>
-</a>
+</a> -->
 
 
 <section class="mid-gallery">
@@ -2060,6 +2218,24 @@ window.addEventListener('scroll', function() {
     }
 });
 
+window.onload = function() {
+    const widget = document.getElementById('wa-widget');
+    const bubble = document.getElementById('wa-bubble');
+
+    // Show button after 1s
+    setTimeout(() => {
+      widget.style.visibility = 'visible';
+    }, 1000);
+
+    // Pop bubble after 2.5s
+    setTimeout(() => {
+      bubble.classList.add('show');
+    }, 2500);
+  };
+
+  function closeBubble() {
+    document.getElementById('wa-bubble').classList.remove('show');
+  }
 // Asegurar que el título de About sea blanco si hay errores de carga
 /*document.addEventListener('DOMContentLoaded', () => {
     const aboutTitle = document.querySelector('.about-section .section-title');
