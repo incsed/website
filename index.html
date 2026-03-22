@@ -16,6 +16,7 @@
             --white: #ffffff;
             --on-primary: #ffffff;
             --section-title-color: var(--dark);
+            --topbar-height: 36px;
         }
 
         * {
@@ -43,6 +44,7 @@ header {
     background-color: transparent;
     transition: transform 0.35s ease, background-color 0.35s ease, box-shadow 0.35s ease, padding 0.2s ease;
     position: fixed;
+    top: var(--topbar-height);
     width: 100%;
     z-index: 1000;
     transform: translateY(-100%); /* hidden above viewport by default */
@@ -72,6 +74,81 @@ header.scrolled .nav-links a {
             align-items: center;
             padding: 0.6rem 0;
         }
+
+        /* Slim top bar above header for social links/contact */
+        .topbar {
+            background: rgba(0,0,0,0.04);
+            color: var(--text);
+            font-size: 0.9rem;
+        }
+
+        .topbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 6px 0;
+        }
+
+        .topbar .top-left { color: #666; font-size: 0.9rem; }
+
+        .topbar .top-right { display: flex; gap: 0.6rem; align-items: center; }
+
+        .topbar .top-right a { color: #666; text-decoration: none; padding: 6px; border-radius: 6px; }
+
+        .topbar .top-right a:hover { background: rgba(0,0,0,0.06); color: var(--primary); }
+
+        /* Style the existing top-header markup if present */
+        #top-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: var(--topbar-height);
+            background: var(--accent);
+            border-bottom: 1px solid rgba(0,0,0,0.04);
+            font-size: 0.95rem;
+            z-index: 1100;
+        }
+
+        #top-header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 6px 0;
+        }
+
+        #top-header .et-social-icons {
+            display: flex;
+            gap: 8px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            align-items: center;
+        }
+
+        /* Icons inside the original et-social-icons (and our new topbar list) */
+        #top-header .et-social-icons li a.icon,
+        #topbar-social .et-social-icons li a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 6px 8px;
+            color: #666;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+
+        #top-header .et-social-icons li a.icon:hover,
+        #topbar-social .et-social-icons li a:hover { color: var(--primary); background: rgba(0,0,0,0.04); }
+
+        #top-header #et-info a { color: #666; text-decoration: none; }
+
+        @media (max-width: 720px) {
+            #top-header .et-social-icons { gap: 6px; }
+            #top-header .container { padding: 6px 8px; }
+        }
+
 /*
         .logo {
             font-size: 1.5rem;
@@ -1155,12 +1232,20 @@ header.scrolled .nav-links a {
     box-shadow: 0 10px 25px rgba(0,0,0,0.15);
     margin-bottom: 12px;
     max-width: 220px;
-    font-family: sans-serif;
-    font-size: 14px;
-    position: relative;
-    transform: scale(0);
-    transform-origin: bottom right;
-    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    width: 200px; /* Fixed width helps with centering math */
+  font-family: sans-serif;
+  font-size: 14px;
+  position: relative;
+  
+  /* Centering Logic: 
+     The button is 60px wide. To center a 200px bubble over it:
+     (200 / 2) - (60 / 2) = 70px offset to the right. */
+  /*margin-right: 70px; */
+  
+  /* Animation Logic */
+  transform: scale(0);
+  transform-origin: 170px bottom; /* Scale starts from the bottom middle of the bubble */
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
   .wa-bubble.show { transform: scale(1); }
@@ -1181,7 +1266,7 @@ header.scrolled .nav-links a {
   .wa-arrow {
     position: absolute;
     bottom: -6px;
-    right: 20px;
+    right: 24px;
     width: 12px;
     height: 12px;
     background: white;
@@ -1202,6 +1287,7 @@ header.scrolled .nav-links a {
     box-shadow: 0 4px 12px rgba(0,0,0,0.2);
     transition: transform 0.3s ease;
     position: relative;
+    z-index: 2;
   }
 
   .wa-button:hover { transform: scale(1.1); background-color: #128C7E; }
@@ -1226,7 +1312,75 @@ header.scrolled .nav-links a {
     </style>
 </head>
 <body>
-<header id="mainHeader">
+<div id="top-header">
+		<div class="container clearfix">
+
+		
+			<div id="et-info">
+							<span id="et-info-phone">555</span>
+			
+							<a href="mailto:bajotierramu@gmail.com"><span id="et-info-email">bajotierramu@gmail.com</span></a>
+			
+		<!-- 	<ul class="et-social-icons">
+
+	<li class="et-social-icon et-social-facebook">
+		<a href="https://www.facebook.com/BajoTierraMu" class="icon">
+			<span>Facebook</span>
+		</a>
+	</li>
+	<li class="et-social-icon et-social-twitter">
+		<a href="https://twitter.com/BajoTierraMu" class="icon">
+			<span>Twitter</span>
+		</a>
+	</li>
+	<li class="et-social-icon et-social-instagram">
+		<a href="https://www.instagram.com/bajotierramu/" class="icon">
+			<span>Instagram</span>
+		</a>
+	</li>
+
+</ul>		               --> 
+                </div> <!-- #et-info -->
+
+                <!-- Right-aligned social icons for top header -->
+                <div id="topbar-social">
+                    <ul class="et-social-icons">
+                        <li><a href="https://twitter.com/" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><i class="fab fa-twitter"></i></a></li>
+                        <li><a href="https://facebook.com/" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a></li>
+                        <li><a href="https://instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a></li>
+                        <li><a href="https://linkedin.com/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a></li>
+                        <li><a href="https://github.com/" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a></li>
+                    </ul>
+                </div>
+<!-- 
+		
+			<div id="et-secondary-menu">
+			<div class="et_duplicate_social_icons">
+							<ul class="et-social-icons">
+
+	<li class="et-social-icon et-social-facebook">
+		<a href="https://www.facebook.com/BajoTierraMu" class="icon">
+			<span>Facebook</span>
+		</a>
+	</li>
+	<li class="et-social-icon et-social-twitter">
+		<a href="https://twitter.com/BajoTierraMu" class="icon">
+			<span>Twitter</span>
+		</a>
+	</li>
+	<li class="et-social-icon et-social-instagram">
+		<a href="https://www.instagram.com/bajotierramu/" class="icon">
+			<span>Instagram</span>
+		</a>
+	</li>
+
+</ul>
+						</div>			</div> #et-secondary-menu
+ -->
+		</div> <!-- .container -->
+	</div> <!-- #top-header -->
+
+<header id="mainHeader" data-height-onload="142px">
     <div class="container" style="display: flex; justify-content: space-between; align-items: center; padding: 0 20px;">
         <nav>
                 <div class="logo">
@@ -1885,8 +2039,8 @@ header.scrolled .nav-links a {
                     <a href="https://linkedin.com/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                     <a href="https://github.com/" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a>
                 </div>
-                <p class="lang-es">© 2026 Servicios Digitales. Todos los derechos reservados.</p>
-                <p class="lang-en">© 2026 Digital Services. All rights reserved.</p>
+                <p class="lang-es">© 2026 Incertæ Sedis. Todos los derechos reservados.</p>
+                <p class="lang-en">© 2026 Incertæ Sedis. All rights reserved.</p>
             </div>
         </div>
     </footer>
