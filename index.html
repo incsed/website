@@ -47,7 +47,7 @@ header {
     top: var(--topbar-height);
     width: 100%;
     z-index: 1000;
-    transform: translateY(-100%); /* hidden above viewport by default */
+    transform: translateY(0); /* hidden above viewport by default */
 }
 
 header.scrolled {
@@ -63,18 +63,61 @@ header.scrolled .nav-links a {
     color: var(--dark) !important;
 }
 
-/* Keep header height constant and vertically center contents */
-        header, #mainHeader { height: 96px; }
-        header .container { height: 96px; display: flex; align-items: center; }
-        nav { height: 96px; }
+    /* Let header/container size adapt to content (SVG logo) while keeping a minimum height */
+    header, #mainHeader { height: auto; }
+    header .container { min-height: 90px;display: flex; align-items: center; padding: 0; }
 
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0.6rem 0;
+/* Shrink logo on scroll for a modern effect */
+header.scrolled nav .logo .logo-svg {
+    height: 100px;
+} 
+
+/* 5. Ensure the container centers the nav properly */
+header .container {
+    min-height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Keeps logo left/links right or centers if layout changes */
+}
+
+   /* 1. Update the nav to use flexbox for horizontal layout */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Vertically centers everything inside nav */
+    width: 100%;
+    position: relative;
+    padding: 0;
+}
+
+/* 2. Remove absolute positioning from the logo */
+nav .logo {
+   /* position: static; Reset from absolute */
+   /* transform: none;  /* Remove the translate(-50%, -50%) */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /*z-index: 1150;*/
+    line-height: 0;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+/* 3. Adjust the logo SVG sizing and remove fixed margin-right */
+nav .logo .logo-svg {
+    max-height: 100px; /* Adjust height for better fit */
+    /*width: auto;*/
+    display: block;
+    margin-bottom: 0;
+}
+
+
+/*
+        @media (max-width: 720px) {
+            nav .logo .logo-svg { max-height: 96px; }
+            .nav-links { padding-left: 24px; }
         }
-
+*/
         /* Slim top bar above header for social links/contact */
         .topbar {
             background: rgba(0,0,0,0.04);
@@ -156,12 +199,14 @@ header.scrolled .nav-links a {
             color: var(--primary);
         }
 */
-        .nav-links {
-            display: flex;
-            gap: 1rem;
-            list-style: none;
-        }
-
+.nav-links {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+    padding-left: 0;  /* Remove the 120px padding */
+    padding-right: 0;
+    align-items: center;
+}
         /* Show menu when activated (used by hamburger toggle) */
         .nav-links.active {
             display: flex;
@@ -1380,12 +1425,59 @@ header.scrolled .nav-links a {
 		</div> <!-- .container -->
 	</div> <!-- #top-header -->
 
-<header id="mainHeader" data-height-onload="142px">
-    <div class="container" style="display: flex; justify-content: space-between; align-items: center; padding: 0 20px;">
+
+<header id="mainHeader">
+    <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+               
         <nav>
-                <div class="logo">
-                <img src="/incico.svg" alt="Logo for Incertae Sedis showing a decorative script wordmark reading Incertae Sedis with teal and aqua gradient accents and warm gold highlights, layered ornamental flourishes and subtle shadows on a white background, elegant professional and warm tone" style="height: 256px;">
-                </div>
+             <div class="logo">
+                <!-- <img src="/incico.svg" alt="Logo for Incertae Sedis showing a decorative script wordmark reading Incertae Sedis with teal and aqua gradient accents and warm gold highlights, layered ornamental flourishes and subtle shadows on a white background, elegant professional and warm tone" style="height: 256px;"> -->
+                <svg xmlns="http://www.w3.org/2000/svg" height="100px" viewBox="0 0 100 80" fill="none" class="logo-svg">
+  <defs>
+    <linearGradient id="d" x1="843.89" x2="876.84" y1="-33.494" y2="-78.385" gradientTransform="translate(-494.21 190.22)scale(.68354)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#cf9661"/>
+      <stop offset="1" stop-color="#dbbb88"/>
+    </linearGradient>
+    <linearGradient id="e" x1="807.95" x2="895.06" y1="-30.978" y2="-133.29" gradientTransform="translate(-494.21 190.22)scale(.68354)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#1c9391"/>
+      <stop offset="1" stop-color="#25b8bf" stop-opacity=".5"/>
+    </linearGradient>
+    <linearGradient id="f" x1="844.69" x2="813" y1="-112.86" y2="-69.446" gradientTransform="translate(-494.21 190.22)scale(.68354)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#d09662"/>
+      <stop offset="1" stop-color="#dbbb88"/>
+    </linearGradient>
+    <filter id="b" width="1.18" height="1.129" x="-.09" y="-.064" color-interpolation-filters="sRGB">
+      <feGaussianBlur result="fbSourceGraphic" stdDeviation="1.009"/>
+      <feColorMatrix in="fbSourceGraphic" result="fbSourceGraphicAlpha" values="0 0 0 -1 0 0 0 0 -1 0 0 0 0 -1 0 0 0 0 1 0"/>
+      <feColorMatrix in="fbSourceGraphic" result="fbSourceGraphic" values="0.21 0.72 0.072 -0.31 0 0.21 0.72 0.072 -0.31 0 0.21 0.72 0.072 -0.31 0 0 0 0 1 0"/>
+      <feColorMatrix in="fbSourceGraphic" result="fbSourceGraphicAlpha" values="0 0 0 -1 0 0 0 0 -1 0 0 0 0 -1 0 0 0 0 1 0"/>
+      <feColorMatrix in="fbSourceGraphic" values="-3 1 0.5 -0.2 0 -3 1 0.5 -0.2 0 -3 1 0.5 -0.2 0 0 0 0 1 0"/>
+    </filter>
+    <filter id="c" width="1.173" height="1.132" x="-.087" y="-.066" color-interpolation-filters="sRGB">
+      <feGaussianBlur result="fbSourceGraphic" stdDeviation="1.021"/>
+      <feColorMatrix in="fbSourceGraphic" result="fbSourceGraphicAlpha" values="0 0 0 -1 0 0 0 0 -1 0 0 0 0 -1 0 0 0 0 1 0"/>
+      <feColorMatrix in="fbSourceGraphic" result="fbSourceGraphic" values="0.21 0.72 0.072 -0.31 0 0.21 0.72 0.072 -0.31 0 0.21 0.72 0.072 -0.31 0 0 0 0 1 0"/>
+      <feColorMatrix in="fbSourceGraphic" result="fbSourceGraphicAlpha" values="0 0 0 -1 0 0 0 0 -1 0 0 0 0 -1 0 0 0 0 1 0"/>
+      <feColorMatrix in="fbSourceGraphic" values="-3 1 0.5 -0.2 0 -3 1 0.5 -0.2 0 -3 1 0.5 -0.2 0 0 0 0 1 0"/>
+    </filter>
+    <filter id="a" width="1.224" height="1.113" x="-.112" y="-.056" color-interpolation-filters="sRGB">
+      <feGaussianBlur result="fbSourceGraphic" stdDeviation=".45"/>
+      <feColorMatrix in="fbSourceGraphic" result="fbSourceGraphicAlpha" values="0 0 0 -1 0 0 0 0 -1 0 0 0 0 -1 0 0 0 0 1 0"/>
+      <feColorMatrix in="fbSourceGraphic" values="-3 1 0.5 -0.2 0 -3 1 0.5 -0.2 0 -3 1 0.5 -0.2 0 0 0 0 1 0"/>
+    </filter>
+  </defs>
+  <path fill="#045" d="M47.383 278.48q.465.147.682.615.22.45.09 1.018-.176.78-.779 1.237-.584.444-1.154.263-.45-.144-.667-.61-.216-.47-.079-1.072.18-.799.742-1.211.564-.43 1.165-.24m-5.487 18.718c-2.554.93-3.068-.198-3.232-.553q-.212-.486-.055-1.178c.335-1.479 1.88-4.313 4.687-9.588.132-.25.611-.758.545-1.19-.033-.216-.235-.407-.439-.488-.235-.092-.452-.041-.755.066-.127.09-.319-.222-.333-.393-.033-.392.24-.847.602-1.014 0 0 1.452-.497 2.181-.384.471.074 1.008.265 1.267.665.235.365.14 1.014.076 1.298q-.117.516-1.966 4.057c-2.015 3.865-3.094 5.686-3.29 6.55-.038.43-.031.62.19.756.555.34 1.718-.338 1.905-.432.145.327.14.458.093.682-.06.284-.456.74-.456.74-.295.207-1.02.406-1.02.406" filter="url(#a)" opacity=".6" style="shape-inside:url(#rect73849);white-space:pre" transform="translate(-120.55 -967.225)scale(3.4875)"/>
+  <path fill="#383934" d="M450.11-89.016c7.726-2.976 17.039-12.627 15.69-21.357-.743-4.812-5.902-6.512-11.796-8.613 11.926-1.849 17.498.48 20.666 7.03 3 6.204.044 20.976-25.945 30.034 2.105-2.603 3.567-5.754 1.385-7.094" filter="url(#b)" opacity=".4" style="mix-blend-mode:darken;shape-inside:url(#rect73849);white-space:pre" transform="translate(-274.822 122.975)scale(.68354)"/>
+  <path fill="#383934" d="M440.19-143.86c-7.726 2.976-18.039 12.864-16.955 20.29.66 4.52 4.481 6.851 10.376 8.952-11.01 3.04-17.648-2.462-20.063-9.45-2.789-14.908 16.762-23.52 28.027-26.886-2.105 2.603-3.566 5.754-1.385 7.094" filter="url(#c)" opacity=".4" style="shape-inside:url(#rect73849);white-space:pre" transform="translate(-274.822 122.975)scale(.68354)"/>
+  <path fill="url(#d)" d="M86.732 158.79c5.281-2.034 11.647-8.631 10.725-14.598-.508-3.289-4.034-4.451-8.063-5.887 8.151-1.264 11.96.327 14.126 4.805 2.05 4.24.03 14.338-17.735 20.53 2.248-2.208 2.438-3.933.946-4.85z" style="shape-inside:url(#rect73849);white-space:pre" transform="translate(-53.002 -98.425)"/>
+  <path fill="url(#e)" d="M99.546 100.55q1.624.514 2.377 2.146.768 1.57.318 3.55-.618 2.724-2.72 4.314-2.034 1.545-4.025.915-1.572-.497-2.325-2.13-.753-1.63-.276-3.735.633-2.785 2.587-4.224 1.968-1.5 4.064-.836m-19.135 65.278c-8.907 3.247-10.7-.689-11.273-1.928q-.739-1.693-.192-4.108c1.17-5.158 6.56-15.043 16.346-33.439.46-.871 2.132-2.645 1.902-4.148-.115-.755-.821-1.423-1.531-1.703-.82-.324-1.577-.145-2.635.227-.44.315-1.11-.772-1.16-1.368-.116-1.366.837-2.954 2.1-3.536 0 0 5.062-1.735 7.606-1.338 1.643.256 3.515.921 4.417 2.319.82 1.27.492 3.536.267 4.527q-.407 1.794-6.859 14.149c-7.024 13.477-10.788 19.829-11.472 22.842-.134 1.499-.108 2.159.663 2.635 1.825 1.129 4.23-.287 6.287-1.385.694-.37.87 1.108.848 1.758-.04 1.182-1.757 3.082-1.757 3.082-1.03.722-3.557 1.415-3.557 1.415z" style="shape-inside:url(#rect73849);white-space:pre" transform="translate(-53.002 -98.425)"/>
+  <path fill="url(#f)" d="M80.831 121.3c-5.281 2.034-12.33 8.793-11.59 13.869.45 3.09 3.063 4.683 7.092 6.12-7.525 2.077-12.063-1.684-13.714-6.46-1.906-10.19 11.458-16.078 19.158-18.378-1.438 1.78-2.438 3.933-.946 4.85z" style="shape-inside:url(#rect73849);white-space:pre" transform="translate(-53.002 -98.425)"/>
+  <text xml:space="preserve" fill="#1c9391" font-family="'Droid Sans'" font-size="42.667" letter-spacing="10" style="line-height:1.25;shape-inside:url(#rect1184-0);white-space:pre" transform="matrix(.2201 0 -.09779 .2201 -366.612 -136.892)" word-spacing="0"><tspan x="2204.383" y="792.211"><tspan font-family="Carlito" font-weight="bold">NCERTÆ</tspan></tspan></text>
+  <text xml:space="preserve" fill="#d09662" font-family="'Droid Sans'" font-size="42.667" letter-spacing="10" style="line-height:1.25;shape-inside:url(#rect1185-4);white-space:pre" transform="matrix(.2201 0 -.05898 .2201 -383.452 -127.177)"><tspan x="2204.383" y="792.211"><tspan font-family="Carlito" font-style="italic">EDIS</tspan></tspan></text>
+</svg>
+    
+            </div>
+        
                 <ul class="nav-links">
                     <li><a href="#home" onclick="switchLang(lang)">Inicio</a></li>
                     <li><a href="#about" onclick="switchLang(lang)">Nosotros</a></li>
@@ -1411,7 +1503,55 @@ header.scrolled .nav-links a {
     <div class="hero-parallax-bg"></div>
     <div class="hero-overlay"></div>
     <div class="container hero-content animate-fade-in">
-<img src="/incico.svg" alt="Logo for Incertae Sedis showing a decorative script wordmark reading Incertae Sedis with teal and aqua gradient accents and warm gold highlights, layered ornamental flourishes and subtle shadows on a white background, elegant professional and warm tone" >                
+<!-- <img src="/incico.svg" alt="Logo for Incertae Sedis showing a decorative script wordmark reading Incertae Sedis with teal and aqua gradient accents and warm gold highlights, layered ornamental flourishes and subtle shadows on a white background, elegant professional and warm tone" >                 -->
+ <div class="logo">
+                <!-- <img src="/incico.svg" alt="Logo for Incertae Sedis showing a decorative script wordmark reading Incertae Sedis with teal and aqua gradient accents and warm gold highlights, layered ornamental flourishes and subtle shadows on a white background, elegant professional and warm tone" style="height: 256px;"> -->
+                <svg xmlns="http://www.w3.org/2000/svg" height="300px" viewBox="0 0 100 80" fill="none" class="logo-svg">
+  <defs>
+    <linearGradient id="d" x1="843.89" x2="876.84" y1="-33.494" y2="-78.385" gradientTransform="translate(-494.21 190.22)scale(.68354)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#cf9661"/>
+      <stop offset="1" stop-color="#dbbb88"/>
+    </linearGradient>
+    <linearGradient id="e" x1="807.95" x2="895.06" y1="-30.978" y2="-133.29" gradientTransform="translate(-494.21 190.22)scale(.68354)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#1c9391"/>
+      <stop offset="1" stop-color="#25b8bf" stop-opacity=".5"/>
+    </linearGradient>
+    <linearGradient id="f" x1="844.69" x2="813" y1="-112.86" y2="-69.446" gradientTransform="translate(-494.21 190.22)scale(.68354)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#d09662"/>
+      <stop offset="1" stop-color="#dbbb88"/>
+    </linearGradient>
+    <filter id="b" width="1.18" height="1.129" x="-.09" y="-.064" color-interpolation-filters="sRGB">
+      <feGaussianBlur result="fbSourceGraphic" stdDeviation="1.009"/>
+      <feColorMatrix in="fbSourceGraphic" result="fbSourceGraphicAlpha" values="0 0 0 -1 0 0 0 0 -1 0 0 0 0 -1 0 0 0 0 1 0"/>
+      <feColorMatrix in="fbSourceGraphic" result="fbSourceGraphic" values="0.21 0.72 0.072 -0.31 0 0.21 0.72 0.072 -0.31 0 0.21 0.72 0.072 -0.31 0 0 0 0 1 0"/>
+      <feColorMatrix in="fbSourceGraphic" result="fbSourceGraphicAlpha" values="0 0 0 -1 0 0 0 0 -1 0 0 0 0 -1 0 0 0 0 1 0"/>
+      <feColorMatrix in="fbSourceGraphic" values="-3 1 0.5 -0.2 0 -3 1 0.5 -0.2 0 -3 1 0.5 -0.2 0 0 0 0 1 0"/>
+    </filter>
+    <filter id="c" width="1.173" height="1.132" x="-.087" y="-.066" color-interpolation-filters="sRGB">
+      <feGaussianBlur result="fbSourceGraphic" stdDeviation="1.021"/>
+      <feColorMatrix in="fbSourceGraphic" result="fbSourceGraphicAlpha" values="0 0 0 -1 0 0 0 0 -1 0 0 0 0 -1 0 0 0 0 1 0"/>
+      <feColorMatrix in="fbSourceGraphic" result="fbSourceGraphic" values="0.21 0.72 0.072 -0.31 0 0.21 0.72 0.072 -0.31 0 0.21 0.72 0.072 -0.31 0 0 0 0 1 0"/>
+      <feColorMatrix in="fbSourceGraphic" result="fbSourceGraphicAlpha" values="0 0 0 -1 0 0 0 0 -1 0 0 0 0 -1 0 0 0 0 1 0"/>
+      <feColorMatrix in="fbSourceGraphic" values="-3 1 0.5 -0.2 0 -3 1 0.5 -0.2 0 -3 1 0.5 -0.2 0 0 0 0 1 0"/>
+    </filter>
+    <filter id="a" width="1.224" height="1.113" x="-.112" y="-.056" color-interpolation-filters="sRGB">
+      <feGaussianBlur result="fbSourceGraphic" stdDeviation=".45"/>
+      <feColorMatrix in="fbSourceGraphic" result="fbSourceGraphicAlpha" values="0 0 0 -1 0 0 0 0 -1 0 0 0 0 -1 0 0 0 0 1 0"/>
+      <feColorMatrix in="fbSourceGraphic" values="-3 1 0.5 -0.2 0 -3 1 0.5 -0.2 0 -3 1 0.5 -0.2 0 0 0 0 1 0"/>
+    </filter>
+  </defs>
+  <path fill="#045" d="M47.383 278.48q.465.147.682.615.22.45.09 1.018-.176.78-.779 1.237-.584.444-1.154.263-.45-.144-.667-.61-.216-.47-.079-1.072.18-.799.742-1.211.564-.43 1.165-.24m-5.487 18.718c-2.554.93-3.068-.198-3.232-.553q-.212-.486-.055-1.178c.335-1.479 1.88-4.313 4.687-9.588.132-.25.611-.758.545-1.19-.033-.216-.235-.407-.439-.488-.235-.092-.452-.041-.755.066-.127.09-.319-.222-.333-.393-.033-.392.24-.847.602-1.014 0 0 1.452-.497 2.181-.384.471.074 1.008.265 1.267.665.235.365.14 1.014.076 1.298q-.117.516-1.966 4.057c-2.015 3.865-3.094 5.686-3.29 6.55-.038.43-.031.62.19.756.555.34 1.718-.338 1.905-.432.145.327.14.458.093.682-.06.284-.456.74-.456.74-.295.207-1.02.406-1.02.406" filter="url(#a)" opacity=".6" style="shape-inside:url(#rect73849);white-space:pre" transform="translate(-120.55 -967.225)scale(3.4875)"/>
+  <path fill="#383934" d="M450.11-89.016c7.726-2.976 17.039-12.627 15.69-21.357-.743-4.812-5.902-6.512-11.796-8.613 11.926-1.849 17.498.48 20.666 7.03 3 6.204.044 20.976-25.945 30.034 2.105-2.603 3.567-5.754 1.385-7.094" filter="url(#b)" opacity=".4" style="mix-blend-mode:darken;shape-inside:url(#rect73849);white-space:pre" transform="translate(-274.822 122.975)scale(.68354)"/>
+  <path fill="#383934" d="M440.19-143.86c-7.726 2.976-18.039 12.864-16.955 20.29.66 4.52 4.481 6.851 10.376 8.952-11.01 3.04-17.648-2.462-20.063-9.45-2.789-14.908 16.762-23.52 28.027-26.886-2.105 2.603-3.566 5.754-1.385 7.094" filter="url(#c)" opacity=".4" style="shape-inside:url(#rect73849);white-space:pre" transform="translate(-274.822 122.975)scale(.68354)"/>
+  <path fill="url(#d)" d="M86.732 158.79c5.281-2.034 11.647-8.631 10.725-14.598-.508-3.289-4.034-4.451-8.063-5.887 8.151-1.264 11.96.327 14.126 4.805 2.05 4.24.03 14.338-17.735 20.53 2.248-2.208 2.438-3.933.946-4.85z" style="shape-inside:url(#rect73849);white-space:pre" transform="translate(-53.002 -98.425)"/>
+  <path fill="url(#e)" d="M99.546 100.55q1.624.514 2.377 2.146.768 1.57.318 3.55-.618 2.724-2.72 4.314-2.034 1.545-4.025.915-1.572-.497-2.325-2.13-.753-1.63-.276-3.735.633-2.785 2.587-4.224 1.968-1.5 4.064-.836m-19.135 65.278c-8.907 3.247-10.7-.689-11.273-1.928q-.739-1.693-.192-4.108c1.17-5.158 6.56-15.043 16.346-33.439.46-.871 2.132-2.645 1.902-4.148-.115-.755-.821-1.423-1.531-1.703-.82-.324-1.577-.145-2.635.227-.44.315-1.11-.772-1.16-1.368-.116-1.366.837-2.954 2.1-3.536 0 0 5.062-1.735 7.606-1.338 1.643.256 3.515.921 4.417 2.319.82 1.27.492 3.536.267 4.527q-.407 1.794-6.859 14.149c-7.024 13.477-10.788 19.829-11.472 22.842-.134 1.499-.108 2.159.663 2.635 1.825 1.129 4.23-.287 6.287-1.385.694-.37.87 1.108.848 1.758-.04 1.182-1.757 3.082-1.757 3.082-1.03.722-3.557 1.415-3.557 1.415z" style="shape-inside:url(#rect73849);white-space:pre" transform="translate(-53.002 -98.425)"/>
+  <path fill="url(#f)" d="M80.831 121.3c-5.281 2.034-12.33 8.793-11.59 13.869.45 3.09 3.063 4.683 7.092 6.12-7.525 2.077-12.063-1.684-13.714-6.46-1.906-10.19 11.458-16.078 19.158-18.378-1.438 1.78-2.438 3.933-.946 4.85z" style="shape-inside:url(#rect73849);white-space:pre" transform="translate(-53.002 -98.425)"/>
+  <text xml:space="preserve" fill="#1c9391" font-family="'Droid Sans'" font-size="42.667" letter-spacing="10" style="line-height:1.25;shape-inside:url(#rect1184-0);white-space:pre" transform="matrix(.2201 0 -.09779 .2201 -366.612 -136.892)" word-spacing="0"><tspan x="2204.383" y="792.211"><tspan font-family="Carlito" font-weight="bold">NCERTÆ</tspan></tspan></text>
+  <text xml:space="preserve" fill="#d09662" font-family="'Droid Sans'" font-size="42.667" letter-spacing="10" style="line-height:1.25;shape-inside:url(#rect1185-4);white-space:pre" transform="matrix(.2201 0 -.05898 .2201 -383.452 -127.177)"><tspan x="2204.383" y="792.211"><tspan font-family="Carlito" font-style="italic">EDIS</tspan></tspan></text>
+</svg>
+    
+            </div>
+        
         <h1 class="lang-es">Transforma tu Presencia Digital</h1>
         <h1 class="lang-en">Transform Your Digital Presence</h1>
         <p class="lang-es">Soluciones expertas en desarrollo, educación tecnológica y consultoría científica.</p>
@@ -1976,8 +2116,7 @@ header.scrolled .nav-links a {
         <div class="container">
             <div class="footer-content">
                 <div class="footer-col">
-                    <h4 class="lang-es">Servicios Digitales</h4>
-                    <h4 class="lang-en">Digital Services</h4>
+                    <h4>Incertæ Sedis</h4>
                     <p class="lang-es">Transformamos ideas en soluciones digitales innovadoras para tu empresa.</p>
                     <p class="lang-en">We transform ideas into innovative digital solutions for your business.</p>
                 </div>
