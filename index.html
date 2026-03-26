@@ -8,6 +8,41 @@
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
+        /* Bloqueador de pantalla total */
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #ffffff; /* Ajustar a var(--white) si ya está definida */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000; /* Por encima de todo */
+    transition: opacity 0.5s ease;
+}
+
+/* Animación del círculo */
+.loader {
+    width: 50px;
+    height: 50px;
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #1c9391ff; /* Tu color --primary */
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Clase para desaparecerlo */
+.fade-out {
+    opacity: 0;
+    pointer-events: none;
+}
         :root {
             --primary: #1c9391ff;
             --accent: rgb(215, 177, 96);
@@ -215,7 +250,7 @@ nav .logo .logo-svg {
         #top-header .et-social-icons li a.icon:hover,
         #topbar-social .et-social-icons li a:hover { color: var(--primary); background: rgba(0,0,0,0.04); }
 
-        #top-header #et-info a { color: var(--white); text-decoration: none; }
+        #top-header #et-info a { color: #241F31; text-decoration: none; }
 
         @media (max-width: 720px) {
             #top-header .et-social-icons { gap: 6px; }
@@ -268,7 +303,7 @@ nav .logo .logo-svg {
         .lang-switch button {
             background: none;
             border: 1px solid var(--primary);
-            color: var(--primary);
+            color: #1a1a1aff;
             padding: 0.35rem 0.7rem;
             border-radius: 18px;
             cursor: pointer;
@@ -278,7 +313,7 @@ nav .logo .logo-svg {
 
         .lang-switch button.active {
             background-color: var(--primary);
-            color: var(--white);
+            color: #1a1a1aff;
         }
 
         .hamburger {
@@ -297,12 +332,14 @@ nav .logo .logo-svg {
         .hero h1 {
             font-size: 3rem;
             margin-bottom: 1rem;
+            color: #ffff;
         }
 
         .hero p {
             font-size: 1.2rem;
             max-width: 600px;
             margin: 0 auto 2rem;
+            color: #ffff;
         }
 
         .btn {
@@ -316,7 +353,7 @@ nav .logo .logo-svg {
 
         .btn-primary {
             background-color: var(--accent);
-            color: var(--white);
+            color: #1a1a1aff;
         }
 
         .btn-primary:hover {
@@ -826,7 +863,7 @@ nav .logo .logo-svg {
     bottom: 0; left: 0; right: 0;
     padding: 25px;
     background: linear-gradient(transparent, rgba(0,0,0,0.7));
-    color: var(--white);
+    color: rgb(231, 194, 7);
     font-weight: 600;
     font-size: 1.2rem;
     pointer-events: none;
@@ -884,6 +921,8 @@ nav .logo .logo-svg {
     color: var(--white);
         /* Sombra de texto para máxima legibilidad */
     text-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    padding-bottom: 50px;
+    padding-top: 50px;
 }
 
 /* --- ANIMACIÓN REVELADO --- */
@@ -1385,36 +1424,34 @@ nav .logo .logo-svg {
     100% { transform: scale(1.6); opacity: 0; }
   }
 
-/* Ensure icons inherit color properly from their parent links */
-i.fas, i.fab, i.far {
-    display: inline-block;
-    color: inherit; 
-}/* Add this to your style section to ensure brands load */
-.fab, .fa-brands {
-    font-family: "Font Awesome 6 Brands" !important;
-}
-/* Universal fix for Font Awesome icons 
-.fas, .fab, .fa-solid, .fa-brands {
-    -moz-osx-font-smoothing: grayscale;
-    -webkit-font-smoothing: antialiased;
+  /* --- FIX DE ICONOS --- */
+/* Eliminamos el visibility:hidden que causaba que no se vieran */
+.fas, .fa-solid, .fab, .fa-brands {
     display: inline-block;
     font-style: normal;
     font-variant: normal;
     text-rendering: auto;
     line-height: 1;
-}*/
-/* Evita que los iconos muestren el cuadro de 'fuente no cargada' */
-.fas, .fab, .fa {
-    visibility: hidden;
+    /* Quitamos el visibility: hidden que tenías antes */
+    visibility: visible !important; 
 }
 
-/* Una vez que la página carga, los mostramos */
-.fonts-loaded .fas, 
-.fonts-loaded .fab {
-    visibility: visible;
+/* Aseguramos que las fuentes se asignen correctamente */
+.fa-brands, .fab {
+    font-family: "Font Awesome 6 Brands" !important;
+}
+.fa-solid, .fas {
+    font-family: "Font Awesome 6 Free" !important;
+    font-weight: 900;
 }
 
-/* Estilos del Preloader */
+/* --- MEJORA DE ACCESIBILIDAD PARA EL BOTÓN FLOTANTE --- */
+.wa-button {
+    /* Asegura que el botón sea reconocible por lectores de pantalla */
+    text-decoration: none;
+}
+
+/* Estilos del Preloader 
 #preloader {
     position: fixed;
     top: 0;
@@ -1425,7 +1462,7 @@ i.fas, i.fab, i.far {
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 99999; /* Por encima de todo */
+    z-index: 99999; /* Por encima de todo 
     transition: opacity 0.5s ease, visibility 0.5s ease;
 }
 
@@ -1443,11 +1480,11 @@ i.fas, i.fab, i.far {
     100% { transform: rotate(360deg); }
 }
 
-/* Clase para ocultar el preloader */
+/* Clase para ocultar el preloader 
 .preloader-hidden {
     opacity: 0;
     visibility: hidden;
-}
+}*/
     </style>
 </head>
 <body>
@@ -1487,11 +1524,14 @@ i.fas, i.fab, i.far {
                 <!-- Right-aligned social icons for top header -->
                 <div id="topbar-social">
                     <ul class="et-social-icons">
-                        <li><a href="https://twitter.com/" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><i class="fab fa-twitter"></i></a></li>
+                                <li><a href="https://twitter.com/" target="_blank" rel="noopener" aria-label="Twitter"><i class="fab fa-twitter" aria-hidden="true"></i></a></li>
+        <li><a href="https://facebook.com/" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f" aria-hidden="true"></i></a></li>
+        <li><a href="https://instagram.com/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a></li>
+                        <!-- <li><a href="https://twitter.com/" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><i class="fab fa-twitter"></i></a></li>
                         <li><a href="https://facebook.com/" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a></li>
                         <li><a href="https://instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a></li>
                         <li><a href="https://linkedin.com/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a></li>
-                        <li><a href="https://github.com/" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a></li>
+                        <li><a href="https://github.com/" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a></li> -->
                     </ul>
                 </div>
 <!-- 
@@ -1683,7 +1723,7 @@ i.fas, i.fab, i.far {
             <a href="#contacto" class="btn">Elegir Plan</a>
         </div>
         <div class="price-card popular">
-            <span style="background:var(--accent); color:white; padding:4px 12px; border-radius:20px; font-size:0.8rem;">RECOMENDADO</span>
+            <span style="background:var(--accent); color:#1a1a1aff; padding:4px 12px; border-radius:20px; font-size:0.8rem;">RECOMENDADO</span>
             <h3>Profesional</h3>
             <div class="price">$999<span>/mes</span></div>
             <ul>
@@ -1708,9 +1748,10 @@ i.fas, i.fab, i.far {
     </div>
 </section>
 
+
 <div id="wa-widget" class="wa-container">
   
-  <div id="wa-bubble" class="wa-bubble">
+  <div id="wa-bubble" class="wa-bubble" role="status" aria-live="polite">
     <p>¡Hola! 👋 ¿Tienes alguna duda? Escríbenos por WhatsApp.</p>
     <div class="wa-arrow"></div>
   </div>
@@ -1722,7 +1763,8 @@ i.fas, i.fab, i.far {
      onmouseleave="hideBubble()">
 
     <div class="wa-ping"></div>
-    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"></path></svg>
+    <i class="fab fa-whatsapp" style="font-size: 32px;" aria-hidden="true"></i>
+    <!-- <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"></path></svg> -->
   </a>
 </div>
 <!-- 
@@ -1811,7 +1853,8 @@ i.fas, i.fab, i.far {
                 <div class="about-text">
                     <h2 class="lang-es">Innovación Social Digital para tu Empresa</h2>
                     <h2 class="lang-en">Digital Social Innovation for Your Business</h2>
-                    <p class="lang-es">Incertae Sedis, lugar incierto. Una frase utilizada en biología para referirse a una especie cuyas características no podemos clasificar. En otras palabras: única. Creemos que todas las personas tenemos algo que aportar y todas las voces merecen ser escuchadas. Por eso transformamos ideas en soluciones digitales innovadoras enfocadas en el desarrollo social y crear comunidad. Nos dedicamos a ayudar a empresas de todos los tamaños a alcanzar su máximo potencial tecnológico y sobre todo a favorecer el desarrollo integral de todas las personas.</p>
+                    <p class="lang-es">
+Incertae Sedis, lugar incierto. Una frase utilizada en biología para referirse a una especie cuyas características no podemos clasificar. En otras palabras: única. Creemos que todas las personas tenemos algo que aportar y todas las voces merecen ser escuchadas. Por eso transformamos ideas en soluciones digitales innovadoras enfocadas en el desarrollo social y crear comunidad. Nos dedicamos a ayudar a empresas de todos los tamaños a alcanzar su máximo potencial tecnológico y sobre todo a favorecer el desarrollo integral de todas las personas.</p>
                     <p class="lang-en">At Digital Services we are a team of professionals specialized in turning ideas into innovative digital solutions. With years of experience in the Mexican and international market, we help companies of all sizes reach their full technological potential.</p>
                     <p class="lang-es">Nuestra misión es utilizar la tecnología para ser más humanos. Desarrollando herramientas que ayuden a la inclusión e impulsen la transformación digital de nuestros clientes.</p>
                     <p class="lang-en">Our mission is to provide high-quality services that drive the digital transformation of our clients, using the most modern technologies and industry best practices.</p>
@@ -2632,6 +2675,7 @@ window.onload = function() {
     }, 5000);
   };
 
+  /*
   window.addEventListener('load', function() {
     const preloader = document.getElementById('preloader');
     
@@ -2639,6 +2683,21 @@ window.onload = function() {
     setTimeout(() => {
         preloader.classList.add('preloader-hidden');
     }, 300); 
+});*/
+
+window.addEventListener('load', function() {
+    const preloader = document.getElementById('preloader');
+    
+    // Verificación de seguridad: si Font Awesome falló, 
+    // el preloader se quita igual para no bloquear al usuario.
+    setTimeout(() => {
+        preloader.classList.add('fade-out');
+        
+        // Opcional: eliminarlo del DOM después de la transición
+        setTimeout(() => {
+            preloader.style.display = 'none';
+        }, 500);
+    }, 200); // 200ms de cortesía para el renderizado final
 });
 
     function showBubble() {
