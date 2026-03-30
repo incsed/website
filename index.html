@@ -3,32 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Incertae Sedis | Incertae Sedis</title>
+    <title>Incertae Sedis | Transforma tu presencia digital</title>
     <link rel="icon" type="image/svg+xml" href="/incico2.svg">
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
-        /* Bloqueador de pantalla total */
+
+/* Estilos del Preloader */
 #preloader {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: #ffffff; /* Ajustar a var(--white) si ya está definida */
+    width: 100%;
+    height: 100%;
+    background-color: var(--white);
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 10000; /* Por encima de todo */
-    transition: opacity 0.5s ease;
+    z-index: 99999; /* Por encima de todo */
+    transition: opacity 0.5s ease, visibility 0.5s ease;
 }
 
-/* Animación del círculo */
 .loader {
     width: 50px;
     height: 50px;
-    border: 5px solid #f3f3f3;
-    border-top: 5px solid #1c9391ff; /* Tu color --primary */
+    border: 5px solid var(--light);
+    border-top: 5px solid var(--primary);
     border-radius: 50%;
     animation: spin 1s linear infinite;
 }
@@ -37,6 +37,12 @@
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
+
+/* Clase para ocultar el preloader 
+.preloader-hidden {
+    opacity: 0;
+    visibility: hidden;
+}*/
 
 /* Clase para desaparecerlo */
 .fade-out {
@@ -303,7 +309,7 @@ nav .logo .logo-svg {
         .lang-switch button {
             background: none;
             border: 1px solid var(--primary);
-            color: #1a1a1aff;
+            color: var(--dark);
             padding: 0.35rem 0.7rem;
             border-radius: 18px;
             cursor: pointer;
@@ -362,8 +368,8 @@ nav .logo .logo-svg {
         }
 
         .btn-secondary {
-            background-color: var(--white);
-            color: var(--primary);
+            background-color: var(--primary);
+            color: #1a1a1aff;
         }
 
         .btn-secondary:hover {
@@ -419,7 +425,7 @@ nav .logo .logo-svg {
         }
 
         .service-card p {
-            color: #666;
+            color: var(--text);
             margin-bottom: 1.5rem;
         }
 
@@ -431,6 +437,13 @@ nav .logo .logo-svg {
         .courses {
             background-color: #f9f9f9;
         }
+.courses .section-title {
+    color: #1a1a1aff !important;
+}
+
+.courses .section-title span {
+    color: #1a1a1aff !important; /* El toque de color en 'Nosotros' */
+}
 
         .courses-grid {
             display: grid;
@@ -552,8 +565,8 @@ nav .logo .logo-svg {
         }
 
         footer {
-            background-color: var(--dark);
-            color: var(--white);
+            background-color: #1a1a2e;
+            color: #ffff;
             padding: 3rem 0 1rem;
         }
 
@@ -564,19 +577,19 @@ nav .logo .logo-svg {
             margin-bottom: 2rem;
         }
 
-        .footer-col h4 {
+        .footer-col h2 {
             color: var(--accent);
             margin-bottom: 1rem;
             font-size: 1.2rem;
         }
 
         /* Accent line under footer headings */
-        .footer-col h4 {
+        .footer-col h2 {
             position: relative;
             padding-bottom: 0.6rem;
         }
 
-        .footer-col h4::after {
+        .footer-col h2::after {
             content: '';
             position: absolute;
             left: 0;
@@ -744,7 +757,7 @@ nav .logo .logo-svg {
 
         .blog-date {
             background-color: var(--accent);
-            color: var(--white);
+            color: #1a1a1aff;
             padding: 0.5rem 1rem;
             font-size: 0.85rem;
             display: inline-block;
@@ -759,12 +772,12 @@ nav .logo .logo-svg {
         }
 
         .blog-card p {
-            color: #666;
+            color: var(--text);
             margin-bottom: 1rem;
         }
 
         .blog-card a {
-            color: var(--primary);
+            color: var(--dark);
             text-decoration: none;
             font-weight: 600;
         }
@@ -776,7 +789,7 @@ nav .logo .logo-svg {
         .about-section {
             background: linear-gradient(135deg, var(--primary) 0%, #167a78ff 100%);
             color: var(--white);
-            padding: 100px 0;
+            padding: 150px 0;
         }
 
         .image-divider {
@@ -971,6 +984,7 @@ nav .logo .logo-svg {
             font-size: 1.1rem;
             margin-bottom: 1rem;
             opacity: 0.95;
+            text-align: justify;
         }
 
         .about-stats {
@@ -1451,53 +1465,22 @@ nav .logo .logo-svg {
     text-decoration: none;
 }
 
-/* Estilos del Preloader 
-#preloader {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: var(--white);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 99999; /* Por encima de todo 
-    transition: opacity 0.5s ease, visibility 0.5s ease;
-}
-
-.loader {
-    width: 50px;
-    height: 50px;
-    border: 5px solid var(--light);
-    border-top: 5px solid var(--primary);
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-/* Clase para ocultar el preloader 
-.preloader-hidden {
-    opacity: 0;
-    visibility: hidden;
-}*/
+  .justified-text {
+    text-align: justify;
+  }
     </style>
 </head>
 <body>
     <div id="preloader">
     <div class="loader"></div>
 </div>
-<div id="top-header">
+<div id="top-header" aria-label="Contact" role="navigation">
 		<div class="container clearfix">
 
 		
 			<div id="et-info">
 							<span id="et-info-phone"></span>
-			
+			<i class="fas fa-envelope"></i>
 							<a href="mailto:contacto@incsed.com"><span id="et-info-email">contacto@incsed.com</span></a>
 			
 		<!-- 	<ul class="et-social-icons">
@@ -1569,7 +1552,7 @@ nav .logo .logo-svg {
         <nav>
              <div class="logo">
                 <!-- <img src="/incico.svg" alt="Logo for Incertae Sedis showing a decorative script wordmark reading Incertae Sedis with teal and aqua gradient accents and warm gold highlights, layered ornamental flourishes and subtle shadows on a white background, elegant professional and warm tone" style="height: 256px;"> -->
-                <svg xmlns="http://www.w3.org/2000/svg" height="100px" viewBox="0 0 100 80" fill="none" class="logo-svg">
+                <svg xmlns="http://www.w3.org/2000/svg" height="100px" viewBox="0 0 100 80" fill="none" class="logo-svg" role="img"  aria-label="Logo for Incertae Sedis showing a decorative script wordmark reading Incertae Sedis with teal and aqua gradient accents and warm gold highlights, layered ornamental flourishes and subtle shadows on a white background, elegant professional and warm tone">
   <defs>
     <linearGradient id="d" x1="843.89" x2="876.84" y1="-33.494" y2="-78.385" gradientTransform="translate(-494.21 190.22)scale(.68354)" gradientUnits="userSpaceOnUse">
       <stop offset="0" stop-color="#cf9661"/>
@@ -1626,7 +1609,8 @@ nav .logo .logo-svg {
                     <li class="lang-switch">
                         <button class="active" onclick="setLanguage('es')" id="btn-es">ES</button>
                         <button onclick="setLanguage('en')" id="btn-en">EN</button>
-                        <button id="themeToggle" class="theme-toggle" onclick="toggleTheme()" title="Toggle dark / light">
+                        <button id="themeToggle" class="theme-toggle" onclick="toggleTheme()" title="Toggle dark / light"
+                        aria-label="Toggle dark / light">
                             <i id="themeIcon" class="fas fa-moon"></i>
                         </button>
                     </li>
@@ -1635,15 +1619,15 @@ nav .logo .logo-svg {
             </nav>
             </div>
 </header>
-
+<div role="main">
 <section class="hero" id="home">
     <div class="hero-parallax-bg"></div>
     <div class="hero-overlay"></div>
     <div class="container hero-content animate-fade-in">
 <!-- <img src="/incico.svg" alt="Logo for Incertae Sedis showing a decorative script wordmark reading Incertae Sedis with teal and aqua gradient accents and warm gold highlights, layered ornamental flourishes and subtle shadows on a white background, elegant professional and warm tone" >                 -->
- <div class="logo">
+ <div class="logo"> 
                 <!-- <img src="/incico.svg" alt="Logo for Incertae Sedis showing a decorative script wordmark reading Incertae Sedis with teal and aqua gradient accents and warm gold highlights, layered ornamental flourishes and subtle shadows on a white background, elegant professional and warm tone" style="height: 256px;"> -->
-                <svg xmlns="http://www.w3.org/2000/svg" height="300px" viewBox="0 0 100 80" fill="none" class="logo-svg">
+                <svg xmlns="http://www.w3.org/2000/svg" height="300px" viewBox="0 0 100 80" fill="none" class="logo-svg" role="img" aria-label="Logo for Incertae Sedis showing a decorative script wordmark reading Incertae Sedis with teal and aqua gradient accents and warm gold highlights, layered ornamental flourishes and subtle shadows on a white background, elegant professional and warm tone">
   <defs>
     <linearGradient id="d" x1="843.89" x2="876.84" y1="-33.494" y2="-78.385" gradientTransform="translate(-494.21 190.22)scale(.68354)" gradientUnits="userSpaceOnUse">
       <stop offset="0" stop-color="#cf9661"/>
@@ -1689,10 +1673,10 @@ nav .logo .logo-svg {
     
             </div>
         
-        <h1 class="lang-es">Transforma tu Presencia Digital</h1>
+        <h1 class="lang-es">Transforma tu presencia digital</h1>
         <h1 class="lang-en">Transform Your Digital Presence</h1>
-        <p class="lang-es">Soluciones expertas en desarrollo, educación tecnológica y consultoría científica.</p>
-        <p class="lang-en">Expert solutions in development, tech education, and scientific consulting.</p>
+        <p class="lang-es">Soluciones expertas en desarrollo, educación virtual y consultoría científica.</p>
+        <p class="lang-en">Expert solutions in development, e-learning, and scientific consulting.</p>
         <div class="hero-btns" style="margin-top: 2rem; display: flex; gap: 1rem; justify-content: center;">
             <a href="#services" class="btn btn-primary">
                 <span class="lang-es">Servicios</span>
@@ -1720,7 +1704,7 @@ nav .logo .logo-svg {
                 <li>Reporte Mensual</li>
                 <li>Soporte vía Email</li>
             </ul>
-            <a href="#contacto" class="btn">Elegir Plan</a>
+            <a href="#contacto" class="btn btn-secondary" style="background: rgba(255,255,255,0.2); border: 1px solid var(--dark); color: var(--dark)">Elegir Plan</a>
         </div>
         <div class="price-card popular">
             <span style="background:var(--accent); color:#1a1a1aff; padding:4px 12px; border-radius:20px; font-size:0.8rem;">RECOMENDADO</span>
@@ -1732,7 +1716,7 @@ nav .logo .logo-svg {
                 <li>Campaña Ads ($200 incl.)</li>
                 <li>Soporte 24/7</li>
             </ul>
-            <a href="#contacto" class="btn" style="background:var(--accent)">Elegir Plan</a>
+            <a href="#contacto" class="btn" style="background:var(--accent); color:#1a1a1aff;">Elegir Plan</a>
         </div>
         <div class="price-card">
             <h3>Empresarial</h3>
@@ -1743,7 +1727,7 @@ nav .logo .logo-svg {
                 <li>Estrategia de Contenido</li>
                 <li>Account Manager Dedicado</li>
             </ul>
-            <a href="#contacto" class="btn">Elegir Plan</a>
+            <a href="#contacto" class="btn btn-secondary" style="background: rgba(255,255,255,0.2); border: 1px solid var(--dark); color: var(--dark);">Elegir Plan</a>
         </div>
     </div>
 </section>
@@ -1845,20 +1829,38 @@ nav .logo .logo-svg {
     <section class="about-section" id="about">
         <div class="container">
             <h2 class="section-title">
-                <span class="lang-es">Quienes</span>
-                <span class="lang-en">About</span> <span class="lang-es">Somos</span>
-                <span class="lang-en">Us</span>
+                <span class="lang-es">Quienes somos</span>
+                <span class="lang-en">About us</span>
             </h2>
             <div class="about-content">
                 <div class="about-text">
-                    <h2 class="lang-es">Innovación Social Digital para tu Empresa</h2>
-                    <h2 class="lang-en">Digital Social Innovation for Your Business</h2>
+                    <h3 class="lang-es">Innovación Social Digital para tu Empresa</h3>
+                    <h3 class="lang-en">Digital Social Innovation for Your Organization</h3>
+                    <br>
                     <p class="lang-es">
-Incertae Sedis, lugar incierto. Una frase utilizada en biología para referirse a una especie cuyas características no podemos clasificar. En otras palabras: única. Creemos que todas las personas tenemos algo que aportar y todas las voces merecen ser escuchadas. Por eso transformamos ideas en soluciones digitales innovadoras enfocadas en el desarrollo social y crear comunidad. Nos dedicamos a ayudar a empresas de todos los tamaños a alcanzar su máximo potencial tecnológico y sobre todo a favorecer el desarrollo integral de todas las personas.</p>
-                    <p class="lang-en">At Digital Services we are a team of professionals specialized in turning ideas into innovative digital solutions. With years of experience in the Mexican and international market, we help companies of all sizes reach their full technological potential.</p>
-                    <p class="lang-es">Nuestra misión es utilizar la tecnología para ser más humanos. Desarrollando herramientas que ayuden a la inclusión e impulsen la transformación digital de nuestros clientes.</p>
-                    <p class="lang-en">Our mission is to provide high-quality services that drive the digital transformation of our clients, using the most modern technologies and industry best practices.</p>
+                        <em>Incertæ Sedis</em>, lugar incierto. Una frase utilizada en biología para referirnos a una especie cuyas características no podemos clasificar. No somos una consultora más, para nosotros, la tecnología no es un fin, sino un medio para cerrar brechas humanas.</p>
+
+                    <p class="lang-en"><em>Incertæ Sedis</em>, place unknown. An idiom used in Biology referring to an species whose traits cannot be classified. We're not just another consultancy. To us, technology is not an end but a mean to reduce the gaps that divide us.</p>
+                    <p class="lang-es" style="text-align: center;">
+                        <q>Lo incierto no es una amenaza, es el espacio donde nacen las soluciones.</q>
+                        </p>
+                    <p class="lang-en"style="text-align: center;">
+                        <q>Uncertainty is not a menace, but an opportunity where solutions are born.</q>
+                        </p>
+                    <p class="lang-es">
+    En un mundo definido por datos, a menudo olvidamos el factor humano. <em>Incertæ Sedis</em> abraza lo desconocido. Donde otros ven caos, nosotros vemos patrones. Donde la sociedad ve problemas, nosotros vemos la oportunidad de aplicar la ciencia con empatía.
+
+    Creemos en algoritmos que empoderan, en datos que cuentan historias de dignidad y en una tecnología que se diseña con la comunidad, no para aprovecharse de ella. Navegamos la complejidad de lo desconocido para trazar rutas claras hacia un futuro más equitativo.
+    </p>
+      <p class="lang-en">
+                    In a world obsessed with data, it's easy to forget the humans behind. At <em>Incertæ Sedis</em> we embrace the unknown. Where people see chaos, we see patterns. Where society see problems, we see the opportunity to apply science and empathy.
+                    We believe in algorithms to empower, in data that tells stories of dignity and technology designed with the community, not against it. We sail through the complexity of the unknown, trailblazing towards a more just future</p>
+                    <p class="lang-es">
+                        Creemos en el valor de cada persona y buscamos la inclusión de todas las voces. Por eso transformamos ideas en soluciones digitales innovadoras enfocadas en el desarrollo social y crear comunidad. Nos dedicamos a ayudar empresas y organizaciones de todos los tamaños para alcanzar su máximo potencial tecnológico y sobre todo humano, en armonía con el medio ambiente.</p>
+                    <p class="lang-en">
+                    At Digital Services we are a team of professionals specialized in turning ideas into innovative digital solutions. With years of experience in the Mexican and international market, we help companies of all sizes reach their full technological potential.</p>
                 </div>
+                <img src="Copilot_20260330_034744.png" alt="comunidad" width="512px">
                 <!-- <div class="about-stats">
                     <div class="stat-card">
                         <i class="fas fa-users"></i>
@@ -1914,9 +1916,8 @@ Incertae Sedis, lugar incierto. Una frase utilizada en biología para referirse 
 
     <section class="section" id="services">
         <div class="container">
-            <h2 class="section-title">
-                <span class="lang-es">Nuestros</span>
-                <span class="lang-en">Our</span> <span class="lang-es">Servicios</span>
+            <h2 class="section-title" style="padding: 100px;">
+                <span class="lang-es">Servicios</span>
                 <span class="lang-en">Services</span>
             </h2>
             <div class="services-grid">
@@ -1925,6 +1926,17 @@ Incertae Sedis, lugar incierto. Una frase utilizada en biología para referirse 
                     <h3 class="lang-es">Alojamiento Web</h3>
                     <h3 class="lang-en">Web Hosting</h3>
                     <p class="lang-es">Servicios de alojamiento rápido, seguro y confiable con uptime del 99.9%. Ideal para empresas de todos los tamaños.</p>
+                    <p class="lang-en">Fast, secure, and reliable hosting with 99.9% uptime. Perfect for businesses of all sizes.</p>
+                    <a href="#contact" class="btn btn-secondary">
+                        <span class="lang-es">Saber más</span>
+                        <span class="lang-en">Learn more</span>
+                    </a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-server"></i></div>
+                    <h3 class="lang-es">Psicometría</h3>
+                    <h3 class="lang-en">Web Hosting</h3>
+                    <p class="lang-es">Recolección y análisis de encuestas y pruebas psicométricas.</p>
                     <p class="lang-en">Fast, secure, and reliable hosting with 99.9% uptime. Perfect for businesses of all sizes.</p>
                     <a href="#contact" class="btn btn-secondary">
                         <span class="lang-es">Saber más</span>
@@ -1964,6 +1976,62 @@ Incertae Sedis, lugar incierto. Una frase utilizada en biología para referirse 
                         <span class="lang-en">Learn more</span>
                     </a>
                 </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-server"></i></div>
+                    <h3 class="lang-es">Ciencia ciudadana y divulgación</h3>
+                    <h3 class="lang-en">Web Hosting</h3>
+                    <p class="lang-es">Acompañamos proyectos de ciencia colaborativa para generar datos de problemas socioambientales.</p>
+                    <p class="lang-en">Fast, secure, and reliable hosting with 99.9% uptime. Perfect for businesses of all sizes.</p>
+                    <a href="#contact" class="btn btn-secondary">
+                        <span class="lang-es">Saber más</span>
+                        <span class="lang-en">Learn more</span>
+                    </a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-server"></i></div>
+                    <h3 class="lang-es">Educación ambiental</h3>
+                    <h3 class="lang-en">Web Hosting</h3>
+                    <p class="lang-es">Servicios de alojamiento rápido, seguro y confiable con uptime del 99.9%. Ideal para empresas de todos los tamaños.</p>
+                    <p class="lang-en">Fast, secure, and reliable hosting with 99.9% uptime. Perfect for businesses of all sizes.</p>
+                    <a href="#contact" class="btn btn-secondary">
+                        <span class="lang-es">Saber más</span>
+                        <span class="lang-en">Learn more</span>
+                    </a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-server"></i></div>
+                    <h3 class="lang-es">Diseño Web</h3>
+                    <h3 class="lang-en">Web Hosting</h3>
+                    <p class="lang-es">Servicios de alojamiento rápido, seguro y confiable con uptime del 99.9%. Ideal para empresas de todos los tamaños.</p>
+                    <p class="lang-en">Fast, secure, and reliable hosting with 99.9% uptime. Perfect for businesses of all sizes.</p>
+                    <a href="#contact" class="btn btn-secondary">
+                        <span class="lang-es">Saber más</span>
+                        <span class="lang-en">Learn more</span>
+                    </a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-server"></i></div>
+                    <h3 class="lang-es">Serigrafía</h3>
+                    <h3 class="lang-en">Web Hosting</h3>
+                    <p class="lang-es">Servicios de alojamiento rápido, seguro y confiable con uptime del 99.9%. Ideal para empresas de todos los tamaños.</p>
+                    <p class="lang-en">Fast, secure, and reliable hosting with 99.9% uptime. Perfect for businesses of all sizes.</p>
+                    <a href="#contact" class="btn btn-secondary">
+                        <span class="lang-es">Saber más</span>
+                        <span class="lang-en">Learn more</span>
+                    </a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-server"></i></div>
+                    <h3 class="lang-es">Huertos urbanos</h3>
+                    <h3 class="lang-en">Web Hosting</h3>
+                    <p class="lang-es">Servicios de alojamiento rápido, seguro y confiable con uptime del 99.9%. Ideal para empresas de todos los tamaños.</p>
+                    <p class="lang-en">Fast, secure, and reliable hosting with 99.9% uptime. Perfect for businesses of all sizes.</p>
+                    <a href="#contact" class="btn btn-secondary">
+                        <span class="lang-es">Saber más</span>
+                        <span class="lang-en">Learn more</span>
+                    </a>
+                </div>
+                
             </div>
         </div>
     </section>
@@ -2188,17 +2256,17 @@ Incertae Sedis, lugar incierto. Una frase utilizada en biología para referirse 
             <div class="contact-info">
                 <div class="contact-item">
                     <i class="fas fa-envelope"></i>
-                    <h4 class="lang-es">Email</h4>
+                    <h3 class="lang-es">Email</h3>
                     <p>info@serviciosdigitales.com</p>
                 </div>
                 <div class="contact-item">
                     <i class="fas fa-phone"></i>
-                    <h4 class="lang-es">Teléfono</h4>
+                    <h3 class="lang-es">Teléfono</h3>
                     <p>+1 234 567 890</p>
                 </div>
                 <div class="contact-item">
                     <i class="fas fa-map-marker-alt"></i>
-                    <h4 class="lang-es">Ubicación</h4>
+                    <h3 class="lang-es">Ubicación</h3>
                     <p class="lang-es">Ciudad de México, México</p>
                     <p class="lang-en">Mexico City, Mexico</p>
                 </div>
@@ -2251,18 +2319,18 @@ Incertae Sedis, lugar incierto. Una frase utilizada en biología para referirse 
             </form>
         </div>
     </section>
-
+</div>
     <footer>
         <div class="container">
             <div class="footer-content">
                 <div class="footer-col">
-                    <h4>Incertæ Sedis</h4>
+                    <h2>Incertæ Sedis</h2>
                     <p class="lang-es">Transformamos ideas en soluciones digitales innovadoras para tu empresa.</p>
                     <p class="lang-en">We transform ideas into innovative digital solutions for your business.</p>
                 </div>
                 <div class="footer-col">
-                    <h4 class="lang-es">Enlaces</h4>
-                    <h4 class="lang-en">Links</h4>
+                    <h2 class="lang-es">Enlaces</h2>
+                    <h2 class="lang-en">Links</h2>
                     <ul>
                         <li><a href="#home"><span class="lang-es">Inicio</span><span class="lang-en">Home</span></a></li>
                         <li><a href="#about"><span class="lang-es">Nosotros</span><span class="lang-en">About Us</span></a></li>
@@ -2274,8 +2342,8 @@ Incertae Sedis, lugar incierto. Una frase utilizada en biología para referirse 
                     </ul>
                 </div>
                 <div class="footer-col">
-                    <h4 class="lang-es">Servicios</h4>
-                    <h4 class="lang-en">Services</h4>
+                    <h2 class="lang-es">Servicios</h2>
+                    <h2 class="lang-en">Services</h2>
                     <ul>
                         <li><a href="#services"><span class="lang-es">Alojamiento Web</span><span class="lang-en">Web Hosting</span></a></li>
                         <li><a href="#services"><span class="lang-es">Desarrollo Moodle</span><span class="lang-en">Moodle Development</span></a></li>
@@ -2284,16 +2352,16 @@ Incertae Sedis, lugar incierto. Una frase utilizada en biología para referirse 
                     </ul>
                 </div>
                 <div class="footer-col">
-                    <h4 class="lang-es">Legal</h4>
-                    <h4 class="lang-en">Legal</h4>
+                    <h2 class="lang-es">Legal</h2>
+                    <h2 class="lang-en">Legal</h2>
                     <ul>
                         <li><a href="#" onclick="showPrivacyPolicy(); return false;"><span class="lang-es">Aviso de Privacidad</span><span class="lang-en">Privacy Notice</span></a></li>
                         <li><a href="#" onclick="showTerms(); return false;"><span class="lang-es">Términos y Condiciones</span><span class="lang-en">Terms & Conditions</span></a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
-                    <h4 class="lang-es">Contacto</h4>
-                    <h4 class="lang-en">Contact</h4>
+                    <h2 class="lang-es">Contacto</h2>
+                    <h2 class="lang-en">Contact</h2>
                     <ul>
                         <li><i class="fas fa-envelope"></i> <a href="mailto:info@example.com">info@example.com</a></li>
                         <li><i class="fas fa-phone"></i> <a href="tel:+525555555555">+52 55 5555 5555</a></li>
