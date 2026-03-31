@@ -4,7 +4,7 @@ email: contacto@incsed.com
 description: >-
   Incertae Sedis - Professional services and courses
 url: "https://incertaesedis.com"
-baseurl: ""
+baseurl: "https://incsed.github.io/website/"
 repository: "incsed/website"
 teaser: /assets/images/500x300.png
 logo: /assets/images/incico2.svg
