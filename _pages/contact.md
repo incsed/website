@@ -8,15 +8,15 @@ layout: page
 
 ### Información de Contacto
 
-**Email:** bajotierramu@gmail.com  
+**Email:** contacto@incsed.com  
 **Teléfono:** 555  
 **Ubicación:** Mexico
 
 ### Síguenos en Redes Sociales
 
-- [Twitter](https://twitter.com/BajoTierraMu)
-- [Facebook](https://www.facebook.com/BajoTierraMu)
-- [Instagram](https://www.instagram.com/bajotierramu/)
+- [Twitter](https://twitter.com)
+- [Facebook](https://www.facebook.com)
+- [Instagram](https://www.instagram.com)
 
 ### Envíanos un Mensaje
 

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page.title | default: site.title }} | Incertae Sedis</title>
+    <link rel="icon" type="image/svg+xml" href="/assets/images/incico2.svg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Top Header with Social Links -->
+    <div id="top-header">
+        <div class="container">
+            <div id="et-info">
+                <a href="mailto:bajotierramu@gmail.com"><span id="et-info-email">bajotierramu@gmail.com</span></a>
+            </div>
+            <div id="topbar-social">
+                <ul class="et-social-icons">
+                    <li><a href="https://twitter.com/BajoTierraMu" class="icon" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><i class="fab fa-twitter"></i></a></li>
+                    <li><a href="https://www.facebook.com/BajoTierraMu" class="icon" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a></li>
+                    <li><a href="https://www.instagram.com/bajotierramu/" class="icon" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a></li>
+                    <li><a href="https://linkedin.com/" class="icon" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a></li>
+                    <li><a href="https://github.com/" class="icon" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Header -->
+    <header id="mainHeader">
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="6 0 100 142" preserveAspectRatio="xMidYMid meet" fill="none" class="logo-svg">
+                        <defs>
+                            <linearGradient id="d" x1="843.89" x2="876.84" y1="-33.494" y2="-78.385" gradientTransform="translate(-494.21 190.22)scale(.68354)" gradientUnits="userSpaceOnUse">
+                                <stop offset="0" stop-color="#cf9661"/>
+                                <stop offset="1" stop-color="#dbbb88"/>
+                            </linearGradient>
+                            <linearGradient id="e" x1="807.95" x2="895.06" y1="-30.978" y2="-133.29" gradientTransform="translate(-494.21 190.22)scale(.68354)" gradientUnits="userSpaceOnUse">
+                                <stop offset="0" stop-color="#1c9391"/>
+                                <stop offset="1" stop-color="#25b8bf" stop-opacity=".5"/>
+                            </linearGradient>
+                            <linearGradient id="f" x1="844.69" x2="813" y1="-112.86" y2="-69.446" gradientTransform="translate(-494.21 190.22)scale(.68354)" gradientUnits="userSpaceOnUse">
+                                <stop offset="0" stop-color="#d09662"/>
+                                <stop offset="1" stop-color="#dbbb88"/>
+                            </linearGradient>
+                        </defs>
+                        <!-- SVG paths here -->
+                    </svg>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="/">Inicio</a></li>
+                    <li><a href="/about/">Nosotros</a></li>
+                    <li><a href="/services/">Servicios</a></li>
+                    <li><a href="/portfolio/">Portafolio</a></li>
+                    <li><a href="/blog/">Blog</a></li>
+                    <li><a href="/courses/">Cursos</a></li>
+                    <li><a href="/contact/">Contacto</a></li>
+                </ul>
+                <div class="lang-switch">
+                    <button id="btn-es" class="active" onclick="switchLang('es')">ES</button>
+                    <button id="btn-en" onclick="switchLang('en')">EN</button>
+                    <button class="theme-toggle" onclick="toggleTheme()">
+                        <i id="themeIcon" class="fas fa-moon"></i>
+                    </button>
+                </div>
+                <button class="hamburger" onclick="toggleMenu()">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Content -->
+    <main class="page-content">
+        {{ content }}
+    </main>
+
+    <!-- WhatsApp Widget -->
+    <div id="wa-widget" class="wa-container">
+        <div id="wa-bubble" class="wa-bubble">
+            <button class="wa-close" onclick="hideBubble()">✕</button>
+            <p>¿Necesitas ayuda? Contáctanos por WhatsApp</p>
+            <div class="wa-arrow"></div>
+        </div>
+        <a href="https://wa.me/message/YOURWHATSAPPLINK" class="wa-button" aria-label="Contactar por WhatsApp">
+            <span class="wa-ping"></span>
+            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421-7.403h-.004c-1.052 0-2.082.398-2.847 1.12-.735.722-1.14 1.71-1.14 2.734 0 2.13 1.734 3.864 3.863 3.864 1.052 0 2.082-.398 2.847-1.12.735-.722 1.14-1.71 1.14-2.734 0-2.13-1.734-3.864-3.863-3.864M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0m0 23.25C5.649 23.25.75 18.351.75 12S5.649.75 12 .75 23.25 5.649 23.25 12 18.351 23.25 12 23.25"/></svg>
+        </a>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h2>Incertae Sedis</h2>
+                    <p>Soluciones profesionales para tu negocio.</p>
+                    <div class="social-icons">
+                        <a href="https://twitter.com/BajoTierraMu" target="_blank" rel="noopener noreferrer" title="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.facebook.com/BajoTierraMu" target="_blank" rel="noopener noreferrer" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/bajotierramu/" target="_blank" rel="noopener noreferrer" title="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://linkedin.com/" target="_blank" rel="noopener noreferrer" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://github.com/" target="_blank" rel="noopener noreferrer" title="GitHub"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h2>Navegación</h2>
+                    <ul>
+                        <li><a href="/">Inicio</a></li>
+                        <li><a href="/about/">Nosotros</a></li>
+                        <li><a href="/services/">Servicios</a></li>
+                        <li><a href="/portfolio/">Portafolio</a></li>
+                        <li><a href="/blog/">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h2>Recursos</h2>
+                    <ul>
+                        <li><a href="/courses/">Cursos</a></li>
+                        <li><a href="/contact/">Contacto</a></li>
+                        <li><a href="javascript:showPrivacyPolicy()">Privacidad</a></li>
+                        <li><a href="javascript:showTerms()">Términos</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h2>Contacto</h2>
+                    <ul class="contact-list">
+                        <li class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <a href="mailto:bajotierramu@gmail.com">bajotierramu@gmail.com</a>
+                        </li>
+                        <li class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>555</span>
+                        </li>
+                        <li class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Mexico</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Incertae Sedis. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="/assets/js/script.js"></script>
+</body>
+</html>
