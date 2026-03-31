@@ -399,6 +399,59 @@ nav .logo .logo-svg {
         }
 
         .service-card {
+    background: transparent; /* Parent is now a container */
+    height: 350px; /* Set a fixed height for the flip effect */
+    perspective: 1000px; /* Creates the 3D space */
+    border: none;
+    box-shadow: none;
+}
+
+.service-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-style: preserve-3d;
+}
+
+/* The Flip Trigger */
+.service-card:hover .service-card-inner {
+    transform: rotateY(180deg);
+}
+
+.service-card-front, .service-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden; /* Safari */
+    backface-visibility: hidden;
+    border-radius: 15px;
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-top: 4px solid var(--primary);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+.service-card-front {
+    background: var(--white);
+    color: var(--dark);
+}
+
+.service-card-back {
+    background: var(--primary); /* Flip colors for impact */
+    color: white;
+    transform: rotateY(180deg); /* Pre-rotate the back side */
+}
+
+.service-card-back h3, .service-card-back p {
+    color: white; /* Ensure text is readable on primary background */
+}
+/*
+        .service-card {
             background: var(--white);
             border-radius: 15px;
             padding: 2.5rem;
@@ -433,7 +486,7 @@ nav .logo .logo-svg {
             padding: 0.7rem 1.5rem;
             font-size: 0.9rem;
         }
-
+*/
         .courses {
             background-color: #f9f9f9;
         }
@@ -1920,8 +1973,194 @@ nav .logo .logo-svg {
                 <span class="lang-es">Servicios</span>
                 <span class="lang-en">Services</span>
             </h2>
-            <div class="services-grid">
-                <div class="service-card">
+
+<div class="services-grid">
+            
+            <div class="service-card">
+  <div class="service-card-inner">
+    <div class="service-card-front">
+<div class="service-icon"><i class="fas fa-gear"></i></div>
+        <h3>
+                <span class="lang-es">Tecnología</span>
+                <span class="lang-en">Technology</span>
+            </h3>
+        <p>Soluciones informáticas personalizadas para tu empresa o proyecto.</p>
+    </div>
+    <div class="service-card-back">
+         <h3>
+                <span class="lang-es">Detalles</span>
+                <span class="lang-en">Details</span>
+            </h3><ul>
+                            <li class="lang-es">Alojamiento web</li>
+                            <li class="lang-en">Web Hosting</li>
+                            <li>ERP</li>
+                            <li class="lang-es">Software personalizado</li>
+                            <li class="lang-en">Machine learning with R</li>
+                            <li class="lang-es">Diseño web</li>
+                            <li class="lang-en">Web design</li>
+                        </ul>
+        <button class="btn">
+                <span class="lang-es">Ver todo</span>
+                <span class="lang-en">See all</span></button>
+    </div>
+  </div>
+</div>
+
+<div class="service-card">
+  <div class="service-card-inner">
+    <div class="service-card-front">
+<div class="service-icon"><i class="fas fa-flask"></i></div>
+                    <h3>
+                <span class="lang-es">Ciencia</span>
+                <span class="lang-en">Science</span>
+            </h3>
+        <p>Acompañamos proyectos de ciencia colaborativa para generar datos de problemas socioambientales.</p>
+    </div>
+    <div class="service-card-back">
+        <h3>
+                <span class="lang-es">Detalles</span>
+                <span class="lang-en">Details</span>
+            </h3><ul>
+                            <li class="lang-es">Recolección de datos</li>
+                            <li class="lang-en">Data collection</li>
+                            <li class="lang-es">Análisis de datos</li>
+                            <li class="lang-en">Data analysis</li>
+                            <li class="lang-es">Visualización de datos</li>
+                            <li class="lang-en">Data visualization</li>
+                        </ul>
+        <button class="btn">
+                <span class="lang-es">Ver todo</span>
+                <span class="lang-en">See all</span></button>
+    </div>
+  </div>
+</div>
+
+<div class="service-card">
+  <div class="service-card-inner">
+    <div class="service-card-front">
+<div class="service-icon"><i class="fas fa-graduation-cap"></i></div>
+                    <h3>
+                <span class="lang-es">Educación</span>
+                <span class="lang-en">E-Learning</span>
+            </h3>
+        <p class="lang-es">Creación y personalización de plataformas Moodle para educación corporativa y académica con soporte continuo.</p>
+                    <p class="lang-en">Creation and customization of Moodle platforms for corporate and academic education with continuous support.</p>
+                </div>
+    <div class="service-card-back">
+        <h3>
+                <span class="lang-es">Detalles</span>
+                <span class="lang-en">Details</span>
+            </h3><ul>
+                            <li class="lang-es">Desarrollo Moodle</li>
+                            <li class="lang-en">Moodle development</li>
+                            <li class="lang-es">Cursos en línea</li>
+                            <li class="lang-en">Online courses</li>
+                            <li class="lang-es">Capacitación corporativa</li>
+                            <li class="lang-en">Corporate training</li>
+                            <li class="lang-es">Educación inclusiva</li>
+                            <li class="lang-en">Special Education</li>
+                        </ul>
+        <button class="btn">
+                <span class="lang-es">Ver todo</span>
+                <span class="lang-en">See all</span></button>
+    </div>
+  </div>
+</div>
+
+<div class="service-card">
+  <div class="service-card-inner">
+    <div class="service-card-front">
+<div class="service-icon"><i class="fas fa-seedling"></i></div>
+                    <h3>
+                <span class="lang-es">Ambiente</span>
+                <span class="lang-en">Environmment</span>
+            </h3>
+        <p class="lang-es">Estamos comprometidos con el cuidado del medio ambiente, por lo que ofrecemos capacitación en temas de agroecología urbana</p>
+                    <p class="lang-en">Creation and customization of Moodle platforms for corporate and academic education with continuous support.</p>
+                </div>
+    <div class="service-card-back">
+        <h3>
+                <span class="lang-es">Detalles</span>
+                <span class="lang-en">Details</span>
+            </h3><ul>
+                            <li class="lang-es">Huertos urbanos/li>
+                            <li class="lang-en">Moodle development</li>
+                            <li class="lang-es">Composta</li>
+                            <li class="lang-en">Online courses</li>
+                            <li class="lang-es">Reciclaje</li>
+                            <li class="lang-en">Corporate training</li>
+                            <li class="lang-es">Educación ambiental</li>
+                            <li class="lang-en">Special Education</li>
+                        </ul>
+        <button class="btn">
+                <span class="lang-es">Ver todo</span>
+                <span class="lang-en">See all</span></button>
+    </div>
+  </div>
+</div>
+
+<div class="service-card">
+  <div class="service-card-inner">
+    <div class="service-card-front">
+<div class="service-icon"><i class="fas fa-people-group"></i></div>
+                    <h3>Social
+            </h3>
+            <p class="lang-es">Recolección y análisis de encuestas y pruebas psicométricas.</p>
+                    <p class="lang-en">Fast, secure, and reliable hosting with 99.9% uptime. Perfect for businesses of all sizes.</p>
+                </div>
+    <div class="service-card-back">
+        <h3>
+                <span class="lang-es">Detalles</span>
+                <span class="lang-en">Details</span>
+            </h3><ul>
+                            <li class="lang-es">Encuestas</li>
+                            <li class="lang-en">Moodle development</li>
+                            <li class="lang-es">Psicometría</li>
+                            <li class="lang-en">Online courses</li>
+                            <li class="lang-es">Informática incluyente</li>
+                            <li class="lang-en">Corporate training</li>
+                            <li class="lang-es">Salud mental</li>
+                            <li class="lang-en">Special Education</li>
+                        </ul>
+        <button class="btn">
+                <span class="lang-es">Ver todo</span>
+                <span class="lang-en">See all</span></button>
+      </div>
+  </div>
+</div>
+
+<div class="service-card">
+  <div class="service-card-inner">
+    <div class="service-card-front">
+<div class="service-icon"><i class="fas fa-palette"></i></div>
+                    <h3>
+                        <span class="lang-es">Diseño</span>
+                <span class="lang-en">Graphic design</span>
+            </h3>
+            <p class="lang-es">Creatividad y comunicación visual</p>
+                    <p class="lang-en">Fast, secure, and reliable hosting with 99.9% uptime. Perfect for businesses of all sizes.</p>
+                </div>
+    <div class="service-card-back">
+        <h3>
+                <span class="lang-es">Detalles</span>
+                <span class="lang-en">Details</span>
+            </h3><ul>
+                            <li class="lang-es">Serigrafía</li>
+                            <li class="lang-en">Moodle development</li>
+                            <li class="lang-es">Encuadernación</li>
+                            <li class="lang-en">Online courses</li>
+                            <li class="lang-es">Grabado laser</li>
+                            <li class="lang-en">Corporate training</li>
+                            <li class="lang-es">Impresión 3D</li>
+                            <li class="lang-en">3D printing</li>
+                        </ul>
+        <button class="btn">
+                <span class="lang-es">Ver todo</span>
+                <span class="lang-en">See all</span></button>
+    </div>
+  </div>
+</div>
+      <!--           <div class="service-card">
                     <div class="service-icon"><i class="fas fa-server"></i></div>
                     <h3 class="lang-es">Alojamiento Web</h3>
                     <h3 class="lang-en">Web Hosting</h3>
@@ -2031,7 +2270,7 @@ nav .logo .logo-svg {
                         <span class="lang-en">Learn more</span>
                     </a>
                 </div>
-                
+ -->
             </div>
         </div>
     </section>
