@@ -1,16 +1,14 @@
 # Site settings
 title: Incertae Sedis
 email: contacto@incsed.com
-description: >-
-  Incertae Sedis - Professional services and courses
+description: "Incertae Sedis - Professional services and courses" # Fixed the dash here
 url: "https://incertaesedis.com"
-baseurl: "/website/"
+baseurl: "" # Use empty quotes if this is your main domain; use "/website" ONLY if your URL is incertaesedis.com/website/
 repository: "incsed/website"
 teaser: /assets/images/500x300.png
 logo: /assets/images/incico2.svg
 
 # Minimal Mistakes theme
-#remote_theme: "mmistakes/minimal-mistakes@4.24.0"
 theme: minimal-mistakes-jekyll
 minimal_mistakes_skin: default
 
@@ -24,30 +22,11 @@ author:
   avatar: /assets/images/incico2.svg
   bio: "Professional services"
   location: "Mexico"
-  email: contacto@incsed.com
   links:
     - label: "Twitter"
-      icon: "fab fa-twitter"
       url: "https://twitter.com/"
     - label: "Facebook"
-      icon: "fab fa-facebook-f"
       url: "https://www.facebook.com/"
-    - label: "Instagram"
-      icon: "fab fa-instagram"
-      url: "https://www.instagram.com/"
-
-# Footer
-footer:
-  links:
-    - label: "Twitter"
-      icon: "fab fa-twitter"
-      url: "https://twitter.com/"
-    - label: "Facebook"
-      icon: "fab fa-facebook-f"
-      url: "https://www.facebook.com/"
-    - label: "Instagram"
-      icon: "fab fa-instagram"
-      url: "https://www.instagram.com/"
 
 # Plugins
 plugins:
@@ -61,27 +40,15 @@ plugins:
 paginate: 5
 paginate_path: /page:num/
 
-# Markdown
-markdown: kramdown
-highlighter: rouge
-lsi: false
-excerpt_separator: "\n\n"
-incremental: false
-
 # Build settings
 include:
   - _pages
 exclude:
   - README.md
-  - Gemfile
   - .git
   - .gitignore
+  - vendor # Important to exclude the vendor folder if using Cloudflare
 
-# Collections
-collections:
-  portfolio:
-    output: true
-    permalink: /:collection/:path/
-  services:
-    output: true
-    permalink: /:collection/:path/
+# Markdown
+markdown: kramdown
+highlighter: rouge
