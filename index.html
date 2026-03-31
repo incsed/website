@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Incertae Sedis | Transforma tu presencia digital</title>
-    <link rel="icon" type="image/svg+xml" href="/incico2.svg">
+    <link rel="icon" type="image/svg+xml" href="{{ '/assets/images/incico2.svg' | relative_url }}">
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
@@ -929,7 +929,7 @@ nav .logo .logo-svg {
     bottom: 0; left: 0; right: 0;
     padding: 25px;
     background: linear-gradient(transparent, rgba(0,0,0,0.7));
-    color: rgb(231, 194, 7);
+    color: white;
     font-weight: 600;
     font-size: 1.2rem;
     pointer-events: none;
@@ -1523,38 +1523,18 @@ nav .logo .logo-svg {
   }
     </style>
 </head>
+
 <body>
     <div id="preloader">
     <div class="loader"></div>
 </div>
-<div id="top-header" aria-label="Contact" role="navigation">
-		<div class="container clearfix">
 
-		
+<div id="top-header" aria-label="Contact" role="navigation">
+		<div class="container clearfix">		
 			<div id="et-info">
 							<span id="et-info-phone"></span>
 			<i class="fas fa-envelope"></i>
 							<a href="mailto:contacto@incsed.com"><span id="et-info-email">contacto@incsed.com</span></a>
-			
-		<!-- 	<ul class="et-social-icons">
-
-	<li class="et-social-icon et-social-facebook">
-		<a href="https://www.facebook.com/BajoTierraMu" class="icon">
-			<span>Facebook</span>
-		</a>
-	</li>
-	<li class="et-social-icon et-social-twitter">
-		<a href="https://twitter.com/BajoTierraMu" class="icon">
-			<span>Twitter</span>
-		</a>
-	</li>
-	<li class="et-social-icon et-social-instagram">
-		<a href="https://www.instagram.com/bajotierramu/" class="icon">
-			<span>Instagram</span>
-		</a>
-	</li>
-
-</ul>		               --> 
                 </div> <!-- #et-info -->
 
                 <!-- Right-aligned social icons for top header -->
@@ -1563,38 +1543,8 @@ nav .logo .logo-svg {
                                 <li><a href="https://twitter.com/" target="_blank" rel="noopener" aria-label="Twitter"><i class="fab fa-twitter" aria-hidden="true"></i></a></li>
         <li><a href="https://facebook.com/" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f" aria-hidden="true"></i></a></li>
         <li><a href="https://instagram.com/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a></li>
-                        <!-- <li><a href="https://twitter.com/" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><i class="fab fa-twitter"></i></a></li>
-                        <li><a href="https://facebook.com/" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a></li>
-                        <li><a href="https://instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a></li>
-                        <li><a href="https://linkedin.com/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a></li>
-                        <li><a href="https://github.com/" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a></li> -->
                     </ul>
                 </div>
-<!-- 
-		
-			<div id="et-secondary-menu">
-			<div class="et_duplicate_social_icons">
-							<ul class="et-social-icons">
-
-	<li class="et-social-icon et-social-facebook">
-		<a href="https://www.facebook.com/BajoTierraMu" class="icon">
-			<span>Facebook</span>
-		</a>
-	</li>
-	<li class="et-social-icon et-social-twitter">
-		<a href="https://twitter.com/BajoTierraMu" class="icon">
-			<span>Twitter</span>
-		</a>
-	</li>
-	<li class="et-social-icon et-social-instagram">
-		<a href="https://www.instagram.com/bajotierramu/" class="icon">
-			<span>Instagram</span>
-		</a>
-	</li>
-
-</ul>
-						</div>			</div> #et-secondary-menu
- -->
 		</div> <!-- .container -->
 	</div> <!-- #top-header -->
 
@@ -1663,7 +1613,7 @@ nav .logo .logo-svg {
                         <button class="active" onclick="setLanguage('es')" id="btn-es">ES</button>
                         <button onclick="setLanguage('en')" id="btn-en">EN</button>
                         <button id="themeToggle" class="theme-toggle" onclick="toggleTheme()" title="Toggle dark / light"
-                        aria-label="Toggle dark / light">
+                        aria-hidden="true">
                             <i id="themeIcon" class="fas fa-moon"></i>
                         </button>
                     </li>
