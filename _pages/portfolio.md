@@ -1,7 +1,7 @@
 ---
 title: "Portafolio"
 permalink: /portfolio/
-layout: page
+layout: default
 ---
 
 ## Proyectos Destacados

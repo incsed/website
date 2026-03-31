@@ -1,7 +1,7 @@
 ---
 title: "Cursos"
 permalink: /courses/
-layout: page
+layout: default
 ---
 
 ## Nuestros Cursos

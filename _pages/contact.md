@@ -1,7 +1,7 @@
 ---
 title: "Contacto"
 permalink: /contact/
-layout: page
+layout: default
 ---
 
 ## Contacto

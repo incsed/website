@@ -1,7 +1,7 @@
 ---
 title: "Nosotros"
 permalink: /about/
-layout: page
+layout: default
 ---
 
 ## Acerca de Nosotros
