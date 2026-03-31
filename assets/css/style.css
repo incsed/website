@@ -69,7 +69,7 @@ header {
     background-color: transparent;
     transition: transform 0.35s ease, background-color 0.35s ease, box-shadow 0.35s ease, padding 0.2s ease;
     position: fixed;
-    top: 0;
+    top: -100px;
     width: 100%;
     z-index: 1000;
     transform: translateY(0);
