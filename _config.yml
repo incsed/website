@@ -2,7 +2,7 @@
 title: Incertae Sedis
 email: contacto@incsed.com
 description: "Incertae Sedis - Professional services and courses" # Fixed the dash here
-url: "https://incertaesedis.com"
+url: "incsed.github.io"
 baseurl: "" # Use empty quotes if this is your main domain; use "/website" ONLY if your URL is incertaesedis.com/website/
 repository: "incsed/website"
 teaser: /assets/images/500x300.png
