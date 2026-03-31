@@ -1,6 +1,6 @@
 # Site settings
 title: Incertae Sedis
-email: bajotierramu@gmail.com
+email: contacto@incsed.com
 description: >-
   Incertae Sedis - Professional services and courses
 url: "https://incertaesedis.com"
@@ -23,30 +23,30 @@ author:
   avatar: /assets/images/incico2.svg
   bio: "Professional services"
   location: "Mexico"
-  email: bajotierramu@gmail.com
+  email: contacto@incsed.com
   links:
     - label: "Twitter"
       icon: "fab fa-twitter"
-      url: "https://twitter.com/BajoTierraMu"
+      url: "https://twitter.com/"
     - label: "Facebook"
       icon: "fab fa-facebook-f"
-      url: "https://www.facebook.com/BajoTierraMu"
+      url: "https://www.facebook.com/"
     - label: "Instagram"
       icon: "fab fa-instagram"
-      url: "https://www.instagram.com/bajotierramu/"
+      url: "https://www.instagram.com/"
 
 # Footer
 footer:
   links:
     - label: "Twitter"
       icon: "fab fa-twitter"
-      url: "https://twitter.com/BajoTierraMu"
+      url: "https://twitter.com/"
     - label: "Facebook"
       icon: "fab fa-facebook-f"
-      url: "https://www.facebook.com/BajoTierraMu"
+      url: "https://www.facebook.com/"
     - label: "Instagram"
       icon: "fab fa-instagram"
-      url: "https://www.instagram.com/bajotierramu/"
+      url: "https://www.instagram.com/"
 
 # Plugins
 plugins:

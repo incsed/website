@@ -38,7 +38,7 @@ Minimal Mistakes provides extensive customization. See [documentation](https://m
 
 ## Contact
 
-- Email: bajotierramu@gmail.com
-- Twitter: @BajoTierraMu
-- Facebook: /BajoTierraMu
-- Instagram: @bajotierramu
+- Email: contacto@incsed.com
+- Twitter: @
+- Facebook: /
+- Instagram: @
