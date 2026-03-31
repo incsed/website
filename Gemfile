@@ -1,7 +1,16 @@
-encoding: utf-8
 source "https://rubygems.org"
-#gemspec
 
-gem "github-pages", group: :jekyll_plugins
-gem "jekyll-include-cache", group: :jekyll_plugins
-gem "minimal-mistakes-jekyll"
+# Ruby 3.4+ compatibility (Jekyll 3/4 requires these now)
+gem "csv"
+gem "base64"
+
+# Latest Minimal Mistakes Gem
+gem "minimal-mistakes-jekyll", "~> 4.27"
+
+# Required Plugins
+group :jekyll_plugins do
+  gem "github-pages"
+  gem "jekyll-include-cache"
+  gem "jekyll-feed"
+  gem "jekyll-sitemap"
+end
