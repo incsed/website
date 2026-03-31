@@ -1,0 +1,23 @@
+---
+layout: default
+author_profile: true
+---
+
+<div class="page__inner-wrap">
+  <header>
+    <h1 id="page-title" class="page__title">{{ page.title | default: site.title }}</h1>
+    {% if page.subtitle %}
+      <p class="page__meta">{{ page.subtitle }}</p>
+    {% endif %}
+  </header>
+
+  <section class="page__content e-content">
+    {{ content }}
+  </section>
+
+  <footer class="page__meta">
+    {% if page.date %}
+      <p><strong>{{ site.data.ui-text[site.locale].date_label | default: "Updated:" }}</strong> <time class="dt-published" datetime="{{ page.last_modified_at | date_to_xmlschema }}">{{ page.last_modified_at | date: "%B %d, %Y" }}</time></p>
+    {% endif %}
+  </footer>
+</div>

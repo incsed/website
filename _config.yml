@@ -1,0 +1,86 @@
+# Site settings
+title: Incertae Sedis
+email: bajotierramu@gmail.com
+description: >-
+  Incertae Sedis - Professional services and courses
+url: "https://incertaesedis.com"
+baseurl: ""
+repository: "incertaesedis/website"
+teaser: /assets/images/500x300.png
+logo: /assets/images/incico2.svg
+
+# Minimal Mistakes theme
+remote_theme: "mmistakes/minimal-mistakes@4.24.0"
+minimal_mistakes_skin: default
+
+# Locale
+locale: es-MX
+language: es
+
+# Site author
+author:
+  name: "Incertae Sedis"
+  avatar: /assets/images/incico2.svg
+  bio: "Professional services"
+  location: "Mexico"
+  email: bajotierramu@gmail.com
+  links:
+    - label: "Twitter"
+      icon: "fab fa-twitter"
+      url: "https://twitter.com/BajoTierraMu"
+    - label: "Facebook"
+      icon: "fab fa-facebook-f"
+      url: "https://www.facebook.com/BajoTierraMu"
+    - label: "Instagram"
+      icon: "fab fa-instagram"
+      url: "https://www.instagram.com/bajotierramu/"
+
+# Footer
+footer:
+  links:
+    - label: "Twitter"
+      icon: "fab fa-twitter"
+      url: "https://twitter.com/BajoTierraMu"
+    - label: "Facebook"
+      icon: "fab fa-facebook-f"
+      url: "https://www.facebook.com/BajoTierraMu"
+    - label: "Instagram"
+      icon: "fab fa-instagram"
+      url: "https://www.instagram.com/bajotierramu/"
+
+# Plugins
+plugins:
+  - jekyll-paginate
+  - jekyll-sitemap
+  - jekyll-gist
+  - jekyll-feed
+  - jemoji
+  - jekyll-include-cache
+
+paginate: 5
+paginate_path: /page:num/
+
+# Markdown
+markdown: kramdown
+highlighter: rouge
+lsi: false
+excerpt_separator: "\n\n"
+incremental: false
+
+# Build settings
+include:
+  - _pages
+exclude:
+  - README.md
+  - Gemfile
+  - .git
+  - .gitignore
+
+# Collections
+collections:
+  portfolio:
+    output: true
+    permalink: /:collection/:path/
+  services:
+    output: true
+    permalink: /:collection/:path/
