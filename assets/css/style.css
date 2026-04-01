@@ -182,35 +182,35 @@ nav .logo .logo-svg {
 }
 */
 #top-header {
-    background-color: var(--dark); /* Use your primary or dark color */
-    color: var(--white);
-    height: var(--topbar-height);
-    line-height: var(--topbar-height);
-    font-size: 13px;
-    z-index: 1001;
+    background-color: var(--dark) !important;
+    color: var(--white) !important;
+    height: var(--topbar-height) !important;
+    display: flex !important; /* Force layout */
+    align-items: center;
     position: relative;
-    display: block;
+    z-index: 1001; /* Must be higher than mainHeader if they overlap */
+    overflow: hidden;
 }
 
 #top-header .container {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    width: 100%;
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
 }
 
-#top-header a {
-    color: var(--white);
-    text-decoration: none;
-    margin-left: 15px;
-}
-
-#et-info {
+#et-info, .top-links {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 15px;
+}
+
+#top-header a {
+    color: var(--white) !important;
+    text-decoration: none;
+    font-size: 13px;
 }
 
 #top-header .et-social-icons {
