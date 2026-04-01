@@ -95,7 +95,8 @@ header, #mainHeader {
     top: var(--topbar-height); /* This pushes it down exactly below the topbar */
     width: 100%;
     z-index: 1000;
-    height: auto; }
+    height: auto; 
+    transition: all 0.3s ease;}
 header .container { min-height: 90px; display: flex; align-items: center; padding: 0; }
 
 header.scrolled nav .logo .logo-svg {
@@ -186,8 +187,11 @@ nav .logo .logo-svg {
     color: var(--white) !important;
     height: var(--topbar-height) !important;
     display: flex !important; /* Force layout */
+    top: 0;
+    left: 0;
+    width: 100%;
     align-items: center;
-    position: relative;
+    position: fixed;
     z-index: 1001; /* Must be higher than mainHeader if they overlap */
     overflow: hidden;
 }
@@ -221,6 +225,7 @@ nav .logo .logo-svg {
     padding: 0;
     align-items: center;
 }
+
 
 #top-header .et-social-icons li a.icon,
 #topbar-social .et-social-icons li a {
