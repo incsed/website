@@ -1,10 +1,9 @@
 # Site settings
-title: Incertae Sedis
+title: "Incertae Sedis"
 email: contacto@incsed.com
-description: >-
-  Incertae Sedis - Professional services and courses
-url: "https://incertaesedis.com"
-baseurl: "/website/"
+description: "Incertae Sedis - Professional services and courses"
+url: "https://incsed.github.io"
+baseurl: "/website"
 repository: "incsed/website"
 teaser: /assets/images/500x300.png
 logo: /assets/images/incico2.svg
@@ -84,3 +83,7 @@ collections:
   services:
     output: true
     permalink: /:collection/:path/
+
+#head scripts
+head_scripts:
+  - src: "/assets/js/script.js"

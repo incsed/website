@@ -2577,13 +2577,17 @@ nav .logo .logo-svg {
         </div>
     </footer>
 
-    <div class="cookie-banner" id="cookieBanner">
+    {% include cookie-banner.html %}
+    {% include privacyModal.html %}
+    {% include termsModal.html %}
+
+<!--     <div class="cookie-banner" id="cookieBanner">
         <div class="container">
             <p class="lang-es">Usamos cookies para mejorar tu experiencia. Al continuar, aceptas nuestro <a href="#" onclick="showPrivacyPolicy(); return false;" style="color: var(--accent);">aviso de privacidad</a>.</p>
             <p class="lang-en">We use cookies to improve your experience. By continuing, you accept our <a href="#" onclick="showPrivacyPolicy(); return false;" style="color: var(--accent);">privacy notice</a>.</p>
             <button class="cookie-btn" onclick="acceptCookies()"><span class="lang-es">Aceptar</span><span class="lang-en">Accept</span></button>
         </div>
-    </div>
+    </div> 
 
     <div class="modal" id="privacyModal">
         <div class="modal-content">
@@ -2635,12 +2639,12 @@ nav .logo .logo-svg {
             <h3 class="lang-es">Derechos ARCO</h3>
             <h3 class="lang-en">ARCO Rights</h3>
             <p class="lang-es">Tienes derecho a acceder, rectificar, cancelar y oponerte al tratamiento. Ejercicio: privacidad@serviciosdigitales.com</p>
-            <p class="lang-en">You have the right to access, rectify, cancel, and object. Exercise: privacidad@serviciosdigitales.com</p>
+            <p class="lang-en">You have the right to access, rectify, cancel, and object. Exercise: privacidad@incsed.com</p>
 
             <h3 class="lang-es">Contacto</h3>
             <h3 class="lang-en">Contact</h3>
-            <p class="lang-es">Email: privacidad@serviciosdigitales.com | Tel: +1 234 567 890</p>
-            <p class="lang-en">Email: privacidad@serviciosdigitales.com | Phone: +1 234 567 890</p>
+            <p class="lang-es">Email: privacidad@incsed.com | Tel: +1 234 567 890</p>
+            <p class="lang-en">Email: privacidad@incsed.com | Phone: +1 234 567 890</p>
         </div>
     </div>
 
@@ -2693,6 +2697,8 @@ nav .logo .logo-svg {
             <p class="lang-en">These terms are governed by the laws of Mexico.</p>
         </div>
     </div>
+    -->
+
 
     <script>
         let lang = 'es';
