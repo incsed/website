@@ -167,9 +167,11 @@ window.addEventListener('scroll', function() {
     if (scrollPos > 80) {
         header.classList.add('scrolled');
         document.body.classList.add('scrolled-past'); 
+        document.body.classList.add('headers-visible');
     } else {
         header.classList.remove('scrolled');
         document.body.classList.remove('scrolled-past');
+        document.body.classList.remove('headers-visible');
     }
 
     let blurValue = Math.max(0, 8 - (scrollPos / 50));

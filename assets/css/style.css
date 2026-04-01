@@ -203,18 +203,12 @@ nav .logo .logo-svg {
     pointer-events: none; /* Prevent clicking while hidden */
 }
 
-/* Visible State (Triggered by JS) 
+/* Visible State (Triggered by JS) */
 .headers-visible #top-header,
 .headers-visible #mainHeader {
     transform: translateY(0);
     opacity: 1;
     pointer-events: auto;
-}*/
-
-/* 2. Show top-header when scrolled */
-header.scrolled + #top-header, /* If it follows in HTML */
-body.scrolled-past #top-header { 
-    top: 0; 
 }
 
 
