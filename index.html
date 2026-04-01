@@ -87,12 +87,14 @@ header {
     transition: transform 0.35s ease, background-color 0.35s ease, box-shadow 0.35s ease, padding 0.2s ease;
     position: fixed;
     top: -100px;/* var(--topbar-height);*/
+    height: 100px;
     width: 100%;
     z-index: 1000;
     transform: translateY(0); /* hidden above viewport by default */
 }
 
 header.scrolled {
+    height: 70px;
     top: var(--topbar-height);
     transform: translateY(0); /* slide into view */
     background-color: var(--white);
@@ -110,9 +112,22 @@ header.scrolled .nav-links a {
     header, #mainHeader { height: auto; }
     header .container { min-height: 90px;display: flex; align-items: center; padding: 0; }
 
+
+    /* Hide header when scrolling down */
+header.header-up {
+    transform: translateY(-150%);
+}
+
+/* Show header when scrolling up or at the top */
+header.header-down {
+    transform: translateY(0);
+}
+
+
 /* Shrink logo on scroll for a modern effect */
 header.scrolled nav .logo .logo-svg {
-    height: 100px;
+    /*height: 100px;*/
+    height: 60px; /*!important;*/
 /* 3. Keep it grayscale when scrolled unless hovered */
     filter: grayscale(100%);
 }
@@ -133,6 +148,7 @@ header:hover nav .logo .logo-svg,
 nav .logo:hover .logo-svg {
     filter: grayscale(0%);
     opacity: 1;
+    height: 100px;
 }
 
 /* 5. Ensure the container centers the nav properly */
@@ -211,8 +227,8 @@ nav .logo .logo-svg {
         /* Style the existing top-header markup if present */
         #top-header {
             position: fixed;
-            /*top: 0;*/
-            top: -36px;
+            top: 0;
+            /*top: -36px;*/
             left: 0;
             right: 0;
             height: var(--topbar-height);
@@ -253,7 +269,7 @@ nav .logo .logo-svg {
             font-size: 0.95rem;
         }
 
-        #top-header .et-social-icons li a.icon:hover,
+        #top-header #et-info a i:hover, .et-social-icons li a.icon:hover,
         #topbar-social .et-social-icons li a:hover { color: var(--primary); background: rgba(0,0,0,0.04); }
 
         #top-header #et-info a { color: #241F31; text-decoration: none; }
@@ -959,8 +975,9 @@ nav .logo .logo-svg {
 .hero-parallax-bg {
     position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;
-    /* Imagen: Ciudad de México / Ciudad Latina Moderna */
-    background-image: url('https://images.unsplash.com/photo-1732173201539-5e8b25af3cbc?q=80&w=1170&auto=format&fit=crop');
+    /* Imagen: Ciudad de México / Ciudad Latina Moderna 
+    background-image: url('https://images.unsplash.com/photo-1732173201539-5e8b25af3cbc?q=80&w=1170&auto=format&fit=crop');*/
+    background-image: url('Gemini_Generated_Image_dzdm1adzdm1adzdm.png');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -1526,11 +1543,11 @@ nav .logo .logo-svg {
 </div>
 
 <div id="top-header" aria-label="Contact" role="navigation">
-		<div class="container clearfix">		
+		<div class="container">		
 			<div id="et-info">
 							<span id="et-info-phone"></span>
-			<i class="fas fa-envelope"></i>
-							<a href="mailto:contacto@incsed.com"><span id="et-info-email">contacto@incsed.com</span></a>
+							<a href="mailto:contacto@incsed.com"><i class="fas fa-envelope"></i>
+<span id="et-info-email">contacto@incsed.com</span></a>
                 </div> <!-- #et-info -->
 
                 <!-- Right-aligned social icons for top header -->
@@ -2696,6 +2713,7 @@ nav .logo .logo-svg {
 
     <script>
         let lang = 'es';
+        let lastScrollTop = 0;
 
         /* Theme handling: apply, toggle and persist preference */
         function applyTheme(theme) {
@@ -2884,28 +2902,35 @@ window.addEventListener('scroll', function() {
     const header = document.querySelector('header');
     const topHeader = document.getElementById('top-header');
     const heroBg = document.querySelector('.hero-parallax-bg');
+let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
-    // 1. Manejo del Header
-    if (scrollPos > 80) {
-        header.classList.add('scrolled');
-        // Optional: add class to body to trigger top-header if CSS selector needs it
-        document.body.classList.add('scrolled-past'); 
+    // 1. Shrink/Expand Logic
+    if (scrollTop > 50) {
+        header.classList.add("scrolled");
     } else {
-        header.classList.remove('scrolled');
-        document.body.classList.remove('scrolled-past');
+        header.classList.remove("scrolled");
     }
-    /*
+
+    // 2. Show/Hide based on direction
+    if (scrollTop > lastScrollTop && scrollTop > 200) {
+        // Scrolling Down - Hide Header
+        header.classList.remove("header-down");
+        header.classList.add("header-up");
     } else {
-        header.classList.remove('scrolled');
+        // Scrolling Up - Show Header
+        header.classList.remove("header-up");
+        header.classList.add("header-down");
     }
-*/
+    
+    lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; 
+
     // 2. Manejo dinámico del Blur (se aclara al bajar)
     // El blur baja de 8px a 0px en los primeros 400px de scroll
     let blurValue = Math.max(0, 8 - (scrollPos / 50));
     if (heroBg) {
         heroBg.style.filter = `blur(${blurValue}px)`;
     }
-});
+}, false);
 
 window.onload = function() {
     const widget = document.getElementById('wa-widget');
