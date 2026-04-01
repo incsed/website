@@ -84,6 +84,6 @@ collections:
     output: true
     permalink: /:collection/:path/
 
-#head scripts
-head_scripts:
+#after_footer
+after_footer_scripts:
   - src: "/assets/js/script.js"

@@ -1,7 +1,7 @@
 ---
 title: "Servicios"
 permalink: /services/
-layout: default
+layout: custom
 ---
 
 ## Nuestros Servicios
