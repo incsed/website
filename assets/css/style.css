@@ -195,6 +195,28 @@ nav .logo .logo-svg {
     z-index: 1001; /* Must be higher than mainHeader if they overlap */
     overflow: hidden;
 }
+/* Initial Hidden State */
+#top-header, #mainHeader {
+    transition: transform 0.4s ease-in-out, opacity 0.3s ease;
+    transform: translateY(-100%); /* Move them off-screen upwards */
+    opacity: 0;
+    pointer-events: none; /* Prevent clicking while hidden */
+}
+
+/* Visible State (Triggered by JS) 
+.headers-visible #top-header,
+.headers-visible #mainHeader {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+}*/
+
+/* 2. Show top-header when scrolled */
+header.scrolled + #top-header, /* If it follows in HTML */
+body.scrolled-past #top-header { 
+    top: 0; 
+}
+
 
 #top-header .container {
     display: flex;
