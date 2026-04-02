@@ -1,0 +1,185 @@
+---
+layout: compress
+---
+
+<!doctype html>
+<html lang="{% if page.locale %}{{ page.locale }}{% elsif layout.locale %}{{ layout.locale }}{% elsif site.locale %}{{ site.locale | replace: "_", "-" }}{% else %}en{% endif %}" class="no-js">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page.title | default: site.title }} | {{ site.title }}</title>
+    <link rel="icon" type="image/svg+xml" href="{{ '/assets/images/incico2.svg' | relative_url }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+    {% if site.head_scripts %}
+      {% for script in site.head_scripts %}
+        <script src="{{ script | relative_url }}"></script>
+      {% endfor %}
+    {% endif %}
+  </head>
+
+  <body class="layout--{{ page.layout | default: layout.layout }}{% if page.classes or layout.classes %}{{ page.classes | default: layout.classes | join: ' ' | prepend: ' ' }}{% endif %}">
+
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Top Header with Social Links -->
+    <div id="top-header" aria-label="Contact" role="navigation">
+        <div class="container">        
+            <div id="et-info">
+                <i class="fas fa-envelope"></i>
+                <a href="mailto:contacto@incsed.com"><span id="et-info-email">contacto@incsed.com</span></a>
+            </div> <!-- #et-info -->
+
+            <!-- Right-aligned social icons for top header -->
+            <div id="topbar-social">
+                <ul class="et-social-icons">
+                    <li><a href="https://twitter.com/" target="_blank" rel="noopener" aria-label="Twitter"><i class="fab fa-twitter" aria-hidden="true"></i></a></li>
+                    <li><a href="https://facebook.com/" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f" aria-hidden="true"></i></a></li>
+                    <li><a href="https://instagram.com/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a></li>
+                </ul>
+            </div>
+        </div> <!-- .container -->
+    </div> <!-- #top-header -->
+
+    <!-- Main Header -->
+    <header id="mainHeader">
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="6 0 100 142" preserveAspectRatio="xMidYMid meet" fill="none" class="logo-svg" role="img" aria-label="Logo for Incertae Sedis showing a decorative script wordmark reading Incertae Sedis with teal and aqua gradient accents and warm gold highlights, layered ornamental flourishes and subtle shadows on a white background, elegant professional and warm tone">
+                        <defs>
+                            <linearGradient id="d" x1="843.89" x2="876.84" y1="-33.494" y2="-78.385" gradientTransform="translate(-494.21 190.22)scale(.68354)" gradientUnits="userSpaceOnUse">
+                                <stop offset="0" stop-color="#cf9661"/>
+                                <stop offset="1" stop-color="#dbbb88"/>
+                            </linearGradient>
+                            <linearGradient id="e" x1="807.95" x2="895.06" y1="-30.978" y2="-133.29" gradientTransform="translate(-494.21 190.22)scale(.68354)" gradientUnits="userSpaceOnUse">
+                                <stop offset="0" stop-color="#1c9391"/>
+                                <stop offset="1" stop-color="#25b8bf" stop-opacity=".5"/>
+                            </linearGradient>
+                            <linearGradient id="f" x1="844.69" x2="813" y1="-112.86" y2="-69.446" gradientTransform="translate(-494.21 190.22)scale(.68354)" gradientUnits="userSpaceOnUse">
+                                <stop offset="0" stop-color="#d09662"/>
+                                <stop offset="1" stop-color="#dbbb88"/>
+                            </linearGradient>
+                        </defs>
+                        <path fill="#045" d="M47.383 278.48q.465.147.682.615.22.45.09 1.018-.176.78-.779 1.237-.584.444-1.154.263-.45-.144-.667-.61-.216-.47-.079-1.072.18-.799.742-1.211.564-.43 1.165-.24m-5.487 18.718c-2.554.93-3.068-.198-3.232-.553q-.212-.486-.055-1.178c.335-1.479 1.88-4.313 4.687-9.588.132-.25.611-.758.545-1.19-.033-.216-.235-.407-.439-.488-.235-.092-.452-.041-.755.066-.127.09-.319-.222-.333-.393-.033-.392.24-.847.602-1.014 0 0 1.452-.497 2.181-.384.471.074 1.008.265 1.267.665.235.365.14 1.014.076 1.298q-.117.516-1.966 4.057c-2.015 3.865-3.094 5.686-3.29 6.55-.038.43-.031.62.19.756.555.34 1.718-.338 1.905-.432.145.327.14.458.093.682-.06.284-.456.74-.456.74-.295.207-1.02.406-1.02.406" filter="url(#a)" opacity=".6" style="shape-inside:url(#rect73849);white-space:pre" transform="translate(-120.55 -967.225)scale(3.4875)"/>
+                        <path fill="#383934" d="M450.11-89.016c7.726-2.976 17.039-12.627 15.69-21.357-.743-4.812-5.902-6.512-11.796-8.613 11.926-1.849 17.498.48 20.666 7.03 3 6.204.044 20.976-25.945 30.034 2.105-2.603 3.567-5.754 1.385-7.094" filter="url(#b)" opacity=".4" style="mix-blend-mode:darken;shape-inside:url(#rect73849);white-space:pre" transform="translate(-274.822 122.975)scale(.68354)"/>
+                        <path fill="#383934" d="M440.19-143.86c-7.726 2.976-18.039 12.864-16.955 20.29.66 4.52 4.481 6.851 10.376 8.952-11.01 3.04-17.648-2.462-20.063-9.45-2.789-14.908 16.762-23.52 28.027-26.886-2.105 2.603-3.566 5.754-1.385 7.094" filter="url(#c)" opacity=".4" style="shape-inside:url(#rect73849);white-space:pre" transform="translate(-274.822 122.975)scale(.68354)"/>
+                        <path fill="url(#d)" d="M86.732 158.79c5.281-2.034 11.647-8.631 10.725-14.598-.508-3.289-4.034-4.451-8.063-5.887 8.151-1.264 11.96.327 14.126 4.805 2.05 4.24.03 14.338-17.735 20.53 2.248-2.208 2.438-3.933.946-4.85z" style="shape-inside:url(#rect73849);white-space:pre" transform="translate(-53.002 -98.425)"/>
+                        <path id="i" fill="url(#e)" d="M99.546 100.55q1.624.514 2.377 2.146.768 1.57.318 3.55-.618 2.724-2.72 4.314-2.034 1.545-4.025.915-1.572-.497-2.325-2.13-.753-1.63-.276-3.735.633-2.785 2.587-4.224 1.968-1.5 4.064-.836m-19.135 65.278c-8.907 3.247-10.7-.689-11.273-1.928q-.739-1.693-.192-4.108c1.17-5.158 6.56-15.043 16.346-33.439.46-.871 2.132-2.645 1.902-4.148-.115-.755-.821-1.423-1.531-1.703-.82-.324-1.577-.145-2.635.227-.44.315-1.11-.772-1.16-1.368-.116-1.366.837-2.954 2.1-3.536 0 0 5.062-1.735 7.606-1.338 1.643.256 3.515.921 4.417 2.319.82 1.27.492 3.536.267 4.527q-.407 1.794-6.859 14.149c-7.024 13.477-10.788 19.829-11.472 22.842-.134 1.499-.108 2.159.663 2.635 1.825 1.129 4.23-.287 6.287-1.385.694-.37.87 1.108.848 1.758-.04 1.182-1.757 3.082-1.757 3.082-1.03.722-3.557 1.415-3.557 1.415z" style="shape-inside:url(#rect73849);white-space:pre" transform="translate(-53.002 -98.425)"/>
+                        <path fill="url(#f)" d="M80.831 121.3c-5.281 2.034-12.33 8.793-11.59 13.869.45 3.09 3.063 4.683 7.092 6.12-7.525 2.077-12.063-1.684-13.714-6.46-1.906-10.19 11.458-16.078 19.158-18.378-1.438 1.78-2.438 3.933-.946 4.85z" style="shape-inside:url(#rect73849);white-space:pre" transform="translate(-53.002 -98.425)"/>
+                        <text xml:space="preserve" fill="#1c9391" font-family="'Droid Sans'" font-size="42.667" letter-spacing="10" style="line-height:1.25;shape-inside:url(#rect1184-0);white-space:pre" transform="matrix(.2201 0 -.09779 .2201 -366.612 -136.892)" word-spacing="0"><tspan x="2204.383" y="792.211"><tspan font-family="Carlito" font-weight="bold">NCERTÆ</tspan></tspan></text>
+                        <text xml:space="preserve" fill="#d09662" font-family="'Droid Sans'" font-size="42.667" letter-spacing="10" style="line-height:1.25;shape-inside:url(#rect1185-4);white-space:pre" transform="matrix(.2201 0 -.05898 .2201 -383.452 -127.177)"><tspan x="2204.383" y="792.211"><tspan font-family="Carlito" font-style="italic">EDIS</tspan></tspan></text>
+                    </svg>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="{{ '/' | relative_url }}">Inicio</a></li>
+                    <li><a href="{{ '/about/' | relative_url }}">Nosotros</a></li>
+                    <li><a href="{{ '/services/' | relative_url }}">Servicios</a></li>
+                    <li><a href="{{ '/portfolio/' | relative_url }}">Portafolio</a></li>
+                    <li><a href="{{ '/blog/' | relative_url }}">Blog</a></li>
+                    <li><a href="{{ '/courses/' | relative_url }}">Cursos</a></li>
+                    <li><a href="{{ '/contact/' | relative_url }}">Contacto</a></li>
+                </ul>
+                <div class="lang-switch">
+                    <button id="btn-es" class="active" onclick="switchLang('es')">ES</button>
+                    <button id="btn-en" onclick="switchLang('en')">EN</button>
+                    <button class="theme-toggle" onclick="toggleTheme()">
+                        <i id="themeIcon" class="fas fa-moon"></i>
+                    </button>
+                </div>
+                <button class="hamburger" onclick="toggleMenu()">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Content -->
+    <main class="page-content" id="main" role="main">
+        <div class="initial-content">
+            {{ content }}
+        </div>
+    </main>
+
+    <!-- WhatsApp Widget -->
+    <div id="wa-widget" class="wa-container">
+        <div id="wa-bubble" class="wa-bubble">
+            <p>¡Hola! 👋 ¿Tienes alguna duda? Escríbenos por WhatsApp.</p> 
+            <div class="wa-arrow"></div>
+        </div>
+
+        <a href="https://wa.me/5255555555?text=¡Hola!%20Me%20gustaría%20recibir%20más%20información%20sobre%20sus%20servicios." target="_blank" class="wa-button" aria-label="Contactar por WhatsApp">
+            <span class="wa-ping"></span>
+            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421-7.403h-.004c-1.052 0-2.082.398-2.847 1.12-.735.722-1.14 1.71-1.14 2.734 0 2.13 1.734 3.864 3.863 3.864 1.052 0 2.082-.398 2.847-1.12.735-.722 1.14-1.71 1.14-2.734 0-2.13-1.734-3.864-3.863-3.864M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0m0 23.25C5.649 23.25.75 18.351.75 12S5.649.75 12 .75 23.25 5.649 23.25 12 18.351 23.25 12 23.25"/></svg>
+        </a>
+    </div>
+
+    <!-- Footer -->
+    <footer id="page-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h2>Incertae Sedis</h2>
+                    <p>Soluciones profesionales para tu negocio.</p>
+                    <div class="social-icons">
+                        <a href="https://twitter.com/" target="_blank" rel="noopener noreferrer" title="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" title="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://linkedin.com/" target="_blank" rel="noopener noreferrer" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://github.com/" target="_blank" rel="noopener noreferrer" title="GitHub"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h2>Navegación</h2>
+                    <ul>
+                        <li><a href="{{ '/' | relative_url }}">Inicio</a></li>
+                        <li><a href="{{ '/about/' | relative_url }}">Nosotros</a></li>
+                        <li><a href="{{ '/services/' | relative_url }}">Servicios</a></li>
+                        <li><a href="{{ '/portfolio/' | relative_url }}">Portafolio</a></li>
+                        <li><a href="{{ '/blog/' | relative_url }}">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h2>Recursos</h2>
+                    <ul>
+                        <li><a href="{{ '/courses/' | relative_url }}">Cursos</a></li>
+                        <li><a href="{{ '/contact/' | relative_url }}">Contacto</a></li>
+                        <li><a href="javascript:showPrivacyPolicy()">Privacidad</a></li>
+                        <li><a href="javascript:showTerms()">Términos</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h2>Contacto</h2>
+                    <ul class="contact-list">
+                        <li class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <a href="mailto:contacto@incsed.com">contacto@incsed.com</a>
+                        </li>
+                        <li class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>555</span>
+                        </li>
+                        <li class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Mexico</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Incertae Sedis. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    {% include cookie-banner.html %}
+    {% include privacyModal.html %}
+    {% include termsModal.html %}
+
+    <!-- Scripts -->
+    <script src="{{ '/assets/js/script.js' | relative_url }}"></script>
+  </body>
+</html>
