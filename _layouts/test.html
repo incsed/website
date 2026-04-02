@@ -54,7 +54,15 @@ layout: default
                 </svg>
             </div>
             <div class="nav-links">
-                {% include nav_list.html %}
+                <ul class="nav-links">
+                <li><a href="{{ '/' | relative_url }}">Inicio</a></li>
+                <li><a href="{{ '/about/' | relative_url }}">Nosotros</a></li>
+                <li><a href="{{ '/services/' | relative_url }}">Servicios</a></li>
+                <li><a href="{{ '/portfolio/' | relative_url }}">Portafolio</a></li>
+                <li><a href="{{ '/blog/' | relative_url }}">Blog</a></li>
+                <li><a href="{{ '/courses/' | relative_url }}">Cursos</a></li>
+                <li><a href="{{ '/contact/' | relative_url }}">Contacto</a></li>
+            </ul>
             </div>
             <div class="lang-switch">
                 <button id="btn-es" class="active" onclick="switchLang('es')">ES</button>
