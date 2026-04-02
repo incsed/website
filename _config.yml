@@ -1,10 +1,10 @@
 # Site settings
 title: "Incertae Sedis"
-email: contacto@incsed.com
+email: "contacto@incsed.com"
 description: "Incertae Sedis - Professional services and courses"
 url: "https://incsed.github.io"
 baseurl: "/website"
-repository: "website"
+repository: "incsed/website"
 teaser: /assets/images/500x300.png
 logo: /assets/images/incico2.svg
 
