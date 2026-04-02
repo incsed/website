@@ -53,17 +53,31 @@ layout: default
                     <text xml:space="preserve" fill="#d09662" font-family="Carlito" font-style="italic" font-size="42.667" letter-spacing="10" style="line-height:1.25;white-space:pre" transform="matrix(.2201 0 -.05898 .2201 -383.452 -127.177)"><tspan x="2204.383" y="792.211">SEDIS</tspan></text>
                 </svg>
             </div>
-            <div class="nav-links">
-                <ul class="nav-links">
-                <li><a href="{{ '/' | relative_url }}">Inicio</a></li>
-                <li><a href="{{ '/about/' | relative_url }}">Nosotros</a></li>
-                <li><a href="{{ '/services/' | relative_url }}">Servicios</a></li>
-                <li><a href="{{ '/portfolio/' | relative_url }}">Portafolio</a></li>
-                <li><a href="{{ '/blog/' | relative_url }}">Blog</a></li>
-                <li><a href="{{ '/courses/' | relative_url }}">Cursos</a></li>
-                <li><a href="{{ '/contact/' | relative_url }}">Contacto</a></li>
-            </ul>
-            </div>
+            <!-- <div class="nav-links"> -->
+                     <ul class="visible-links">
+          {%- for link in site.data.navigation.main -%}
+            <li class="masthead__menu-item">
+              <a
+                href="{{ link.url | relative_url }}"
+                {% if link.description %} title="{{ link.description }}"{% endif %}
+                {% if link.target %} target="{{ link.target }}"{% endif %}
+              >{{ link.title }}</a>
+            </li>
+          {%- endfor -%}
+        </ul>
+        {% if site.search == true %}
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">{{ site.data.ui-text[locale].search_label | default: "Toggle search" }}</span>
+          <i class="fas fa-search"></i>
+        </button>
+        {% endif %}
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">{{ site.data.ui-text[locale].menu_label | default: "Toggle menu" }}</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+            <!-- </div> -->
+
             <div class="lang-switch">
                 <button id="btn-es" class="active" onclick="switchLang('es')">ES</button>
                 <button id="btn-en" onclick="switchLang('en')">EN</button>
