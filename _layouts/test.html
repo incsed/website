@@ -29,10 +29,10 @@ layout: default
 <!-- Main Header -->
 <header id="mainHeader">
     <div class="container">
-
+<!-- 
         <div class="masthead">
   <div class="masthead__inner-wrap"> 
-    <div class="masthead__menu">
+    <div class="masthead__menu"> -->
 
         <nav id="site-nav" class="greedy-nav" aria-label="Primary navigation">
           <div class="logo">
@@ -62,10 +62,12 @@ layout: default
             </div>
             <div class="nav-links">
                      <ul class="visible-links">
+                
           {%- for link in site.data.navigation.main -%}
             <li class="masthead__menu-item">
               <a
                 href="{{ link.url | relative_url }}"
+                       class="{% if page.url == link.url %}active-link{% endif %}"
                 {% if link.description %} title="{{ link.description }}"{% endif %}
                 {% if link.target %} target="{{ link.target }}"{% endif %}
               >{{ link.title }}</a>
@@ -96,11 +98,11 @@ layout: default
                 <i class="fas fa-bars"></i>
             </button>
         </nav>
-        
+<!-- 
     </div>
   </div>
         </div>
-
+ -->
     </div>
 </header>
 

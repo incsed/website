@@ -335,6 +335,18 @@ nav .logo .logo-svg {
 .greedy-nav {
     background-color: var(--white);
 }
+.greedy-nav a {
+    color: var(--text);
+    text-decoration: none;
+    transition: color 0.3s ease; /* Makes the color change smooth */
+}
+.greedy-nav a:hover {
+    color: var(--accent);
+}   
+.nav-links a.active-link {
+    color: var(--accent);
+    border-bottom: 2px solid var(--accent);
+}
 
 .hero {
     position: relative;
