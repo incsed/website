@@ -329,6 +329,10 @@ nav .logo .logo-svg {
     font-size: 1.5rem;
 }
 
+.masthead__menu {
+    background-color: var(--white);
+}
+
 .hero {
     position: relative;
     height: 100vh;
