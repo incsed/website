@@ -648,6 +648,10 @@ nav .logo .logo-svg {
     resize: vertical;
 }
 
+.page__footer footer {
+max-width: 100%;
+}
+
 footer {
     background-color: #1a1a2e;
     width: 100%;
