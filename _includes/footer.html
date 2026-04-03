@@ -1,6 +1,6 @@
 {% assign locale = include.locale | default: site.locale %}
-<!-- Footer -->
-<footer id="page-footer">
+<!-- Footer 
+<footer id="page-footer"> -->
     <div class="container">
         <div class="footer-content">
                         <div class="footer-col">
@@ -52,8 +52,6 @@
     </div>
     <div class="footer-bottom">
         <div class="social-icons">
-
-
 {% unless site.atom_feed.hide %}
   {% assign show_atom = true %}
 {% endunless %}
@@ -67,7 +65,7 @@
     {% if site.footer.links %}
       {% for link in site.footer.links %}
         {% if link.label and link.url %}
-          <a href="{{ link.url }}" target="_blank" rel="nofollow noopener noreferrer{% if link.rel %} {{ link.rel }}{% endif %}"><i class="{{ link.icon | default: 'fas fa-link' }}" aria-hidden="true"></i> {{ link.label | escape_once | strip }}</a>
+          <a href="{{ link.url }}" target="_blank" rel="nofollow noopener noreferrer{% if link.rel %} {{ link.rel }}{% endif %}"><i class="{{ link.icon | default: 'fas fa-link' }}" aria-hidden="true"></i></a>
         {% endif %}
       {% endfor %}
     {% endif %}
@@ -79,4 +77,4 @@
                 <p class="lang-es">© 2026 Incertæ Sedis. Todos los derechos reservados.</p>
                 <p class="lang-en">© 2026 Incertæ Sedis. All rights reserved.</p>
     </div>
-</footer>
+<!-- </footer> -->
