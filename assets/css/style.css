@@ -340,14 +340,16 @@ nav .logo .logo-svg {
     text-decoration: none;
     transition: color 0.3s ease; /* Makes the color change smooth */
 }
+
 .nav-links a:hover {
     color: var(--accent) !important;
+    font-weight: bold;
 }   
-.greedy-nav a.active-link {
+/* .greedy-nav a.active-link {
     color: var(--accent);
     border-bottom: 2px solid var(--accent);
 }
-
+ */
 .hero {
     position: relative;
     height: 100vh;
