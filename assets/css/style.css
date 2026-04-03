@@ -97,10 +97,9 @@ header, #mainHeader {
     z-index: 1000;
     height: auto; 
     transition: all 0.3s ease;}
-header .container { min-height: 90px; display: flex; align-items: center; padding: 0; }
 
 header.scrolled nav .logo .logo-svg {
-    height: 100px;
+    height: 60px;
     filter: grayscale(100%);
 }
 
@@ -113,6 +112,7 @@ header .container {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    /*padding: 0;*/
 }
 
 nav {
@@ -183,7 +183,7 @@ nav .logo .logo-svg {
 }
 */
 #top-header {
-    background-color: var(--dark) !important;
+    background-color: var(--accent) !important;
     color: var(--white) !important;
     height: var(--topbar-height) !important;
     display: flex !important; /* Force layout */
@@ -641,6 +641,7 @@ nav .logo .logo-svg {
 
 footer {
     background-color: #1a1a2e;
+    width: 100%;
     color: #ffff;
     padding: 3rem 0 1rem;
 }
