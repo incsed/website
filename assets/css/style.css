@@ -343,7 +343,7 @@ nav .logo .logo-svg {
 .greedy-nav a:hover {
     color: var(--accent);
 }   
-.nav-links a.active-link {
+.greedy-nav a.active-link {
     color: var(--accent);
     border-bottom: 2px solid var(--accent);
 }
