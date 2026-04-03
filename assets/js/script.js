@@ -154,7 +154,7 @@ document.addEventListener('DOMContentLoaded', function() {
     applyStoredTheme();
     const aboutTitle = document.querySelector('.about-section .section-title');
     const pagefooter= document.getElementsByClassName('page__footer');
-    footer.classList.remove('page__footer');
+    pagefooter.classList.remove('page__footer');
     if(aboutTitle) {
         aboutTitle.style.setProperty('color', 'var(--white)', 'important');
     }
