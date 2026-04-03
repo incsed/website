@@ -1,16 +1,15 @@
 {% assign locale = include.locale | default: site.locale %}
 <!-- Footer 
 <footer id="page-footer"> -->
-    <div class="container">
+    <div id="page-footer" class="container">
         <div class="footer-content">
-                        <div class="footer-col">
+                <div class="footer-col">
                 <h2>Incertae Sedis</h2>
                 <p>Soluciones profesionales para tu negocio.</p>
                 
 <!-- 
 <div class="page__footer-copyright">&copy; {% assign site_time = site.time | date: '%Y' %}{% if site.footer.since and site_time != site.footer.since %}{{ site.footer.since }} - {% endif %}{{ site_time }} <a href="{{ site.copyright_url | default: site.url }}">{{ site.copyright | default: site.title | escape_once | strip }}</a>. {{ site.data.ui-text[locale].powered_by | default: "Powered by" }} <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/jekyll-themes/minimal-mistakes/" rel="nofollow">Minimal Mistakes</a>.</div> -->
-                </div>
-            </div>
+                    </div>
 
             <div class="footer-col">
                 <h2>Navegación</h2>
@@ -49,7 +48,6 @@
                 </ul>
             </div>
         </div>
-    </div>
     <div class="footer-bottom">
         <div class="social-icons">
 {% unless site.atom_feed.hide %}
@@ -74,7 +72,10 @@
       <a href="{% if site.atom_feed.path %}{{ site.atom_feed.path }}{% else %}{{ '/feed.xml' | relative_url }}{% endif %}"><i class="fas fa-fw fa-square-rss" aria-hidden="true"></i> {{ site.data.ui-text[locale].feed_label | default: "Feed" }}</a>
     {% endunless %}
 {% endif %}
+        </div>
                 <p class="lang-es">© 2026 Incertæ Sedis. Todos los derechos reservados.</p>
                 <p class="lang-en">© 2026 Incertæ Sedis. All rights reserved.</p>
     </div>
+    </div>
+
 <!-- </footer> -->
