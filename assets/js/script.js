@@ -153,7 +153,7 @@ document.addEventListener('DOMContentLoaded', function() {
     checkCookies();
     applyStoredTheme();
     const aboutTitle = document.querySelector('.about-section .section-title');
-    const footer= document.getElementById('footer');
+    const pagefooter= document.getElementsByClassName('page__footer');
     footer.classList.remove('page__footer');
     if(aboutTitle) {
         aboutTitle.style.setProperty('color', 'var(--white)', 'important');
