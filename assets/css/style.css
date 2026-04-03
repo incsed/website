@@ -107,6 +107,15 @@ header.scrolled:hover nav .logo .logo-svg {
     filter: grayscale(0%);
 }
 
+/* 2. Remove the filter when hovering over the logo or the entire header */
+/* Hovering the header is often better so the logo "wakes up" as the mouse enters the nav area */
+header:hover nav .logo .logo-svg,
+nav .logo:hover .logo-svg {
+    filter: grayscale(0%);
+    opacity: 1;
+    height: 100px;
+}
+
 header .container {
     min-height: 70px;
     display: flex;
