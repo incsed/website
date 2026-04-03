@@ -332,6 +332,9 @@ nav .logo .logo-svg {
 .masthead__menu {
     background-color: var(--white);
 }
+.greedy-nav {
+    background-color: var(--white);
+}
 
 .hero {
     position: relative;
