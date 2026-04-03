@@ -652,6 +652,9 @@ nav .logo .logo-svg {
 max-width: 100%;
 }
 
+.page__footer .social-icons {
+    gap:100px;
+
 footer {
     background-color: #1a1a2e;
     width: 100%;
