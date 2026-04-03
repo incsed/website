@@ -7,8 +7,6 @@ layout: default
     <div class="loader"></div>
 </div>
 
-{% include masthead.html %}
-
 <!-- Page Content -->
 <main class="page-content" id="main" role="main">
     <div class="initial-content">
@@ -19,64 +17,6 @@ layout: default
 <!-- WhatsApp Widget -->
  {% include whatsapp-widget.html %}
  
-<!-- Footer -->
-<footer id="page-footer">
-    <div class="container">
-        <div class="footer-content">
-            <div class="footer-col">
-                <h2>Incertae Sedis</h2>
-                <p>Soluciones profesionales para tu negocio.</p>
-                <div class="social-icons">
-                    <a href="https://twitter.com/" target="_blank" rel="noopener noreferrer" title="Twitter"><i class="fab fa-twitter"></i></a>
-                    <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" title="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="https://linkedin.com/" target="_blank" rel="noopener noreferrer" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="https://github.com/" target="_blank" rel="noopener noreferrer" title="GitHub"><i class="fab fa-github"></i></a>
-                </div>
-            </div>
-            <div class="footer-col">
-                <h2>Navegación</h2>
-                <ul>
-                    <li><a href="{{ '/' | relative_url }}">Inicio</a></li>
-                    <li><a href="{{ '/about/' | relative_url }}">Nosotros</a></li>
-                    <li><a href="{{ '/services/' | relative_url }}">Servicios</a></li>
-                    <li><a href="{{ '/portfolio/' | relative_url }}">Portafolio</a></li>
-                    <li><a href="{{ '/blog/' | relative_url }}">Blog</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h2>Recursos</h2>
-                <ul>
-                    <li><a href="{{ '/courses/' | relative_url }}">Cursos</a></li>
-                    <li><a href="{{ '/contact/' | relative_url }}">Contacto</a></li>
-                    <li><a href="javascript:showPrivacyPolicy()">Privacidad</a></li>
-                    <li><a href="javascript:showTerms()">Términos</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h2>Contacto</h2>
-                <ul class="contact-list">
-                    <li class="contact-item">
-                        <i class="fas fa-envelope"></i>
-                        <a href="mailto:contacto@incsed.com">contacto@incsed.com</a>
-                    </li>
-                    <li class="contact-item">
-                        <i class="fas fa-phone"></i>
-                        <span>555</span>
-                    </li>
-                    <li class="contact-item">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <span>Mexico</span>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div class="footer-bottom">
-        <p>&copy; 2026 Incertae Sedis. Todos los derechos reservados.</p>
-    </div>
-</footer>
-
 {% include cookie-banner.html %}
 {% include privacyModal.html %}
 {% include termsModal.html %}
