@@ -345,11 +345,12 @@ nav .logo .logo-svg {
     color: var(--accent) !important;
     font-weight: bold;
 }   
-/* .greedy-nav a.active-link {
-    color: var(--accent);
-    border-bottom: 2px solid var(--accent);
+.greedy-nav a.active-link {
+    font-weight: bold;
+/*    color: var(--accent);
+    border-bottom: 2px solid var(--accent);*/
 }
- */
+ 
 .hero {
     position: relative;
     height: 100vh;

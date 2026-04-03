@@ -85,4 +85,5 @@ collections:
     permalink: /:collection/:path/
 
 #after_footer
-# after_footer_scripts removed to avoid duplicate/malformed script emission by theme
+after_footer_scripts:
+  - /assets/js/script.js
