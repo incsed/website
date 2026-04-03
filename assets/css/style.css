@@ -340,8 +340,8 @@ nav .logo .logo-svg {
     text-decoration: none;
     transition: color 0.3s ease; /* Makes the color change smooth */
 }
-.nav-links a:hover {
-    color: var(--accent);
+.greedy-nav a:hover {
+    color: var(--accent) !important;
 }   
 .greedy-nav a.active-link {
     color: var(--accent);
