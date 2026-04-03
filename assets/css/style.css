@@ -652,6 +652,10 @@ nav .logo .logo-svg {
 max-width: 100%;
 }
 
+.page__footer .social-icons {
+    gap:100px;
+}
+
 footer {
     background-color: #1a1a2e;
     width: 100%;
@@ -713,7 +717,7 @@ footer {
 
 .social-icons {
     display: flex;
-    gap: 100px;
+    gap: 0.8rem;
     justify-content: center;
     align-items: center;
     margin-bottom: 0.5rem;
