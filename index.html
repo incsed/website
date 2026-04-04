@@ -2977,8 +2977,8 @@ window.onload = function() {
       const randomIndex = Math.floor(Math.random() * images.length);
       const selectedImage = images[randomIndex];
 
-  // Apply the image to the hero element
-  document.getElementsByClassName('hero-parallax-bg').style.backgroundImage = `url('${selectedImage}')`;
+      // Apply the image to the hero element
+  document.getElementsById('home').style.backgroundImage = `url('${selectedImage}')`;
   };
 
   /*
