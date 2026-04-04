@@ -265,8 +265,8 @@ nav .logo .logo-svg {
     transition: color 0.3s ease, transform 0.3s ease;
 }
 
-        #top-header #et-info a i:hover, .et-social-icons li a.icon:hover,
-#topbar-social .et-social-icons li a:hover { 
+        #top-header #et-info a:hover i, .et-social-icons li a.icon:hover,
+#topbar-social .et-social-icons li a:hover i{ 
     color: var(--primary); 
     background: rgba(0,0,0,0.04); 
 }
@@ -276,8 +276,7 @@ nav .logo .logo-svg {
     text-decoration: none; 
 }
 
-
-.et-social-icons a:hover i{
+.page__footer .et-social-icons a:hover i{
     color: var(--primary);
     transform: translateY(-3px); /* Pequeño salto hacia arriba (efecto premium) */
 }
@@ -657,7 +656,7 @@ nav .logo .logo-svg {
 }
 
 #main{
-    margin-bottom: 100px;
+    margin-bottom: 50px;
 }
 
 .page__footer footer {
