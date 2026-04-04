@@ -264,7 +264,7 @@ nav .logo .logo-svg {
     font-size: 0.95rem;
 }
 
-#top-header .et-social-icons li a.icon:hover,
+        #top-header #et-info a i:hover, .et-social-icons li a.icon:hover,
 #topbar-social .et-social-icons li a:hover { 
     color: var(--primary); 
     background: rgba(0,0,0,0.04); 
@@ -274,6 +274,12 @@ nav .logo .logo-svg {
     color: #241F31; 
     text-decoration: none; 
 }
+
+/*
+.et-social-icons:hover{
+    color: var(--primary);
+}
+*/
 
 @media (max-width: 720px) {
     #top-header .et-social-icons { gap: 6px; }
