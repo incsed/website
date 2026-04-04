@@ -275,11 +275,11 @@ nav .logo .logo-svg {
     text-decoration: none; 
 }
 
-/*
-.et-social-icons:hover{
+
+.et-social-icons a:hover{
     color: var(--primary);
 }
-*/
+
 
 @media (max-width: 720px) {
     #top-header .et-social-icons { gap: 6px; }
