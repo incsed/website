@@ -276,7 +276,7 @@ nav .logo .logo-svg {
 }
 
 
-.et-social-icons a:hover{
+.et-social-icons a i:hover{
     color: var(--primary);
 }
 
