@@ -262,6 +262,7 @@ nav .logo .logo-svg {
     border-radius: 6px;
     text-decoration: none;
     font-size: 0.95rem;
+    transition: color 0.3s ease, transform 0.3s ease;
 }
 
         #top-header #et-info a i:hover, .et-social-icons li a.icon:hover,
@@ -276,8 +277,9 @@ nav .logo .logo-svg {
 }
 
 
-.et-social-icons a i:hover{
+.et-social-icons a:hover i{
     color: var(--primary);
+    transform: translateY(-3px); /* Pequeño salto hacia arriba (efecto premium) */
 }
 
 
