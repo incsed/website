@@ -983,7 +983,7 @@ nav .logo .logo-svg {
     top: 0; left: 0; width: 100%; height: 100%;
     /* Imagen: Ciudad de México / Ciudad Latina Moderna 
     background-image: url('https://images.unsplash.com/photo-1732173201539-5e8b25af3cbc?q=80&w=1170&auto=format&fit=crop');*/
-    background-image: url('Gemini_Generated_Image_dzdm1adzdm1adzdm.png');
+    background-image: url('assets/images/hero/Gemini_Generated_Image_ok2nt0ok2nt0ok2n.png');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -2962,11 +2962,23 @@ window.onload = function() {
       bubble.classList.add('show');
     }, 2500);
 
-
     // Pop bubble after 5s
     setTimeout(() => {
       bubble.classList.remove('show');
     }, 5000);
+
+    const images=[
+        'assets/images/hero/Gemini_Generated_Image_ok2nt0ok2nt0ok2n.png',
+        'assets/images/hero/Gemini_Generated_Image_go991wgo991wgo99.png',
+        'assets/images/hero/Gemini_Generated_Image_dzdm1adzdm1adzdm.png'
+      ];
+
+        // Select a random index from the array
+      const randomIndex = Math.floor(Math.random() * images.length);
+      const selectedImage = images[randomIndex];
+
+  // Apply the image to the hero element
+  document.getElementById('hero').style.backgroundImage = `url('${selectedImage}')`;
   };
 
   /*
