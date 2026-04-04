@@ -281,6 +281,9 @@ nav .logo .logo-svg {
     transform: translateY(-3px); /* Pequeño salto hacia arriba (efecto premium) */
 }
 
+.et-social-icons{
+    font-size: 1rem;
+}
 
 @media (max-width: 720px) {
     #top-header .et-social-icons { gap: 6px; }
@@ -353,6 +356,7 @@ nav .logo .logo-svg {
 }
 .greedy-nav a {
     color: var(--text);
+    font-size: 0.95rem;
     text-decoration: none;
     transition: color 0.3s ease; /* Makes the color change smooth */
 }
@@ -677,6 +681,7 @@ footer {
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 2rem;
     margin-bottom: 2rem;
+    font-size: .85rem;
 }
 
 .footer-col h2 {
@@ -1039,6 +1044,7 @@ footer {
     max-width: 800px;
     position: relative;
     padding: 3rem;
+    font-size: .75rem;
 }
 
 .modal-close {
