@@ -50,9 +50,6 @@
     box-sizing: border-box;
 }
 
-/* Utility: hide elements when toggled via JS */
-.hidden { display: none !important; }
-
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.6;
@@ -275,7 +272,7 @@ nav .logo .logo-svg {
     color: var(--primary); 
     background: rgba(0,0,0,0.04); 
     opacity: 1; /* Al pasar el cursor: iluminación total */
-/*  filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));  Opcional: un ligero resplandor */
+  filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5)); /* Opcional: un ligero resplandor */
 }
 
 #top-header #et-info a { 
@@ -394,8 +391,7 @@ nav .logo .logo-svg {
 .hero-parallax-bg {
     position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;
-    /* Use path relative to this CSS file so GitHub Pages baseurl is not required */
-    background-image: url('../images/hero-bg.jpg');
+    background-image: url('/assets/images/hero-bg.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;

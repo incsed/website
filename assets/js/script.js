@@ -124,13 +124,9 @@ function switchLang(currentLang) {
 function applyLang(lang) {
     try {
         document.documentElement.lang = (lang === 'en') ? 'en' : 'es';
-        // toggle nav blocks annotated with data-lang using CSS class for consistency
+        // toggle nav blocks annotated with data-lang
         document.querySelectorAll('[data-lang]').forEach(function(el){
-            var isMatch = (el.getAttribute('data-lang') === lang);
-            el.classList.toggle('hidden', !isMatch);
-            el.setAttribute('aria-hidden', (!isMatch).toString());
-            // Ensure any inline style display:none is cleared when showing
-            try { el.style.display = isMatch ? '' : 'none'; } catch(e) { /* ignore */ }
+            el.style.display = (el.getAttribute('data-lang') === lang) ? '' : 'none';
         });
         // update UI text nodes with data-i18n keys
         document.querySelectorAll('[data-i18n]').forEach(function(el){
@@ -149,57 +145,52 @@ function applyLang(lang) {
 // Initialize language switching on DOMContentLoaded if translations provided inline
 function initLangSwitcherIfPresent(){
     var stored = localStorage.getItem('site-lang');
-    // determine language from URL path first (respect baseurl)
-    var base = (window.__SITE && window.__SITE.baseurl) ? window.__SITE.baseurl : '';
-    var p = window.location.pathname || '/';
-    if (base && p.indexOf(base) === 0) p = p.slice(base.length) || '/';
-    var pathLang = (p.indexOf('/en/') === 0 || p === '/en' || p.indexOf('/en') === 0) ? 'en' : null;
-    var initial = stored || pathLang || (document.documentElement.lang || 'es');
-    // apply initial language for UI regardless of inline translations
-    applyLang(initial);
+    var initial = stored || (document.documentElement.lang || 'es');
+    // if translations provided inline as window.__UI_TEXT, apply initial language
+    if (window.__UI_TEXT) {
+        applyLang(initial);
+    }
     // attach handlers for buttons (progressive enhancement)
     document.querySelectorAll('[data-lang-btn]').forEach(function(b){
-        b.addEventListener('click', async function(){
+        b.addEventListener('click', function(){
             var lang = b.getAttribute('data-lang-btn');
             // persist choice
             localStorage.setItem('site-lang', lang);
-            // compute corresponding page-level route
+            // compute and navigate to corresponding page-level route
             try {
                 var base = (window.__SITE && window.__SITE.baseurl) ? window.__SITE.baseurl : '';
                 var p = window.location.pathname || '/';
                 // strip base from path for mapping
                 if (base && p.indexOf(base) === 0) p = p.slice(base.length) || '/';
-                var targetPath;
+                var target;
                 if (lang === 'en') {
                     if (p === '/' || p === '') {
-                        targetPath = '/en/';
+                        target = (base || '') + '/en/';
                     } else if (p.indexOf('/en/') === 0) {
-                        targetPath = p; // already en
+                        target = (base || '') + p; // already en
                     } else {
-                        targetPath = '/en' + p;
+                        target = (base || '') + '/en' + p;
                     }
                 } else {
                     // spanish
                     if (p.indexOf('/en/') === 0) {
-                        targetPath = p.replace(/^\/en/, '') || '/';
+                        var without = p.replace(/^\/en/, '') || '/';
+                        target = (base || '') + without;
                     } else {
-                        targetPath = p;
+                        target = (base || '') + p;
                     }
                 }
-                // prepend base if present
-                var target = (base || '') + targetPath;
                 // normalize double slashes
-                target = target.replace(/\/\/+/g, '/');
+                target = target.replace(/\/\/+/, '/');
                 // If already at target, just apply UI changes without navigation
                 var current = window.location.pathname;
-                if (current === target) { applyLang(lang); return; }
-
-                // Navigate directly to the computed target URL (avoid HEAD/CORS issues on GitHub Pages)
-                var origin = window.location.origin;
-                var goto = origin + target;
-                window.location.href = goto;
-                return;
-            } catch (e) { console.error(e); applyLang(lang); }
+                if (current !== target) {
+                    window.location.href = window.location.origin + target;
+                    return;
+                }
+            } catch (e) { console.error(e); }
+            // fallback: just apply lang to UI
+            applyLang(lang);
         });
     });
 }
