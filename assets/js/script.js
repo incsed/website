@@ -147,7 +147,12 @@ function applyLang(lang) {
 // Initialize language switching on DOMContentLoaded if translations provided inline
 function initLangSwitcherIfPresent(){
     var stored = localStorage.getItem('site-lang');
-    var initial = stored || (document.documentElement.lang || 'es');
+    // determine language from URL path first (respect baseurl)
+    var base = (window.__SITE && window.__SITE.baseurl) ? window.__SITE.baseurl : '';
+    var p = window.location.pathname || '/';
+    if (base && p.indexOf(base) === 0) p = p.slice(base.length) || '/';
+    var pathLang = (p.indexOf('/en/') === 0 || p === '/en' || p.indexOf('/en') === 0) ? 'en' : null;
+    var initial = stored || pathLang || (document.documentElement.lang || 'es');
     // apply initial language for UI regardless of inline translations
     applyLang(initial);
     // attach handlers for buttons (progressive enhancement)
