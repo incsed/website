@@ -187,24 +187,11 @@ function initLangSwitcherIfPresent(){
                 var current = window.location.pathname;
                 if (current === target) { applyLang(lang); return; }
 
-                // Check existence with HEAD to avoid navigating to missing pages
+                // Navigate directly to the computed target URL (avoid HEAD/CORS issues on GitHub Pages)
                 var origin = window.location.origin;
-                var checkUrl = origin + target;
-                try {
-                    var resp = await fetch(checkUrl, { method: 'HEAD', cache: 'no-store' });
-                    if (resp && resp.ok) {
-                        window.location.href = checkUrl;
-                        return;
-                    } else {
-                        console.warn('Target page not found, falling back to UI-only language switch:', checkUrl);
-                        applyLang(lang);
-                        return;
-                    }
-                } catch (fetchErr) {
-                    console.warn('HEAD check failed, falling back to UI-only language switch:', fetchErr);
-                    applyLang(lang);
-                    return;
-                }
+                var goto = origin + target;
+                window.location.href = goto;
+                return;
             } catch (e) { console.error(e); applyLang(lang); }
         });
     });
