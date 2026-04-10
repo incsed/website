@@ -124,9 +124,11 @@ function switchLang(currentLang) {
 function applyLang(lang) {
     try {
         document.documentElement.lang = (lang === 'en') ? 'en' : 'es';
-        // toggle nav blocks annotated with data-lang
+        // toggle nav blocks annotated with data-lang using CSS class for consistency
         document.querySelectorAll('[data-lang]').forEach(function(el){
-            el.style.display = (el.getAttribute('data-lang') === lang) ? '' : 'none';
+            var isMatch = (el.getAttribute('data-lang') === lang);
+            el.classList.toggle('hidden', !isMatch);
+            el.setAttribute('aria-hidden', (!isMatch).toString());
         });
         // update UI text nodes with data-i18n keys
         document.querySelectorAll('[data-i18n]').forEach(function(el){
@@ -146,10 +148,8 @@ function applyLang(lang) {
 function initLangSwitcherIfPresent(){
     var stored = localStorage.getItem('site-lang');
     var initial = stored || (document.documentElement.lang || 'es');
-    // if translations provided inline as window.__UI_TEXT, apply initial language
-    if (window.__UI_TEXT) {
-        applyLang(initial);
-    }
+    // apply initial language for UI regardless of inline translations
+    applyLang(initial);
     // attach handlers for buttons (progressive enhancement)
     document.querySelectorAll('[data-lang-btn]').forEach(function(b){
         b.addEventListener('click', async function(){
