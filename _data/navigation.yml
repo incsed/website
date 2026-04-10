@@ -1,18 +1,36 @@
 # main links
-main:
+main_en:
   #- title: "Quick-Start Guide"
   # url: https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/
    - title: "About"
-     url: /about/
+     url: /nosotros/
    - title: "Services"
-     url: /services/
+     url: /servicios/
    - title: "Portfolio"
-     url: /portfolio/
+     url: /portafolio/
    - title: "Courses"
-     url: /courses/
+     url: /cursos/
    - title: "Blog"
      url: /blog/
    - title: "Contact"
-     url: /contact/ 
+     url: /contacto/ 
+   #- title: "Sitemap"
+   #  url: /sitemap/
+
+main_es:
+  #- title: "Quick-Start Guide"
+  # url: https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/
+   - title: "Acerca de"
+     url: /nosotros/
+   - title: "Servicios"
+     url: /servicios/
+   - title: "Portafolio"
+     url: /portafolio/
+   - title: "Cursos"
+     url: /cursos/
+   - title: "Blog"
+     url: /blog/
+   - title: "Contacto"
+     url: /contacto/ 
    #- title: "Sitemap"
    #  url: /sitemap/

@@ -272,7 +272,7 @@ nav .logo .logo-svg {
     color: var(--primary); 
     background: rgba(0,0,0,0.04); 
     opacity: 1; /* Al pasar el cursor: iluminación total */
-  filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5)); /* Opcional: un ligero resplandor */
+/*  filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));  Opcional: un ligero resplandor */
 }
 
 #top-header #et-info a { 
