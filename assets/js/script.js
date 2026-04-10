@@ -158,8 +158,6 @@ document.addEventListener('DOMContentLoaded', function() {
     if(aboutTitle) {
         aboutTitle.style.setProperty('color', 'var(--white)', 'important');
     }
-    // language switcher initialization (if masthead provided inline translations)
-    initLangSwitcherIfPresent();
 });
 
 window.addEventListener('scroll', function() {
