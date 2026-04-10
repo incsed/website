@@ -129,6 +129,8 @@ function applyLang(lang) {
             var isMatch = (el.getAttribute('data-lang') === lang);
             el.classList.toggle('hidden', !isMatch);
             el.setAttribute('aria-hidden', (!isMatch).toString());
+            // Ensure any inline style display:none is cleared when showing
+            try { el.style.display = isMatch ? '' : 'none'; } catch(e) { /* ignore */ }
         });
         // update UI text nodes with data-i18n keys
         document.querySelectorAll('[data-i18n]').forEach(function(el){

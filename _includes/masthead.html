@@ -67,7 +67,7 @@
                 </ul>
 
                 <!-- English nav (hidden by default) -->
-                <ul class="visible-links" data-lang="en" style="display:none">
+                <ul class="visible-links" data-lang="en">
                 {%- for link in site.data.navigation.main_en -%}
                   <li class="masthead__menu-item">
                     <a href="{{ link.url | relative_url }}" class="{% if page.url == link.url %}active-link{% endif %}" {% if link.description %} title="{{ link.description }}"{% endif %}{% if link.target %} target="{{ link.target }}"{% endif %}>{{ link.title }}</a>
