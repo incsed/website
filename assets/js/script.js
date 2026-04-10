@@ -111,8 +111,49 @@ window.addEventListener('resize', () => {
 });
 
 function switchLang(currentLang) {
-    setLanguage(currentLang === 'es' ? 'en' : 'es');
-    return false;
+    // backward-compatible API: accept a lang code or toggle when passed 'toggle'
+    if (currentLang === 'toggle') {
+        var next = (document.documentElement.lang === 'en') ? 'es' : 'en';
+        applyLang(next);
+    } else {
+        applyLang(currentLang);
+    }
+}
+
+// applyLang and init - supports inline-provided translations in window.__UI_TEXT
+function applyLang(lang) {
+    try {
+        document.documentElement.lang = (lang === 'en') ? 'en' : 'es';
+        // toggle nav blocks annotated with data-lang
+        document.querySelectorAll('[data-lang]').forEach(function(el){
+            el.style.display = (el.getAttribute('data-lang') === lang) ? '' : 'none';
+        });
+        // update UI text nodes with data-i18n keys
+        document.querySelectorAll('[data-i18n]').forEach(function(el){
+            var key = el.getAttribute('data-i18n');
+            var txt = (window.__UI_TEXT && window.__UI_TEXT[lang] && window.__UI_TEXT[lang][key]) || el.textContent;
+            el.textContent = txt;
+        });
+        // toggle active class on language buttons
+        document.querySelectorAll('[data-lang-btn]').forEach(function(b){
+            b.classList.toggle('active', b.getAttribute('data-lang-btn') === lang);
+        });
+        localStorage.setItem('site-lang', lang);
+    } catch(e) { console.error(e); }
+}
+
+// Initialize language switching on DOMContentLoaded if translations provided inline
+function initLangSwitcherIfPresent(){
+    var stored = localStorage.getItem('site-lang');
+    var initial = stored || (document.documentElement.lang || 'es');
+    // if translations provided inline as window.__UI_TEXT, apply initial language
+    if (window.__UI_TEXT) {
+        applyLang(initial);
+    }
+    // attach handlers for buttons (progressive enhancement)
+    document.querySelectorAll('[data-lang-btn]').forEach(function(b){
+        b.addEventListener('click', function(){ applyLang(b.getAttribute('data-lang-btn')); });
+    });
 }
 
 function acceptCookies() {
@@ -158,6 +199,8 @@ document.addEventListener('DOMContentLoaded', function() {
     if(aboutTitle) {
         aboutTitle.style.setProperty('color', 'var(--white)', 'important');
     }
+    // language switcher initialization (if masthead provided inline translations)
+    initLangSwitcherIfPresent();
 });
 
 window.addEventListener('scroll', function() {

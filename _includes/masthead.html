@@ -107,7 +107,7 @@
 </header>
 
 <script>
-// Embedded UI text for client-side swapping (small subset)
+// Provide small UI translations to the central script. The heavy logic lives in `assets/js/script.js`.
 window.__UI_TEXT = {
   en: {
     menu_label: "{{ site.data.ui-text.en.menu_label | escape }}",
@@ -118,38 +118,4 @@ window.__UI_TEXT = {
     search_label: "{{ site.data.ui-text.es.search_label | escape }}"
   }
 };
-
-function applyLang(lang){
-  try{
-    document.documentElement.lang = (lang === 'en') ? 'en' : 'es';
-    // toggle navs
-    document.querySelectorAll('[data-lang]').forEach(function(el){
-      el.style.display = (el.getAttribute('data-lang') === lang) ? '' : 'none';
-    });
-    // update ui-text
-    document.querySelectorAll('[data-i18n]').forEach(function(el){
-      var key = el.getAttribute('data-i18n');
-      var txt = (window.__UI_TEXT[lang] && window.__UI_TEXT[lang][key]) || el.textContent;
-      el.textContent = txt;
-    });
-    // buttons active state
-    document.querySelectorAll('[data-lang-btn]').forEach(function(b){
-      b.classList.toggle('active', b.getAttribute('data-lang-btn') === lang);
-    });
-    localStorage.setItem('site-lang', lang);
-  }catch(e){console.error(e)}
-}
-
-function switchLang(lang){ applyLang(lang); }
-
-// init on load
-(function(){
-  var stored = localStorage.getItem('site-lang');
-  var initial = stored || (document.documentElement.lang || 'es');
-  applyLang(initial);
-  // attach click handlers for progressive enhancement
-  document.querySelectorAll('[data-lang-btn]').forEach(function(b){
-    b.addEventListener('click', function(){ switchLang(b.getAttribute('data-lang-btn')); });
-  });
-})();
 </script>
