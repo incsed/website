@@ -391,7 +391,8 @@ nav .logo .logo-svg {
 .hero-parallax-bg {
     position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;
-    background-image: url('/assets/images/hero-bg.jpg');
+    /* Use path relative to this CSS file so GitHub Pages baseurl is not required */
+    background-image: url('../images/hero-bg.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
