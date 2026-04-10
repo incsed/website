@@ -152,7 +152,46 @@ function initLangSwitcherIfPresent(){
     }
     // attach handlers for buttons (progressive enhancement)
     document.querySelectorAll('[data-lang-btn]').forEach(function(b){
-        b.addEventListener('click', function(){ applyLang(b.getAttribute('data-lang-btn')); });
+        b.addEventListener('click', function(){
+            var lang = b.getAttribute('data-lang-btn');
+            // persist choice
+            localStorage.setItem('site-lang', lang);
+            // compute and navigate to corresponding page-level route
+            try {
+                var base = (window.__SITE && window.__SITE.baseurl) ? window.__SITE.baseurl : '';
+                var p = window.location.pathname || '/';
+                // strip base from path for mapping
+                if (base && p.indexOf(base) === 0) p = p.slice(base.length) || '/';
+                var target;
+                if (lang === 'en') {
+                    if (p === '/' || p === '') {
+                        target = (base || '') + '/en/';
+                    } else if (p.indexOf('/en/') === 0) {
+                        target = (base || '') + p; // already en
+                    } else {
+                        target = (base || '') + '/en' + p;
+                    }
+                } else {
+                    // spanish
+                    if (p.indexOf('/en/') === 0) {
+                        var without = p.replace(/^\/en/, '') || '/';
+                        target = (base || '') + without;
+                    } else {
+                        target = (base || '') + p;
+                    }
+                }
+                // normalize double slashes
+                target = target.replace(/\/\/+/, '/');
+                // If already at target, just apply UI changes without navigation
+                var current = window.location.pathname;
+                if (current !== target) {
+                    window.location.href = window.location.origin + target;
+                    return;
+                }
+            } catch (e) { console.error(e); }
+            // fallback: just apply lang to UI
+            applyLang(lang);
+        });
     });
 }
 

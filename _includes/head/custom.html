@@ -25,6 +25,14 @@
 
         <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
 
+        <script>
+          // expose baseurl and site URL for client-side language redirects
+          window.__SITE = {
+            baseurl: "{{ site.baseurl }}",
+            url: "{{ site.url }}"
+          };
+        </script>
+
     {% if page.page_css %}
   {% for stylesheet in page.page_css %}
     <link rel="stylesheet" href="{{ stylesheet | relative_url }}">
