@@ -152,45 +152,60 @@ function initLangSwitcherIfPresent(){
     }
     // attach handlers for buttons (progressive enhancement)
     document.querySelectorAll('[data-lang-btn]').forEach(function(b){
-        b.addEventListener('click', function(){
+        b.addEventListener('click', async function(){
             var lang = b.getAttribute('data-lang-btn');
             // persist choice
             localStorage.setItem('site-lang', lang);
-            // compute and navigate to corresponding page-level route
+            // compute corresponding page-level route
             try {
                 var base = (window.__SITE && window.__SITE.baseurl) ? window.__SITE.baseurl : '';
                 var p = window.location.pathname || '/';
                 // strip base from path for mapping
                 if (base && p.indexOf(base) === 0) p = p.slice(base.length) || '/';
-                var target;
+                var targetPath;
                 if (lang === 'en') {
                     if (p === '/' || p === '') {
-                        target = (base || '') + '/en/';
+                        targetPath = '/en/';
                     } else if (p.indexOf('/en/') === 0) {
-                        target = (base || '') + p; // already en
+                        targetPath = p; // already en
                     } else {
-                        target = (base || '') + '/en' + p;
+                        targetPath = '/en' + p;
                     }
                 } else {
                     // spanish
                     if (p.indexOf('/en/') === 0) {
-                        var without = p.replace(/^\/en/, '') || '/';
-                        target = (base || '') + without;
+                        targetPath = p.replace(/^\/en/, '') || '/';
                     } else {
-                        target = (base || '') + p;
+                        targetPath = p;
                     }
                 }
+                // prepend base if present
+                var target = (base || '') + targetPath;
                 // normalize double slashes
-                target = target.replace(/\/\/+/, '/');
+                target = target.replace(/\/\/+/g, '/');
                 // If already at target, just apply UI changes without navigation
                 var current = window.location.pathname;
-                if (current !== target) {
-                    window.location.href = window.location.origin + target;
+                if (current === target) { applyLang(lang); return; }
+
+                // Check existence with HEAD to avoid navigating to missing pages
+                var origin = window.location.origin;
+                var checkUrl = origin + target;
+                try {
+                    var resp = await fetch(checkUrl, { method: 'HEAD', cache: 'no-store' });
+                    if (resp && resp.ok) {
+                        window.location.href = checkUrl;
+                        return;
+                    } else {
+                        console.warn('Target page not found, falling back to UI-only language switch:', checkUrl);
+                        applyLang(lang);
+                        return;
+                    }
+                } catch (fetchErr) {
+                    console.warn('HEAD check failed, falling back to UI-only language switch:', fetchErr);
+                    applyLang(lang);
                     return;
                 }
-            } catch (e) { console.error(e); }
-            // fallback: just apply lang to UI
-            applyLang(lang);
+            } catch (e) { console.error(e); applyLang(lang); }
         });
     });
 }
