@@ -1,6 +1,6 @@
 ---
 title: "Cursos"
-permalink: /courses/
+permalink: /cursos/
 layout: default
 ---
 
@@ -23,4 +23,4 @@ Programas de formación diseñados para profesionales.
 - Nivel: Avanzado
 - Certificación: Sí
 
-Para inscribirse, [contáctanos](/contact/).
+Para inscribirse, [contáctanos](/contacto/).

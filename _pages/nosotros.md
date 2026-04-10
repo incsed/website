@@ -1,6 +1,6 @@
 ---
 title: "Nosotros"
-permalink: /about/
+permalink: /nosotros/
 layout: default
 ---
 

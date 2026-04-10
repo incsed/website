@@ -1,6 +1,6 @@
 ---
 title: "Contacto"
-permalink: /contact/
+permalink: /contacto/
 layout: default
 ---
 

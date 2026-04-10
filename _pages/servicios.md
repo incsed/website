@@ -1,6 +1,6 @@
 ---
 title: "Servicios"
-permalink: /services/
+permalink: /servicios/
 layout: test
 ---
 
@@ -17,4 +17,4 @@ Soluciones técnicas a medida.
 ### Capacitación
 Programas de formación especializados.
 
-Para más información, [contáctanos](/contact/).
+Para más información, [contáctanos](/contacto/).
