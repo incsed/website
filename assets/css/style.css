@@ -50,9 +50,6 @@
     box-sizing: border-box;
 }
 
-/* Utility: hide elements when toggled via JS */
-.hidden { display: none !important; }
-
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.6;

@@ -111,72 +111,8 @@ window.addEventListener('resize', () => {
 });
 
 function switchLang(currentLang) {
-    if (currentLang === 'toggle') {
-        var next = (document.documentElement.lang === 'en') ? 'es' : 'en';
-        applyLang(next);
-    } else {
-        applyLang(currentLang);
-    }
-}
-
-function applyLang(lang) {
-    try {
-        document.documentElement.lang = (lang === 'en') ? 'en' : 'es';
-        document.querySelectorAll('[data-lang]').forEach(function(el){
-            var isMatch = (el.getAttribute('data-lang') === lang);
-            el.classList.toggle('hidden', !isMatch);
-            el.setAttribute('aria-hidden', (!isMatch).toString());
-            try { el.style.display = isMatch ? '' : 'none'; } catch(e) { }
-        });
-        document.querySelectorAll('[data-lang-btn]').forEach(function(b){
-            b.classList.toggle('active', b.getAttribute('data-lang-btn') === lang);
-        });
-        localStorage.setItem('site-lang', lang);
-    } catch(e) { console.error(e); }
-}
-
-function initLangSwitcherIfPresent(){
-    var stored = localStorage.getItem('site-lang');
-    var base = (window.__SITE && window.__SITE.baseurl) ? window.__SITE.baseurl : '';
-    var p = window.location.pathname || '/';
-    if (base && p.indexOf(base) === 0) p = p.slice(base.length) || '/';
-    var pathLang = (p.indexOf('/en/') === 0 || p === '/en' || p.indexOf('/en') === 0) ? 'en' : null;
-    var initial = stored || pathLang || (document.documentElement.lang || 'es');
-    applyLang(initial);
-    document.querySelectorAll('[data-lang-btn]').forEach(function(b){
-        b.addEventListener('click', async function(){
-            var lang = b.getAttribute('data-lang-btn');
-            localStorage.setItem('site-lang', lang);
-            try {
-                var base = (window.__SITE && window.__SITE.baseurl) ? window.__SITE.baseurl : '';
-                var p = window.location.pathname || '/';
-                if (base && p.indexOf(base) === 0) p = p.slice(base.length) || '/';
-                var targetPath;
-                if (lang === 'en') {
-                    if (p === '/' || p === '') {
-                        targetPath = '/en/';
-                    } else if (p.indexOf('/en/') === 0) {
-                        targetPath = p;
-                    } else {
-                        targetPath = '/en' + p;
-                    }
-                } else {
-                    if (p.indexOf('/en/') === 0) {
-                        targetPath = p.replace(/^\/en/, '') || '/';
-                    } else {
-                        targetPath = p;
-                    }
-                }
-                var target = (base || '') + targetPath;
-                target = target.replace(/\/\/+/g, '/');
-                var current = window.location.pathname;
-                if (current === target) { applyLang(lang); return; }
-                var origin = window.location.origin;
-                var goto = origin + target;
-                window.location.href = goto;
-            } catch (e) { console.error(e); applyLang(lang); }
-        });
-    });
+    setLanguage(currentLang === 'es' ? 'en' : 'es');
+    return false;
 }
 
 function acceptCookies() {
@@ -222,7 +158,6 @@ document.addEventListener('DOMContentLoaded', function() {
     if(aboutTitle) {
         aboutTitle.style.setProperty('color', 'var(--white)', 'important');
     }
-    initLangSwitcherIfPresent();
 });
 
 window.addEventListener('scroll', function() {
