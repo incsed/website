@@ -178,15 +178,14 @@ document.addEventListener('DOMContentLoaded', function() {
     checkCookies();
     applyStoredTheme();
     const aboutTitle = document.querySelector('.about-section .section-title');
-    const pagefooter= document.getElementsByClassName('page__footer');
-    pagefooter.classList.remove('page__footer');
+    const pagefooter = document.querySelector('.page__footer');
+if (pagefooter) pagefooter.classList.remove('page__footer');
     if(aboutTitle) {
         aboutTitle.style.setProperty('color', 'var(--white)', 'important');
     }
   const savedLang = localStorage.getItem('preferred-lang') || 'es';
   setLanguage(savedLang);
 });
-
 
 window.addEventListener('scroll', function() {
     const scrollPos = window.scrollY;
