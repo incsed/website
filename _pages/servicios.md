@@ -2,6 +2,7 @@
 title: "Servicios"
 permalink: /servicios/
 layout: test
+language: es
 ---
 
 ## Nuestros Servicios
