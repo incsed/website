@@ -59,6 +59,8 @@
             <div class="nav-links">
                      <ul class="visible-links">
                 
+                      {% assign nav_key = "main_" | append: page.language | default: "main_es" %}
+
           {%- for link in site.data.navigation.main -%}
             <li class="masthead__menu-item">
               <a
@@ -83,13 +85,14 @@
         <ul class="hidden-links hidden"></ul>
             </div>
 
-            <div class="lang-switch">
-                <button id="btn-es" class="active" onclick="switchLang('es')">ES</button>
-                <button id="btn-en" onclick="switchLang('en')">EN</button>
+                        <div class="lang-switch">
+                <button id="btn-es" class="active" onclick="switchLang('es')"><a href="{{ site.url }}/es{{ page.url }}">ES</a></button>
+                <button id="btn-en" onclick="switchLang('en')"><a href="{{ site.url }}/en{{ page.url }}">EN</a> </button>
                 <button class="theme-toggle" onclick="toggleTheme()">
                     <i id="themeIcon" class="fas fa-moon"></i>
                 </button>
             </div>
+
             <button class="hamburger" onclick="toggleMenu()">
                 <i class="fas fa-bars"></i>
             </button>

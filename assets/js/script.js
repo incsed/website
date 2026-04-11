@@ -28,7 +28,7 @@ function applyStoredTheme() {
     const theme = getStoredOrSystemTheme();
     applyTheme(theme);
 }
-
+/*
 function setLanguage(language) {
     lang = language;
     document.documentElement.lang = language;
@@ -58,7 +58,38 @@ function updateMenuLinks() {
             if (link.getAttribute('href') === '#contact') link.textContent = 'Contact';
         }
     });
+}*/
+
+/**
+ * Sets the website language and updates the UI accordingly.
+ * @param {string} lang - The language code ('es' or 'en')
+ */
+function setLanguage(language) {
+    lang = language;
+  const html = document.documentElement;
+  
+  // 1. Update the HTML lang attribute
+  html.setAttribute('lang', lang);
+  
+  // 2. Update the visual state of the language buttons
+  document.querySelectorAll('.lang-switch button').forEach(btn => {
+    // Check if the button's text matches the selected language
+    if (btn.textContent.trim().toLowerCase() === lang) {
+      btn.classList.add('active');
+    } else {
+      btn.classList.remove('active');
+    }
+  });
+
+  // 3. Save the preference for future visits
+  localStorage.setItem('preferred-lang', lang);
 }
+
+// Optional: Auto-load saved language on page refresh
+document.addEventListener('DOMContentLoaded', () => {
+  const savedLang = localStorage.getItem('preferred-lang') || 'es';
+  setLanguage(savedLang);
+});
 
 function toggleMenu() {
     const navLinks = document.querySelector('.nav-links');
