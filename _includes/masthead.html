@@ -62,10 +62,9 @@
                       {% assign nav_key = "main_" | append: page.lang | default: "main_es" %}
           
                       {%- for link in site.data.navigation[nav_key] -%}
-            <li class="masthead__menu-item">
-              <a
-                href="{{ link.url | relative_url }}"
-                       class="{% if page.url == link.url %}active-link{% endif %}"
+  <li class="masthead__menu-item">
+    <a href="{{ link.url | relative_url }}"
+       class="{% if page.url contains link.url %}active-link{% endif %}">
                 {% if link.description %} title="{{ link.description }}"{% endif %}
                 {% if link.target %} target="{{ link.target }}"{% endif %}
               >{{ link.title }}</a>
