@@ -87,6 +87,17 @@ function setLanguage(language) {
 
 function toggleMenu() {
     const navLinks = document.querySelector('.nav-links');
+    const toggleBtn = document.querySelector('.greedy-nav__toggle');
+    
+    // Toggle the menu visibility
+    navLinks.classList.toggle('active');
+    
+    // If you want the button to stay visible or change look when active:
+    toggleBtn.classList.toggle('is-open'); 
+}
+/*
+function toggleMenu() {
+    const navLinks = document.querySelector('.nav-links');
     const hamburger = document.querySelector('.hamburger');
     if (!navLinks) return;
     navLinks.classList.toggle('active');
@@ -103,6 +114,7 @@ function toggleMenu() {
         }
     }
 }
+*/
 
 (function attachNavLinkHandlers(){
     const navLinks = document.querySelectorAll('.nav-links a');

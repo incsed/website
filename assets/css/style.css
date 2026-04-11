@@ -292,6 +292,29 @@ nav .logo .logo-svg {
 @media (max-width: 720px) {
     #top-header .et-social-icons { gap: 6px; }
     #top-header .container { padding: 6px 8px; }
+/*
+}
+/* Mobile view - hide by default 
+@media (max-width: 768px) {*/
+  .nav-links {
+    display: none; 
+  }
+
+  /* When JS adds the .active class, show the menu */
+  .nav-links.active {
+    display: block !important;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: #fff; /* or your theme color */
+    width: 100%;
+    z-index: 99;
+  }
+  
+  /* Ensure the button is visible on mobile */
+  .greedy-nav__toggle {
+    display: block !important;
+  }
 }
 
 .nav-links {
