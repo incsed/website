@@ -2,7 +2,6 @@
 title: "Servicios"
 permalink: /servicios/
 layout: test
-page_url: /servicios
 ---
 
 ## Nuestros Servicios
