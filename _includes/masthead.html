@@ -59,7 +59,7 @@
             <div class="nav-links">
                      <ul class="visible-links">
                 
-                      {% assign nav_key = "main_" | append: page.language | default: "main_es" %}
+                      {% assign nav_key = "main_" | append: page.lang | default: "main_es" %}
           
                       {%- for link in site.data.navigation[nav_key] -%}
   <li class="masthead__menu-item">

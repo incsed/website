@@ -85,12 +85,6 @@ function setLanguage(language) {
   localStorage.setItem('preferred-lang', lang);
 }
 
-// Optional: Auto-load saved language on page refresh
-document.addEventListener('DOMContentLoaded', () => {
-  const savedLang = localStorage.getItem('preferred-lang') || 'es';
-  setLanguage(savedLang);
-});
-
 function toggleMenu() {
     const navLinks = document.querySelector('.nav-links');
     const hamburger = document.querySelector('.hamburger');
@@ -180,7 +174,7 @@ window.onclick = function(event) {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    updateMenuLinks();
+   /* updateMenuLinks();*/
     checkCookies();
     applyStoredTheme();
     const aboutTitle = document.querySelector('.about-section .section-title');
@@ -189,7 +183,10 @@ document.addEventListener('DOMContentLoaded', function() {
     if(aboutTitle) {
         aboutTitle.style.setProperty('color', 'var(--white)', 'important');
     }
+  const savedLang = localStorage.getItem('preferred-lang') || 'es';
+  setLanguage(savedLang);
 });
+
 
 window.addEventListener('scroll', function() {
     const scrollPos = window.scrollY;
