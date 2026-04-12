@@ -67,9 +67,8 @@
                 
             {% for link in navigation %}
   <li class="masthead__menu-item">
-    <a href="{{ link.url | relative_url }}"
-       class="{% if page.url contains link.url %}active-link{% endif %}">
-                {% if link.description %} title="{{ link.description }}"{% endif %}
+    <a class="{% if page.url contains link.url %}active-link{% endif %}"
+                href="{{ link.url | relative_url }}"{% if link.description %} title="{{ link.description }}"{% endif %}
                 {% if link.target %} target="{{ link.target }}"{% endif %}
               >{{ link.title }}</a>
             </li>
