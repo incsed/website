@@ -86,14 +86,6 @@ function setLanguage(language) {
 }
 
 function toggleMenu() {
-    const nav = document.querySelector('.nav-links');
-    if (nav) {
-        nav.classList.toggle('active');
-        console.log("Menu toggled. Active status:", nav.classList.contains('active'));
-    }
-}
-/*
-function toggleMenu() {
     const navLinks = document.querySelector('.nav-links');
     const toggleBtn = document.querySelector('.greedy-nav__toggle');
     
@@ -103,7 +95,7 @@ function toggleMenu() {
     // If you want the button to stay visible or change look when active:
     toggleBtn.classList.toggle('is-open'); 
 }
-
+/*
 function toggleMenu() {
     const navLinks = document.querySelector('.nav-links');
     const hamburger = document.querySelector('.hamburger');
@@ -205,12 +197,6 @@ if (pagefooter) pagefooter.classList.remove('page__footer');
     }
   const savedLang = localStorage.getItem('preferred-lang') || 'es';
   setLanguage(savedLang);
-
-  // Ensure the handler is attached
-    const toggleBtn = document.querySelector('.greedy-nav__toggle');
-    if (toggleBtn) {
-        toggleBtn.addEventListener('click', toggleMenu);
-    }
 });
 
 window.addEventListener('scroll', function() {
