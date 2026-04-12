@@ -57,47 +57,21 @@
                 </a>
             </div>
 
+            <div class="nav-links">
+                     <ul class="visible-links">
+        
+<!--                       {% assign nav_key = "main_" | append: page.lang | default: "main_es" %}
+          {% assign navigation = site.data.navigation.main_es %}
+                    {%- for link in site.data.navigation[nav_key] -%}
+ -->
+
         {%- if page.lang == "en" -%}
           {%- assign navigation = site.data.navigation.main_en -%}
         {%- else -%}
           {%- assign navigation = site.data.navigation.main_es -%}
         {%- endif -%}
 
-            <div class="nav-links">
-                     <ul class="visible-links">
-
             {%- for link in navigation -%}
-              <li class="masthead__menu-item">
-                <a href="{{ link.url | relative_url }}"{% if link.description %} title="{{ link.description }}"{% endif %}>{{ link.title }}</a>
-              </li>
-            {%- endfor -%}
-          </ul>
-        </div>
-
-        <div class="language-switch">
-          {% if page.lang == "en" %}
-            <a href="{{ site.baseurl }}{{ page.url | replace: '/en/', '/' }}" class="lang-link">ES</a>
-          {% else %}
-            <a href="{{ site.baseurl }}/en{{ page.url }}" class="lang-link">EN</a>
-          {% endif %}
-        </div>
-
-        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
-          <span class="sun-icon">☀️</span>
-          <span class="moon-icon">🌙</span>
-        </button>
-
-        <button class="greedy-nav__toggle" type="button" onclick="toggleMenu()">
-          <span class="visually-hidden">{{ site.data.ui-text[site.locale].menu_label | default: "Toggle menu" }}</span>
-          <div class="navicon"></div>
-        </button>
-      </nav>
-<!-- /div>
-  </div>
-</div>
-                      {% assign nav_key = "main_" | append: page.lang | default: "main_es" %}
-          {% assign navigation = site.data.navigation.main_es %}
-                    {%- for link in site.data.navigation[nav_key] -%}
                     
   <li class="masthead__menu-item">
     <a href="{{ link.url | relative_url }}"
@@ -132,7 +106,7 @@
             <button class="hamburger" onclick="toggleMenu()">
                 <i class="fas fa-bars"></i>
             </button>
-        </nav> -->
+        </nav> 
 <!-- 
     </div>
   </div>
