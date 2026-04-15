@@ -1,6 +1,7 @@
 ---
 title: "Nosotros"
-permalink: /nosotros/
+slug: nosotros
+lang: es
 layout: default
 ---
 

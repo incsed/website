@@ -29,6 +29,25 @@ function applyStoredTheme() {
     applyTheme(theme);
 }
 
+
+function changeLanguage(targetLang, activeLang) {
+  let currentPath = window.location.pathname;
+  let newPath = '';
+
+  // Si el idioma actual es el default (ej. /website/post.html)
+  // le inyectamos el nuevo idioma después de /website/
+  if (window.location.href.indexOf('/' + targetLang + '/') === -1) {
+      // Reemplazamos /website/ por /website/en/
+      newPath = currentPath.replace('/website/', '/website/' + targetLang + '/');
+  } else {
+      // Si ya tiene un idioma, lo intercambiamos (ej. /en/ por /es/)
+      newPath = currentPath.replace('/' + activeLang + '/', '/' + targetLang + '/');
+  }
+
+  window.location.href = newPath.replace('//', '/');
+}
+
+
 function setLanguage(language) {
     lang = language;
     document.documentElement.lang = language;
@@ -153,11 +172,13 @@ document.addEventListener('DOMContentLoaded', function() {
     checkCookies();
     applyStoredTheme();
     const aboutTitle = document.querySelector('.about-section .section-title');
-    const pagefooter= document.getElementsByClassName('page__footer');
-    pagefooter.classList.remove('page__footer');
+   const pagefooter = document.querySelector('.page__footer');
+if (pagefooter) pagefooter.classList.remove('page__footer');
     if(aboutTitle) {
         aboutTitle.style.setProperty('color', 'var(--white)', 'important');
     }
+  const savedLang = localStorage.getItem('preferred-lang') || 'es';
+  setLanguage(savedLang);
 });
 
 window.addEventListener('scroll', function() {

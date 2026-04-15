@@ -1,4 +1,14 @@
-# Site settings
+# Make sure there are NO spaces before the word 'languages'
+languages: ["es", "en"]
+default_lang: "es"
+exclude_from_localization: ["_data", "_layouts", "assets", "images", "js", "css", "vendor","README.md","Gemfile","Gemfile.lock","incico2.svg"]
+parallel_localization: false
+timezone: "America/Mexico_City"
+
+polyglot:
+  relativize_urls: true
+
+  # Site settings
 title: "Incertae Sedis"
 email: "contacto@incsed.com"
 description: "Incertae Sedis - Professional services and courses"
@@ -14,7 +24,17 @@ minimal_mistakes_skin: default
 
 # Locale
 locale: es-MX
-language: es
+#
+#languages: ["es", "en"]
+#default_lang: "es"
+#exclude_from_localization: ["assets", "images", "js", "css"]
+#parallel_localization: false
+
+sass:
+  sourcemap: never
+
+#polyglot:
+ # relativize_urls: true
 
 # Site author
 author:
@@ -55,6 +75,7 @@ plugins:
   - jekyll-feed
   - jemoji
   - jekyll-include-cache
+  - jekyll-polyglot
 
 paginate: 5
 paginate_path: /page:num/

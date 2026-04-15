@@ -1,6 +1,7 @@
 ---
 title: "Contact"
-permalink: /en/contact/
+slug: contacto
+lang: en
 layout: default
 ---
 

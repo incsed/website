@@ -1,7 +1,8 @@
 ---
 title: "About"
-permalink: /en/about/
+slug: nosotros
 layout: default
+lang: en
 ---
 
 ## About Us

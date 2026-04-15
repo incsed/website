@@ -1,6 +1,7 @@
 ---
 title: "Courses"
-permalink: /en/courses/
+slug: cursos
+lang: en
 layout: default
 ---
 

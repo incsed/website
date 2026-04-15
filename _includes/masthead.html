@@ -82,6 +82,14 @@
         </button>
         <ul class="hidden-links hidden"></ul>
             </div>
+            
+  {% for lang in site.languages %}
+    <a href="{{ site.baseurl }}{% if lang != site.default_lang %}/{{ lang }}{% endif %}{{ page.url }}" 
+       style="margin-right: 10px; font-weight: {% if lang == site.active_lang %}bold{% else %}normal{% endif %};">
+      {{ lang | upcase }}
+    </a>
+  {% endfor %}
+
 
             <div class="lang-switch">
                 <button id="btn-es" class="active" onclick="switchLang('es')">ES</button>

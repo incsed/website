@@ -1,6 +1,7 @@
 ---
 title: "Portfolio"
-permalink: /en/portfolio/
+permalink: portafolio
+lang: en
 layout: default
 ---
 
