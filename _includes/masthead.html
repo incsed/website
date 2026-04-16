@@ -1,6 +1,10 @@
 {% assign locale = include.locale | default: site.locale %}
 {% capture logo_path %}{{ site.logo }}{% endcapture %}
 
+  {% comment %} Use include variables instead of trying to reassign page object {% endcomment %}
+{% assign current_url = include.page_url | default: page.url %}
+{% assign current_lang = include.page_lang | default: page.lang %}
+
 
 <div id="top-header" aria-label="Contact" role="navigation">
     <div class="container">        
@@ -56,10 +60,19 @@
                 </svg>
                 </a>
             </div>
+
+
+              {% if page.lang == "en" %}
+          {% assign navigation = site.data.navigation.main_en %}
+        {% else %}
+          {% assign navigation = site.data.navigation.main_es %}
+        {% endif %}
+
             <div class="nav-links">
                      <ul class="visible-links">
-                
-          {%- for link in site.data.navigation.main -%}
+                      
+            {% for link in navigation %}
+          <!-- class="{% if page.url contains link.url %}active-link{% endif %}" -->
             <li class="masthead__menu-item">
               <a
                 href="{{ link.url | relative_url }}"
@@ -69,6 +82,7 @@
               >{{ link.title }}</a>
             </li>
           {%- endfor -%}
+
         </ul>
         {% if site.search == true %}
         <button class="search__toggle" type="button">
@@ -82,22 +96,39 @@
         </button>
         <ul class="hidden-links hidden"></ul>
             </div>
-            
-  {% for lang in site.languages %}
+<!-- 
+            {% for lang in site.languages %}
     <a href="{{ site.baseurl }}{% if lang != site.default_lang %}/{{ lang }}{% endif %}{{ page.url }}" 
        style="margin-right: 10px; font-weight: {% if lang == site.active_lang %}bold{% else %}normal{% endif %};">
       {{ lang | upcase }}
     </a>
-  {% endfor %}
+  {% endfor %} -->
 
+{% comment %} 1. Strip /en/ from the current URL to find the base path {% endcomment %}
+{% assign clean_url = page.url | replace_first: '/en/', '/' %}
 
-            <div class="lang-switch">
+{% comment %} 2. Build the exact URLs for both languages {% endcomment %}
+{% assign es_url = site.baseurl | append: clean_url | replace: '//', '/' %}
+{% assign en_url = site.baseurl | append: '/en' | append: clean_url | replace: '//', '/' %}
+
+{% comment %} 3. Your Language Switcher using Jekyll routing instead of JS {% endcomment %}
+<div class="lang-switch">
+    <button id="btn-es" class="{% unless page.url contains '/en/' %}active{% endunless %}" onclick="window.location.href='{{ es_url }}'">ES</button>
+    
+    <button id="btn-en" class="{% if page.url contains '/en/' %}active{% endif %}" onclick="window.location.href='{{ en_url }}'">EN</button>
+    
+    <button class="theme-toggle" onclick="toggleTheme()">
+        <i id="themeIcon" class="fas fa-moon"></i>
+    </button>
+</div>
+
+      <!--       <div class="lang-switch">
                 <button id="btn-es" class="active" onclick="switchLang('es')">ES</button>
                 <button id="btn-en" onclick="switchLang('en')">EN</button>
                 <button class="theme-toggle" onclick="toggleTheme()">
                     <i id="themeIcon" class="fas fa-moon"></i>
                 </button>
-            </div>
+            </div> -->
             <button class="hamburger" onclick="toggleMenu()">
                 <i class="fas fa-bars"></i>
             </button>

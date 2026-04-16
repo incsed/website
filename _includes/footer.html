@@ -6,6 +6,17 @@
                 <div class="footer-col">
                 <h2>Incertae Sedis</h2>
                 <p>Soluciones profesionales para tu negocio.</p>
+                {% for lang in site.languages %}
+    {% if lang == site.active_lang %}
+{{ lang }}
+    {% else %}
+        {% if lang == site.default_lang %}
+<a href=" {{ page.url }}">{{ lang }}</a>
+        {% else %}
+<a href="/{{ lang }}{{ page.url }}">{{ lang }}</a>
+        {% endif %}
+    {% endif %}
+{% endfor %}
                 
 <!-- 
 <div class="page__footer-copyright">&copy; {% assign site_time = site.time | date: '%Y' %}{% if site.footer.since and site_time != site.footer.since %}{{ site.footer.since }} - {% endif %}{{ site_time }} <a href="{{ site.copyright_url | default: site.url }}">{{ site.copyright | default: site.title | escape_once | strip }}</a>. {{ site.data.ui-text[locale].powered_by | default: "Powered by" }} <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/jekyll-themes/minimal-mistakes/" rel="nofollow">Minimal Mistakes</a>.</div> -->
