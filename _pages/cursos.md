@@ -1,27 +1,25 @@
 ---
 title: "Cursos"
-slug: cursos
+permalink: /cursos/
 lang: es
-layout: default
+layout: single
+toc: true
 ---
 
 ## Nuestros Cursos
 
 Programas de formación diseñados para profesionales.
 
-### Curso 1: Principios Fundamentales
+### Curso 1: R para principiantes
 - Duración: 4 semanas
 - Nivel: Principiante
-- Certificación: Sí
 
-### Curso 2: Avanzado
+### Curso 2: Python básico
 - Duración: 8 semanas
 - Nivel: Intermedio
-- Certificación: Sí
 
-### Curso 3: Especialización
+### Curso 3: Introducción a la Inteligencia artificial
 - Duración: 12 semanas
 - Nivel: Avanzado
-- Certificación: Sí
 
 Para inscribirse, [contáctanos](/contacto/).

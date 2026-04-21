@@ -1,7 +1,7 @@
 ---
 title: "About"
-slug: nosotros
-layout: default
+permalink: /nosotros/
+layout: preload
 lang: en
 ---
 

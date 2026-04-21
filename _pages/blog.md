@@ -1,6 +1,6 @@
 ---
 title: "Blog"
-slug: blog
+permalink: /blog/
 layout: default
 lang: es
 ---

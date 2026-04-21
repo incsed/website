@@ -1,10 +1,8 @@
 ---
-title: "Servicios"
-permalink: /servicios/
-lang: es
-layout: single
+title: "Quienes somos"
+layout: splash
+permalink: /splash-page/
 date: 2026-03-23T11:48:41-04:00
-
 header:
   overlay_color: "#08b1a3ff"
   overlay_filter: 0.7
@@ -16,76 +14,50 @@ header:
       url: /cursos/
     - label: "Tienda"
       url: /tienda/
-excerpt: "Ofrecemos una gran variedad de servicios y productos de acuerdo con sus necesidades"
+excerpt: "Bacon ipsum dolor sit amet salami ham hock ham, hamburger corned beef short ribs kielbasa biltong t-bone drumstick tri-tip tail sirloin pork chop."
 intro: 
   - excerpt: 'Nullam suscipit et nam, tellus velit pellentesque at malesuada, enim eaque. Quis nulla, netus tempor in diam gravida tincidunt, *proin faucibus* voluptate felis id sollicitudin. Centered with `type="center"`'
-
 feature_row:
-  - image_path: https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=500&q=80 
+  - image_path: assets/images/unsplash-gallery-image-1-th.jpg
     alt: "placeholder image 1"
-    title: "Tecnología"
+    title: "Placeholder 1"
     excerpt: "This is some sample content that goes here with **Markdown** formatting."
-
-  - image_path: "https://images.unsplash.com/photo-1650648065204-0b8d52b18447?q=80&w=1171&auto=format&fit=crop"
+  - image_path: /assets/images/unsplash-gallery-image-2-th.jpg
     image_caption: "Image courtesy of [Unsplash](https://unsplash.com/)"
     alt: "placeholder image 2"
-    title: "Ciencia"
+    title: "Placeholder 2"
     excerpt: "This is some sample content that goes here with **Markdown** formatting."
     url: "#test-link"
-    btn_label: "Leer más"
+    btn_label: "Read More"
     btn_class: "btn--primary"
-
-  - image_path: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=500&q=80"
-    title: "Educación"
+  - image_path: /assets/images/unsplash-gallery-image-3-th.jpg
+    title: "Placeholder 3"
     excerpt: "This is some sample content that goes here with **Markdown** formatting."
 feature_row2:
-  - image_path: https://images.unsplash.com/photo-1694535490810-ac5ca659d87e?q=80&w=1615&auto=format&fit=crop
+  - image_path: /assets/images/unsplash-gallery-image-2-th.jpg
     alt: "placeholder image 2"
-    title: "Ambiente"
+    title: "Placeholder Image Left Aligned"
     excerpt: 'This is some sample content that goes here with **Markdown** formatting. Left aligned with `type="left"`'
     url: "#test-link"
-    btn_label: "Leer más"
+    btn_label: "Read More"
     btn_class: "btn--primary"
 feature_row3:
-  - image_path: "https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?q=80&w=1170&auto=format&fit=crop&w=500&q=80"
+  - image_path: /assets/images/unsplash-gallery-image-2-th.jpg
     alt: "placeholder image 2"
-    title: "Social"
+    title: "Placeholder Image Right Aligned"
     excerpt: 'This is some sample content that goes here with **Markdown** formatting. Right aligned with `type="right"`'
     url: "#test-link"
-    btn_label: "Leer más"
+    btn_label: "Read More"
     btn_class: "btn--primary"
 feature_row4:
-  - image_path: /assets/images/Gemini_Generated_Image_b7khzkb7khzkb7kh.png
+  - image_path: /assets/images/unsplash-gallery-image-2-th.jpg
     alt: "placeholder image 2"
-    title: "Diseño"
+    title: "Placeholder Image Center Aligned"
     excerpt: 'This is some sample content that goes here with **Markdown** formatting. Centered with `type="center"`'
     url: "#test-link"
-    btn_label: "Leer más"
+    btn_label: "Read More"
     btn_class: "btn--primary"
-
-toc: true
-toc_label: Servicios
-toc_icon: bookmark
-
-sidebar:
-    nav: "servicios_es"
 ---
-
-## Nuestros Servicios
-
-Ofrecemos una amplia gama de servicios profesionales:
-
-### Consultoría
-Asesoramiento personalizado para tu negocio. Te ayudamos a crecer de una manera integral y ética, pregunta por nuestras asesorías en materia ambiental, tecnológica e inclusión.
-
-### Desarrollo
-Soluciones técnicas a medida.
-
-### Capacitación
-Programas de formación especializados.
-
-Para más información, [contáctanos](/contacto/).
-
 
 {% include feature_row id="intro" type="center" %}
 

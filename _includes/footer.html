@@ -4,60 +4,83 @@
     <div class="container">
         <div class="footer-content">
                 <div class="footer-col">
-                <h2>Incertae Sedis</h2>
-                <p>Soluciones profesionales para tu negocio.</p>
-                {% for lang in site.languages %}
-    {% if lang == site.active_lang %}
-{{ lang }}
-    {% else %}
-        {% if lang == site.default_lang %}
-<a href=" {{ page.url }}">{{ lang }}</a>
-        {% else %}
-<a href="/{{ lang }}{{ page.url }}">{{ lang }}</a>
-        {% endif %}
-    {% endif %}
-{% endfor %}
+                    <h2>Incertæ Sedis</h2>
+                    <p class="lang-es">Transformamos ideas en soluciones digitales innovadoras para tu empresa.</p>
+                    <p class="lang-en">We transform ideas into innovative digital solutions for your business.</p>
+                </div>
                 
 <!-- 
 <div class="page__footer-copyright">&copy; {% assign site_time = site.time | date: '%Y' %}{% if site.footer.since and site_time != site.footer.since %}{{ site.footer.since }} - {% endif %}{{ site_time }} <a href="{{ site.copyright_url | default: site.url }}">{{ site.copyright | default: site.title | escape_once | strip }}</a>. {{ site.data.ui-text[locale].powered_by | default: "Powered by" }} <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/jekyll-themes/minimal-mistakes/" rel="nofollow">Minimal Mistakes</a>.</div> -->
-                    </div>
+
+{% if page.lang == "en" %}
+          {% assign navigation = site.data.navigation.main_en %}
+        {% else %}
+          {% assign navigation = site.data.navigation.main_es %}
+        {% endif %}
 
             <div class="footer-col">
-                <h2>Navegación</h2>
-                <ul>
-                    <li><a href="{{ '/' | relative_url }}">Inicio</a></li>
-                    <li><a href="{{ '/about/' | relative_url }}">Nosotros</a></li>
-                    <li><a href="{{ '/services/' | relative_url }}">Servicios</a></li>
-                    <li><a href="{{ '/portfolio/' | relative_url }}">Portafolio</a></li>
-                    <li><a href="{{ '/blog/' | relative_url }}">Blog</a></li>
-                </ul>
+
+                    <h2 class="lang-es">Enlaces</h2>
+                    <h2 class="lang-en">Links</h2>
+                     <ul>
+                      
+            {% for link in navigation %}
+            <li>
+              <a
+                href="{{ link.url | relative_url }}"
+                >{{ link.title }}</a>
+            </li>
+          {%- endfor -%}
+
+        </ul>
             </div>
-            <div class="footer-col">
-                <h2>Recursos</h2>
-                <ul>
-                    <li><a href="{{ '/courses/' | relative_url }}">Cursos</a></li>
-                    <li><a href="{{ '/contact/' | relative_url }}">Contacto</a></li>
-                    <li><a href="javascript:showPrivacyPolicy()">Privacidad</a></li>
-                    <li><a href="javascript:showTerms()">Términos</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h2>Contacto</h2>
-                <ul class="contact-list">
-                    <li class="contact-item">
-                        <i class="fas fa-envelope"></i>
-                        <a href="mailto: {{ site.email }}">{{ site.email }}</a>
-                    </li>
-                    <li class="contact-item">
-                        <i class="fas fa-phone"></i>
-                        <span>555</span>
-                    </li>
-                    <li class="contact-item">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <span>Mexico</span>
-                    </li>
-                </ul>
-            </div>
+
+                <div class="footer-col">
+                    <h2 class="lang-es">Servicios</h2>
+                    <h2 class="lang-en">Services</h2>
+                    <ul>
+                        <li><a href="#services"><span class="lang-es">Alojamiento Web</span><span class="lang-en">Web Hosting</span></a></li>
+                        <li><a href="#services"><span class="lang-es">Desarrollo Moodle</span><span class="lang-en">Moodle Development</span></a></li>
+                        <li><a href="#services"><span class="lang-es">Software Personalizado</span><span class="lang-en">Custom Software</span></a></li>
+                        <li><a href="#services"><span class="lang-es">ERP</span><span class="lang-en">ERP</span></a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h2>Legal</h2>
+                    <ul>
+                        <li><a href="#" onclick="showPrivacyPolicy(); return false;"><span class="lang-es">Aviso de Privacidad</span><span class="lang-en">Privacy Notice</span></a></li>
+                        <li><a href="#" onclick="showTerms(); return false;"><span class="lang-es">Términos y Condiciones</span><span class="lang-en">Terms & Conditions</span></a></li>
+                    </ul>
+                </div>
+                
+<!-- 
+                <div class="footer-col">
+                    <h2 class="lang-es">Contacto</h2>
+                    <h2 class="lang-en">Contact</h2>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i>
+                            <a href="mailto: {{ site.email }}">{{ site.email }}</a>
+</li>
+                        <li><i class="fas fa-phone"></i> 
+                            <a href="tel:+525555555555">+52 55 5555 5555</a></li>
+                        <li><i class="fas fa-map-marker-alt"></i> <a href="https://www.google.com/maps" target="_blank" rel="noopener noreferrer">Ciudad de México, MX</a></li>
+                        <li>
+
+                                
+    {% if site.footer.links %}
+      {% for link in site.footer.links %}
+        {% if link.label and link.url %}
+          <a href="{{ link.url }}" target="_blank" rel="nofollow noopener noreferrer{% if link.rel %} {{ link.rel }}{% endif %}"><i class="{{ link.icon | default: 'fas fa-link' }}" aria-hidden="true"></i></a>
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+                        </li>
+                    </ul>
+                </div> -->
+            
+
+          
         </div>
     <div class="footer-bottom">
         <div class="et-social-icons">

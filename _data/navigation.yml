@@ -6,6 +6,13 @@ main_en:
      url: /nosotros/
    - title: "Services"
      url: /servicios/
+     children:
+       - title: "Web Development"
+         url: /servicios/desarrollo-web/
+       - title: "Graphic Design"
+         url: /servicios/diseno-grafico/
+       - title: "Digital Marketing"
+         url: /servicios/marketing-digital/
    - title: "Portfolio"
      url: /portafolio/
    - title: "Courses"
@@ -24,6 +31,13 @@ main_es:
      url: /nosotros/
    - title: "Servicios"
      url: /servicios/
+     children:
+       - title: "Desarrollo Web"
+         url: /servicios/desarrollo-web/
+       - title: "Diseño Gráfico"
+         url: /servicios/diseno-grafico/
+       - title: "Marketing Digital"
+         url: /servicios/marketing-digital/
    - title: "Portafolio"
      url: /portafolio/
    - title: "Cursos"
@@ -34,3 +48,77 @@ main_es:
      url: /contacto/ 
    #- title: "Sitemap"
    #  url: /sitemap/
+
+servicios_es:
+   - title: "Tecnología"
+     url: /servicios/tecnologia
+     children:
+       - title: "Desarrollo Web"
+         url: /servicios/desarrollo-web/
+       - title: "Diseño Gráfico"
+         url: /servicios/diseno-grafico/
+       - title: "Marketing Digital"
+         url: /servicios/marketing-digital/
+   
+   - title: "Ciencia"
+     url: /servicios/ciencia
+     children:
+       - title: "Análisis de Datos"
+         url: /servicios/analisis-datos/
+       - title: "Diseño Gráfico"
+         url: /servicios/diseno-grafico/
+       - title: "Marketing Digital"
+         url: /servicios/marketing-digital/
+
+   - title: "Educación"
+     url: /servicios/educacion
+     children:
+       - title: "Divulgación Científica"
+         url: /servicios/divulgacion/
+       - title: "Planeación de Cursos"
+         url: /servicios/planeacion-didactica/
+       - title: "Cursos y Talleres"
+         url: /servicios/cursos-talleres/
+   
+   - title: "Ambiente"
+     url: /servicios/ambiente
+     children:
+       - title: "Consultoria Ambiental"
+         url: /servicios/consultoria/
+       - title: "Permacultura"
+         url: /servicios/permacultura/
+       - title: "Venta de Plantas"
+         url: /servicios/plantas/
+    
+   - title: "Social"
+     url: /servicios/social
+     children:
+       - title: "Análisis de mercado"
+         url: /servicios/analisis-mercado/
+       - title: "Evaluaciones psicométricas"
+         url: /servicios/psicometria/
+       - title: "Tecnología para la inclusión"
+         url: /servicios/inclusion/
+
+   - title: "Diseño"
+     url: /servicios/diseno
+     children:
+       - title: "Serigrafía"
+         url: /servicios/serigrafia/
+       - title: "Corte Láser"
+         url: /servicios/corte/
+       - title: "Diseño de Logotipos"
+         url: /servicios/logotipos/
+
+
+services_en:
+   - title: "Technology"
+     url: /servicios/tecnologia
+     children:
+       - title: "Web Development"
+         url: /servicios/desarrollo-web/
+       - title: "Graphic Design"
+         url: /servicios/diseno-grafico/
+       - title: "Digital Marketing"
+         url: /servicios/marketing-digital/
+

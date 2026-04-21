@@ -1351,11 +1351,18 @@ footer {
 }
 
 /* Language */
+/* Hide by default so there is no "flicker" of two languages */
+.lang-en, .lang-es {
+    display: none;
+}
+
+/* The JS setLanguage function will remove 'display: none' from the active one 
 .lang-es { display: block; }
 .lang-en { display: none; }
 
 [lang="en"] .lang-es { display: none; }
 [lang="en"] .lang-en { display: block; }
+*/
 
 .justified-text {
     text-align: justify;

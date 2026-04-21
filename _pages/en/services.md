@@ -1,6 +1,6 @@
 ---
 title: "Services"
-slug: servicios/
+permalink: /servicios/
 lang: en
 layout: test
 ---

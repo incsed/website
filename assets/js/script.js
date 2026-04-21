@@ -29,11 +29,44 @@ function applyStoredTheme() {
     applyTheme(theme);
 }
 
+// 1. Auto-detect the language from the URL when the page loads
+let currentLang = window.location.pathname.includes('/en/') ? 'en' : 'es';
+            localStorage.setItem('preferred-lang', currentLang);
 
-function changeLanguage(targetLang, activeLang) {
+// 2. The master function to change the language display
+function setLanguage(lang) {
+    currentLang = lang;
+    console.log("Setting language to:", lang); // Debugging
+    
+    // 1. Hide EVERY language element first
+    document.querySelectorAll('.lang-es, .lang-en').forEach(el => {
+        el.style.setProperty('display', 'none', 'important');
+    });
+    
+    // 2. Show only the elements for the detected language
+    // We use '' or 'block' to override the 'none'
+    document.querySelectorAll('.lang-' + lang).forEach(el => {
+        el.style.setProperty('display', 'inline-block', 'important');
+    });
+       
+    // Update the active state of your header buttons
+    const btnEs = document.getElementById('btn-es');
+    const btnEn = document.getElementById('btn-en');
+    if (btnEs) {
+        if (lang === 'es') btnEs.classList.add('active');
+        else btnEs.classList.remove('active');
+    }
+    if (btnEn) {
+        if (lang === 'en') btnEn.classList.add('active');
+        else btnEn.classList.remove('active');
+    }
+
+}
+
+function changeLanguage(lang_url) {
   let currentPath = window.location.pathname;
   let newPath = '';
-
+/*
   // Si el idioma actual es el default (ej. /website/post.html)
   // le inyectamos el nuevo idioma después de /website/
   if (window.location.href.indexOf('/' + targetLang + '/') === -1) {
@@ -43,18 +76,20 @@ function changeLanguage(targetLang, activeLang) {
       // Si ya tiene un idioma, lo intercambiamos (ej. /en/ por /es/)
       newPath = currentPath.replace('/' + activeLang + '/', '/' + targetLang + '/');
   }
-
-  window.location.href = newPath.replace('//', '/');
+*/
+  lang = lang_url.split('/').filter(part => part.length > 0).pop(); // Extraemos el idioma del URL
+  if (lang == 'en'){lang='en';} else {lang='es';} // Aseguramos que solo sea 'en' o 'es'    
+    localStorage.setItem('preferred-lang', lang);
+    window.location.href = lang_url //newPath.replace('//', '/');
 }
 
-
-function setLanguage(language) {
+/* function setLanguage(language) {
     lang = language;
     document.documentElement.lang = language;
     document.getElementById('btn-es').className = language === 'es' ? 'active' : '';
     document.getElementById('btn-en').className = language === 'en' ? 'active' : '';
     updateMenuLinks();
-}
+} */
 
 function updateMenuLinks() {
     const links = document.querySelectorAll('.nav-links a');
@@ -128,11 +163,6 @@ window.addEventListener('resize', () => {
         }
     }
 });
-
-function switchLang(currentLang) {
-    setLanguage(currentLang === 'es' ? 'en' : 'es');
-    return false;
-}
 
 function acceptCookies() {
     document.getElementById('cookieBanner').style.display = 'none';
