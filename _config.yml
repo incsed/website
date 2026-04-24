@@ -33,6 +33,8 @@ locale: es-MX
 
 sass:
   sourcemap: never
+  sass_dir: _sass
+  style: compressed
 
 #polyglot:
  # relativize_urls: true
