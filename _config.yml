@@ -13,7 +13,7 @@ title: "Incertae Sedis"
 email: "contacto@incsed.com"
 description: "Incertae Sedis - Transformamos tu visión en realidad digital"
 url: "https://incsed.github.io"
-baseurl: "/website"
+baseurl: ""
 repository: "incsed/website"
 teaser: /assets/images/500x300.png
 logo: /assets/images/incico2.svg
