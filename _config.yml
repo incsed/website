@@ -107,6 +107,23 @@ collections:
     output: true
     permalink: /:collection/:path/
 
+category_archive:
+  type: jekyll-archives
+  path: /categories/
+tag_archive:
+  type: jekyll-archives
+  path: /tags/
+jekyll-archives:
+  enabled:
+    - categories
+    - tags
+  layouts:
+    category: archive-taxonomy
+    tag: archive-taxonomy
+  permalinks:
+    category: /categories/:name/
+    tag: /tags/:name/
+
 #after_footer
 after_footer_scripts:
   - /assets/js/script.js

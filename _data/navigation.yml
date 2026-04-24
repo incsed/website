@@ -75,8 +75,8 @@ servicios_es:
      children:
        - title: "Divulgación Científica"
          url: /servicios/divulgacion/
-       - title: "Planeación de Cursos"
-         url: /servicios/planeacion-didactica/
+       - title: "Diseño instruccional"
+         url: /servicios/diseno-instruccional/
        - title: "Cursos y Talleres"
          url: /servicios/cursos-talleres/
    

@@ -8,7 +8,7 @@ date: 2026-03-23T11:48:41-04:00
 header:
   overlay_color: "#08b1a3ff"
   overlay_filter: 0.7
-  overlay_image: /assets/images/hero/Gemini_Generated_Image_ok2nt0ok2nt0ok2n.png
+  overlay_image: /assets/images/hero/Gemini_Generated_Image_go991wgo991wgo99.png
   actions:
     - label: "Servicios"
       url: /servicios/

@@ -15,7 +15,7 @@ header:
       url: /cursos/
     - label: "Tienda"
       url: /tienda/
-excerpt: "Bacon ipsum dolor sit amet salami ham hock ham, hamburger corned beef short ribs kielbasa biltong t-bone drumstick tri-tip tail sirloin pork chop."
+excerpt: "En Incertæ Sedis reconocemos el valor de la diversidad. Valoramos aquello que no puede describirse con palabras. Desarrollamos soluciones para hacer la tecnología más humana e inclusiva, de una manera ética y responsable con el medio ambiente"
 intro: 
   - excerpt: 'Nullam suscipit et nam, tellus velit pellentesque at malesuada, enim eaque. Quis nulla, netus tempor in diam gravida tincidunt, *proin faucibus* voluptate felis id sollicitudin. Centered with `type="center"`'
 

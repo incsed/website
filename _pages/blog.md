@@ -1,7 +1,7 @@
 ---
 title: "Blog"
 permalink: /blog/
-layout: default
+layout: home
 lang: es
 ---
 
