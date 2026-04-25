@@ -13,8 +13,8 @@ title: "Incertae Sedis"
 email: "contacto@incsed.com"
 description: "Incertae Sedis - Transformamos tu visión en realidad digital"
 baseurl: "" # Déjalo vacío para que funcione en la raíz del dominio .pages.dev
-url: "https://18c03f0f.website-4ga.pages.dev"
-repository: ""
+url: "https://incertaesedis.com"
+#repository: "incsed/website"
 teaser: /assets/images/500x300.png
 logo: /assets/images/incico2.svg
 
