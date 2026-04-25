@@ -6,7 +6,7 @@ parallel_localization: false
 timezone: "America/Mexico_City"
 
 polyglot:
-  relativize_urls: false
+  relativize_urls: true
 
   # Site settings
 title: "Incertae Sedis"
