@@ -23,6 +23,8 @@ jobs:
 
       - name: Build Jekyll site
         run: bundle exec jekyll build --future --trace
+        env: 
+          JEKYLL_ENV: production
 
       - name: Push the site to the gh-pages branch
         if: ${{ github.event_name == 'push' }}
