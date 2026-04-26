@@ -1,7 +1,7 @@
 {% assign locale = include.locale | default: site.locale %}
 {% capture logo_path %}{{ site.logo }}{% endcapture %}
 
-  {% comment %} Use include variables instead of trying to reassign page object {% endcomment %}
+{% comment %} Use include variables instead of trying to reassign page object {% endcomment %}
 {% assign current_url = include.page_url | default: page.url %}
 {% assign current_lang = include.page_lang | default: page.lang %}
 
