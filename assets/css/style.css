@@ -67,39 +67,34 @@ body {
 }
 
 /* --- HEADER DINÁMICO --- */
-/* --- FIXED HEADER CONSOLIDATION --- */
+/* --- UNIFIED HEADER SYSTEM --- */
 #top-header {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    height: var(--topbar-height) !important;
+    height: var(--topbar-height);
     background-color: var(--accent) !important;
-    z-index: 1001; /* Higher z-index to stay on top */
-    display: flex !important;
+    z-index: 1001;
+    display: flex;
     align-items: center;
     overflow: hidden;
 }
 
 header#mainHeader {
     position: fixed;
-    top: var(--topbar-height); /* Starts exactly where top-header ends */
+    top: var(--topbar-height);
     width: 100%;
     z-index: 1000;
     background-color: transparent; 
     transition: all 0.35s ease;
 }
 
-/* Scroll Effect: Only targets the main header */
+/* Scroll adjustments */
 header#mainHeader.scrolled {
     background-color: var(--white);
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    top: 0; /* Moves up to cover the top-bar when scrolling */
-}
-
-header#mainHeader.scrolled .logo,
-header#mainHeader.scrolled .nav-links a {
-    color: var(--dark) !important;
+    top: 0; /* Moves up to hide the top-bar when scrolling */
 }
 
 /*
@@ -153,14 +148,14 @@ nav .logo:hover .logo-svg {
     opacity: 1;
     height: 100px;
 }
-
+/*
 header .container {
     min-height: 70px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    /*padding: 0;*/
-}
+    /*padding: 0;/
+}*/
 
 nav {
     display: flex;
