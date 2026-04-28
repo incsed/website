@@ -68,6 +68,7 @@ body {
 
 /* --- HEADER DINÁMICO --- */
 /* --- UNIFIED HEADER SYSTEM --- */
+
 #top-header {
     position: fixed;
     top: 0;
@@ -75,12 +76,12 @@ body {
     width: 100%;
     height: var(--topbar-height);
     background-color: var(--accent) !important;
-    z-index: 1001;
+    z-index: 1001; /* Stays above the mainHeader */
     display: flex;
     align-items: center;
-    overflow: hidden;
-    transition: transform 0.35s ease, opacity 0.35s ease;
+    transition: transform 0.35s ease;
 }
+
 
 header#mainHeader {
     position: fixed;
