@@ -57,7 +57,7 @@ body {
     background-color: var(--white);
     transition: background-color 200ms ease, color 200ms ease;
 
-    padding-top: calc(var(--topbar-height) + 70px);
+    padding-top: calc(var(--topbar-height) + 100px);
 }
 
 .container {
@@ -67,6 +67,33 @@ body {
 }
 
 /* --- HEADER DINÁMICO --- */
+/* --- CONSOLIDATED HEADER --- */
+header, #mainHeader {
+    position: fixed;
+    top: var(--topbar-height);
+    width: 100%;
+    z-index: 1000;
+    background-color: transparent; /* Starts transparent */
+    transition: transform 0.35s ease, background-color 0.35s ease, box-shadow 0.35s ease, padding 0.2s ease, opacity 0.3s ease;
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Styles for when the user scrolls */
+header.scrolled, #mainHeader.scrolled {
+    background-color: var(--white);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    padding: 10px 0;
+}
+
+header.scrolled .logo,
+header.scrolled .nav-links a,
+#mainHeader.scrolled .nav-links a {
+    color: var(--dark) !important;
+}
+
+/*
 header {
     background-color: transparent;
     transition: transform 0.35s ease, background-color 0.35s ease, box-shadow 0.35s ease, padding 0.2s ease;
@@ -99,7 +126,7 @@ header, #mainHeader {
     opacity: 1;
     pointer-events: auto;
 }
-
+*/
 header.scrolled nav .logo .logo-svg {
     height: 60px;
     filter: grayscale(100%);
