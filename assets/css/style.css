@@ -67,30 +67,35 @@ body {
 }
 
 /* --- HEADER DINÁMICO --- */
-/* --- CONSOLIDATED HEADER --- */
-header, #mainHeader {
+/* --- CONSOLIDATED HEADER FIX --- */
+header#mainHeader {
     position: fixed;
     top: var(--topbar-height);
     width: 100%;
     z-index: 1000;
-    background-color: transparent; /* Starts transparent */
+    background-color: transparent; 
     transition: transform 0.35s ease, background-color 0.35s ease, box-shadow 0.35s ease, padding 0.2s ease, opacity 0.3s ease;
-    transform: translateY(0);
-    opacity: 1;
-    pointer-events: auto;
+    /* Ensure only ONE set of positioning rules exists */
 }
 
-/* Styles for when the user scrolls */
-header.scrolled, #mainHeader.scrolled {
+/* State when scrolling */
+header#mainHeader.scrolled {
     background-color: var(--white);
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     padding: 10px 0;
 }
 
-header.scrolled .logo,
-header.scrolled .nav-links a,
-#mainHeader.scrolled .nav-links a {
+/* Ensure child elements change color correctly on scroll */
+header#mainHeader.scrolled .logo,
+header#mainHeader.scrolled .nav-links a {
     color: var(--dark) !important;
+}
+
+/* Only use this if you want the header to hide/show on scroll via JS */
+#top-header, #mainHeader {
+    transition: transform 0.4s ease-in-out, opacity 0.3s ease;
+    transform: translateY(0);
+    opacity: 1;
 }
 
 /*
