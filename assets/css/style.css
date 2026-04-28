@@ -84,23 +84,27 @@ body {
 
 header#mainHeader {
     position: fixed;
-    top: var(--topbar-height);
+    /* Change top to 0 so it aligns with the very top when it appears */
+    top: 0; 
+    left: 0;
     width: 100%;
     z-index: 1000;
-    background-color: transparent;
-    transition: transform 0.35s ease, background-color 0.35s ease, box-shadow 0.35s ease, opacity 0.35s ease;
+    background-color: var(--white);
+    transition: transform 0.35s ease, opacity 0.35s ease;
+    
+    /* Ensure it is completely hidden and non-interactable by default */
     transform: translateY(-100%);
     opacity: 0;
     pointer-events: none;
+    visibility: hidden; /* Added to prevent ghosting */
 }
 
-/* Scroll adjustments */
 header#mainHeader.scrolled {
-    background-color: var(--white);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     transform: translateY(0);
     opacity: 1;
     pointer-events: auto;
+    visibility: visible; /* Show it when scrolled */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
 /*
