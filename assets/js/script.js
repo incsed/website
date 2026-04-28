@@ -213,18 +213,15 @@ if (pagefooter) pagefooter.classList.remove('page__footer');
 
 window.addEventListener('scroll', function() {
     const scrollPos = window.scrollY;
-    const header = document.querySelector('header');
-    const topHeader = document.getElementById('top-header');
+    const mainHeader = document.getElementById('mainHeader');
     const heroBg = document.querySelector('.hero-parallax-bg');
 
-    if (scrollPos > 80) {
-        header.classList.add('scrolled');
-        document.body.classList.add('scrolled-past'); 
-        document.body.classList.add('headers-visible');
+    if (!mainHeader) return;
+
+    if (scrollPos > 20) {
+        mainHeader.classList.add('scrolled');
     } else {
-        header.classList.remove('scrolled');
-        document.body.classList.remove('scrolled-past');
-        document.body.classList.remove('headers-visible');
+        mainHeader.classList.remove('scrolled');
     }
 
     let blurValue = Math.max(0, 8 - (scrollPos / 50));
