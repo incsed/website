@@ -57,7 +57,7 @@ body {
     background-color: var(--white);
     transition: background-color 200ms ease, color 200ms ease;
 
-    padding-top: calc(var(--topbar-height) + 100px);
+    padding-top: calc(var(--topbar-height) + 70px);
 }
 
 .container {
@@ -79,6 +79,13 @@ body {
     display: flex;
     align-items: center;
     overflow: hidden;
+    transition: transform 0.35s ease, opacity 0.35s ease;
+}
+
+body.scrolled-past #top-header {
+    transform: translateY(-100%);
+    opacity: 0;
+    pointer-events: none;
 }
 
 header#mainHeader {
@@ -86,8 +93,11 @@ header#mainHeader {
     top: var(--topbar-height);
     width: 100%;
     z-index: 1000;
-    background-color: transparent; 
-    transition: all 0.35s ease;
+    background-color: transparent;
+    transition: transform 0.35s ease, background-color 0.35s ease, box-shadow 0.35s ease;
+    transform: translateY(-100%);
+    opacity: 0;
+    pointer-events: none;
 }
 
 /* Scroll adjustments */
@@ -95,6 +105,9 @@ header#mainHeader.scrolled {
     background-color: var(--white);
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     top: 0; /* Moves up to hide the top-bar when scrolling */
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
 }
 
 /*
