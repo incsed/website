@@ -86,7 +86,7 @@ body {
 header#mainHeader {
     position: fixed;
     /* Change top to 0 so it aligns with the very top when it appears */
-    top: 0; 
+    top: var(--topbar-height);
     left: 0;
     width: 100%;
     z-index: 1000;
