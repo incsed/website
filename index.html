@@ -1312,35 +1312,162 @@ nav .logo .logo-svg {
 
         .theme-toggle:focus { outline: none; }
 
-             /* Precios */
+             /* Precios 
         .pricing-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
         }
+*/
+/* --- Precios & Carousel Layout --- */
+.carousel-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
 
-        .price-card {
-            padding: 3rem 2rem;
-            border: 1px solid #e2e8f0;
-            border-radius: 15px;
-            text-align: center;
-            transition: transform 0.3s;
-        }
+/* Horizontal track configured for dynamic slide centering */
+.pricing-carousel {
+    display: flex;
+    gap: 40px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    padding: 40px 0;
+    width: 100%;
+}
 
-        .price-card.popular {
-            border: 2px solid var(--accent);
-            transform: scale(1.05);
-            background: var(--white);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-        }
+/* Padding track spacers to center the first and last cards precisely */
+.pricing-carousel::before,
+.pricing-carousel::after {
+    content: '';
+    flex: 0 0 calc(50% - 175px); /* Centers a 350px card exactly */
+}
 
-        .price-card h3 { margin-top: 0; font-size: 1.5rem; }
-        .price { font-size: 2.5rem; font-weight: 800; color: var(--brand-main); margin: 1rem 0; }
-        .price span { font-size: 1rem; color: var(--gray); }
+/* Hide scrollbars */
+.pricing-carousel::-webkit-scrollbar { display: none; }
+.pricing-carousel { -ms-overflow-style: none; scrollbar-width: none; }
 
-        .price-card ul { list-style: none; padding: 0; margin: 2rem 0; color: var(--gray); }
-        .price-card li { margin-bottom: 0.8rem; }
+/* Clean, standard pricing card look (No accent lines by default) */
+.price-card {
+    flex: 0 0 350px;
+    padding: 3rem 2rem;
+    border: 2px solid #e2e8f0;
+    border-radius: 15px;
+    text-align: center;
+    background: var(--white);
+    scroll-snap-align: center;
+    box-sizing: border-box;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    opacity: 0.5; /* Dims out-of-focus cards */
+    transform: scale(0.92);
+}
 
+/* NO accent styling on the popular card unless it is chosen */
+.price-card.popular {
+    border: 2px solid #e2e8f0;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    position: relative;
+    z-index: 1;
+}
+
+.price-card h3 {
+    margin-top: 0;
+    font-size: 1.5rem;
+    color: var(--text);
+    transition: color 0.3s;
+}
+
+/* Price keeps your primary brand color consistently */
+.price {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--primary); /* Primary brand color remains intact */
+    margin: 1rem 0;
+}
+
+.price span { font-size: 1rem; color: var(--gray); }
+.price-card ul { list-style: none; padding: 0; margin: 2rem 0; color: var(--gray); }
+.price-card li { margin-bottom: 0.8rem; }
+
+/* Dimmed popular badge element by default */
+.price-card .badge {
+    opacity: 0.25;
+    transition: opacity 0.4s ease;
+}
+
+/* --- DYNAMIC SELECTION HIGHLIGHTS --- */
+
+/* The card exactly in the center gets the accent focus */
+.price-card.active-center {
+    opacity: 1;
+    transform: scale(1.05);
+    border-color: var(--accent); /* Selected card gets the accent color border */
+    box-shadow: 0 20px 35px rgba(0, 0, 0, 0.12);
+    z-index: 5;
+}
+
+/* Selected card title shifts to accent */
+.price-card.active-center h3 {
+    color: var(--primary);
+}
+
+/* Selected card button lights up with accent styling */
+.price-card.active-center .btn {
+    background-color: var(--accent) !important;
+    color: #1a1a1a !important; /* Contrasting dark text for accent visibility */
+    border-color: var(--accent) !important;
+}
+
+/* Fully light up popular badge ONLY when popular card is selected */
+.price-card.popular.active-center .badge {
+    opacity: 1;
+}
+
+/* Responsive Handling */
+@media (max-width: 768px) {
+    .pricing-carousel::before,
+    .pricing-carousel::after {
+        content: '';
+        flex: 0 0 calc(50% - 140px);
+    }
+    .price-card {
+        flex: 0 0 280px;
+        padding: 2rem 1.5rem;
+    }
+    .carousel-container { padding: 0 10px; }
+    .carousel-btn { display: none; }
+}
+
+/* Controls */
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: white;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    border-radius: 50%;
+    width: 45px; height: 45px;
+    cursor: pointer;
+    font-size: 18px;
+    display: flex; align-items: center; justify-content: center;
+    z-index: 10;
+}
+.prev-btn { left: 0; }
+.next-btn { right: 0; }
+
+.carousel-dots { text-align: center; margin-top: 15px; }
+.dot {
+    display: inline-block;
+    height: 10px; width: 10px; margin: 0 5px;
+    background-color: #bbb; border-radius: 50%; cursor: pointer;
+    transition: all 0.3s ease;
+}
+.dot.active { background-color: var(--accent); width: 20px; border-radius: 10px; }
 
 /* --- BOTÓN WHATSAPP --- */
 /*
@@ -1540,7 +1667,10 @@ nav .logo .logo-svg {
     /* Asegura que el botón sea reconocible por lectores de pantalla */
     text-decoration: none;
 }
+
     </style>
+
+    
 </head>
 
 <body>
@@ -1559,7 +1689,8 @@ nav .logo .logo-svg {
                 <!-- Right-aligned social icons for top header -->
                 <div id="topbar-social">
                     <ul class="et-social-icons">
-                                <li><a href="https://twitter.com/" target="_blank" rel="noopener" aria-label="Twitter"><i class="fab fa-twitter" aria-hidden="true"></i></a></li>
+                                <li>
+                    <a href="https://mastodon.social/@incsed" target="_blank" rel="noopener noreferrer" aria-label="Mastodon"><i class="fab fa-mastodon"></i></a></li>
         <li><a href="https://facebook.com/" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f" aria-hidden="true"></i></a></li>
         <li><a href="https://instagram.com/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a></li>
                     </ul>
@@ -1712,26 +1843,33 @@ nav .logo .logo-svg {
 </section>
 
 
-<section id="precios" class="container">
+<!-- <section id="precios" class="container">
     <div class="section-title">
         <h2>Planes y Precios</h2>
         <div class="underline"></div>
+        <h3>Tenemos la solución acorde a tus necesidades</h3>
     </div>
     <div class="pricing-grid">
         <div class="price-card">
-            <h3>Básico</h3>
+            <h3>Clínica</h3>
             <div class="price">$499<span>/mes</span></div>
+            <p>Ideal para consultorios, clínicas de belleza, etc. (Educativo Eventos)</p>
             <ul>
+                <li>Registro de clientes</li>
+                <li>Manejo de citas</li>
+                <li>Promociones Personalizadas</li>
                 <li>Gestión de Redes Sociales</li>
                 <li>Reporte Mensual</li>
                 <li>Soporte vía Email</li>
             </ul>
             <a href="#contacto" class="btn btn-secondary" style="background: rgba(255,255,255,0.2); border: 1px solid var(--dark); color: var(--dark)">Elegir Plan</a>
         </div>
+
         <div class="price-card popular">
             <span style="background:var(--accent); color:#1a1a1aff; padding:4px 12px; border-radius:20px; font-size:0.8rem;">RECOMENDADO</span>
             <h3>Profesional</h3>
             <div class="price">$999<span>/mes</span></div>
+            <p>Ideal para pequeñas empresas y startups que buscan establecer su presencia en línea.</p>
             <ul>
                 <li>Todo lo del Básico</li>
                 <li>SEO Avanzado</li>
@@ -1753,7 +1891,90 @@ nav .logo .logo-svg {
         </div>
     </div>
 </section>
+ -->
+<section id="precios" class="container">
+    <div class="section-title">
+                <h2 class="lang-es">Planes y precios</h2>
+        <h2 class="lang-en">Pricing</h2>
+        <div class="underline"></div>
+        <p class="lang-es">¡Tenemos la solución perfecta para tus necesidades!</p>
+        <p class="lang-en">We have the perfect solution for you!</p>
+    </div>
+    
+    <!-- Carousel Wrapper -->
+    <div class="carousel-container">
+        <button class="carousel-btn prev-btn" aria-label="Anterior">&#10094;</button>
+        
+        <div class="pricing-carousel" id="pricingCarousel">
+            <!-- Card 1 -->
+            <div class="price-card">
+                <h3>Clínica</h3>
+                <span>desde</span>
+                <div class="price">$499<span>/mes</span></div>
+                <p>Ideal para consultorios, clínicas de belleza, etc. (Educativo Eventos)</p>
+                <ul>
+                    <li>Registro de clientes</li>
+                    <li>Manejo de citas</li>
+                    <li>Promociones Personalizadas</li>
+                    <li>Gestión de Redes Sociales</li>
+                    <li>Reporte Mensual</li>
+                    <li>Soporte vía Email</li>
+                </ul>
+                <a href="#contacto" class="btn btn-secondary" style="background: rgba(255,255,255,0.2); border: 1px solid var(--dark); color: var(--dark)">Elegir Plan</a>
+            </div>
 
+            <!-- Card 2 (Popular) -->
+            <div class="price-card popular">
+                <span class="badge" style="background:var(--accent); color:#1a1a1aff; padding:4px 12px; border-radius:20px; font-size:0.8rem;">RECOMENDADO</span>
+                <br></br>
+                <h3>Profesional</h3>
+                <span>desde</span>
+                <div class="price">$999<span>/mes</span></div>
+                <p>Ideal para pequeñas empresas y startups que buscan establecer su presencia en línea.</p>
+                <ul>
+                    <li>Todo lo del Básico</li>
+                    <li>SEO Avanzado</li>
+                    <li>Campaña Ads ($200 incl.)</li>
+                    <li>Soporte 24/7</li>
+                </ul>
+                <a href="#contacto" class="btn btn-secondary" style="background: rgba(255,255,255,0.2); border: 1px solid var(--dark); color: var(--dark)">Elegir Plan</a>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="price-card">
+                <h3>Empresarial</h3>
+                <span>desde</span>
+                <div class="price">$1999<span>/mes</span></div>
+                <p>Ideal para corporativos y negocios en expansión que requieren control total.</p> <!-- Added text for visual balance -->
+                <ul>
+                    <li>Todo lo del Profesional</li>
+                    <li>Desarrollo Web Custom</li>
+                    <li>Estrategia de Contenido</li>
+                    <li>Account Manager Dedicado</li>
+                </ul>
+                <a href="#contacto" class="btn btn-secondary" style="background: rgba(255,255,255,0.2); border: 1px solid var(--dark); color: var(--dark);">Elegir Plan</a>
+            </div>
+
+        <!-- Card 4 -->
+            <div class="price-card">
+                <h3>Personal</h3>
+                <br></br>
+                <p>Tienes una gran idea y no sabes como llevarla a cabo. ¡Nosotros te ayudamos a convertirla en realidad!</p> <!-- Added text for visual balance -->
+                <br></br>
+                <a href="#contacto" class="btn btn-secondary" style="background: rgba(255,255,255,0.2); border: 1px solid var(--dark); color: var(--dark);">Escríbenos</a>
+            </div>
+        </div>
+
+        <button class="carousel-btn next-btn" aria-label="Siguiente">&#10095;</button>
+    </div>
+    
+    <!-- Optional Indicators (Dots) -->
+    <div class="carousel-dots">
+    <span class="dot active" data-index="0"></span>
+    <span class="dot" data-index="1"></span>
+    <span class="dot" data-index="2"></span>
+</div>
+</section>
 
 <div id="wa-widget" class="wa-container">
   
@@ -2480,7 +2701,7 @@ nav .logo .logo-svg {
                 </div>
                 <li class="contact-item">
                             <div class="social-icons" style="margin:0;">
-                                <a href="https://twitter.com/" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="https://mastodon.social/@incsed" target="_blank" rel="noopener noreferrer" aria-label="Mastodon"><i class="fab fa-mastodon"></i></a>
                                 <a href="https://facebook.com/" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
                                 <a href="https://instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                                 <a href="https://linkedin.com/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
@@ -2576,7 +2797,7 @@ nav .logo .logo-svg {
                         <li><i class="fas fa-map-marker-alt"></i> <a href="https://www.google.com/maps" target="_blank" rel="noopener noreferrer">Ciudad de México, MX</a></li>
                         <li>
                             <div class="social-icons" style="margin:0;">
-                                <a href="https://twitter.com/" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="https://mastodon.social/@incsed" target="_blank" rel="noopener noreferrer" aria-label="Mastodon"><i class="fab fa-mastodon"></i></a>
                                 <a href="https://facebook.com/" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
                                 <a href="https://instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                                 <a href="https://linkedin.com/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
@@ -2588,7 +2809,7 @@ nav .logo .logo-svg {
             </div>
             <div class="footer-bottom">
                 <div class="social-icons">
-                    <a href="https://twitter.com/" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="https://mastodon.social/@incsed" target="_blank" rel="noopener noreferrer" aria-label="Mastodon"><i class="fab fa-mastodon"></i></a>
                     <a href="https://facebook.com/" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
                     <a href="https://instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                     <a href="https://linkedin.com/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
@@ -2620,8 +2841,8 @@ nav .logo .logo-svg {
 
             <h3 class="lang-es">Responsable del Tratamiento</h3>
             <h3 class="lang-en">Data Controller</h3>
-            <p class="lang-es">Servicios Digitales, Ciudad de México, México.</p>
-            <p class="lang-en">Digital Services, Mexico City, Mexico.</p>
+            <p class="lang-es">Incertae Sedis, Ciudad de México, México.</p>
+            <p class="lang-en">Incertae Sedis, Mexico City, Mexico.</p>
 
             <h3 class="lang-es">Datos que Recopilamos</h3>
             <h3 class="lang-en">Data We Collect</h3>
@@ -2657,7 +2878,7 @@ nav .logo .logo-svg {
 
             <h3 class="lang-es">Derechos ARCO</h3>
             <h3 class="lang-en">ARCO Rights</h3>
-            <p class="lang-es">Tienes derecho a acceder, rectificar, cancelar y oponerte al tratamiento. Ejercicio: privacidad@serviciosdigitales.com</p>
+            <p class="lang-es">Tienes derecho a acceder, rectificar, cancelar y oponerte al tratamiento. Ejercicio: privacidad@incsed.com</p>
             <p class="lang-en">You have the right to access, rectify, cancel, and object. Exercise: privacidad@incsed.com</p>
 
             <h3 class="lang-es">Contacto</h3>
@@ -3020,6 +3241,74 @@ window.addEventListener('load', function() {
         if (bubble) bubble.classList.remove('show');
     }
 
+const carousel = document.getElementById('pricingCarousel');
+const prevBtn = document.querySelector('.prev-btn');
+const nextBtn = document.querySelector('.next-btn');
+const dots = document.querySelectorAll('.dot');
+const cards = carousel.querySelectorAll('.price-card');
+
+function getStepWidth() {
+    if (cards.length === 0) return 0;
+    const cardWidth = cards[0].getBoundingClientRect().width;
+    const style = window.getComputedStyle(carousel);
+    let gap = parseFloat(style.gap);
+    if (isNaN(gap)) gap = 40; 
+    return cardWidth + gap;
+}
+
+if (prevBtn && nextBtn) {
+    prevBtn.addEventListener('click', () => {
+        carousel.scrollLeft -= getStepWidth();
+    });
+    nextBtn.addEventListener('click', () => {
+        carousel.scrollLeft += getStepWidth();
+    });
+}
+
+dots.forEach(dot => {
+    dot.addEventListener('click', (e) => {
+        const targetIndex = parseInt(e.target.getAttribute('data-index'));
+        if (!isNaN(targetIndex)) {
+            carousel.scrollLeft = getStepWidth() * targetIndex;
+        }
+    });
+});
+
+function updateCenterFocus() {
+    const carouselRect = carousel.getBoundingClientRect();
+    const carouselCenter = carouselRect.left + (carouselRect.width / 2);
+    
+    let closestCardIndex = 0;
+    let minDistance = Infinity;
+
+    cards.forEach((card, index) => {
+        const cardRect = card.getBoundingClientRect();
+        const cardCenter = cardRect.left + (cardRect.width / 2);
+        const distance = Math.abs(carouselCenter - cardCenter);
+
+        if (distance < minDistance) {
+            minDistance = distance;
+            closestCardIndex = index;
+        }
+        card.classList.remove('active-center');
+    });
+
+    if (cards[closestCardIndex]) {
+        cards[closestCardIndex].classList.add('active-center');
+    }
+
+    dots.forEach((dot, index) => {
+        if (index === closestCardIndex) {
+            dot.classList.add('active');
+        } else {
+            dot.classList.remove('active');
+        }
+    });
+}
+
+carousel.addEventListener('scroll', updateCenterFocus);
+window.addEventListener('load', updateCenterFocus);
+window.addEventListener('resize', updateCenterFocus);
     </script>
 </body>
 </html>
