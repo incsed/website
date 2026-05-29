@@ -1358,6 +1358,12 @@ nav .logo .logo-svg {
     transform-style: preserve-3d;
 }
 
+.pricing-carousel .carousel-track::after {
+    content: '';
+    flex: 0 0 calc(50% - 190px);
+    height: 1px;
+}
+
 /* Clear the rigid keyframe variables/animations causing rendering layout locks */
 .pricing-carousel .carousel-track .price-card {
     height: auto;
@@ -1505,7 +1511,18 @@ nav .logo .logo-svg {
     font-size: 18px;
     display: flex; align-items: center; justify-content: center;
     z-index: 10;
+    transition: box-shadow 0.3s ease, opacity 0.3s ease;
 }
+
+.carousel-btn:hover:not(:disabled) {
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+.carousel-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
 .prev-btn { left: 0; }
 .next-btn { right: 0; }
 
@@ -1516,7 +1533,17 @@ nav .logo .logo-svg {
     background-color: #bbb; border-radius: 50%; cursor: pointer;
     transition: all 0.3s ease;
 }
-.dot.active { background-color: var(--accent); width: 20px; border-radius: 10px; }
+.dot:hover {
+    transform: scale(1.15);
+    background-color: #999;
+}
+.dot.active {
+    background-color: var(--accent);
+    width: 22px;
+    height: 12px;
+    border-radius: 12px;
+    box-shadow: 0 0 0 4px rgba(33, 150, 145, 0.16);
+}
 
 :root {
     --num: 4; /* total images */
@@ -3314,13 +3341,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const card = cards[index];
         
-        // Target calculation perfectly handles container centers dynamically
-        const targetScroll = card.offsetLeft - (carousel.offsetWidth / 2) + (card.offsetWidth / 2);
-
-        carousel.scrollTo({
-            left: targetScroll,
-            behavior: 'smooth'
-        });
+        // Delay to ensure DOM is fully painted
+        setTimeout(() => {
+            const carouselWidth = carousel.clientWidth;
+            const carouselCenter = carouselWidth / 2;
+            const cardRect = card.getBoundingClientRect();
+            const carouselRect = carousel.getBoundingClientRect();
+            
+            // Card position relative to viewport
+            const cardCenterInViewport = cardRect.left - carouselRect.left + (cardRect.width / 2);
+            
+            // How much to scroll to center this card
+            let targetScroll = carousel.scrollLeft + (cardCenterInViewport - carouselCenter);
+            
+            // Clamp to valid range
+            const maxScroll = carousel.scrollWidth - carouselWidth;
+            targetScroll = Math.max(0, Math.min(maxScroll, targetScroll));
+            
+            console.log(`Card ${index}: targetScroll=${targetScroll}, maxScroll=${maxScroll}`);
+            
+            carousel.scrollTo({
+                left: targetScroll,
+                behavior: 'smooth'
+            });
+        }, 10);
         
         updateVisuals(index);
     }
@@ -3340,6 +3384,10 @@ document.addEventListener('DOMContentLoaded', () => {
         dots.forEach((dot, i) => {
             dot.classList.toggle('active', i === activeIndex);
         });
+        
+        // Disable buttons at the ends
+        if (prevBtn) prevBtn.disabled = activeIndex === 0;
+        if (nextBtn) nextBtn.disabled = activeIndex === cards.length - 1;
     }
 
     // Button Events
