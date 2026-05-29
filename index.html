@@ -722,7 +722,8 @@ nav .logo .logo-svg {
         }
 
         .social-icons a:hover {
-            color: var(--white);
+            /*color: var(--accent);*/
+            color: rgb(255, 255, 255);
             background: rgba(0,0,0,0.12);
             transform: translateY(-2px);
         }
@@ -1323,36 +1324,44 @@ nav .logo .logo-svg {
 .carousel-container {
     position: relative;
     display: flex;
+    flex-direction: column; /* Allows dots to stay underneath neatly */
     align-items: center;
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 40px;
 }
 
-/* Horizontal track configured for dynamic slide centering */
 .pricing-carousel {
     display: flex;
-    gap: 40px;
-    overflow-x: auto;
+    align-items: center;
+    width: 100%;
+    height: auto; /* FIX: Changed from 100vh to fit your cards automatically */
+    padding: 40px 0; /* Add top/bottom space for reflection/3D scaling */
+    overflow-x: auto; /* Allow scrolling */
     scroll-behavior: smooth;
     scroll-snap-type: x mandatory;
-    padding: 40px 0;
-    width: 100%;
+    scrollbar-width: none; /* Hide scrollbar for clean visual space */
 }
 
-/* Padding track spacers to center the first and last cards precisely */
-.pricing-carousel::before,
-.pricing-carousel::after {
-    content: '';
-    flex: 0 0 calc(50% - 175px); /* Centers a 350px card exactly */
+.pricing-carousel::-webkit-scrollbar {
+    display: none; /* Hide scrollbar for Chrome/Safari/Opera */
 }
 
-/* Hide scrollbars */
-.pricing-carousel::-webkit-scrollbar { display: none; }
-.pricing-carousel { -ms-overflow-style: none; scrollbar-width: none; }
+.pricing-carousel .carousel-track {
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    width: auto; /* Let content dictate spacing width */
+    /*height: 520px; /* Gives plenty of bounding space for vertical 3D scales and reflection */
+    position: relative;
+    perspective: 1000px; /* REQUIRED: Added perspective depth to the container element */
+    transform-style: preserve-3d;
+}
 
-/* Clean, standard pricing card look (No accent lines by default) */
-.price-card {
+/* Clear the rigid keyframe variables/animations causing rendering layout locks */
+.pricing-carousel .carousel-track .price-card {
+    height: auto;
+    transform-style: preserve-3d;
     flex: 0 0 350px;
     padding: 3rem 2rem;
     border: 2px solid #e2e8f0;
@@ -1361,11 +1370,38 @@ nav .logo .logo-svg {
     background: var(--white);
     scroll-snap-align: center;
     box-sizing: border-box;
-    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-    opacity: 0.5; /* Dims out-of-focus cards */
-    transform: scale(0.92);
+    margin: 0 15px; /* Replaces static animation positioning with flexible grid gaps */
+    
+    /* Smooth transition for 3D state switching */
+    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.5s ease, border-color 0.4s ease;
+    opacity: 0.4;
+    transform: scale(0.85) rotateY(25deg); /* Default fallback left-hand look */
 }
 
+/* 3D Directional adjustments based on positions relative to current center focus */
+.pricing-carousel .carousel-track .price-card.left-side {
+    opacity: 0.5;
+    transform: scale(0.85) rotateY(30deg);
+}
+
+.pricing-carousel .carousel-track .price-card.right-side {
+    opacity: 0.5;
+    transform: scale(0.85) rotateY(-30deg);
+}
+
+/* Active center focus card snaps cleanly forward */
+.price-card.active-center {
+    opacity: 1 !important;
+    transform: scale(1.05) rotateY(0deg) !important;
+    border-color: var(--accent);
+    box-shadow: 0 20px 35px rgba(0, 0, 0, 0.12);
+    z-index: 5;
+}
+
+/* Add an optional webkit reflection underneath as detailed in the DEV article layout */
+.pricing-carousel .carousel-track .price-card {
+    -webkit-box-reflect: below 2px linear-gradient(to bottom, rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 0.08));
+}
 /* NO accent styling on the popular card unless it is chosen */
 .price-card.popular {
     border: 2px solid #e2e8f0;
@@ -1427,6 +1463,19 @@ nav .logo .logo-svg {
     opacity: 1;
 }
 
+/* Gives runway space so the first and last cards can reach the exact center */
+.pricing-carousel .carousel-track {
+    padding-left: calc(50% - 190px) !important; /* 350px card width / 2 + 15px margin */
+    padding-right: calc(50% - 190px) !important;
+}
+
+@media (max-width: 768px) {
+    .pricing-carousel .carousel-track {
+        padding-left: calc(50% - 155px) !important; /* 280px card width / 2 + 15px margin */
+        padding-right: calc(50% - 155px) !important;
+    }
+}
+
 /* Responsive Handling */
 @media (max-width: 768px) {
     .pricing-carousel::before,
@@ -1468,6 +1517,14 @@ nav .logo .logo-svg {
     transition: all 0.3s ease;
 }
 .dot.active { background-color: var(--accent); width: 20px; border-radius: 10px; }
+
+:root {
+    --num: 4; /* total images */
+    --wd: 130; /* width of card element */
+   /* --gap: 20px; */
+}
+
+
 
 /* --- BOTÓN WHATSAPP --- */
 /*
@@ -1894,86 +1951,87 @@ nav .logo .logo-svg {
  -->
 <section id="precios" class="container">
     <div class="section-title">
-                <h2 class="lang-es">Planes y precios</h2>
+        <h2 class="lang-es">Planes y precios</h2>
         <h2 class="lang-en">Pricing</h2>
         <div class="underline"></div>
         <p class="lang-es">¡Tenemos la solución perfecta para tus necesidades!</p>
         <p class="lang-en">We have the perfect solution for you!</p>
     </div>
     
-    <!-- Carousel Wrapper -->
     <div class="carousel-container">
-        <button class="carousel-btn prev-btn" aria-label="Anterior">&#10094;</button>
+        
+        <button class="carousel-btn prev-btn" aria-label="Anterior">❮</button>
         
         <div class="pricing-carousel" id="pricingCarousel">
-            <!-- Card 1 -->
-            <div class="price-card">
-                <h3>Clínica</h3>
-                <span>desde</span>
-                <div class="price">$499<span>/mes</span></div>
-                <p>Ideal para consultorios, clínicas de belleza, etc. (Educativo Eventos)</p>
-                <ul>
-                    <li>Registro de clientes</li>
-                    <li>Manejo de citas</li>
-                    <li>Promociones Personalizadas</li>
-                    <li>Gestión de Redes Sociales</li>
-                    <li>Reporte Mensual</li>
-                    <li>Soporte vía Email</li>
-                </ul>
-                <a href="#contacto" class="btn btn-secondary" style="background: rgba(255,255,255,0.2); border: 1px solid var(--dark); color: var(--dark)">Elegir Plan</a>
-            </div>
+            <ul class="carousel-track">
+                
+                <li class="price-card">
+                    <h3>Clínica</h3>
+                    <span>desde</span>
+                    <div class="price">$499<span>/mes</span></div>
+                    <p>Ideal para consultorios, clínicas de belleza, etc. (Educativo Eventos)</p>
+                    <ul>
+                        <li>Registro de clientes</li>
+                        <li>Manejo de citas</li>
+                        <li>Promociones Personalizadas</li>
+                        <li>Gestión de Redes Sociales</li>
+                        <li>Reporte Mensual</li>
+                        <li>Soporte vía Email</li>
+                    </ul>
+                    <a href="#contacto" class="btn btn-secondary" style="background: rgba(255,255,255,0.2); border: 1px solid var(--dark); color: var(--dark)">Elegir Plan</a>
+                </li>
 
-            <!-- Card 2 (Popular) -->
-            <div class="price-card popular">
-                <span class="badge" style="background:var(--accent); color:#1a1a1aff; padding:4px 12px; border-radius:20px; font-size:0.8rem;">RECOMENDADO</span>
-                <br></br>
-                <h3>Profesional</h3>
-                <span>desde</span>
-                <div class="price">$999<span>/mes</span></div>
-                <p>Ideal para pequeñas empresas y startups que buscan establecer su presencia en línea.</p>
-                <ul>
-                    <li>Todo lo del Básico</li>
-                    <li>SEO Avanzado</li>
-                    <li>Campaña Ads ($200 incl.)</li>
-                    <li>Soporte 24/7</li>
-                </ul>
-                <a href="#contacto" class="btn btn-secondary" style="background: rgba(255,255,255,0.2); border: 1px solid var(--dark); color: var(--dark)">Elegir Plan</a>
-            </div>
+                <li class="price-card popular">
+                    <span class="badge" style="background:var(--accent); color:#1a1a1aff; padding:4px 12px; border-radius:20px; font-size:0.8rem;">RECOMENDADO</span>
+                    <br><br>
+                    <h3>Profesional</h3>
+                    <span>desde</span>
+                    <div class="price">$999<span>/mes</span></div>
+                    <p>Ideal para pequeñas empresas y startups que buscan establecer su presencia en línea.</p>
+                    <ul>
+                        <li>Todo lo del Básico</li>
+                        <li>SEO Avanzado</li>
+                        <li>Campaña Ads ($200 incl.)</li>
+                        <li>Soporte 24/7</li>
+                    </ul>
+                    <a href="#contacto" class="btn btn-secondary" style="background: rgba(255,255,255,0.2); border: 1px solid var(--dark); color: var(--dark)">Elegir Plan</a>
+                </li>
 
-            <!-- Card 3 -->
-            <div class="price-card">
-                <h3>Empresarial</h3>
-                <span>desde</span>
-                <div class="price">$1999<span>/mes</span></div>
-                <p>Ideal para corporativos y negocios en expansión que requieren control total.</p> <!-- Added text for visual balance -->
-                <ul>
-                    <li>Todo lo del Profesional</li>
-                    <li>Desarrollo Web Custom</li>
-                    <li>Estrategia de Contenido</li>
-                    <li>Account Manager Dedicado</li>
-                </ul>
-                <a href="#contacto" class="btn btn-secondary" style="background: rgba(255,255,255,0.2); border: 1px solid var(--dark); color: var(--dark);">Elegir Plan</a>
-            </div>
+                <li class="price-card">
+                    <h3>Empresarial</h3>
+                    <span>desde</span>
+                    <div class="price">$1999<span>/mes</span></div>
+                    <p>Ideal para corporativos y negocios en expansión que requieren control total.</p>
+                    <ul>
+                        <li>Todo lo del Profesional</li>
+                        <li>Desarrollo Web Custom</li>
+                        <li>Estrategia de Contenido</li>
+                        <li>Account Manager Dedicado</li>
+                    </ul>
+                    <a href="#contacto" class="btn btn-secondary" style="background: rgba(255,255,255,0.2); border: 1px solid var(--dark); color: var(--dark);">Elegir Plan</a>
+                </li>
 
-        <!-- Card 4 -->
-            <div class="price-card">
-                <h3>Personal</h3>
-                <br></br>
-                <p>Tienes una gran idea y no sabes como llevarla a cabo. ¡Nosotros te ayudamos a convertirla en realidad!</p> <!-- Added text for visual balance -->
-                <br></br>
-                <a href="#contacto" class="btn btn-secondary" style="background: rgba(255,255,255,0.2); border: 1px solid var(--dark); color: var(--dark);">Escríbenos</a>
-            </div>
+                
+                <li class="price-card">
+                    <h3>Personal</h3>
+                    <br><br>
+                    <p>Tienes una gran idea y no sabes como llevarla a cabo. ¡Nosotros te ayudamos a convertirla en realidad!</p>
+                    <br><br>
+                    <a href="#contacto" class="btn btn-secondary" style="background: rgba(255,255,255,0.2); border: 1px solid var(--dark); color: var(--dark);">Escríbenos</a>
+                </li>
+            
+            </ul> 
         </div>
-
-        <button class="carousel-btn next-btn" aria-label="Siguiente">&#10095;</button>
+        <button class="carousel-btn next-btn" aria-label="Siguiente">❯</button>
+        
     </div>
     
-    <!-- Optional Indicators (Dots) -->
     <div class="carousel-dots">
-    <span class="dot active" data-index="0"></span>
-    <span class="dot" data-index="1"></span>
-    <span class="dot" data-index="2"></span>
-</div>
+        <span class="dot active" data-index="0"></span>
+        <span class="dot" data-index="1"></span>
+        <span class="dot" data-index="2"></span>
+        <span class="dot" data-index="3"></span>
+    </div>
 </section>
 
 <div id="wa-widget" class="wa-container">
@@ -3241,74 +3299,90 @@ window.addEventListener('load', function() {
         if (bubble) bubble.classList.remove('show');
     }
 
-const carousel = document.getElementById('pricingCarousel');
-const prevBtn = document.querySelector('.prev-btn');
-const nextBtn = document.querySelector('.next-btn');
-const dots = document.querySelectorAll('.dot');
-const cards = carousel.querySelectorAll('.price-card');
+document.addEventListener('DOMContentLoaded', () => {
+    const carousel = document.getElementById('pricingCarousel');
+    const prevBtn = document.querySelector('.prev-btn');
+    const nextBtn = document.querySelector('.next-btn');
+    const dots = document.querySelectorAll('.dot');
+    const cards = document.querySelectorAll('.price-card');
 
-function getStepWidth() {
-    if (cards.length === 0) return 0;
-    const cardWidth = cards[0].getBoundingClientRect().width;
-    const style = window.getComputedStyle(carousel);
-    let gap = parseFloat(style.gap);
-    if (isNaN(gap)) gap = 40; 
-    return cardWidth + gap;
-}
+    let currentIndex = 1; // Default starting index ("Profesional")
 
-if (prevBtn && nextBtn) {
-    prevBtn.addEventListener('click', () => {
-        carousel.scrollLeft -= getStepWidth();
-    });
-    nextBtn.addEventListener('click', () => {
-        carousel.scrollLeft += getStepWidth();
-    });
-}
+    function scrollToCard(index) {
+        if (index < 0 || index >= cards.length) return;
+        currentIndex = index;
 
-dots.forEach(dot => {
-    dot.addEventListener('click', (e) => {
-        const targetIndex = parseInt(e.target.getAttribute('data-index'));
-        if (!isNaN(targetIndex)) {
-            carousel.scrollLeft = getStepWidth() * targetIndex;
-        }
-    });
-});
+        const card = cards[index];
+        
+        // Target calculation perfectly handles container centers dynamically
+        const targetScroll = card.offsetLeft - (carousel.offsetWidth / 2) + (card.offsetWidth / 2);
 
-function updateCenterFocus() {
-    const carouselRect = carousel.getBoundingClientRect();
-    const carouselCenter = carouselRect.left + (carouselRect.width / 2);
-    
-    let closestCardIndex = 0;
-    let minDistance = Infinity;
-
-    cards.forEach((card, index) => {
-        const cardRect = card.getBoundingClientRect();
-        const cardCenter = cardRect.left + (cardRect.width / 2);
-        const distance = Math.abs(carouselCenter - cardCenter);
-
-        if (distance < minDistance) {
-            minDistance = distance;
-            closestCardIndex = index;
-        }
-        card.classList.remove('active-center');
-    });
-
-    if (cards[closestCardIndex]) {
-        cards[closestCardIndex].classList.add('active-center');
+        carousel.scrollTo({
+            left: targetScroll,
+            behavior: 'smooth'
+        });
+        
+        updateVisuals(index);
     }
 
-    dots.forEach((dot, index) => {
-        if (index === closestCardIndex) {
-            dot.classList.add('active');
-        } else {
-            dot.classList.remove('active');
-        }
-    });
-}
+    function updateVisuals(activeIndex) {
+        cards.forEach((card, i) => {
+            card.classList.remove('active-center', 'left-side', 'right-side');
+            if (i === activeIndex) {
+                card.classList.add('active-center');
+            } else if (i < activeIndex) {
+                card.classList.add('left-side');
+            } else {
+                card.classList.add('right-side');
+            }
+        });
 
-carousel.addEventListener('scroll', updateCenterFocus);
-window.addEventListener('load', updateCenterFocus);
-window.addEventListener('resize', updateCenterFocus);
-    </script>
+        dots.forEach((dot, i) => {
+            dot.classList.toggle('active', i === activeIndex);
+        });
+    }
+
+    // Button Events
+    if (prevBtn && nextBtn) {
+        prevBtn.addEventListener('click', () => {
+            if (currentIndex > 0) scrollToCard(currentIndex - 1);
+        });
+        nextBtn.addEventListener('click', () => {
+            if (currentIndex < cards.length - 1) scrollToCard(currentIndex + 1);
+        });
+    }
+
+    // Dot Events
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => scrollToCard(index));
+    });
+
+    // Swiping / Trackpad manual scrolling updates center actively
+    carousel.addEventListener('scroll', () => {
+        clearTimeout(carousel.scrollTimeout);
+        carousel.scrollTimeout = setTimeout(() => {
+            const carouselCenter = carousel.getBoundingClientRect().left + (carousel.offsetWidth / 2);
+            let closestIndex = 0;
+            let minDistance = Infinity;
+
+            cards.forEach((card, index) => {
+                const cardCenter = card.getBoundingClientRect().left + (card.offsetWidth / 2);
+                const distance = Math.abs(carouselCenter - cardCenter);
+                if (distance < minDistance) {
+                    minDistance = distance;
+                    closestIndex = index;
+                }
+            });
+            
+            currentIndex = closestIndex;
+            updateVisuals(closestIndex);
+        }, 60); 
+    });
+
+    // Force default presentation layout alignment
+    setTimeout(() => scrollToCard(1), 200);
+});
+
+</script>
 </body>
 </html>
