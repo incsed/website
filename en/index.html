@@ -1,0 +1,4206 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Incertae Sedis | Transforma tu presencia digital</title>
+<link rel="icon" type="image/svg+xml" href="assets/images/incico2.svg">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Abel&family=Albert+Sans:ital,wght@0,100..900;1,100..900&family=Cabin:ital,wght@0,400..700;1,400..700&family=Crimson+Pro:ital,wght@0,200..900;1,200..900&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Outfit:wght@100..900&family=Pinyon+Script&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Poltawski+Nowy:ital,wght@0,400..700;1,400..700&family=Prompt:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Quattrocento+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+
+  <style>
+/* Estilos del Preloader */
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 99999; /* Por encima de todo */
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.loader {
+    width: 50px;
+    height: 50px;
+    border: 5px solid var(--light);
+    border-top: 5px solid var(--primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Clase para ocultar el preloader 
+.preloader-hidden {
+    opacity: 0;
+    visibility: hidden;
+}*/
+
+/* Clase para desaparecerlo */
+.fade-out {
+    opacity: 0;
+    pointer-events: none;
+}
+        :root {
+            --primary: #1c9391ff;
+            --accent: #D9C3A3;
+            /*--dark: #1C1E21;*/
+            --dark: #5C626A;
+            --light: #FAF6F0;
+            --text: #24292F;
+            --white: #FAF6F0;
+            --on-primary: #ffffff;
+            --section-title-color: var(--dark);
+            --topbar-height: 36px;
+            --font-serif: 'Lora', Georgia, serif;
+      --font-sans: 'Inter', -apple-system, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+/*            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+ */            font-family: var(--font-sans);
+          font-weight: 400;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: var(--white);
+            -webkit-font-smoothing: antialiased;
+        }
+
+h1 {
+  font-family: var(--font-serif);
+  font-weight: 700;
+}
+
+.container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+
+/* --- HEADER DINÁMICO --- */
+header {
+    background-color: transparent;
+    transition: transform 0.35s ease, background-color 0.35s ease, box-shadow 0.35s ease, padding 0.2s ease;
+    position: fixed;
+    top: -100px;/* var(--topbar-height);*/
+    /*height: 100px;*/
+    width: 100%;
+    z-index: 1000;
+    transform: translateY(0); /* hidden above viewport by default */
+}
+
+header.scrolled {
+    /*height: 70px;*/
+    top: var(--topbar-height);
+    transform: translateY(0); /* slide into view */
+    background-color: var(--white);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    padding: 10px 0;
+}
+
+/* Cambiar color del logo y enlaces cuando hay scroll */
+header.scrolled .logo, 
+header.scrolled .nav-links a {
+    color: var(--dark) !important;
+}
+
+    /* Let header/container size adapt to content (SVG logo) while keeping a minimum height */
+    header, #mainHeader { height: auto; }
+    header .container { min-height: 70px;display: flex; align-items: center; padding: 0; }
+
+
+    /* Hide header when scrolling down 
+header.header-up {
+    transform: translateY(-150%);
+}
+
+/* Show header when scrolling up or at the top 
+header.header-down {
+    transform: translateY(0);
+}
+*/
+
+/* Shrink logo on scroll for a modern effect */
+header.scrolled nav .logo .logo-svg {
+    /*height: 100px;*/
+    height: 60px; /*!important;*/
+/* 3. Keep it grayscale when scrolled unless hovered */
+    filter: grayscale(100%);
+}
+
+header.scrolled:hover nav .logo .logo-svg {
+    filter: grayscale(0%);
+}
+
+/* 2. Show top-header when scrolled */
+header.scrolled + #top-header, /* If it follows in HTML */
+body.scrolled-past #top-header { 
+    top: 0; 
+}
+
+/* 2. Remove the filter when hovering over the logo or the entire header */
+/* Hovering the header is often better so the logo "wakes up" as the mouse enters the nav area */
+header:hover nav .logo .logo-svg,
+nav .logo:hover .logo-svg {
+    filter: grayscale(0%);
+    opacity: 1;
+    height: 100px;
+}
+
+/* 5. Ensure the container centers the nav properly */
+header .container {
+    min-height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Keeps logo left/links right or centers if layout changes */
+}
+
+   /* 1. Update the nav to use flexbox for horizontal layout */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Vertically centers everything inside nav */
+    width: 100%;
+    position: relative;
+    padding: 0;
+}
+
+/* 2. Remove absolute positioning from the logo */
+nav .logo {
+   /* position: static; Reset from absolute */
+   /* transform: none;  /* Remove the translate(-50%, -50%) */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /*z-index: 1150;*/
+    line-height: 0;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+/* 3. Adjust the logo SVG sizing and remove fixed margin-right */
+nav .logo .logo-svg {
+    max-height: 100px; /* Adjust height for better fit */
+    /*width: auto;*/
+    display: block;
+    margin-bottom: 0;
+
+    /* New Grayscale Effect */
+    filter: grayscale(100%);
+    opacity: 0.8; /* Slightly faded for a subtle look */
+    transition: filter 0.4s ease, opacity 0.4s ease, height 0.3s ease;
+}
+
+        @media (max-width: 720px) {
+            nav .logo .logo-svg { max-height: 96px; }
+            .nav-links { padding-left: 24px; }
+        }
+
+        /* Slim top bar above header for social links/contact */
+        .topbar {
+            background: rgba(0,0,0,0.04);
+            color: var(--text);
+            font-size: 0.9rem;
+        }
+
+        .topbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 6px 0;
+        }
+
+        .topbar .top-left { color: #666; font-size: 0.9rem; }
+
+        .topbar .top-right { display: flex; gap: 0.6rem; align-items: center; }
+
+        .topbar .top-right a { color: #666; text-decoration: none; padding: 6px; border-radius: 6px; }
+
+        .topbar .top-right a:hover { background: rgba(0,0,0,0.06); color: var(--primary); }
+
+        /* Style the existing top-header markup if present */
+        #top-header {
+            position: fixed;
+            top: -36px;
+            left: 0;
+            right: 0;
+            height: var(--topbar-height);
+            background: var(--accent);
+            border-bottom: 1px solid rgba(0,0,0,0.04);
+            font-size: 0.95rem;
+            z-index: 1100;
+
+            transition: top 0.3s ease; /* Smooth transition for sliding in */
+        }
+
+        #top-header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 6px 0;
+        }
+
+        #top-header .et-social-icons {
+            display: flex;
+            gap: 8px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            align-items: center;
+        }
+
+        /* Icons inside the original et-social-icons (and our new topbar list) */
+        #top-header .et-social-icons li a.icon,
+        #topbar-social .et-social-icons li a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 6px 8px;
+            color: #666;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+
+        #top-header #et-info a i:hover, .et-social-icons li a.icon:hover,
+        #topbar-social .et-social-icons li a:hover { color: var(--primary); background: rgba(0,0,0,0.04); }
+
+        #top-header #et-info a { color: #241F31; text-decoration: none; }
+
+        @media (max-width: 720px) {
+            #top-header .et-social-icons { gap: 6px; }
+            #top-header .container { padding: 6px 8px; }
+        }
+
+/*
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+*/
+.nav-links {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+    padding-left: 0;  /* Remove the 120px padding */
+    padding-right: 0;
+    align-items: center;
+}
+        /* Show menu when activated (used by hamburger toggle) */
+        .nav-links.active {
+            display: flex;
+            flex-direction: column;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background: var(--white);
+            padding: 1rem 0;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+            gap: 0.5rem;
+            z-index: 1000;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 0.25rem 0.4rem;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+            font-weight: bold;
+            border-bottom: 2px solid var(--primary);
+            transition: all 0.2s ease-in-out;
+        }
+
+.nav-links a.active-link {
+    font-weight: bold;
+/*    color: var(--accent);
+    border-bottom: 2px solid var(--accent);*/
+}
+
+        .lang-switch button {
+            background: none;
+            border: 1px solid var(--primary);
+            color: var(--dark);
+            padding: 0.35rem 0.7rem;
+            border-radius: 18px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .lang-switch button.active {
+            background-color: var(--primary);
+            color: #1a1a1aff;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, #167a78ff 100%);
+            color: var(--white);
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .hero-label {
+      display: inline-block;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #FAF6F0;
+      font-weight: 600;
+      margin-bottom: 1.25rem;
+    }
+
+        .hero h1 {
+            margin-bottom: 1rem;
+            color: #FBF9F6;
+
+            font-family: var(--font-serif);
+      font-size: 3.25rem;
+      font-weight: 400;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      max-width: 800px;
+      margin: 0 auto 1.5rem auto;
+        }
+
+        .hero p {
+            /*max-width: 600px;*/
+            
+            font-size: 1.15rem;
+      color: #EFE7DA;
+      max-width: 580px;
+      margin: 0 auto 2.5rem auto;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background-color: var(--accent);
+            color: #1a1a1aff;
+        }
+
+        .btn.btn-disabled {
+            pointer-events: none;
+            opacity: 0.5;
+            cursor: not-allowed;
+            filter: grayscale(0.05);
+        }
+
+        .btn-primary:hover {
+            background-color: #b87b4fff;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background-color: var(--primary);
+            color: #1a1a1aff;
+        }
+
+        .btn-secondary:hover {
+            background-color: #f0f0f0;
+            transform: translateY(-2px);
+        }
+
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--section-title-color);
+        }
+
+        .section-title span {
+            color: var(--primary);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+    background: transparent; /* Parent is now a container */
+    height: 350px; /* Set a fixed height for the flip effect */
+    perspective: 1000px; /* Creates the 3D space */
+    border: none;
+    box-shadow: none;
+}
+
+.service-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-style: preserve-3d;
+}
+
+/* The Flip Trigger */
+.service-card:hover .service-card-inner {
+    transform: rotateY(180deg);
+}
+
+.service-card-front, .service-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden; /* Safari */
+    backface-visibility: hidden;
+    border-radius: 15px;
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-top: 4px solid var(--primary);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+.service-card-front {
+    background: var(--white);
+    color: var(--dark);
+}
+
+.service-card-back {
+    background: var(--primary); /* Flip colors for impact */
+    color: white;
+    transform: rotateY(180deg); /* Pre-rotate the back side */
+}
+
+.service-card-back h3, .service-card-back p {
+    color: white; /* Ensure text is readable on primary background */
+}
+/*
+        .service-card {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 2.5rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            border-top: 4px solid var(--primary);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .service-card p {
+            color: var(--text);
+            margin-bottom: 1.5rem;
+        }
+
+        .service-card .btn {
+            padding: 0.7rem 1.5rem;
+            font-size: 0.9rem;
+        }
+*/
+        .courses {
+            background-color: #f9f9f9;
+        }
+.courses .section-title {
+    color: #1a1a1aff !important;
+}
+
+.courses .section-title span {
+    color: #1a1a1aff !important; /* El toque de color en 'Nosotros' */
+}
+
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .course-card {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+
+        .course-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+
+        .course-header {
+            background: linear-gradient(135deg, var(--primary) 0%, #167a78ff 100%);
+            color: var(--white);
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .course-header h3 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .course-body {
+            padding: 2rem;
+        }
+
+        .course-body ul {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .course-body ul li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .course-body ul li::before {
+            content: "\f00c";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+
+        .contact {
+            background: linear-gradient(135deg, #1a1a2e 0%, var(--dark) 100%);
+            color: var(--white);
+        }
+
+        .contact .section-title {
+            color: var(--white);
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .contact-item {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+        }
+
+        .contact-item i {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 15px;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: inherit;
+        }
+
+        .form-group textarea {
+            height: 150px;
+            resize: vertical;
+        }
+
+        footer {
+            background-color: #1a1a2e;
+            color: #ffff;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-col h2 {
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        /* Accent line under footer headings */
+        .footer-col h2 {
+            position: relative;
+            padding-bottom: 0.6rem;
+        }
+
+        .footer-col h2::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0.15rem;
+            width: 48px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 3px;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-col ul li a {
+            color: #aaa;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--accent);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #aaa;
+        }
+
+        /* Social icons in footer */
+        .social-icons {
+            display: flex;
+            gap: 0.8rem;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .social-icons a {
+            color: #aaa;
+            font-size: 1.15rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            transition: background 0.18s, color 0.18s, transform 0.12s;
+        }
+
+        .social-icons a:hover {
+            /*color: var(--accent);*/
+            color: rgb(255, 255, 255);
+            background: rgba(0,0,0,0.12);
+            transform: translateY(-2px);
+        }
+
+        /* Contact list in footer */
+        .contact-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: #ccc;
+            font-size: 0.95rem;
+        }
+
+        .contact-item i {
+            color: var(--accent);
+            font-size: 1.05rem;
+            width: 22px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .contact-item a {
+            color: #ccc;
+            text-decoration: none;
+        }
+
+        .contact-item a:hover { color: var(--white); }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .portfolio-item {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+
+        .portfolio-image {
+            height: 200px;
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent) 100%);
+            /* background: linear-gradient(135deg, var(--primary) 0%, #167a78ff 100%); */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 4rem;
+        }
+
+        .portfolio-content {
+            padding: 1.5rem;
+        }
+
+        .portfolio-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+
+        .portfolio-content p {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .portfolio-content .btn {
+            padding: 0.5rem 1rem;
+            font-size: 0.85rem;
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .blog-card {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+
+        .blog-date {
+            background-color: var(--accent);
+            color: #1a1a1aff;
+            padding: 0.5rem 1rem;
+            font-size: 0.85rem;
+            display: inline-block;
+            margin-bottom: 1rem;
+            border-radius: 5px;
+        }
+
+        .blog-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .blog-card p {
+            color: var(--text);
+            margin-bottom: 1rem;
+        }
+
+        .blog-card a {
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .blog-card a:hover {
+            text-decoration: underline;
+        }
+
+        .about-section {
+            background: linear-gradient(135deg, var(--primary) 0%, #167a78ff 100%);
+            color: var(--white);
+            padding: 150px 0;
+        }
+
+        .image-divider {
+    padding: 60px 0;
+    background-color: var(--white);
+}
+
+.image-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.img-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 15px;
+    height: 250px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.img-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.img-card:hover img {
+    transform: scale(1.1);
+}
+
+.img-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0,0,0,0.8));
+    color: white;
+    padding: 20px;
+    font-weight: bold;
+    text-align: center;
+}
+
+
+/* --- ESTILOS DE GALERÍA (B&N a Color) --- */
+/* --- GALERÍA DE TRANSICIÓN --- */
+.mid-gallery {
+    padding: 60px 0;
+    background-color: var(--light);
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+.gallery-item {
+    position: relative;
+    height: 350px;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Efecto: Blanco y negro por defecto */
+    filter: grayscale(100%);
+    transition: transform 0.6s ease, filter 0.6s ease;
+}
+
+.gallery-item:hover img {
+    /* Efecto: Cobra color al pasar el mouse */
+    filter: grayscale(0%);
+    transform: scale(1.08);
+}
+
+.gallery-overlay {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 25px;
+    background: linear-gradient(transparent, rgba(0,0,0,0.7));
+    color: white;
+    font-weight: 600;
+    font-size: 1.2rem;
+    pointer-events: none;
+}
+
+/* --- CORRECCIÓN DEFINITIVA TÍTULO ABOUT --- */
+/* Forzamos el color blanco para el título "Sobre Nosotros" */
+.about-section .section-title {
+    color: var(--white) !important;
+}
+
+.about-section .section-title span {
+    color: var(--white) !important; /* El toque de color en 'Nosotros' */
+}
+
+/* --- HERO CON FILTRO BLUR --- */
+/* --- HERO PARALLAX --- */
+.hero {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.hero-parallax-bg {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    /* Imagen: Ciudad de México / Ciudad Latina Moderna 
+    background-image: url('https://images.unsplash.com/photo-1732173201539-5e8b25af3cbc?q=80&w=1170&auto=format&fit=crop');
+    background-image: url('assets/images/hero/Gemini_Generated_Image_ok2nt0ok2nt0ok2n.png');*/
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+
+    /* EFECTO BLUR: Añadimos desenfoque y un pequeño scale para compensar los bordes */
+    filter: blur(5px);
+    transform: scale(1.05); 
+    
+    z-index: 1;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+/*    background: rgba(0, 0, 0, 0.4); /* Solo oscurece un poco para leer el texto */
+     background: rgba(0, 0, 0, 0.45);
+    z-index: 2;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 3;
+    text-align: center;
+    color: var(--white);
+        /* Sombra de texto para máxima legibilidad */
+    text-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    padding-bottom: 50px;
+    padding-top: 50px;
+}
+
+/* --- ANIMACIÓN REVELADO --- */
+.animate-fade-in {
+    opacity: 0;
+    animation: fadeInReveal 1.5s ease-out forwards;
+}
+
+@keyframes fadeInReveal {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Desactivar parallax en móviles para rendimiento */
+@media (max-width: 768px) {
+    .hero-parallax-bg { background-attachment: scroll; }
+    .hero { height: 70vh; }
+}
+
+.news-carousel-section {
+    width: 100%;
+    padding: 80px 0;
+    background: linear-gradient(180deg, rgba(5,8,36,0.95), rgba(12,19,65,0.98));
+    color: #fff;
+}
+
+.news-carousel-inner {
+    position: relative;
+}
+
+.news-section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.news-section-header .section-label {
+    display: inline-block;
+    font-size: 1rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.78);
+}
+
+.news-timer {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    width: 56px;
+    height: 56px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 4;
+}
+
+.news-timer i {
+    color: var(--accent);
+}
+
+.news-wheel {
+    width: 40px;
+    height: 40px;
+    transform: rotate(-90deg);
+    display: block;
+}
+
+.news-wheel .wheel-fg {
+    stroke-dasharray: 100;
+    stroke-dashoffset: 100;
+    transition: stroke-dashoffset 0.2s linear;
+}
+
+.news-wheel.animating .wheel-fg {
+    animation: newsWheelProgress 4s linear forwards;
+}
+
+@keyframes newsWheelProgress {
+    from { stroke-dashoffset: 100; }
+    to { stroke-dashoffset: 0; }
+}
+
+.news-carousel {
+    position: relative;
+    overflow: hidden;
+}
+
+.news-carousel-track {
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    padding: 0;
+}
+
+.news-carousel-track::-webkit-scrollbar {
+    display: none;
+}
+
+.news-card {
+    position: relative;
+    min-width: 100%;
+    flex: 0 0 100%;
+    height: 420px;
+    border-radius: 0; /* full-bleed banners */
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+    scroll-snap-align: center;
+    box-shadow: none;
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.news-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.65) 100%);
+}
+
+.news-card.active {
+    transform: translateY(-6px);
+    box-shadow: 0 26px 62px rgba(0,0,0,0.32);
+}
+
+.news-card-content {
+    position: absolute;
+    bottom: 24px;
+    left: 24px;
+    right: 24px;
+    z-index: 2;
+    color: #fff;
+}
+
+.news-card-category {
+    display: inline-block;
+    margin-bottom: 0.8rem;
+    font-size: 0.82rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.85);
+}
+
+.news-card h3 {
+    margin: 0 0 0.75rem;
+    font-size: 1.25rem;
+    line-height: 1.3;
+}
+
+.news-card p {
+    margin: 0;
+    color: rgba(255,255,255,0.88);
+    font-size: 0.95rem;
+    line-height: 1.55;
+}
+
+.news-carousel-controls {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1.35rem;
+}
+
+.news-carousel-btn {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background: rgba(255,255,255,0.95);
+    color: #0a122e;
+    cursor: pointer;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.news-carousel-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 20px rgba(0,0,0,0.18);
+}
+
+.news-carousel-indicators {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.news-carousel-indicators button {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255,255,255,0.35);
+    cursor: pointer;
+    transition: background 0.25s ease;
+}
+
+.news-carousel-indicators button.active {
+    background: var(--accent);
+}
+
+@media (max-width: 900px) {
+    .news-carousel-section {
+        padding: 60px 0;
+    }
+    .news-card,
+    .news-card.active {
+        min-width: 100%;
+        flex: 0 0 100%;
+        height: 360px;
+    }
+}
+
+.news-skip-hint {
+    margin: 0 0 1.25rem;
+    padding: 0.75rem 1rem;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.08);
+    color: rgba(255,255,255,0.85);
+    font-size: 0.92rem;
+    text-align: center;
+    border: 1px solid rgba(255,255,255,0.12);
+}
+
+.news-skip-hint .lang-en,
+.news-skip-hint .lang-es {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .news-skip-hint {
+        display: block;
+    }
+    .news-skip-hint .lang-es {
+        display: inline;
+    }
+}
+
+@media (min-width: 769px) {
+    .news-skip-hint {
+        display: none;
+    }
+}
+
+@media (max-width: 680px) {
+    .news-section-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .news-timer {
+        width: 100%;
+        justify-content: center;
+    }
+    .news-carousel-controls {
+        display: none;
+    }
+}
+
+/* Estilo para los iconos de los miembros del equipo */
+.team-member div i {
+    color: var(--primary);
+    background: var(--white);
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin: 0 auto 1rem;
+    font-size: 2rem;
+}
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            opacity: 0.95;
+            text-align: justify;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        .stat-card {
+            background: rgba(255,255,255,0.15);
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .stat-card i {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-card h3 {
+            font-size: 2rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .stat-card p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .team-member {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .team-member img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary) 0%, #167a78ff 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 2.5rem;
+            color: var(--white);
+        }
+
+        .team-member h4 {
+            color: var(--dark);
+            margin-bottom: 0.25rem;
+        }
+
+        .team-member p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .cookie-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--dark);
+            color: var(--white);
+            padding: 1.5rem;
+            display: none;
+            z-index: 2000;
+        }
+
+        .cookie-banner .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .cookie-banner p {
+            max-width: 600px;
+        }
+
+        .cookie-btn {
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 0.7rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .cookie-btn:hover {
+            background-color: #167a78ff;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 3000;
+            overflow: auto;
+        }
+
+        .modal-content {
+            background: var(--white);
+            margin: 50px auto;
+            border-radius: 15px;
+            max-width: 800px;
+            position: relative;
+            padding: 3rem;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #666;
+        }
+
+        .modal-content h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--dark);
+        }
+
+        .modal-content h3 {
+            color: var(--primary);
+            margin: 1.5rem 0 0.75rem;
+            font-size: 1.2rem;
+        }
+
+        .modal-content p {
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+
+        .modal-content ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .modal-content li {
+            margin-bottom: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--white);
+                padding: 1rem 0;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+                gap: 0.5rem;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links li {
+                list-style: none;
+            }
+
+            .hamburger {
+                display: block;
+                font-size: 1.25rem;
+                padding: 0.25rem 0.5rem;
+            }
+
+            .hero h1 { font-size: 2rem; }
+            .hero p { font-size: 1rem; }
+
+            .cookie-banner .container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .modal-content {
+                margin: 20px;
+                padding: 1.5rem;
+            }
+        }
+
+        .lang-es { display: block; }
+        .lang-en { display: none; }
+
+        [lang="en"] .lang-es { display: none; }
+        [lang="en"] .lang-en { display: block; }
+
+        /* Theme variables for dark mode (applied to <html data-theme="dark">) */
+        [data-theme="dark"] {
+            --primary: #33bdbb;
+            --accent: #D1B48C;
+            --dark: #e6eef0;
+            --light: #1E2229;;
+            --text: #e6eef0;
+            --white: #1E2229;;
+            --on-primary: #ffffff;
+            --section-title-color: var(--on-primary);
+        }
+
+        [data-theme="dark"] .about-section {
+    background: linear-gradient(135deg, #0e52a0 0%, #15b09b 100%);
+}
+        body {
+            transition: background-color 200ms ease, color 200ms ease;
+        }
+
+        .theme-toggle {
+            background: none;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            padding: 0.4rem 0.6rem;
+            border-radius: 20px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.95rem;
+        }
+
+        .theme-toggle:focus { outline: none; }
+
+             /* Precios 
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+*/
+/* --- Precios & Carousel Layout --- */
+.carousel-container {
+    position: relative;
+    display: flex;
+    flex-direction: column; /* Allows dots to stay underneath neatly */
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+.pricing-carousel {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: auto; /* FIX: Changed from 100vh to fit your cards automatically */
+    padding: 40px 0; /* Add top/bottom space for reflection/3D scaling */
+    overflow-x: auto; /* Allow scrolling */
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none; /* Hide scrollbar for clean visual space */
+}
+
+.pricing-carousel::-webkit-scrollbar {
+    display: none; /* Hide scrollbar for Chrome/Safari/Opera */
+}
+
+.pricing-carousel .carousel-track {
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    width: auto; /* Let content dictate spacing width */
+    /*height: 520px; /* Gives plenty of bounding space for vertical 3D scales and reflection */
+    position: relative;
+    perspective: 1000px; /* REQUIRED: Added perspective depth to the container element */
+    transform-style: preserve-3d;
+}
+
+.pricing-carousel .carousel-track::after {
+    content: '';
+    flex: 0 0 calc(50% - 190px);
+    height: 1px;
+}
+
+/* Clear the rigid keyframe variables/animations causing rendering layout locks */
+.pricing-carousel .carousel-track .price-card {
+    height: auto;
+    transform-style: preserve-3d;
+    flex: 0 0 350px;
+    padding: 3rem 2rem;
+    border: 2px solid #e2e8f0;
+    border-radius: 15px;
+    text-align: center;
+    background: var(--white);
+    scroll-snap-align: center;
+    box-sizing: border-box;
+    margin: 0 15px; /* Replaces static animation positioning with flexible grid gaps */
+    
+    /* Smooth transition for 3D state switching */
+    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.5s ease, border-color 0.4s ease;
+    opacity: 0.4;
+    transform: scale(0.85) rotateY(25deg); /* Default fallback left-hand look */
+
+    color: var(--text);
+      font-size: 0.9rem;
+      line-height: 1.5;
+      margin-bottom: 1.75rem;
+      min-height: 4.5rem;
+}
+
+/* 3D Directional adjustments based on positions relative to current center focus */
+.pricing-carousel .carousel-track .price-card.left-side {
+    opacity: 0.5;
+    transform: scale(0.85) rotateY(30deg);
+}
+
+.pricing-carousel .carousel-track .price-card.right-side {
+    opacity: 0.5;
+    transform: scale(0.85) rotateY(-30deg);
+}
+
+/* Active center focus card snaps cleanly forward */
+.price-card.active-center {
+    opacity: 1 !important;
+    transform: scale(1.05) rotateY(0deg) !important;
+    border-color: var(--accent);
+    box-shadow: 0 20px 35px rgba(0, 0, 0, 0.12);
+    z-index: 5;
+}
+
+/* Add an optional webkit reflection underneath as detailed in the DEV article layout */
+.pricing-carousel .carousel-track .price-card {
+    -webkit-box-reflect: below 2px linear-gradient(to bottom, rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 0.08));
+}
+/* NO accent styling on the popular card unless it is chosen */
+.price-card.popular {
+    border: 2px solid #e2e8f0;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    position: relative;
+    z-index: 1;
+}
+
+.price-card h3 {
+    margin-top: 0;
+    color: var(--text);
+    transition: color 0.3s;
+    
+    text-align: left;
+
+    font-family: var(--font-serif);
+      font-size: 1.75rem;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.01em;
+}
+
+.plan-description {
+      color: var(--dark);
+      font-size: 0.9rem;
+      line-height: 1.5;
+      margin-bottom: 1.75rem;
+      min-height: 4.5rem;
+
+      text-align: justify;
+    }
+
+/* Price keeps your primary brand color consistently */
+.price {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--primary); /* Primary brand color remains intact */
+    margin: 1rem 0;
+
+    display: flex;
+    justify-content: center;
+      align-items: baseline;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+}
+
+.currency {
+      font-size: 1.25rem;
+      color: var(--text) !important; /* Subtle color for currency symbol */
+      align-self: flex-start;
+      margin-top: 0.25rem;
+    }
+
+.price span { font-size: 1rem; /*color: var(--gray);*/ 
+      font-size: 0.95rem;
+    /*align-items: flex-end;*/
+      margin-left: 0.35rem;
+    }
+
+.price-card ul { list-style: none; padding: 0; margin: 2rem 0; color: var(--gray); }
+.price-card li { margin-bottom: 0.8rem; }
+
+/* Dimmed popular badge element by default */
+.price-card .badge {
+    opacity: 0.25;
+    transition: opacity 0.4s ease;
+
+    display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+     /* border: 1px solid var(--border-linen);*/
+      margin-bottom: 1.25rem;
+}
+
+.divider {
+      border: 0;
+      border-top: 1px solid var(--dark);
+      margin: 2rem 0;
+    }
+
+    /* --- FEATURES LIST --- */
+    .features-title {
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 1.25rem;
+      /*text-align: left;*/
+    }
+
+    .feature-list {
+      list-style: none;
+    }
+
+    .feature-list li {
+      display: flex;
+      align-items: flex-start;
+      font-size: 0.9rem;
+      color: var(--dark);
+      margin-bottom: 0.85rem;
+    }
+
+    .icon {
+      width: 16px;
+      height: 16px;
+      color: var(--accent-sage);
+      margin-right: 0.75rem;
+      flex-shrink: 0;
+      margin-top: 0.2rem;
+    }
+
+/* --- DYNAMIC SELECTION HIGHLIGHTS --- */
+.price-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.03);
+        }
+
+/* The card exactly in the center gets the accent focus */
+.price-card.active-center {
+    opacity: 1;
+    transform: scale(1.05);
+    border-color: var(--accent); /* Selected card gets the accent color border */
+    box-shadow: 0 20px 35px rgba(0, 0, 0, 0.12);
+    z-index: 5;
+}
+
+/* Selected card title shifts to accent */
+.price-card.active-center h3 {
+    color: var(--primary);
+}
+
+/* Selected card button lights up with accent styling */
+.price-card.active-center .btn {
+    background-color: var(--accent) !important;
+    color: #1a1a1a !important; /* Contrasting dark text for accent visibility */
+    border-color: var(--accent) !important;
+}
+
+/* Fully light up popular badge ONLY when popular card is selected */
+.price-card.popular.active-center .badge {
+    opacity: 1;
+}
+
+/* Gives runway space so the first and last cards can reach the exact center */
+.pricing-carousel .carousel-track {
+    padding-left: calc(50% - 190px) !important; /* 350px card width / 2 + 15px margin */
+    padding-right: calc(50% - 190px) !important;
+}
+
+@media (max-width: 768px) {
+    .pricing-carousel .carousel-track {
+        padding-left: calc(50% - 155px) !important; /* 280px card width / 2 + 15px margin */
+        padding-right: calc(50% - 155px) !important;
+    }
+}
+
+/* Responsive Handling */
+@media (max-width: 768px) {
+    .pricing-carousel::before,
+    .pricing-carousel::after {
+        content: '';
+        flex: 0 0 calc(50% - 140px);
+    }
+    .price-card {
+        flex: 0 0 280px;
+        padding: 2rem 1.5rem;
+    }
+    .carousel-container { padding: 0 10px; }
+    .carousel-btn { display: none; }
+}
+
+/* Controls */
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: white;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    border-radius: 50%;
+    width: 45px; height: 45px;
+    cursor: pointer;
+    font-size: 18px;
+    display: flex; align-items: center; justify-content: center;
+    z-index: 10;
+    transition: box-shadow 0.3s ease, opacity 0.3s ease;
+}
+
+.carousel-btn:hover:not(:disabled) {
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+.carousel-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.prev-btn { left: 0; }
+.next-btn { right: 0; }
+
+.carousel-dots { text-align: center; margin-top: 15px; }
+.dot {
+    display: inline-block;
+    height: 10px; width: 10px; margin: 0 5px;
+    background-color: #bbb; border-radius: 50%; cursor: pointer;
+    transition: all 0.3s ease;
+}
+.dot:hover {
+    transform: scale(1.15);
+    background-color: #999;
+}
+.dot.active {
+    background-color: var(--accent);
+    width: 22px;
+    height: 12px;
+    border-radius: 12px;
+    box-shadow: 0 0 0 4px rgba(33, 150, 145, 0.16);
+}
+
+/* --- BOTÓN WHATSAPP --- */
+/*
+.whatsapp-float {
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    background-color: #25d366;
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    box-shadow: 2px 2px 15px rgba(0,0,0,0.3);
+    z-index: 2000;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.15);
+    color: white;
+}
+*/
+/* Tooltip for WhatsApp floating button */
+/*
+.whatsapp-float {
+    position: fixed;
+}
+.whatsapp-float::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    right: 100%;
+    margin-right: 12px;
+    top: 50%;
+    transform: translateY(-50%) translateY(6px);
+    background: var(--accent);
+    color: #fff;
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.15s ease, transform 0.15s ease;
+    z-index: 2001;
+}
+.whatsapp-float::before {
+    content: '';
+    position: absolute;
+    right: calc(100% - 6px);
+    top: 50%;
+    transform: translateY(-50%);
+    border-width: 6px;
+    border-style: solid;
+    border-color: transparent rgba(0,0,0,0.85) transparent transparent;
+    opacity: 0;
+    transition: opacity 0.15s ease;
+    z-index: 2001;
+}
+.whatsapp-float:hover::after,
+.whatsapp-float:focus::after,
+.whatsapp-float:focus-visible::after {
+    opacity: 1;
+    transform: translateY(-50%) translateY(0);
+}
+.whatsapp-float:hover::before,
+.whatsapp-float:focus::before,
+.whatsapp-float:focus-visible::before {
+    opacity: 1;
+}
+*/
+        /* 1. Main Styles */
+  .wa-container {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    visibility: hidden; /* Hidden until JS runs */
+  }
+
+  /* 2. Chat Bubble */
+  .wa-bubble {
+    background: white;
+    color: #333;
+    padding: 12px 16px;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    margin-bottom: 12px;
+    max-width: 220px;
+    width: 200px; /* Fixed width helps with centering math */
+  font-family: sans-serif;
+  font-size: 14px;
+  position: relative;
+  
+  /* Centering Logic: 
+     The button is 60px wide. To center a 200px bubble over it:
+     (200 / 2) - (60 / 2) = 70px offset to the right. */
+  /*margin-right: 70px; */
+  
+  /* Animation Logic */
+  transform: scale(0);
+  transform-origin: 170px bottom; /* Scale starts from the bottom middle of the bubble */
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+  .wa-bubble.show { transform: scale(1); }
+
+  .wa-close {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    width: 20px;
+    height: 20px;
+    background: #eee;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 10px;
+  }
+
+  .wa-arrow {
+    position: absolute;
+    bottom: -6px;
+    right: 24px;
+    width: 12px;
+    height: 12px;
+    background: white;
+    transform: rotate(45deg);
+    box-shadow: 2px 2px 2px rgba(0,0,0,0.03);
+  }
+
+  /* 3. The Button */
+  .wa-button {
+    background-color: #25D366;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease;
+    position: relative;
+    z-index: 2;
+  }
+
+  .wa-button:hover { transform: scale(1.1); background-color: #128C7E; }
+
+  .wa-button svg { width: 32px; height: 32px; fill: white; z-index: 2; }
+
+  /* 4. Pulsing Animation */
+  .wa-ping {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #25D366;
+    border-radius: 50%;
+    opacity: 0.3;
+    animation: wa-ping-anim 2s infinite;
+  }
+
+  @keyframes wa-ping-anim {
+    0% { transform: scale(1); opacity: 0.4; }
+    100% { transform: scale(1.6); opacity: 0; }
+  }
+
+  /* --- FIX DE ICONOS --- */
+/* Eliminamos el visibility:hidden que causaba que no se vieran */
+.fas, .fa-solid, .fab, .fa-brands {
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    line-height: 1;
+    /* Quitamos el visibility: hidden que tenías antes */
+    visibility: visible !important; 
+}
+
+/* Aseguramos que las fuentes se asignen correctamente */
+.fa-brands, .fab {
+    font-family: "Font Awesome 6 Brands" !important;
+}
+.fa-solid, .fas {
+    font-family: "Font Awesome 6 Free" !important;
+    font-weight: 900;
+}
+
+/* --- MEJORA DE ACCESIBILIDAD PARA EL BOTÓN FLOTANTE --- */
+.wa-button {
+    /* Asegura que el botón sea reconocible por lectores de pantalla */
+    text-decoration: none;
+}
+
+    </style>
+
+    
+</head>
+
+<body>
+    <div id="preloader">
+    <div class="loader"></div>
+</div>
+
+<div id="top-header" aria-label="Contact" role="navigation">
+		<div class="container clearfix">		
+			<div id="et-info">
+							<span id="et-info-phone"></span>
+							<a href="mailto:contacto@incsed.com"><i class="fas fa-envelope"></i>
+<span id="et-info-email">contacto@incsed.com</span></a>
+                </div> <!-- #et-info -->
+
+                <!-- Right-aligned social icons for top header -->
+                <div id="topbar-social">
+                    <ul class="et-social-icons">
+                                <li>
+                    <a href="https://mastodon.social/@incsed" target="_blank" rel="noopener noreferrer" aria-label="Mastodon"><i class="fab fa-mastodon"></i></a></li>
+        <li><a href="https://facebook.com/" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f" aria-hidden="true"></i></a></li>
+        <li><a href="https://instagram.com/incsed.mx" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a></li>
+                    </ul>
+                </div>
+		</div> <!-- .container -->
+	</div> <!-- #top-header -->
+
+
+<header id="mainHeader">
+    <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+               
+        <nav>
+             <div class="logo">
+                <!-- <img src="/incico.svg" alt="Logo for Incertae Sedis showing a decorative script wordmark reading Incertae Sedis with teal and aqua gradient accents and warm gold highlights, layered ornamental flourishes and subtle shadows on a white background, elegant professional and warm tone" style="height: 256px;"> -->
+                <svg xmlns="http://www.w3.org/2000/svg" height="100px" viewBox="0 0 100 80" fill="none" class="logo-svg" role="img"  aria-label="Logo for Incertae Sedis showing a decorative script wordmark reading Incertae Sedis with teal and aqua gradient accents and warm gold highlights, layered ornamental flourishes and subtle shadows on a white background, elegant professional and warm tone">
+  <defs>
+    <linearGradient id="d" x1="843.89" x2="876.84" y1="-33.494" y2="-78.385" gradientTransform="translate(-494.21 190.22)scale(.68354)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#cf9661"/>
+      <stop offset="1" stop-color="#dbbb88"/>
+    </linearGradient>
+    <linearGradient id="e" x1="807.95" x2="895.06" y1="-30.978" y2="-133.29" gradientTransform="translate(-494.21 190.22)scale(.68354)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#1c9391"/>
+      <stop offset="1" stop-color="#25b8bf" stop-opacity=".5"/>
+    </linearGradient>
+    <linearGradient id="f" x1="844.69" x2="813" y1="-112.86" y2="-69.446" gradientTransform="translate(-494.21 190.22)scale(.68354)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#d09662"/>
+      <stop offset="1" stop-color="#dbbb88"/>
+    </linearGradient>
+    <filter id="b" width="1.18" height="1.129" x="-.09" y="-.064" color-interpolation-filters="sRGB">
+      <feGaussianBlur result="fbSourceGraphic" stdDeviation="1.009"/>
+      <feColorMatrix in="fbSourceGraphic" result="fbSourceGraphicAlpha" values="0 0 0 -1 0 0 0 0 -1 0 0 0 0 -1 0 0 0 0 1 0"/>
+      <feColorMatrix in="fbSourceGraphic" result="fbSourceGraphic" values="0.21 0.72 0.072 -0.31 0 0.21 0.72 0.072 -0.31 0 0.21 0.72 0.072 -0.31 0 0 0 0 1 0"/>
+      <feColorMatrix in="fbSourceGraphic" result="fbSourceGraphicAlpha" values="0 0 0 -1 0 0 0 0 -1 0 0 0 0 -1 0 0 0 0 1 0"/>
+      <feColorMatrix in="fbSourceGraphic" values="-3 1 0.5 -0.2 0 -3 1 0.5 -0.2 0 -3 1 0.5 -0.2 0 0 0 0 1 0"/>
+    </filter>
+    <filter id="c" width="1.173" height="1.132" x="-.087" y="-.066" color-interpolation-filters="sRGB">
+      <feGaussianBlur result="fbSourceGraphic" stdDeviation="1.021"/>
+      <feColorMatrix in="fbSourceGraphic" result="fbSourceGraphicAlpha" values="0 0 0 -1 0 0 0 0 -1 0 0 0 0 -1 0 0 0 0 1 0"/>
+      <feColorMatrix in="fbSourceGraphic" result="fbSourceGraphic" values="0.21 0.72 0.072 -0.31 0 0.21 0.72 0.072 -0.31 0 0.21 0.72 0.072 -0.31 0 0 0 0 1 0"/>
+      <feColorMatrix in="fbSourceGraphic" result="fbSourceGraphicAlpha" values="0 0 0 -1 0 0 0 0 -1 0 0 0 0 -1 0 0 0 0 1 0"/>
+      <feColorMatrix in="fbSourceGraphic" values="-3 1 0.5 -0.2 0 -3 1 0.5 -0.2 0 -3 1 0.5 -0.2 0 0 0 0 1 0"/>
+    </filter>
+    <filter id="a" width="1.224" height="1.113" x="-.112" y="-.056" color-interpolation-filters="sRGB">
+      <feGaussianBlur result="fbSourceGraphic" stdDeviation=".45"/>
+      <feColorMatrix in="fbSourceGraphic" result="fbSourceGraphicAlpha" values="0 0 0 -1 0 0 0 0 -1 0 0 0 0 -1 0 0 0 0 1 0"/>
+      <feColorMatrix in="fbSourceGraphic" values="-3 1 0.5 -0.2 0 -3 1 0.5 -0.2 0 -3 1 0.5 -0.2 0 0 0 0 1 0"/>
+    </filter>
+  </defs>
+  <path fill="#045" d="M47.383 278.48q.465.147.682.615.22.45.09 1.018-.176.78-.779 1.237-.584.444-1.154.263-.45-.144-.667-.61-.216-.47-.079-1.072.18-.799.742-1.211.564-.43 1.165-.24m-5.487 18.718c-2.554.93-3.068-.198-3.232-.553q-.212-.486-.055-1.178c.335-1.479 1.88-4.313 4.687-9.588.132-.25.611-.758.545-1.19-.033-.216-.235-.407-.439-.488-.235-.092-.452-.041-.755.066-.127.09-.319-.222-.333-.393-.033-.392.24-.847.602-1.014 0 0 1.452-.497 2.181-.384.471.074 1.008.265 1.267.665.235.365.14 1.014.076 1.298q-.117.516-1.966 4.057c-2.015 3.865-3.094 5.686-3.29 6.55-.038.43-.031.62.19.756.555.34 1.718-.338 1.905-.432.145.327.14.458.093.682-.06.284-.456.74-.456.74-.295.207-1.02.406-1.02.406" filter="url(#a)" opacity=".6" style="shape-inside:url(#rect73849);white-space:pre" transform="translate(-120.55 -967.225)scale(3.4875)"/>
+  <path fill="#383934" d="M450.11-89.016c7.726-2.976 17.039-12.627 15.69-21.357-.743-4.812-5.902-6.512-11.796-8.613 11.926-1.849 17.498.48 20.666 7.03 3 6.204.044 20.976-25.945 30.034 2.105-2.603 3.567-5.754 1.385-7.094" filter="url(#b)" opacity=".4" style="mix-blend-mode:darken;shape-inside:url(#rect73849);white-space:pre" transform="translate(-274.822 122.975)scale(.68354)"/>
+  <path fill="#383934" d="M440.19-143.86c-7.726 2.976-18.039 12.864-16.955 20.29.66 4.52 4.481 6.851 10.376 8.952-11.01 3.04-17.648-2.462-20.063-9.45-2.789-14.908 16.762-23.52 28.027-26.886-2.105 2.603-3.566 5.754-1.385 7.094" filter="url(#c)" opacity=".4" style="shape-inside:url(#rect73849);white-space:pre" transform="translate(-274.822 122.975)scale(.68354)"/>
+  <path fill="url(#d)" d="M86.732 158.79c5.281-2.034 11.647-8.631 10.725-14.598-.508-3.289-4.034-4.451-8.063-5.887 8.151-1.264 11.96.327 14.126 4.805 2.05 4.24.03 14.338-17.735 20.53 2.248-2.208 2.438-3.933.946-4.85z" style="shape-inside:url(#rect73849);white-space:pre" transform="translate(-53.002 -98.425)"/>
+  <path id="i" fill="url(#e)" d="M99.546 100.55q1.624.514 2.377 2.146.768 1.57.318 3.55-.618 2.724-2.72 4.314-2.034 1.545-4.025.915-1.572-.497-2.325-2.13-.753-1.63-.276-3.735.633-2.785 2.587-4.224 1.968-1.5 4.064-.836m-19.135 65.278c-8.907 3.247-10.7-.689-11.273-1.928q-.739-1.693-.192-4.108c1.17-5.158 6.56-15.043 16.346-33.439.46-.871 2.132-2.645 1.902-4.148-.115-.755-.821-1.423-1.531-1.703-.82-.324-1.577-.145-2.635.227-.44.315-1.11-.772-1.16-1.368-.116-1.366.837-2.954 2.1-3.536 0 0 5.062-1.735 7.606-1.338 1.643.256 3.515.921 4.417 2.319.82 1.27.492 3.536.267 4.527q-.407 1.794-6.859 14.149c-7.024 13.477-10.788 19.829-11.472 22.842-.134 1.499-.108 2.159.663 2.635 1.825 1.129 4.23-.287 6.287-1.385.694-.37.87 1.108.848 1.758-.04 1.182-1.757 3.082-1.757 3.082-1.03.722-3.557 1.415-3.557 1.415z" style="shape-inside:url(#rect73849);white-space:pre" transform="translate(-53.002 -98.425)"/>
+  <path fill="url(#f)" d="M80.831 121.3c-5.281 2.034-12.33 8.793-11.59 13.869.45 3.09 3.063 4.683 7.092 6.12-7.525 2.077-12.063-1.684-13.714-6.46-1.906-10.19 11.458-16.078 19.158-18.378-1.438 1.78-2.438 3.933-.946 4.85z" style="shape-inside:url(#rect73849);white-space:pre" transform="translate(-53.002 -98.425)"/>
+  <text xml:space="preserve" fill="#1c9391" font-family="'Droid Sans'" font-size="42.667" letter-spacing="15" style="line-height:1.25;shape-inside:url(#rect1184-0);white-space:pre" transform="matrix(.2201 0 -.09779 .2201 -366.612 -136.892)" word-spacing="0"><tspan x="2204.383" y="792.211"><tspan font-family="Montserrat" font-weight="bold">NCERTÆ</tspan></tspan></text>
+  <text xml:space="preserve" fill="#d09662" font-family="'Droid Sans'" font-size="42.667" letter-spacing="15" style="line-height:1.25;shape-inside:url(#rect1185-4);white-space:pre" transform="matrix(.2201 0 -.05898 .2201 -383.452 -127.177)"><tspan x="2204.383" y="792.211"><tspan font-family="Montserrat" font-style="italic">EDIS</tspan></tspan></text>
+</svg>
+    
+            </div>
+        
+                <ul class="nav-links">
+                    <li><a href="#home" onclick="switchLang(lang)">Inicio</a></li>
+                    <li><a href="#about" onclick="switchLang(lang)">Nosotros</a></li>
+                    <li><a href="#services" onclick="switchLang(lang)">Servicios</a></li>
+                    <li><a href="#portfolio" onclick="switchLang(lang)">Portafolio</a></li>
+                    <li><a href="#blog" onclick="switchLang(lang)">Blog</a></li>
+                    <li><a href="#courses" onclick="switchLang(lang)">Cursos</a></li>
+                    <li><a href="#contact" onclick="switchLang(lang)">Contacto</a></li>
+                    <li class="lang-switch">
+                        <button class="active" onclick="setLanguage('es')" id="btn-es">ES</button>
+                        <button onclick="setLanguage('en')" id="btn-en">EN</button>
+                        <button id="themeToggle" class="theme-toggle" onclick="toggleTheme()" title="Toggle dark / light"
+                        aria-hidden="true">
+                            <i id="themeIcon" class="fas fa-moon"></i>
+                        </button>
+                    </li>
+                </ul>
+                <div class="hamburger" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
+            </nav>
+            </div>
+</header>
+<div role="main">
+<section class="hero" id="home">
+    <div class="hero-parallax-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="container hero-content animate-fade-in">
+<!-- <img src="/incico.svg" alt="Logo for Incertae Sedis showing a decorative script wordmark reading Incertae Sedis with teal and aqua gradient accents and warm gold highlights, layered ornamental flourishes and subtle shadows on a white background, elegant professional and warm tone" >                 -->
+ <div class="logo"> 
+                <!-- <img src="/incico.svg" alt="Logo for Incertae Sedis showing a decorative script wordmark reading Incertae Sedis with teal and aqua gradient accents and warm gold highlights, layered ornamental flourishes and subtle shadows on a white background, elegant professional and warm tone" style="height: 256px;"> -->
+                <svg xmlns="http://www.w3.org/2000/svg" height="300px" viewBox="0 0 100 80" fill="none" class="logo-svg" role="img" aria-label="Logo for Incertae Sedis showing a decorative script wordmark reading Incertae Sedis with teal and aqua gradient accents and warm gold highlights, layered ornamental flourishes and subtle shadows on a white background, elegant professional and warm tone">
+  <defs>
+    <linearGradient id="d" x1="843.89" x2="876.84" y1="-33.494" y2="-78.385" gradientTransform="translate(-494.21 190.22)scale(.68354)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#cf9661"/>
+      <stop offset="1" stop-color="#dbbb88"/>
+    </linearGradient>
+    <linearGradient id="e" x1="807.95" x2="895.06" y1="-30.978" y2="-133.29" gradientTransform="translate(-494.21 190.22)scale(.68354)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#1c9391"/>
+      <stop offset="1" stop-color="#25b8bf" stop-opacity=".5"/>
+    </linearGradient>
+    <linearGradient id="f" x1="844.69" x2="813" y1="-112.86" y2="-69.446" gradientTransform="translate(-494.21 190.22)scale(.68354)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#d09662"/>
+      <stop offset="1" stop-color="#dbbb88"/>
+    </linearGradient>
+    <filter id="b" width="1.18" height="1.129" x="-.09" y="-.064" color-interpolation-filters="sRGB">
+      <feGaussianBlur result="fbSourceGraphic" stdDeviation="1.009"/>
+      <feColorMatrix in="fbSourceGraphic" result="fbSourceGraphicAlpha" values="0 0 0 -1 0 0 0 0 -1 0 0 0 0 -1 0 0 0 0 1 0"/>
+      <feColorMatrix in="fbSourceGraphic" result="fbSourceGraphic" values="0.21 0.72 0.072 -0.31 0 0.21 0.72 0.072 -0.31 0 0.21 0.72 0.072 -0.31 0 0 0 0 1 0"/>
+      <feColorMatrix in="fbSourceGraphic" result="fbSourceGraphicAlpha" values="0 0 0 -1 0 0 0 0 -1 0 0 0 0 -1 0 0 0 0 1 0"/>
+      <feColorMatrix in="fbSourceGraphic" values="-3 1 0.5 -0.2 0 -3 1 0.5 -0.2 0 -3 1 0.5 -0.2 0 0 0 0 1 0"/>
+    </filter>
+    <filter id="c" width="1.173" height="1.132" x="-.087" y="-.066" color-interpolation-filters="sRGB">
+      <feGaussianBlur result="fbSourceGraphic" stdDeviation="1.021"/>
+      <feColorMatrix in="fbSourceGraphic" result="fbSourceGraphicAlpha" values="0 0 0 -1 0 0 0 0 -1 0 0 0 0 -1 0 0 0 0 1 0"/>
+      <feColorMatrix in="fbSourceGraphic" result="fbSourceGraphic" values="0.21 0.72 0.072 -0.31 0 0.21 0.72 0.072 -0.31 0 0.21 0.72 0.072 -0.31 0 0 0 0 1 0"/>
+      <feColorMatrix in="fbSourceGraphic" result="fbSourceGraphicAlpha" values="0 0 0 -1 0 0 0 0 -1 0 0 0 0 -1 0 0 0 0 1 0"/>
+      <feColorMatrix in="fbSourceGraphic" values="-3 1 0.5 -0.2 0 -3 1 0.5 -0.2 0 -3 1 0.5 -0.2 0 0 0 0 1 0"/>
+    </filter>
+    <filter id="a" width="1.224" height="1.113" x="-.112" y="-.056" color-interpolation-filters="sRGB">
+      <feGaussianBlur result="fbSourceGraphic" stdDeviation=".45"/>
+      <feColorMatrix in="fbSourceGraphic" result="fbSourceGraphicAlpha" values="0 0 0 -1 0 0 0 0 -1 0 0 0 0 -1 0 0 0 0 1 0"/>
+      <feColorMatrix in="fbSourceGraphic" values="-3 1 0.5 -0.2 0 -3 1 0.5 -0.2 0 -3 1 0.5 -0.2 0 0 0 0 1 0"/>
+    </filter>
+  </defs>
+  <path fill="#045" d="M47.383 278.48q.465.147.682.615.22.45.09 1.018-.176.78-.779 1.237-.584.444-1.154.263-.45-.144-.667-.61-.216-.47-.079-1.072.18-.799.742-1.211.564-.43 1.165-.24m-5.487 18.718c-2.554.93-3.068-.198-3.232-.553q-.212-.486-.055-1.178c.335-1.479 1.88-4.313 4.687-9.588.132-.25.611-.758.545-1.19-.033-.216-.235-.407-.439-.488-.235-.092-.452-.041-.755.066-.127.09-.319-.222-.333-.393-.033-.392.24-.847.602-1.014 0 0 1.452-.497 2.181-.384.471.074 1.008.265 1.267.665.235.365.14 1.014.076 1.298q-.117.516-1.966 4.057c-2.015 3.865-3.094 5.686-3.29 6.55-.038.43-.031.62.19.756.555.34 1.718-.338 1.905-.432.145.327.14.458.093.682-.06.284-.456.74-.456.74-.295.207-1.02.406-1.02.406" filter="url(#a)" opacity=".6" style="shape-inside:url(#rect73849);white-space:pre" transform="translate(-120.55 -967.225)scale(3.4875)"/>
+  <path fill="#383934" d="M450.11-89.016c7.726-2.976 17.039-12.627 15.69-21.357-.743-4.812-5.902-6.512-11.796-8.613 11.926-1.849 17.498.48 20.666 7.03 3 6.204.044 20.976-25.945 30.034 2.105-2.603 3.567-5.754 1.385-7.094" filter="url(#b)" opacity=".4" style="mix-blend-mode:darken;shape-inside:url(#rect73849);white-space:pre" transform="translate(-274.822 122.975)scale(.68354)"/>
+  <path fill="#383934" d="M440.19-143.86c-7.726 2.976-18.039 12.864-16.955 20.29.66 4.52 4.481 6.851 10.376 8.952-11.01 3.04-17.648-2.462-20.063-9.45-2.789-14.908 16.762-23.52 28.027-26.886-2.105 2.603-3.566 5.754-1.385 7.094" filter="url(#c)" opacity=".4" style="shape-inside:url(#rect73849);white-space:pre" transform="translate(-274.822 122.975)scale(.68354)"/>
+  <path fill="url(#d)" d="M86.732 158.79c5.281-2.034 11.647-8.631 10.725-14.598-.508-3.289-4.034-4.451-8.063-5.887 8.151-1.264 11.96.327 14.126 4.805 2.05 4.24.03 14.338-17.735 20.53 2.248-2.208 2.438-3.933.946-4.85z" style="shape-inside:url(#rect73849);white-space:pre" transform="translate(-53.002 -98.425)"/>
+  <path fill="url(#e)" d="M99.546 100.55q1.624.514 2.377 2.146.768 1.57.318 3.55-.618 2.724-2.72 4.314-2.034 1.545-4.025.915-1.572-.497-2.325-2.13-.753-1.63-.276-3.735.633-2.785 2.587-4.224 1.968-1.5 4.064-.836m-19.135 65.278c-8.907 3.247-10.7-.689-11.273-1.928q-.739-1.693-.192-4.108c1.17-5.158 6.56-15.043 16.346-33.439.46-.871 2.132-2.645 1.902-4.148-.115-.755-.821-1.423-1.531-1.703-.82-.324-1.577-.145-2.635.227-.44.315-1.11-.772-1.16-1.368-.116-1.366.837-2.954 2.1-3.536 0 0 5.062-1.735 7.606-1.338 1.643.256 3.515.921 4.417 2.319.82 1.27.492 3.536.267 4.527q-.407 1.794-6.859 14.149c-7.024 13.477-10.788 19.829-11.472 22.842-.134 1.499-.108 2.159.663 2.635 1.825 1.129 4.23-.287 6.287-1.385.694-.37.87 1.108.848 1.758-.04 1.182-1.757 3.082-1.757 3.082-1.03.722-3.557 1.415-3.557 1.415z" style="shape-inside:url(#rect73849);white-space:pre" transform="translate(-53.002 -98.425)"/>
+  <path fill="url(#f)" d="M80.831 121.3c-5.281 2.034-12.33 8.793-11.59 13.869.45 3.09 3.063 4.683 7.092 6.12-7.525 2.077-12.063-1.684-13.714-6.46-1.906-10.19 11.458-16.078 19.158-18.378-1.438 1.78-2.438 3.933-.946 4.85z" style="shape-inside:url(#rect73849);white-space:pre" transform="translate(-53.002 -98.425)"/>
+  <text xml:space="preserve" fill="#1c9391" font-family="'Droid Sans'" font-size="42.667" letter-spacing="10" style="line-height:1.25;shape-inside:url(#rect1184-0);white-space:pre" transform="matrix(.2201 0 -.09779 .2201 -366.612 -136.892)" word-spacing="0"><tspan x="2204.383" y="792.211"><tspan font-family="Montserrat" font-weight="bold">NCERTÆ</tspan></tspan></text>
+  <text xml:space="preserve" fill="#d09662" font-family="'Droid Sans'" font-size="42.667" letter-spacing="10" style="line-height:1.25;shape-inside:url(#rect1185-4);white-space:pre" transform="matrix(.2201 0 -.05898 .2201 -383.452 -127.177)"><tspan x="2204.383" y="792.211"><tspan font-family="Montserrat" font-style="italic">EDIS</tspan></tspan></text>
+</svg>
+    
+            </div>
+                    <span class="hero-label lang-es">Tecnología humana</span>
+        <span class="hero-label lang-en">Intelligent Infrastructure</span>
+        <h1 class="lang-es">Transforma tu presencia digital</h1>
+        <h1 class="lang-en">Transform Your Digital Presence</h1>
+        <p class="lang-es">Soluciones expertas en desarrollo, educación virtual y consultoría científica.</p>
+        <p class="lang-en">Expert solutions in development, e-learning, and scientific consulting.</p>
+        <div class="hero-btns" style="margin-top: 2rem; display: flex; gap: 1rem; justify-content: center;">
+            <a href="#services" class="btn btn-primary">
+                <span class="lang-es">Servicios</span>
+                <span class="lang-en">Services</span>
+            </a>
+<a href="#about" class="btn btn-secondary" style="background: rgba(255,255,255,0.2); border: 1px solid white; color: white;">       <span class="lang-es">Nosotros</span>
+                <span class="lang-en">About Us</span>
+            </a>
+        </div>
+    </div>
+</section>
+
+<section id="newsSection" class="news-carousel-section">
+    <div class="news-carousel-inner container">
+        <div class="news-section-header">
+            <div>
+                <span class="section-label lang-es">Noticias</span>
+                <span class="section-label lang-en">News</span>
+            </div>
+            <div class="news-timer" aria-hidden="true">
+                <div class="news-wheel-wrap">
+                    <svg class="news-wheel" viewBox="0 0 36 36" aria-hidden="true">
+                        <circle class="wheel-bg" cx="18" cy="18" r="16" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="3"></circle>
+                        <circle class="wheel-fg" cx="18" cy="18" r="16" fill="none" stroke="var(--accent)" stroke-width="3" stroke-linecap="round" stroke-dasharray="100" stroke-dashoffset="100"></circle>
+                    </svg>
+                </div>
+            </div>
+        </div>
+        <div class="news-skip-hint">
+            <span class="lang-es">Doble toque para saltar esta sección</span>
+            <span class="lang-en">Double-tap to skip this section</span>
+        </div>
+        <div class="news-carousel" id="newsCarousel">
+            <div class="news-carousel-track">
+                <article class="news-card active" style="background-image: url('https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=900&q=80');">
+                    <div class="news-card-content">
+                        <span class="news-card-category lang-es">Lanzamiento</span>
+                        <span class="news-card-category lang-en">Launch</span>
+                        <h3 class="lang-es">Nuevo hub digital para startups</h3>
+                        <h3 class="lang-en">New digital hub for startups</h3>
+                        <p class="lang-es">Contenido inspirado en crecimiento, innovación y experiencia.</p>
+                        <p class="lang-en">Content inspired by growth, innovation, and experience.</p>
+                    </div>
+                </article>
+                <article class="news-card" style="background-image: url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=900&q=80');">
+                    <div class="news-card-content">
+                        <span class="news-card-category lang-es">Evento</span>
+                        <span class="news-card-category lang-en">Event</span>
+                        <h3 class="lang-es">Seminario en línea sobre IA</h3>
+                        <h3 class="lang-en">Online seminar on AI</h3>
+                        <p class="lang-es">Un espacio para aprender sobre soluciones inteligentes.</p>
+                        <p class="lang-en">A space to learn about intelligent solutions.</p>
+                    </div>
+                </article>
+                <article class="news-card" style="background-image: url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=900&q=80');">
+                    <div class="news-card-content">
+                        <span class="news-card-category lang-es">Gobierno</span>
+                        <span class="news-card-category lang-en">Government</span>
+                        <h3 class="lang-es">Apoyo a proyectos científicos</h3>
+                        <h3 class="lang-en">Support for scientific projects</h3>
+                        <p class="lang-es">Financiamiento y consultoría para iniciativas de impacto.</p>
+                        <p class="lang-en">Funding and consulting for impact-driven initiatives.</p>
+                    </div>
+                </article>
+                <article class="news-card" style="background-image: url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=900&q=80');">
+                    <div class="news-card-content">
+                        <span class="news-card-category lang-es">Socios</span>
+                        <span class="news-card-category lang-en">Partners</span>
+                        <h3 class="lang-es">Alianzas estratégicas globales</h3>
+                        <h3 class="lang-en">Global strategic partnerships</h3>
+                        <p class="lang-es">Conecta tu negocio con socios internacionales confiables.</p>
+                        <p class="lang-en">Connect your business with trusted global partners.</p>
+                    </div>
+                </article>
+            </div>
+        </div>
+        <div class="news-carousel-controls">
+            <button class="news-carousel-btn prev-news-btn" aria-label="Anterior noticia">❮</button>
+            <button class="news-carousel-btn next-news-btn" aria-label="Siguiente noticia">❯</button>
+        </div>
+        <div class="news-carousel-indicators" id="newsCarouselIndicators"></div>
+    </div>
+</section>
+
+<!-- <section id="precios" class="container">
+    <div class="section-title">
+        <h2>Planes y Precios</h2>
+        <div class="underline"></div>
+        <h3>Tenemos la solución acorde a tus necesidades</h3>
+    </div>
+    <div class="pricing-grid">
+        <div class="price-card">
+            <h3>Clínica</h3>
+            <div class="price">$499<span>/mes</span></div>
+            <p>Ideal para consultorios, clínicas de belleza, etc. (Educativo Eventos)</p>
+            <ul>
+                <li>Registro de clientes</li>
+                <li>Manejo de citas</li>
+                <li>Promociones Personalizadas</li>
+                <li>Gestión de Redes Sociales</li>
+                <li>Reporte Mensual</li>
+                <li>Soporte vía Email</li>
+            </ul>
+            <a href="#contacto" class="btn btn-secondary" style="background: rgba(255,255,255,0.2); border: 1px solid var(--dark); color: var(--dark)">Elegir Plan</a>
+        </div>
+
+        <div class="price-card popular">
+            <span style="background:var(--accent); color:#1a1a1aff; padding:4px 12px; border-radius:20px; font-size:0.8rem;">RECOMENDADO</span>
+            <h3>Profesional</h3>
+            <div class="price">$999<span>/mes</span></div>
+            <p>Ideal para pequeñas empresas y startups que buscan establecer su presencia en línea.</p>
+            <ul>
+                <li>Todo lo del Básico</li>
+                <li>SEO Avanzado</li>
+                <li>Campaña Ads ($200 incl.)</li>
+                <li>Soporte 24/7</li>
+            </ul>
+            <a href="#contacto" class="btn" style="background:var(--accent); color:#1a1a1aff;">Elegir Plan</a>
+        </div>
+        <div class="price-card">
+            <h3>Empresarial</h3>
+            <div class="price">$1999<span>/mes</span></div>
+            <ul>
+                <li>Todo lo del Profesional</li>
+                <li>Desarrollo Web Custom</li>
+                <li>Estrategia de Contenido</li>
+                <li>Account Manager Dedicado</li>
+            </ul>
+            <a href="#contacto" class="btn btn-secondary" style="background: rgba(255,255,255,0.2); border: 1px solid var(--dark); color: var(--dark);">Elegir Plan</a>
+        </div>
+    </div>
+</section>
+ -->
+<section id="precios" class="container">
+    <div class="section-title">
+        <h2 class="lang-es">Planes y precios</h2>
+        <h2 class="lang-en">Pricing</h2>
+        <div class="underline"></div>
+        <p class="lang-es">¡Tenemos la solución perfecta para tus necesidades! ¡Tú controlas tus datos!</p>
+        <p class="lang-en">We have the perfect solution for you!</p>
+    </div>
+    
+    <div class="carousel-container">
+        
+        <button class="carousel-btn prev-btn" aria-label="Anterior">❮</button>
+        
+        <div class="pricing-carousel" id="pricingCarousel">
+            <ul class="carousel-track">
+                
+                <li class="price-card">
+                    <h3 class="lang-es">Educativo</h3>
+                    <h3 class="lang-en">Educational</h3>
+                    <p class="plan-description">¿Quieres dar cursos en linea, para tu empresa o algún público en particular? Te apoyamos desde la infraestructura hasta la planeación didáctica, para que tus alumnos sólo se concentren en aprender.</p>
+                     <div class="price"><span class="currency">desde</span>$2499<span>/ mes</span></div>
+                     <a href="#contacto" class="btn btn-secondary" style="background: rgba(255,255,255,0.2); border: 1px solid var(--dark); color: var(--dark)">Elegir Plan</a>
+                   
+                    <hr class="divider" />
+
+                    <div class="card-features">
+          <p class="features-title lang-es">Características</p>
+          <p class="features-title lang-en">Core capabilities</p>
+
+                    <ul class="feature-list">
+                        <li>
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>Matriculación automatizada</span></li>
+                        <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>Identidad de marca 100% personalizada</span></li>
+                        <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>Diseño totalmente responsivo (Mobile-First)</span></li>
+                        <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>Ecosistema de contenido multimodal</span></li>
+                        <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>Evaluación automatizada y formativa</span></li>
+                        <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>Tablero de analíticas para administradores</span></li>
+                        <li>
+              <span>... y más</span></li>
+                    </ul>
+                </li>
+
+                <li class="price-card">
+                    <h3 class="lang-es">Clínica</h3>
+                    <h3 class="lang-en">Healthcare</h3>
+                    <p class="plan-description">Soberanía digital y diseño centrado en el paciente. Ideal para consultorios, clínicas de belleza, etc.</p>
+                     <div class="price"><span class="currency">desde</span>$499<span>/ mes</span></div>
+                     <a href="#contacto" class="btn btn-secondary" style="background: rgba(255,255,255,0.2); border: 1px solid var(--dark); color: var(--dark)">Elegir Plan</a>
+                   
+                    <hr class="divider" />
+
+                    <div class="card-features">
+          <p class="features-title lang-es">Características</p>
+          <p class="features-title lang-en">Core capabilities</p>
+
+                    <ul class="feature-list">
+                        <li>
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>Historia Clínica Electrónica Longitudinal</span></li>
+                        <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>Manejo de citas</span></li>
+                        <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>Módulo de Estilos de Vida</span></li>
+                        <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>Codificación Internacional Estándar</span></li>
+                        <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>Cifrado de datos y control de accesos basado en roles:</span></li>
+                        <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>Soporte vía Email</span></li>
+                    </ul>
+                </li>
+
+                <li class="price-card popular">
+                    <span class="badge" style="background:var(--accent); color:#1a1a1aff; padding:4px 12px; border-radius:20px; font-size:0.8rem;">RECOMENDADO</span>
+                    <br><br>
+                    <h3 class="lang-es">Profesional</h3>
+                    <h3 class="lang-en">Professional</h3>
+                    <p class="plan-description">Ideal para pequeñas empresas y startups que buscan establecer su presencia en línea.</p>
+                    <div class="price">
+                        <span class="currency">desde</span>
+                     $999<span>/ mes</span></div>
+
+                    <a href="#contacto" class="btn btn-secondary" style="background: rgba(255,255,255,0.2); border: 1px solid var(--dark); color: var(--dark)">Elegir Plan</a>
+
+                    <hr class="divider" />
+
+                    <div class="card-features">
+          <p class="features-title lang-es">Características</p>
+          <p class="features-title lang-en">Core capabilities</p>
+                    <ul class="feature-list">
+                        <li>
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>Todo lo del Básico</span></li>
+                        <li>
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>SEO Avanzado</span></li>
+                        <li>
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>Campaña Ads ($200 incl.)</span></li>
+                        <li>                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>Soporte 24/7</span></li>
+                    </ul>
+                    </div>
+                </li>
+    
+                <li class="price-card">
+                    
+                    <h3 class="lang-es">Eventos</h3>
+                    <h3 class="lang-en">Events</h3>
+                    <p class="plan-description">Tienes un evento y necesitas automatizar la logística del mismo. No te preocupes tenemos el plan que se ajusta a tus necesidades</p>
+                    <div class="price">
+                        <span class="currency">desde</span>
+                     $1999<span>/ mes</span></div>
+
+                    <a href="#contacto" class="btn btn-secondary" style="background: rgba(255,255,255,0.2); border: 1px solid var(--dark); color: var(--dark)">Elegir Plan</a>
+
+                    <hr class="divider" />
+
+                    <div class="card-features">
+          <p class="features-title lang-es">Características</p>
+          <p class="features-title lang-en">Core capabilities</p>
+                    <ul class="feature-list">
+                        <li>
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>Sistema de boletaje con diferentes métodos de pago</span></li>
+                        <li>
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>Envio automatizado de recordatorios</span></li>
+                        <li>
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>Entrega de constancias</span></li>
+                        <li>                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>Sistema de registro personalizado y control de inventarios</span></li>
+                    </ul>
+                    </div>
+                </li>
+
+                <li class="price-card">
+                    <h3>Empresarial</h3>
+                    <p class="plan-description">Ideal para corporativos y negocios en expansión que requieren control total.</p>
+                    <div class="price">
+                        <span class="currency">desde</span>
+                     $1999<span>/ mes</span></div>
+
+                    <a href="#contacto" class="btn btn-secondary" style="background: rgba(255,255,255,0.2); border: 1px solid var(--dark); color: var(--dark)">Elegir Plan</a>
+
+                    <hr class="divider" />
+
+                    <div class="card-features">
+          <p class="features-title lang-es">Características</p>
+          <p class="features-title lang-en">Core capabilities</p>
+                    <ul class="feature-list">
+                        <li>
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>Todo lo del Profesional</span></li>
+                        <li>
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>Desarrollo Web personalizado</span></li>
+                        <li>
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>Estrategia de Contenido</span></li>
+                        <li>                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>ERP personalizado</span></li>
+                    </ul>
+                    </div>
+                </li>
+
+                
+                <li class="price-card">
+                    <h3>Personal</h3>
+                    <br><br>
+                    <p>Tienes una gran idea y no sabes como llevarla a cabo. ¡Nosotros te ayudamos a convertirla en realidad!</p>
+                    <br><br>
+                    <a href="#contacto" class="btn btn-secondary" style="background: rgba(255,255,255,0.2); border: 1px solid var(--dark); color: var(--dark);">Escríbenos</a>
+                </li>
+            
+            </ul> 
+        </div>
+        <button class="carousel-btn next-btn" aria-label="Siguiente">❯</button>
+        
+    </div>
+    
+    <div class="carousel-dots">
+        <span class="dot active" data-index="0"></span>
+        <span class="dot" data-index="1"></span>
+        <span class="dot" data-index="2"></span>
+        <span class="dot" data-index="3"></span>
+    </div>
+</section>
+
+<div id="wa-widget" class="wa-container">
+  
+  <div id="wa-bubble" class="wa-bubble" role="status" aria-live="polite">
+    <p>¡Hola! 👋 ¿Tienes alguna duda? Escríbenos por WhatsApp.</p>
+    <div class="wa-arrow"></div>
+  </div>
+
+  <a href="https://wa.me/5255555555?text=¡Hola!%20Me%20gustaría%20recibir%20más%20información%20sobre%20sus%20servicios." target="_blank" class="wa-button" 
+  data-tooltip="Escríbenos por WhatsApp" 
+  aria-label="Contactar por WhatsApp"
+     onmouseenter="showBubble()" 
+     onmouseleave="hideBubble()">
+
+    <div class="wa-ping"></div>
+    <i class="fab fa-whatsapp" style="font-size: 32px;" aria-hidden="true"></i>
+    <!-- <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"></path></svg> -->
+  </a>
+</div>
+<!-- 
+<div id="wa-widget" class="wa-container">
+  
+  <div id="wa-bubble" class="wa-bubble">
+    <p>¡Hola! 👋 ¿En qué puedo ayudarte?</p>
+    <div class="wa-arrow"></div>
+  </div>
+
+  <a href="https://wa.me/5217292395666" 
+     target="_blank" 
+     class="wa-button" 
+     id="wa-main-btn"
+     onmouseenter="showBubble()" 
+     onmouseleave="hideBubble()">
+    <div class="wa-ping"></div>
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"></path></svg>
+  </a>
+</div>
+
+<a href="https://wa.me/5255555555?text=Hola!%20Vi%20tu%20página%20web%20y%20me%20gustaría%20recibir%20más%20información%20sobre%20tus%20servicios%20digitales." class="whatsapp-float" data-tooltip="Escríbenos por WhatsApp" aria-label="WhatsApp" target="_blank" rel="noopener noreferrer">
+    <i class="fab fa-whatsapp"></i>
+</a> -->
+
+
+<section class="mid-gallery">
+    <div class="container">
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1738737271801-d404a575d870?q=80&w=687&auto=format&fit=crop" alt="Talento">
+                <div class="gallery-overlay">
+                    <span class="lang-es">Asesoría Especializada</span>
+                    <span class="lang-en">Expert Consulting</span>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1518135714426-c18f5ffb6f4d?q=80&w=2096&auto=format&fit=crop" alt="Arquitectura Latam">
+                <div class="gallery-overlay">
+                    <span class="lang-es">Soluciones Locales</span>
+                    <span class="lang-en">Local Solutions</span>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1650648065204-0b8d52b18447?q=80&w=1171&auto=format&fit=crop" alt="Colaboración">
+                <div class="gallery-overlay">
+                    <span class="lang-es">Educación y Ciencia</span>
+                    <span class="lang-en">Science & Education</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="image-divider">
+    <div class="container">
+        <div class="image-row">
+            <div class="img-card">
+                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=500&q=80" alt="Análisis de Datos">
+                <div class="img-caption lang-es">Estrategia Digital</div>
+                <div class="img-caption lang-en">Digital Strategy</div>
+            </div>
+            <div class="img-card">
+                <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=500&q=80" alt="Código">
+                <div class="img-caption lang-es">Desarrollo de Vanguardia</div>
+                <div class="img-caption lang-en">Cutting-edge Development</div>
+            </div>
+            <div class="img-card">
+                <img src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?q=80&w=1170&auto=format&fit=crop&w=500&q=80" alt="Equipo">
+                <div class="img-caption lang-es">Soporte Continuo</div>
+                <div class="img-caption lang-en">Continuous Support</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <section class="about-section" id="about">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="lang-es">Quienes somos</span>
+                <span class="lang-en">About us</span>
+            </h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3 class="lang-es">Innovación Social Digital para tu Empresa</h3>
+                    <h3 class="lang-en">Digital Social Innovation for Your Organization</h3>
+                    <br>
+                    <p class="lang-es">
+                        <em>Incertæ Sedis</em>, lugar incierto. Una frase utilizada en biología para referirnos a una especie cuyas características no podemos clasificar. No somos una consultora más, para nosotros, la tecnología no es un fin, sino un medio para cerrar brechas humanas.</p>
+
+                    <p class="lang-en"><em>Incertæ Sedis</em>, place unknown. An idiom used in Biology referring to an species whose traits cannot be classified. We're not just another consultancy. To us, technology is not an end but a mean to reduce the gaps that divide us.</p>
+                    <p class="lang-es" style="text-align: center;">
+                        <q>Lo incierto no es una amenaza, es el espacio donde nacen las soluciones.</q>
+                        </p>
+                    <p class="lang-en"style="text-align: center;">
+                        <q>Uncertainty is not a menace, but an opportunity where solutions are born.</q>
+                        </p>
+                    <p class="lang-es">
+    En un mundo definido por datos, a menudo olvidamos el factor humano. <em>Incertæ Sedis</em> abraza lo desconocido. Donde otros ven caos, nosotros vemos patrones. Donde la sociedad ve problemas, nosotros vemos la oportunidad de aplicar la ciencia con empatía.
+
+    Creemos en algoritmos que empoderan, en datos que cuentan historias de dignidad y en una tecnología que se diseña con la comunidad, no para aprovecharse de ella. Navegamos la complejidad de lo desconocido para trazar rutas claras hacia un futuro más equitativo.
+    </p>
+      <p class="lang-en">
+                    In a world obsessed with data, it's easy to forget the humans behind. At <em>Incertæ Sedis</em> we embrace the unknown. Where people see chaos, we see patterns. Where society see problems, we see the opportunity to apply science and empathy.
+                    We believe in algorithms to empower, in data that tells stories of dignity and technology designed with the community, not against it. We sail through the complexity of the unknown, trailblazing towards a more just future</p>
+                    <p class="lang-es">
+                        Creemos en el valor de cada persona y buscamos la inclusión de todas las voces. Por eso transformamos ideas en soluciones digitales innovadoras enfocadas en el desarrollo social y crear comunidad. Nos dedicamos a ayudar empresas y organizaciones de todos los tamaños para alcanzar su máximo potencial tecnológico y sobre todo humano, en armonía con el medio ambiente.</p>
+                    <p class="lang-en">
+                    At Digital Services we are a team of professionals specialized in turning ideas into innovative digital solutions. With years of experience in the Mexican and international market, we help companies of all sizes reach their full technological potential.</p>
+                </div>
+                <img src="Copilot_20260330_034744.png" alt="comunidad" width="512px">
+                <!-- <div class="about-stats">
+                    <div class="stat-card">
+                        <i class="fas fa-users"></i>
+                        <h3>50+</h3>
+                        <p class="lang-es">Clientes</p>
+                        <p class="lang-en">Clients</p>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-project-diagram"></i>
+                        <h3>100+</h3>
+                        <p class="lang-es">Proyectos</p>
+                        <p class="lang-en">Projects</p>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-award"></i>
+                        <h3>10+</h3>
+                        <p class="lang-es">Años</p>
+                        <p class="lang-en">Years</p>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-globe"></i>
+                        <h3>5+</h3>
+                        <p class="lang-es">Países</p>
+                        <p class="lang-en">Countries</p>
+                    </div>
+                </div> 
+            </div>
+            <div class="team-grid">
+                <div class="team-member">
+                    <div><i class="fas fa-user"></i></div>
+                    <h4 class="lang-es">Director General</h4>
+                    <h4 class="lang-en">CEO</h4>
+                    <p class="lang-es">Liderazgo estratégico y visión empresarial</p>
+                    <p class="lang-en">Strategic leadership and business vision</p>
+                </div>
+                <div class="team-member">
+                    <div><i class="fas fa-user"></i></div>
+                    <h4 class="lang-es">Director Técnico</h4>
+                    <h4 class="lang-en">CTO</h4>
+                    <p class="lang-es">Arquitectura y desarrollo de software</p>
+                    <p class="lang-en">Software architecture and development</p>
+                </div>
+                <div class="team-member">
+                    <div><i class="fas fa-user"></i></div>
+                    <h4 class="lang-es">Director de Proyectos</h4>
+                    <h4 class="lang-en">Project Director</h4>
+                    <p class="lang-es">Gestión y metodología ágil</p>
+                    <p class="lang-en">Management and agile methodology</p>
+                </div>-->
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="services">
+        <div class="container">
+            <h2 class="section-title" style="padding: 100px;">
+                <span class="lang-es">Servicios</span>
+                <span class="lang-en">Services</span>
+            </h2>
+
+<div class="services-grid">
+            
+            <div class="service-card">
+  <div class="service-card-inner">
+    <div class="service-card-front">
+<div class="service-icon"><i class="fas fa-gear"></i></div>
+        <h3>
+                <span class="lang-es">Tecnología</span>
+                <span class="lang-en">Technology</span>
+            </h3>
+        <p>Soluciones informáticas personalizadas para tu empresa o proyecto.</p>
+    </div>
+    <div class="service-card-back">
+         <h3>
+                <span class="lang-es">Detalles</span>
+                <span class="lang-en">Details</span>
+            </h3><ul>
+                            <li class="lang-es">Alojamiento web</li>
+                            <li class="lang-en">Web Hosting</li>
+                            <li>ERP</li>
+                            <li class="lang-es">Software personalizado</li>
+                            <li class="lang-en">Machine learning with R</li>
+                            <li class="lang-es">Diseño web</li>
+                            <li class="lang-en">Web design</li>
+                        </ul>
+        <button class="btn" onclick="window.location.href='/servicios/'">
+                <span class="lang-es">Ver todo</span>
+                <span class="lang-en">See all</span></button>
+    </div>
+  </div>
+</div>
+
+<div class="service-card">
+  <div class="service-card-inner">
+    <div class="service-card-front">
+<div class="service-icon"><i class="fas fa-flask"></i></div>
+                    <h3>
+                <span class="lang-es">Ciencia</span>
+                <span class="lang-en">Science</span>
+            </h3>
+        <p>Acompañamos proyectos de ciencia colaborativa para generar datos de problemas socioambientales.</p>
+    </div>
+    <div class="service-card-back">
+        <h3>
+                <span class="lang-es">Detalles</span>
+                <span class="lang-en">Details</span>
+            </h3><ul>
+                            <li class="lang-es">Recolección de datos</li>
+                            <li class="lang-en">Data collection</li>
+                            <li class="lang-es">Análisis de datos</li>
+                            <li class="lang-en">Data analysis</li>
+                            <li class="lang-es">Visualización de datos</li>
+                            <li class="lang-en">Data visualization</li>
+                        </ul>
+        <button class="btn">
+                <span class="lang-es">Ver todo</span>
+                <span class="lang-en">See all</span></button>
+    </div>
+  </div>
+</div>
+
+<div class="service-card">
+  <div class="service-card-inner">
+    <div class="service-card-front">
+<div class="service-icon"><i class="fas fa-graduation-cap"></i></div>
+                    <h3>
+                <span class="lang-es">Educación</span>
+                <span class="lang-en">E-Learning</span>
+            </h3>
+        <p class="lang-es">Creación y personalización de plataformas Moodle para educación corporativa y académica con soporte continuo.</p>
+                    <p class="lang-en">Creation and customization of Moodle platforms for corporate and academic education with continuous support.</p>
+                </div>
+    <div class="service-card-back">
+        <h3>
+                <span class="lang-es">Detalles</span>
+                <span class="lang-en">Details</span>
+            </h3><ul>
+                            <li class="lang-es">Desarrollo Moodle</li>
+                            <li class="lang-en">Moodle development</li>
+                            <li class="lang-es">Cursos en línea</li>
+                            <li class="lang-en">Online courses</li>
+                            <li class="lang-es">Capacitación corporativa</li>
+                            <li class="lang-en">Corporate training</li>
+                            <li class="lang-es">Educación inclusiva</li>
+                            <li class="lang-en">Special Education</li>
+                        </ul>
+        <button class="btn">
+                <span class="lang-es">Ver todo</span>
+                <span class="lang-en">See all</span></button>
+    </div>
+  </div>
+</div>
+
+<div class="service-card">
+  <div class="service-card-inner">
+    <div class="service-card-front">
+<div class="service-icon"><i class="fas fa-seedling"></i></div>
+                    <h3>
+                <span class="lang-es">Ambiente</span>
+                <span class="lang-en">Environmment</span>
+            </h3>
+        <p class="lang-es">Estamos comprometidos con el cuidado del medio ambiente, por lo que ofrecemos capacitación en temas de agroecología urbana</p>
+                    <p class="lang-en">Creation and customization of Moodle platforms for corporate and academic education with continuous support.</p>
+                </div>
+    <div class="service-card-back">
+        <h3>
+                <span class="lang-es">Detalles</span>
+                <span class="lang-en">Details</span>
+            </h3><ul>
+                            <li class="lang-es">Huertos urbanos</li>
+                            <li class="lang-en">Moodle development</li>
+                            <li class="lang-es">Composta</li>
+                            <li class="lang-en">Online courses</li>
+                            <li class="lang-es">Reciclaje</li>
+                            <li class="lang-en">Corporate training</li>
+                            <li class="lang-es">Educación ambiental</li>
+                            <li class="lang-en">Special Education</li>
+                        </ul>
+        <button class="btn">
+                <span class="lang-es">Ver todo</span>
+                <span class="lang-en">See all</span></button>
+    </div>
+  </div>
+</div>
+
+<div class="service-card">
+  <div class="service-card-inner">
+    <div class="service-card-front">
+<div class="service-icon"><i class="fas fa-people-group"></i></div>
+                    <h3>Social
+            </h3>
+            <p class="lang-es">Recolección y análisis de encuestas y pruebas psicométricas.</p>
+                    <p class="lang-en">Fast, secure, and reliable hosting with 99.9% uptime. Perfect for businesses of all sizes.</p>
+                </div>
+    <div class="service-card-back">
+        <h3>
+                <span class="lang-es">Detalles</span>
+                <span class="lang-en">Details</span>
+            </h3><ul>
+                            <li class="lang-es">Encuestas</li>
+                            <li class="lang-en">Moodle development</li>
+                            <li class="lang-es">Psicometría</li>
+                            <li class="lang-en">Online courses</li>
+                            <li class="lang-es">Informática incluyente</li>
+                            <li class="lang-en">Corporate training</li>
+                            <li class="lang-es">Salud mental</li>
+                            <li class="lang-en">Special Education</li>
+                        </ul>
+        <button class="btn">
+                <span class="lang-es">Ver todo</span>
+                <span class="lang-en">See all</span></button>
+      </div>
+  </div>
+</div>
+
+<div class="service-card">
+  <div class="service-card-inner">
+    <div class="service-card-front">
+<div class="service-icon"><i class="fas fa-palette"></i></div>
+                    <h3>
+                        <span class="lang-es">Diseño</span>
+                <span class="lang-en">Graphic design</span>
+            </h3>
+            <p class="lang-es">Creatividad y comunicación visual</p>
+                    <p class="lang-en">Fast, secure, and reliable hosting with 99.9% uptime. Perfect for businesses of all sizes.</p>
+                </div>
+    <div class="service-card-back">
+        <h3>
+                <span class="lang-es">Detalles</span>
+                <span class="lang-en">Details</span>
+            </h3><ul>
+                            <li class="lang-es">Serigrafía</li>
+                            <li class="lang-en">Moodle development</li>
+                            <li class="lang-es">Encuadernación</li>
+                            <li class="lang-en">Online courses</li>
+                            <li class="lang-es">Grabado laser</li>
+                            <li class="lang-en">Corporate training</li>
+                            <li class="lang-es">Impresión 3D</li>
+                            <li class="lang-en">3D printing</li>
+                        </ul>
+        <button class="btn">
+                <span class="lang-es">Ver todo</span>
+                <span class="lang-en">See all</span></button>
+    </div>
+  </div>
+</div>
+      <!--           <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-server"></i></div>
+                    <h3 class="lang-es">Alojamiento Web</h3>
+                    <h3 class="lang-en">Web Hosting</h3>
+                    <p class="lang-es">Servicios de alojamiento rápido, seguro y confiable con uptime del 99.9%. Ideal para empresas de todos los tamaños.</p>
+                    <p class="lang-en">Fast, secure, and reliable hosting with 99.9% uptime. Perfect for businesses of all sizes.</p>
+                    <a href="#contact" class="btn btn-secondary">
+                        <span class="lang-es">Saber más</span>
+                        <span class="lang-en">Learn more</span>
+                    </a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-server"></i></div>
+                    <h3 class="lang-es">Psicometría</h3>
+                    <h3 class="lang-en">Web Hosting</h3>
+                    <p class="lang-es">Recolección y análisis de encuestas y pruebas psicométricas.</p>
+                    <p class="lang-en">Fast, secure, and reliable hosting with 99.9% uptime. Perfect for businesses of all sizes.</p>
+                    <a href="#contact" class="btn btn-secondary">
+                        <span class="lang-es">Saber más</span>
+                        <span class="lang-en">Learn more</span>
+                    </a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-graduation-cap"></i></div>
+                    <h3 class="lang-es">Desarrollo Moodle</h3>
+                    <h3 class="lang-en">Moodle Development</h3>
+                    <p class="lang-es">Creación y personalización de plataformas Moodle para educación corporativa y académica con soporte continuo.</p>
+                    <p class="lang-en">Creation and customization of Moodle platforms for corporate and academic education with continuous support.</p>
+                    <a href="#contact" class="btn btn-secondary">
+                        <span class="lang-es">Saber más</span>
+                        <span class="lang-en">Learn more</span>
+                    </a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-code"></i></div>
+                    <h3 class="lang-es">Software Personalizado</h3>
+                    <h3 class="lang-en">Custom Software</h3>
+                    <p class="lang-es">Desarrollo de aplicaciones a medida que se adaptan perfectamente a las necesidades específicas de tu empresa.</p>
+                    <p class="lang-en">Development of custom applications that perfectly adapt to the specific needs of your business.</p>
+                    <a href="#contact" class="btn btn-secondary">
+                        <span class="lang-es">Saber más</span>
+                        <span class="lang-en">Learn more</span>
+                    </a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-chart-line"></i></div>
+                    <h3 class="lang-es">ERP</h3>
+                    <h3 class="lang-en">ERP</h3>
+                    <p class="lang-es">Sistemas de gestión empresarial personalizados para optimizar tus procesos, inventarios y recursos.</p>
+                    <p class="lang-en">Custom enterprise resource planning systems to optimize your processes, inventory, and resources.</p>
+                    <a href="#contact" class="btn btn-secondary">
+                        <span class="lang-es">Saber más</span>
+                        <span class="lang-en">Learn more</span>
+                    </a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-server"></i></div>
+                    <h3 class="lang-es">Ciencia ciudadana y divulgación</h3>
+                    <h3 class="lang-en">Web Hosting</h3>
+                    <p class="lang-es">Acompañamos proyectos de ciencia colaborativa para generar datos de problemas socioambientales.</p>
+                    <p class="lang-en">Fast, secure, and reliable hosting with 99.9% uptime. Perfect for businesses of all sizes.</p>
+                    <a href="#contact" class="btn btn-secondary">
+                        <span class="lang-es">Saber más</span>
+                        <span class="lang-en">Learn more</span>
+                    </a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-server"></i></div>
+                    <h3 class="lang-es">Educación ambiental</h3>
+                    <h3 class="lang-en">Web Hosting</h3>
+                    <p class="lang-es">Servicios de alojamiento rápido, seguro y confiable con uptime del 99.9%. Ideal para empresas de todos los tamaños.</p>
+                    <p class="lang-en">Fast, secure, and reliable hosting with 99.9% uptime. Perfect for businesses of all sizes.</p>
+                    <a href="#contact" class="btn btn-secondary">
+                        <span class="lang-es">Saber más</span>
+                        <span class="lang-en">Learn more</span>
+                    </a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-server"></i></div>
+                    <h3 class="lang-es">Diseño Web</h3>
+                    <h3 class="lang-en">Web Hosting</h3>
+                    <p class="lang-es">Servicios de alojamiento rápido, seguro y confiable con uptime del 99.9%. Ideal para empresas de todos los tamaños.</p>
+                    <p class="lang-en">Fast, secure, and reliable hosting with 99.9% uptime. Perfect for businesses of all sizes.</p>
+                    <a href="#contact" class="btn btn-secondary">
+                        <span class="lang-es">Saber más</span>
+                        <span class="lang-en">Learn more</span>
+                    </a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-server"></i></div>
+                    <h3 class="lang-es">Serigrafía</h3>
+                    <h3 class="lang-en">Web Hosting</h3>
+                    <p class="lang-es">Servicios de alojamiento rápido, seguro y confiable con uptime del 99.9%. Ideal para empresas de todos los tamaños.</p>
+                    <p class="lang-en">Fast, secure, and reliable hosting with 99.9% uptime. Perfect for businesses of all sizes.</p>
+                    <a href="#contact" class="btn btn-secondary">
+                        <span class="lang-es">Saber más</span>
+                        <span class="lang-en">Learn more</span>
+                    </a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-server"></i></div>
+                    <h3 class="lang-es">Huertos urbanos</h3>
+                    <h3 class="lang-en">Web Hosting</h3>
+                    <p class="lang-es">Servicios de alojamiento rápido, seguro y confiable con uptime del 99.9%. Ideal para empresas de todos los tamaños.</p>
+                    <p class="lang-en">Fast, secure, and reliable hosting with 99.9% uptime. Perfect for businesses of all sizes.</p>
+                    <a href="#contact" class="btn btn-secondary">
+                        <span class="lang-es">Saber más</span>
+                        <span class="lang-en">Learn more</span>
+                    </a>
+                </div>
+ -->
+            </div>
+        </div>
+    </section>
+
+    <!-- <section class="section" id="portfolio" style="background: var(--primary);"> -->
+    <section class="about-section" id="portfolio">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="lang-es">Nuestro</span>
+                <span class="lang-en">Our</span> <span class="lang-es">Portafolio</span>
+                <span class="lang-en">Portfolio</span>
+            </h2>
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <div class="portfolio-image"><i class="fas fa-building"></i></div>
+                    <div class="portfolio-content">
+                        <h3 class="lang-es">ERP Corporativo</h3>
+                        <h3 class="lang-en">Corporate ERP</h3>
+                        <p class="lang-es">Sistema integral de gestión para empresa manufacturera.</p>
+                        <p class="lang-en">Integrated management system for manufacturing company.</p>
+                        <a href="#contact" class="btn btn-secondary">
+                            <span class="lang-es">Ver caso</span>
+                            <span class="lang-en">View case</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <div class="portfolio-image"><i class="fas fa-school"></i></div>
+                    <div class="portfolio-content">
+                        <h3 class="lang-es">Plataforma Educativa</h3>
+                        <h3 class="lang-en">Educational Platform</h3>
+                        <p class="lang-es">Moodle personalizado con +5000 usuarios activos.</p>
+                        <p class="lang-en">Custom Moodle with +5000 active users.</p>
+                        <a href="#contact" class="btn btn-secondary">
+                            <span class="lang-es">Ver caso</span>
+                            <span class="lang-en">View case</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <div class="portfolio-image"><i class="fas fa-shopping-cart"></i></div>
+                    <div class="portfolio-content">
+                        <h3 class="lang-es">E-commerce</h3>
+                        <h3 class="lang-en">E-commerce</h3>
+                        <p class="lang-es">Tienda online con integración de pagos y inventario.</p>
+                        <p class="lang-en">Online store with payment and inventory integration.</p>
+                        <a href="#contact" class="btn btn-secondary">
+                            <span class="lang-es">Ver caso</span>
+                            <span class="lang-en">View case</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <div class="portfolio-image"><i class="fas fa-hospital"></i></div>
+                    <div class="portfolio-content">
+                        <h3 class="lang-es">Sistema Hospitalario</h3>
+                        <h3 class="lang-en">Hospital System</h3>
+                        <p class="lang-es">Gestión de pacientes, citas y recursos médicos.</p>
+                        <p class="lang-en">Patient, appointment, and medical resources management.</p>
+                        <a href="#contact" class="btn btn-secondary">
+                            <span class="lang-es">Ver caso</span>
+                            <span class="lang-en">View case</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <div class="portfolio-image"><i class="fas fa-university"></i></div>
+                    <div class="portfolio-content">
+                        <h3 class="lang-es">Sistema Financiero</h3>
+                        <h3 class="lang-en">Financial System</h3>
+                        <p class="lang-es">Gestión contable y reportes financieros en tiempo real.</p>
+                        <p class="lang-en">Accounting management and real-time financial reports.</p>
+                        <a href="#contact" class="btn btn-secondary">
+                            <span class="lang-es">Ver caso</span>
+                            <span class="lang-en">View case</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <div class="portfolio-image"><i class="fas fa-rocket"></i></div>
+                    <div class="portfolio-content">
+                        <h3 class="lang-es">App Móvil Empresarial</h3>
+                        <h3 class="lang-en">Business Mobile App</h3>
+                        <p class="lang-es">Aplicación híbrida para gestión de equipos remotos.</p>
+                        <p class="lang-en">Hybrid app for remote team management.</p>
+                        <a href="#contact" class="btn btn-secondary">
+                            <span class="lang-es">Ver caso</span>
+                            <span class="lang-en">View case</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="blog">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="lang-es">Nuestro</span>
+                <span class="lang-en">Our</span> <span class="lang-es">Blog</span>
+                <span class="lang-en">Blog</span>
+            </h2>
+            <div class="blog-grid">
+                <div class="blog-card">
+                    <span class="blog-date lang-es">15 Mar 2026</span>
+                    <span class="blog-date lang-en">Mar 15, 2026</span>
+                    <h3 class="lang-es">Tendencias en Desarrollo Web 2026</h3>
+                    <h3 class="lang-en">Web Development Trends 2026</h3>
+                    <p class="lang-es">Descubre las últimas tecnologías y metodologías que están revolucionando el desarrollo web.</p>
+                    <p class="lang-en">Discover the latest technologies and methodologies revolutionizing web development.</p>
+                    <a href="#" class="lang-es">Leer artículo <i class="fas fa-arrow-right"></i></a>
+                    <a href="#" class="lang-en">Read article <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="blog-card">
+                    <span class="blog-date lang-es">10 Mar 2026</span>
+                    <span class="blog-date lang-en">Mar 10, 2026</span>
+                    <h3 class="lang-es">Importancia de los ERP en la Transformación Digital</h3>
+                    <h3 class="lang-en">The Importance of ERP in Digital Transformation</h3>
+                    <p class="lang-es">Cómo los sistemas ERP están ayudando a las empresas a optimizar sus procesos.</p>
+                    <p class="lang-en">How ERP systems are helping companies optimize their processes.</p>
+                    <a href="#" class="lang-es">Leer artículo <i class="fas fa-arrow-right"></i></a>
+                    <a href="#" class="lang-en">Read article <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="blog-card">
+                    <span class="blog-date lang-es">05 Mar 2026</span>
+                    <span class="blog-date lang-en">Mar 5, 2026</span>
+                    <h3 class="lang-es">Aprender R para Análisis de Datos</h3>
+                    <h3 class="lang-en">Learning R for Data Analysis</h3>
+                    <p class="lang-es">Guía completa para comenzar con R y convertirte en analista de datos.</p>
+                    <p class="lang-en">Complete guide to start with R and become a data analyst.</p>
+                    <a href="#" class="lang-es">Leer artículo <i class="fas fa-arrow-right"></i></a>
+                    <a href="#" class="lang-en">Read article <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="blog-card">
+                    <span class="blog-date lang-es">01 Mar 2026</span>
+                    <span class="blog-date lang-en">Mar 1, 2026</span>
+                    <h3 class="lang-es">Inteligencia Artificial: El Futuro Ya Está Aquí</h3>
+                    <h3 class="lang-en">Artificial Intelligence: The Future Is Here</h3>
+                    <p class="lang-es">Aplicaciones prácticas de IA en empresas mexicanas.</p>
+                    <p class="lang-en">Practical AI applications in Mexican companies.</p>
+                    <a href="#" class="lang-es">Leer artículo <i class="fas fa-arrow-right"></i></a>
+                    <a href="#" class="lang-en">Read article <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="blog-card">
+                    <span class="blog-date lang-es">20 Feb 2026</span>
+                    <span class="blog-date lang-en">Feb 20, 2026</span>
+                    <h3 class="lang-es">Seguridad en la Nube: Mejores Prácticas</h3>
+                    <h3 class="lang-en">Cloud Security: Best Practices</h3>
+                    <p class="lang-es">Protege tus datos con las mejores prácticas de seguridad en la nube.</p>
+                    <p class="lang-en">Protect your data with cloud security best practices.</p>
+                    <a href="#" class="lang-es">Leer artículo <i class="fas fa-arrow-right"></i></a>
+                    <a href="#" class="lang-en">Read article <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="blog-card">
+                    <span class="blog-date lang-es">15 Feb 2026</span>
+                    <span class="blog-date lang-en">Feb 15, 2026</span>
+                    <h3 class="lang-es">Software Personalizado vs Soluciones Estándar</h3>
+                    <h3 class="lang-en">Custom Software vs Standard Solutions</h3>
+                    <p class="lang-es">Cuándo elegir una solución personalizada y cuándo una estándar.</p>
+                    <p class="lang-en">When to choose a custom solution and when to choose a standard one.</p>
+                    <a href="#" class="lang-es">Leer artículo <i class="fas fa-arrow-right"></i></a>
+                    <a href="#" class="lang-en">Read article <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section courses" id="courses">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="lang-es">Nuestros</span>
+                <span class="lang-en">Our</span> <span class="lang-es">Cursos</span>
+                <span class="lang-en">Courses</span>
+            </h2>
+            <div class="courses-grid">
+                <div class="course-card">
+                    <div class="course-header">
+                        <h3 class="lang-es">Programación en R</h3>
+                        <h3 class="lang-en">R Programming</h3>
+                    </div>
+                    <div class="course-body">
+                        <p class="lang-es">Domina el lenguaje R para análisis de datos, estadística y visualización.</p>
+                        <p class="lang-en">Master the R language for data analysis, statistics, and visualization.</p>
+                        <ul>
+                            <li class="lang-es">Análisis de datos estadísticos</li>
+                            <li class="lang-en">Statistical data analysis</li>
+                            <li class="lang-es">Visualización con ggplot2</li>
+                            <li class="lang-en">Visualization with ggplot2</li>
+                            <li class="lang-es">Machine learning con R</li>
+                            <li class="lang-en">Machine learning with R</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="course-card">
+                    <div class="course-header">
+                        <h3 class="lang-es">Inteligencia Artificial</h3>
+                        <h3 class="lang-en">Artificial Intelligence</h3>
+                    </div>
+                    <div class="course-body">
+                        <p class="lang-es">Aprende los fundamentos de IA, machine learning y deep learning.</p>
+                        <p class="lang-en">Learn the fundamentals of AI, machine learning, and deep learning.</p>
+                        <ul>
+                            <li class="lang-es">Fundamentos de IA y ML</li>
+                            <li class="lang-en">AI and ML fundamentals</li>
+                            <li class="lang-es">Redes neuronales y deep learning</li>
+                            <li class="lang-en">Neural networks and deep learning</li>
+                            <li class="lang-es">Proyectos prácticos con Python</li>
+                            <li class="lang-en">Practical projects with Python</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="course-card">
+                    <div class="course-header">
+                        <h3 class="lang-es">Tecnología para todxs</h3>
+                        <h3 class="lang-en">Technology for everyone</h3>
+                    </div>
+                    <div class="course-body">
+                        <p class="lang-es">Estamos convencidos en cerrar la brecha digital para todas las personas. Te enseñamos desde lo más básico hasta lo último en tecnología de una manera verdaderamente accesible e incluyente. ¡Nos adecuamos a tus necesidades, cursos especiales para personas con y sin discapacidad!
+                            ¡Haz tu negocio accesible para todas las personas!
+                        </p>
+                        <p class="lang-en">We believe in technology for humans, we strive to close the digital gap among people. We will help you to learn everything you need for the new technological landscape. Reach out, we adapt ourselves to your needs. Check out our special courses for people with and without disabilities!</p>
+                        <ul>
+                            <li class="lang-es">Fundamentos de computación</li>
+                            <li class="lang-en">Technology fundamentals</li>
+                            <li class="lang-es">Ofimática e internet, varios niveles</li>
+                            <li class="lang-en">Office  and internet</li>
+                            <li class="lang-es">IA práctica para la vida cotidiana y los negocios</li>
+                            <li class="lang-en">Practical AI for everyday and business</li>
+                            <li class="lang-es">Tecnología y accesibilidad</li>
+                            <li class="lang-en">Accesibility technology</li>                            
+                        </ul>
+                    </div>
+                </div>
+                <div class="course-card">
+                    <div class="course-header">
+                        <h3 class="lang-es">Informática para humanidades</h3>
+                        <h3 class="lang-en">Information Science for humanities</h3>
+                    </div>
+                    <div class="course-body">
+                        <p class="lang-es">No importa tu área de conocimiento, la tecnología es para todas las personas. Hoy más que nunca es necesario abrir el diálogo entre la tecnología y las humanidades para construir un futuro más justo, equitativo e incluyente. ¡Te invitamos a nuestras charlas de discusión donde buscamos derribar las barreras que nos dividen y nuestra responsabilidad para humanizar la tecnología!
+                        </p>
+                        <p class="lang-en">We believe in technology for humans, we strive to close the digital gap among people. We will help you to learn everything you need for the new technological landscape. Reach out, we adapt ourselves to your needs. Check out our special courses for people with and without disabilities!</p>
+                        <ul>
+                            <li class="lang-es">Ética e IA/li>
+                            <li class="lang-en">Ethics and AI</li>
+                            <li class="lang-es">Software libre, conocimiento libre</li>
+                            <li class="lang-en">Free software, free knowledge</li>
+                            <li class="lang-es">Análisis de textos</li>
+                            <li class="lang-en">Text analysis</li>
+                            <li class="lang-es">Arte y nuevas narrativas</li>
+                            <li class="lang-en">Art and new narratives</li>
+                            <li class="lang-es">... y más. Acércate y construyamos juntos este espacio de realidad aumentada</li>
+                            <li class="lang-en">And more. Let's build together this hybrid space!</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section contact" id="contact">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="lang-es">Contáctanos</span>
+                <span class="lang-en">Contact Us</span>
+            </h2>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <h3 class="lang-es">Email</h3>
+                    <p>contacto@incsed.com</p>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <h3 class="lang-es">Teléfono</h3>
+                    <p>+1 234 567 890</p>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h3 class="lang-es">Ubicación</h3>
+                    <p class="lang-es">Ciudad de México, México</p>
+                    <p class="lang-en">Mexico City, Mexico</p>
+                </div>
+                <li class="contact-item">
+                            <div class="social-icons" style="margin:0;">
+                    <a href="https://mastodon.social/@incsed" target="_blank" rel="noopener noreferrer" aria-label="Mastodon"><i class="fab fa-mastodon"></i></a>
+                                <a href="https://facebook.com/" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                                <a href="https://instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                                <a href="https://linkedin.com/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="https://github.com/" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                            </div>
+                        </li>
+            </div>
+            <form class="contact-form" onsubmit="event.preventDefault(); alert('Gracias por contactarnos. Nos pondremos en contacto contigo pronto.');">
+                <div class="form-group">
+                    <label class="lang-es">Nombre</label>
+                    <label class="lang-en">Name</label>
+                    <input type="text" required>
+                </div>
+                <div class="form-group">
+                    <label class="lang-es">Email</label>
+                    <label class="lang-en">Email</label>
+                    <input type="email" required>
+                </div>
+                <div class="form-group">
+                    <label class="lang-es">Servicio de Interés</label>
+                    <label class="lang-en">Service of Interest</label>
+                    <select>
+                        <option class="lang-es" value="hosting">Alojamiento Web</option>
+                        <option class="lang-en" value="hosting">Web Hosting</option>
+                        <option class="lang-es" value="moodle">Desarrollo Moodle</option>
+                        <option class="lang-en" value="moodle">Moodle Development</option>
+                        <option class="lang-es" value="software">Software Personalizado</option>
+                        <option class="lang-en" value="software">Custom Software</option>
+                        <option class="lang-es" value="erp">ERP</option>
+                        <option class="lang-en" value="erp">ERP</option>
+                        <option class="lang-es" value="curso">Curso</option>
+                        <option class="lang-en" value="course">Course</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="lang-es">Mensaje</label>
+                    <label class="lang-en">Message</label>
+                    <textarea required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">
+                    <span class="lang-es">Enviar Mensaje</span>
+                    <span class="lang-en">Send Message</span>
+                </button>
+            </form>
+        </div>
+    </section>
+</div>
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h2>Incertæ Sedis</h2>
+                    <p class="lang-es">Transformamos ideas en soluciones digitales innovadoras para tu empresa.</p>
+                    <p class="lang-en">We transform ideas into innovative digital solutions for your business.</p>
+                </div>
+                <div class="footer-col">
+                    <h2 class="lang-es">Enlaces</h2>
+                    <h2 class="lang-en">Links</h2>
+                    <ul>
+                        <li><a href="#home"><span class="lang-es">Inicio</span><span class="lang-en">Home</span></a></li>
+                        <li><a href="#about"><span class="lang-es">Nosotros</span><span class="lang-en">About Us</span></a></li>
+                        <li><a href="#services"><span class="lang-es">Servicios</span><span class="lang-en">Services</span></a></li>
+                        <li><a href="#portfolio"><span class="lang-es">Portafolio</span><span class="lang-en">Portfolio</span></a></li>
+                        <li><a href="#blog"><span class="lang-es">Blog</span><span class="lang-en">Blog</span></a></li>
+                        <li><a href="#courses"><span class="lang-es">Cursos</span><span class="lang-en">Courses</span></a></li>
+                        <li><a href="#contact"><span class="lang-es">Contacto</span><span class="lang-en">Contact</span></a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h2 class="lang-es">Servicios</h2>
+                    <h2 class="lang-en">Services</h2>
+                    <ul>
+                        <li><a href="#services"><span class="lang-es">Alojamiento Web</span><span class="lang-en">Web Hosting</span></a></li>
+                        <li><a href="#services"><span class="lang-es">Desarrollo Moodle</span><span class="lang-en">Moodle Development</span></a></li>
+                        <li><a href="#services"><span class="lang-es">Software Personalizado</span><span class="lang-en">Custom Software</span></a></li>
+                        <li><a href="#services"><span class="lang-es">ERP</span><span class="lang-en">ERP</span></a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h2 class="lang-es">Legal</h2>
+                    <h2 class="lang-en">Legal</h2>
+                    <ul>
+                        <li><a href="#" onclick="showPrivacyPolicy(); return false;"><span class="lang-es">Aviso de Privacidad</span><span class="lang-en">Privacy Notice</span></a></li>
+                        <li><a href="#" onclick="showTerms(); return false;"><span class="lang-es">Términos y Condiciones</span><span class="lang-en">Terms & Conditions</span></a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h2 class="lang-es">Contacto</h2>
+                    <h2 class="lang-en">Contact</h2>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> <a href="mailto:contacto@incsed.com">contacto@incsed.com</a></li>
+                        <li><i class="fas fa-phone"></i> <a href="tel:+525555555555">+52 55 5555 5555</a></li>
+                        <li><i class="fas fa-map-marker-alt"></i> <a href="https://www.google.com/maps" target="_blank" rel="noopener noreferrer">Ciudad de México, MX</a></li>
+                        <!-- <li>
+                            <div class="social-icons" style="margin:0;">
+                    <a href="https://mastodon.social/@incsed" target="_blank" rel="noopener noreferrer" aria-label="Mastodon"><i class="fab fa-mastodon"></i></a>
+                                <a href="https://facebook.com/" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                                <a href="https://instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                                <a href="https://linkedin.com/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="https://github.com/" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                            </div>
+                        </li> -->
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="social-icons">
+                    <a href="https://mastodon.social/@incsed" target="_blank" rel="noopener noreferrer" aria-label="Mastodon"><i class="fab fa-mastodon"></i></a>
+                    <a href="https://facebook.com/" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://instagram.com/incsed.mx" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+<!--                     <a href="https://linkedin.com/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://github.com/" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a>
+ -->                </div>
+                <p class="lang-es">© 2026 Incertæ Sedis. Todos los derechos reservados.</p>
+                <p class="lang-en">© 2026 Incertæ Sedis. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+<div class="cookie-banner" id="cookieBanner">
+        <div class="container">
+            <p class="lang-es">Usamos cookies para mejorar tu experiencia. Al continuar, aceptas nuestro <a href="#" onclick="showPrivacyPolicy(); return false;" style="color: var(--accent);">aviso de privacidad</a>.</p>
+            <p class="lang-en">We use cookies to improve your experience. By continuing, you accept our <a href="#" onclick="showPrivacyPolicy(); return false;" style="color: var(--accent);">privacy notice</a>.</p>
+            <button class="cookie-btn" onclick="acceptCookies()"><span class="lang-es">Aceptar</span><span class="lang-en">Accept</span></button>
+        </div>
+    </div> 
+
+    <div class="modal" id="privacyModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closePrivacyPolicy()">&times;</button>
+            <h2><span class="lang-es">Aviso de Privacidad</span><span class="lang-en">Privacy Notice</span></h2>
+            
+            <h3 class="lang-es">Información General</h3>
+            <h3 class="lang-en">General Information</h3>
+            <p class="lang-es">En Servicios Digitales, protegemos tu privacidad conforme a la Ley Federal de Protección de Datos Personales (LFPDPPP) y el GDPR.</p>
+            <p class="lang-en">At Digital Services, we protect your privacy in accordance with the Federal Law on Protection of Personal Data (LFPDPPP) and GDPR.</p>
+
+            <h3 class="lang-es">Responsable del Tratamiento</h3>
+            <h3 class="lang-en">Data Controller</h3>
+            <p class="lang-es">Incertae Sedis, Ciudad de México, México.</p>
+            <p class="lang-en">Incertae Sedis, Mexico City, Mexico.</p>
+
+            <h3 class="lang-es">Datos que Recopilamos</h3>
+            <h3 class="lang-en">Data We Collect</h3>
+            <ul class="lang-es">
+                <li>Nombre y apellidos</li>
+                <li>Correo electrónico</li>
+                <li>Teléfono</li>
+                <li>Información del formulario</li>
+                <li>Cookies y datos de navegación</li>
+            </ul>
+            <ul class="lang-en">
+                <li>Name and surname</li>
+                <li>Email address</li>
+                <li>Phone</li>
+                <li>Form information</li>
+                <li>Cookies and browsing data</li>
+            </ul>
+
+            <h3 class="lang-es">Finalidades del Tratamiento</h3>
+            <h3 class="lang-en">Purpose of Processing</h3>
+            <ul class="lang-es">
+                <li>Responder consultas y solicitudes</li>
+                <li>Enviar información sobre servicios</li>
+                <li>Mejorar nuestros servicios</li>
+                <li>Cumplir obligaciones legales</li>
+            </ul>
+            <ul class="lang-en">
+                <li>Responding to queries and requests</li>
+                <li>Sending information about services</li>
+                <li>Improving our services</li>
+                <li>Complying with legal obligations</li>
+            </ul>
+
+            <h3 class="lang-es">Derechos ARCO</h3>
+            <h3 class="lang-en">ARCO Rights</h3>
+            <p class="lang-es">Tienes derecho a acceder, rectificar, cancelar y oponerte al tratamiento. Ejercicio: privacidad@incsed.com</p>
+            <p class="lang-en">You have the right to access, rectify, cancel, and object. Exercise: privacidad@incsed.com</p>
+
+            <h3 class="lang-es">Contacto</h3>
+            <h3 class="lang-en">Contact</h3>
+            <p class="lang-es">Email: privacidad@incsed.com | Tel: +1 234 567 890</p>
+            <p class="lang-en">Email: privacidad@incsed.com | Phone: +1 234 567 890</p>
+        </div>
+    </div>
+
+    <div class="modal" id="termsModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeTerms()">&times;</button>
+            <h2><span class="lang-es">Términos y Condiciones</span><span class="lang-en">Terms and Conditions</span></h2>
+
+            <h3 class="lang-es">Aceptación de Términos</h3>
+            <h3 class="lang-en">Acceptance of Terms</h3>
+            <p class="lang-es">Al acceder y utilizar este sitio web, aceptas estos términos y condiciones en su totalidad.</p>
+            <p class="lang-en">By accessing and using this website, you accept these terms and conditions in full.</p>
+
+            <h3 class="lang-es">Uso del Sitio</h3>
+            <h3 class="lang-en">Use of Website</h3>
+            <ul class="lang-es">
+                <li>El contenido es solo para fines informativos</li>
+                <li>No puedes copiar, reproducir o distribuir contenido sin autorización</li>
+                <li>Debes usar el sitio de manera lawful</li>
+            </ul>
+            <ul class="lang-en">
+                <li>Content is for informational purposes only</li>
+                <li>You cannot copy, reproduce, or distribute content without authorization</li>
+                <li>You must use the site in a lawful manner</li>
+            </ul>
+
+            <h3 class="lang-es">Servicios</h3>
+            <h3 class="lang-en">Services</h3>
+            <p class="lang-es">Los servicios descritos en este sitio están sujetos a disponibilidad. Nos reservamos el derecho de modificar o discontinuar servicios.</p>
+            <p class="lang-en">Services described on this site are subject to availability. We reserve the right to modify or discontinue services.</p>
+
+            <h3 class="lang-es">Propiedad Intelectual</h3>
+            <h3 class="lang-en">Intellectual Property</h3>
+            <p class="lang-es">Todos los derechos de propiedad intelectual del contenido son de Servicios Digitales o sus licenciantes.</p>
+            <p class="lang-en">All intellectual property rights in the content belong to Digital Services or its licensors.</p>
+
+            <h3 class="lang-es">Limitación de Responsabilidad</h3>
+            <h3 class="lang-en">Limitation of Liability</h3>
+            <p class="lang-es">No seremos responsables por daños directos, indirectos, incidentales o consequenciales derivados del uso del sitio.</p>
+            <p class="lang-en">We will not be liable for any direct, indirect, incidental, or consequential damages arising from the use of the site.</p>
+
+            <h3 class="lang-es">Modificaciones</h3>
+            <h3 class="lang-en">Modifications</h3>
+            <p class="lang-es">Podemos modificar estos términos en cualquier momento. Las modificaciones entran en vigor al publicarse.</p>
+            <p class="lang-en">We may modify these terms at any time. Modifications take effect when published.</p>
+
+            <h3 class="lang-es">Ley Aplicable</h3>
+            <h3 class="lang-en">Applicable Law</h3>
+            <p class="lang-es">Estos términos se rigen por las leyes de México.</p>
+            <p class="lang-en">These terms are governed by the laws of Mexico.</p>
+        </div>
+    </div>
+
+    <script>
+        let lang = 'es';
+        let lastScrollTop = 0;
+
+        /* Theme handling: apply, toggle and persist preference */
+        function applyTheme(theme) {
+            if (theme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            } else {
+                document.documentElement.removeAttribute('data-theme');
+            }
+            const icon = document.getElementById('themeIcon');
+            if (icon) icon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+            localStorage.setItem('theme', theme);
+        }
+
+        function toggleTheme() {
+            const current = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+            const next = current === 'dark' ? 'light' : 'dark';
+            applyTheme(next);
+        }
+
+        function getStoredOrSystemTheme() {
+            const stored = localStorage.getItem('theme');
+            if (stored === 'dark' || stored === 'light') return stored;
+            return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+
+        function applyStoredTheme() {
+            const theme = getStoredOrSystemTheme();
+            applyTheme(theme);
+        }
+
+        function setLanguage(language) {
+            lang = language;
+            document.documentElement.lang = language;
+            document.getElementById('btn-es').className = language === 'es' ? 'active' : '';
+            document.getElementById('btn-en').className = language === 'en' ? 'active' : '';
+            updateMenuLinks();
+        }
+
+        function updateMenuLinks() {
+            const links = document.querySelectorAll('.nav-links a');
+            links.forEach(link => {
+                if (lang === 'es') {
+                    if (link.getAttribute('href') === '#home') link.textContent = 'Inicio';
+                    if (link.getAttribute('href') === '#about') link.textContent = 'Nosotros';
+                    if (link.getAttribute('href') === '#services') link.textContent = 'Servicios';
+                    if (link.getAttribute('href') === '#portfolio') link.textContent = 'Portafolio';
+                    if (link.getAttribute('href') === '#blog') link.textContent = 'Blog';
+                    if (link.getAttribute('href') === '#courses') link.textContent = 'Cursos';
+                    if (link.getAttribute('href') === '#contact') link.textContent = 'Contacto';
+                } else {
+                    if (link.getAttribute('href') === '#home') link.textContent = 'Home';
+                    if (link.getAttribute('href') === '#about') link.textContent = 'About Us';
+                    if (link.getAttribute('href') === '#services') link.textContent = 'Services';
+                    if (link.getAttribute('href') === '#portfolio') link.textContent = 'Portfolio';
+                    if (link.getAttribute('href') === '#blog') link.textContent = 'Blog';
+                    if (link.getAttribute('href') === '#courses') link.textContent = 'Courses';
+                    if (link.getAttribute('href') === '#contact') link.textContent = 'Contact';
+                }
+            });
+        }
+
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            const hamburger = document.querySelector('.hamburger');
+            if (!navLinks) return;
+            navLinks.classList.toggle('active');
+            // toggle icon between bars and times for visual feedback
+            if (hamburger) {
+                const icon = hamburger.querySelector('i');
+                if (icon) {
+                    if (icon.classList.contains('fa-bars')) {
+                        icon.classList.remove('fa-bars');
+                        icon.classList.add('fa-times');
+                    } else {
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    }
+                }
+            }
+        }
+
+        // Close mobile menu when a nav link is clicked (common UX expectation)
+        (function attachNavLinkHandlers(){
+            const navLinks = document.querySelectorAll('.nav-links a');
+            const navContainer = document.querySelector('.nav-links');
+            if (!navContainer) return;
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (navContainer.classList.contains('active')) {
+                        navContainer.classList.remove('active');
+                        const hamburgerIcon = document.querySelector('.hamburger i');
+                        if (hamburgerIcon) {
+                            hamburgerIcon.classList.remove('fa-times');
+                            hamburgerIcon.classList.add('fa-bars');
+                        }
+                    }
+                });
+            });
+        })();
+
+        // Ensure menu resets if viewport resized beyond mobile breakpoint
+        window.addEventListener('resize', () => {
+            const navContainer = document.querySelector('.nav-links');
+            if (!navContainer) return;
+            if (window.innerWidth > 768 && navContainer.classList.contains('active')) {
+                navContainer.classList.remove('active');
+                const hamburgerIcon = document.querySelector('.hamburger i');
+                if (hamburgerIcon) {
+                    hamburgerIcon.classList.remove('fa-times');
+                    hamburgerIcon.classList.add('fa-bars');
+                }
+            }
+        });
+
+        function switchLang(currentLang) {
+            setLanguage(currentLang === 'es' ? 'en' : 'es');
+            return false;
+        }
+
+        function acceptCookies() {
+            document.getElementById('cookieBanner').style.display = 'none';
+            localStorage.setItem('cookiesAccepted', 'true');
+        }
+
+        function showPrivacyPolicy() {
+            document.getElementById('privacyModal').style.display = 'block';
+        }
+
+        function closePrivacyPolicy() {
+            document.getElementById('privacyModal').style.display = 'none';
+        }
+
+        function showTerms() {
+            document.getElementById('termsModal').style.display = 'block';
+        }
+
+        function closeTerms() {
+            document.getElementById('termsModal').style.display = 'none';
+        }
+
+        function checkCookies() {
+            if (!localStorage.getItem('cookiesAccepted')) {
+                document.getElementById('cookieBanner').style.display = 'block';
+            }
+        }
+
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = 'none';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            updateMenuLinks();
+            checkCookies();
+            applyStoredTheme();
+            // Asegurar color del título About al cargar
+    const aboutTitle = document.querySelector('.about-section .section-title');
+    if(aboutTitle) {
+        aboutTitle.style.setProperty('color', 'var(--white)', 'important');
+    }
+
+        });
+/*
+        window.addEventListener('scroll', function() {
+    const header = document.getElementById('mainHeader');
+    if (window.scrollY > 100) {
+        header.classList.add('scrolled');
+    } else {
+        header.classList.remove('scrolled');
+    }
+});
+
+        window.onscroll = function() {
+    const nav = document.querySelector('header');
+    // Si el usuario baja más de 50px, añade la clase 'scrolled'
+    if (window.scrollY > 50) {
+        nav.classList.add('scrolled');
+    } else {
+        nav.classList.remove('scrolled');
+    }
+};
+*/
+window.addEventListener('scroll', function() {
+    const scrollPos = window.scrollY;
+    const header = document.querySelector('header');
+    const topHeader = document.getElementById('top-header');
+    const heroBg = document.querySelector('.hero-parallax-bg');
+// let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+    // 1. Shrink/Expand Logic
+    //if (scrollTop > 50) {
+      if (scrollPos > 80) {
+        header.classList.add("scrolled");
+        // Optional: add class to body to trigger top-header if CSS selector needs it
+        document.body.classList.add('scrolled-past'); 
+    } else {
+        header.classList.remove('scrolled');
+        document.body.classList.remove('scrolled-past');
+    }
+    /*
+    } else {
+        header.classList.remove("scrolled");
+    }
+
+    // 2. Show/Hide based on direction
+    if (scrollTop > lastScrollTop && scrollTop > 200) {
+        // Scrolling Down - Hide Header
+        header.classList.remove("header-down");
+        header.classList.add("header-up");
+    } else {
+        // Scrolling Up - Show Header
+        header.classList.remove("header-up");
+        header.classList.add("header-down");
+    }
+    
+    lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; 
+*/
+
+    // 2. Manejo dinámico del Blur (se aclara al bajar)
+    // El blur baja de 8px a 0px en los primeros 400px de scroll
+    let blurValue = Math.max(0, 8 - (scrollPos / 50));
+    if (heroBg) {
+        heroBg.style.filter = `blur(${blurValue}px)`;
+    }
+}//, false
+);
+
+window.onload = function() {
+    const widget = document.getElementById('wa-widget');
+    const bubble = document.getElementById('wa-bubble');
+
+    // Show button after 1s
+    setTimeout(() => {
+      widget.style.visibility = 'visible';
+    }, 1000);
+
+    // Pop bubble after 2.5s
+    setTimeout(() => {
+      bubble.classList.add('show');
+    }, 2500);
+
+    // Pop bubble after 5s
+    setTimeout(() => {
+      bubble.classList.remove('show');
+    }, 5000);
+
+    const images=[
+        '/assets/images/hero/Gemini_Generated_Image_ok2nt0ok2nt0ok2n.png',
+        '/assets/images/hero/Gemini_Generated_Image_go991wgo991wgo99.png',
+        '/assets/images/hero/Gemini_Generated_Image_dzdm1adzdm1adzdm.png'
+      ];
+
+        // Select a random index from the array
+      const randomIndex = Math.floor(Math.random() * images.length);
+      const selectedImage = images[randomIndex];
+
+      // Apply the image to the hero element
+  //document.getElementById('home').style.backgroundImage = `url('${selectedImage}')`;
+      const heroBg = document.querySelector('.hero-parallax-bg');
+        if (heroBg) {
+            heroBg.style.backgroundImage = `url('${selectedImage}')`;
+        }
+  };
+
+  /*
+  window.addEventListener('load', function() {
+    const preloader = document.getElementById('preloader');
+    
+    // Pequeño retraso para asegurar que el renderizado finalizó
+    setTimeout(() => {
+        preloader.classList.add('preloader-hidden');
+    }, 300); 
+});*/
+
+window.addEventListener('load', function() {
+    const preloader = document.getElementById('preloader');
+    
+    // Verificación de seguridad: si Font Awesome falló, 
+    // el preloader se quita igual para no bloquear al usuario.
+    setTimeout(() => {
+        preloader.classList.add('fade-out');
+        
+        // Opcional: eliminarlo del DOM después de la transición
+        setTimeout(() => {
+            preloader.style.display = 'none';
+        }, 500);
+    }, 200); // 200ms de cortesía para el renderizado final
+});
+
+    function showBubble() {
+            const bubble = document.getElementById('wa-bubble');
+            if (bubble) bubble.classList.add('show');
+    }
+
+    function hideBubble() {
+        const bubble = document.getElementById('wa-bubble');
+        if (bubble) bubble.classList.remove('show');
+    }
+
+document.addEventListener('DOMContentLoaded', () => {
+    const carousel = document.getElementById('pricingCarousel');
+    const prevBtn = document.querySelector('.prev-btn');
+    const nextBtn = document.querySelector('.next-btn');
+    const dots = document.querySelectorAll('.dot');
+    const cards = document.querySelectorAll('.price-card');
+
+    let currentIndex = 1; // Default starting index ("Profesional")
+
+    function scrollToCard(index) {
+        if (index < 0 || index >= cards.length) return;
+        currentIndex = index;
+
+        const card = cards[index];
+        
+        // Delay to ensure DOM is fully painted
+        setTimeout(() => {
+            const carouselWidth = carousel.clientWidth;
+            const carouselCenter = carouselWidth / 2;
+            const cardRect = card.getBoundingClientRect();
+            const carouselRect = carousel.getBoundingClientRect();
+            
+            // Card position relative to viewport
+            const cardCenterInViewport = cardRect.left - carouselRect.left + (cardRect.width / 2);
+            
+            // How much to scroll to center this card
+            let targetScroll = carousel.scrollLeft + (cardCenterInViewport - carouselCenter);
+            
+            // Clamp to valid range
+            const maxScroll = carousel.scrollWidth - carouselWidth;
+            targetScroll = Math.max(0, Math.min(maxScroll, targetScroll));
+            
+            console.log(`Card ${index}: targetScroll=${targetScroll}, maxScroll=${maxScroll}`);
+            
+            carousel.scrollTo({
+                left: targetScroll,
+                behavior: 'smooth'
+            });
+        }, 10);
+        
+        updateVisuals(index);
+    }
+
+    function updateVisuals(activeIndex) {
+        cards.forEach((card, i) => {
+            card.classList.remove('active-center', 'left-side', 'right-side');
+            if (i === activeIndex) {
+                card.classList.add('active-center');
+            } else if (i < activeIndex) {
+                card.classList.add('left-side');
+            } else {
+                card.classList.add('right-side');
+            }
+        });
+
+        dots.forEach((dot, i) => {
+            dot.classList.toggle('active', i === activeIndex);
+        });
+        
+        // Disable buttons at the ends
+        if (prevBtn) prevBtn.disabled = activeIndex === 0;
+        if (nextBtn) nextBtn.disabled = activeIndex === cards.length - 1;
+
+        // Disable action buttons inside non-active price cards
+        cards.forEach((card, i) => {
+            const actionButtons = card.querySelectorAll('.btn');
+            const disabled = i !== activeIndex;
+            actionButtons.forEach(btn => {
+                if (disabled) {
+                    btn.classList.add('btn-disabled');
+                    btn.setAttribute('aria-disabled', 'true');
+                    btn.setAttribute('tabindex', '-1');
+                } else {
+                    btn.classList.remove('btn-disabled');
+                    btn.removeAttribute('aria-disabled');
+                    btn.removeAttribute('tabindex');
+                }
+            });
+        });
+    }
+
+    // Button Events
+    if (prevBtn && nextBtn) {
+        prevBtn.addEventListener('click', () => {
+            if (currentIndex > 0) scrollToCard(currentIndex - 1);
+        });
+        nextBtn.addEventListener('click', () => {
+            if (currentIndex < cards.length - 1) scrollToCard(currentIndex + 1);
+        });
+    }
+
+    // Dot Events
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => scrollToCard(index));
+    });
+
+    // Swiping / Trackpad manual scrolling updates center actively
+    carousel.addEventListener('scroll', () => {
+        clearTimeout(carousel.scrollTimeout);
+        carousel.scrollTimeout = setTimeout(() => {
+            const carouselCenter = carousel.getBoundingClientRect().left + (carousel.offsetWidth / 2);
+            let closestIndex = 0;
+            let minDistance = Infinity;
+
+            cards.forEach((card, index) => {
+                const cardCenter = card.getBoundingClientRect().left + (card.offsetWidth / 2);
+                const distance = Math.abs(carouselCenter - cardCenter);
+                if (distance < minDistance) {
+                    minDistance = distance;
+                    closestIndex = index;
+                }
+            });
+            
+            currentIndex = closestIndex;
+            updateVisuals(closestIndex);
+        }, 60); 
+    });
+
+    // Force default presentation layout alignment
+    setTimeout(() => scrollToCard(1), 200);
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const newsSection = document.getElementById('newsSection');
+    const newsCarousel = document.getElementById('newsCarousel');
+    const newsTrack = newsCarousel ? newsCarousel.querySelector('.news-carousel-track') : null;
+    const newsCards = document.querySelectorAll('.news-card');
+    const prevNewsBtn = document.querySelector('.prev-news-btn');
+    const nextNewsBtn = document.querySelector('.next-news-btn');
+    const indicatorsContainer = document.getElementById('newsCarouselIndicators');
+    const wheel = document.querySelector('.news-wheel');
+    const wheelFg = wheel ? wheel.querySelector('.wheel-fg') : null;
+
+    let activeNewsIndex = 0;
+    let newsInterval = null;
+    let lastTap = 0;
+
+    function restartWheelAnimation() {
+        if (!wheelFg) return;
+        console.log('restartWheelAnimation called');
+        try {
+            // reset to full dashoffset instantly
+            wheelFg.style.transition = 'none';
+            wheelFg.style.strokeDashoffset = '100';
+            // Small timeout to ensure the style change is applied, then animate to 0 over 4s
+            setTimeout(() => {
+                wheelFg.style.transition = 'stroke-dashoffset 4s linear';
+                wheelFg.style.strokeDashoffset = '0';
+            }, 30);
+        } catch (e) {
+            // fallback to class toggle
+            console.log('wheel restart fallback', e);
+            if (!wheel) return;
+            wheel.classList.remove('animating');
+            void wheel.offsetWidth;
+            wheel.classList.add('animating');
+        }
+    }
+
+    function renderNewsIndicators() {
+        if (!indicatorsContainer) return;
+        indicatorsContainer.innerHTML = '';
+        newsCards.forEach((_, index) => {
+            const dot = document.createElement('button');
+            dot.type = 'button';
+            dot.className = index === activeNewsIndex ? 'active' : '';
+            dot.setAttribute('aria-label', `Slide ${index + 1}`);
+            dot.addEventListener('click', () => {
+                setNewsSlide(index);
+                resetNewsTimer();
+            });
+            indicatorsContainer.appendChild(dot);
+        });
+    }
+
+    function setNewsSlide(index, smooth = true) {
+        if (!newsCarousel || !newsCards[index]) return;
+        activeNewsIndex = ((index % newsCards.length) + newsCards.length) % newsCards.length;
+
+        const card = newsCards[activeNewsIndex];
+        const cardLeft = card.offsetLeft; // offset relative to the track
+        const cardWidth = card.offsetWidth;
+        const visibleWidth = newsCarousel ? newsCarousel.clientWidth : (newsTrack ? newsTrack.clientWidth : 0);
+        const targetScroll = Math.max(0, cardLeft - (visibleWidth - cardWidth) / 2);
+
+        // Scroll the actual scrollable track (not the outer wrapper)
+        if (newsTrack) {
+            newsTrack.scrollTo({ left: targetScroll, behavior: smooth ? 'smooth' : 'auto' });
+        } else if (newsCarousel) {
+            newsCarousel.scrollTo({ left: targetScroll, behavior: smooth ? 'smooth' : 'auto' });
+        }
+
+        newsCards.forEach((item, itemIndex) => {
+            item.classList.toggle('active', itemIndex === activeNewsIndex);
+        });
+
+        if (indicatorsContainer) {
+            indicatorsContainer.querySelectorAll('button').forEach((btn, btnIndex) => {
+                btn.classList.toggle('active', btnIndex === activeNewsIndex);
+            });
+        }
+    }
+
+    function resetNewsTimer() {
+        // restart wheel and restart auto-advance interval
+        restartWheelAnimation();
+        if (newsInterval) clearInterval(newsInterval);
+        startNewsAutoAdvance();
+    }
+
+    function goToNextNews() {
+        // If we're at the last slide, wrap to the first; otherwise advance
+        if (activeNewsIndex >= newsCards.length - 1) {
+            setNewsSlide(0);
+        } else {
+            setNewsSlide(activeNewsIndex + 1);
+        }
+        restartWheelAnimation();
+    }
+
+    function goToPrevNews() {
+        setNewsSlide(activeNewsIndex - 1);
+    }
+
+    function startNewsAutoAdvance() {
+        if (newsInterval) clearInterval(newsInterval);
+        // Start the wheel animation and advance every 4 seconds
+        restartWheelAnimation();
+        newsInterval = setInterval(() => {
+            goToNextNews();
+            restartWheelAnimation();
+        }, 4000);
+    }
+
+    function skipNewsSection() {
+        if (!newsSection) return;
+        const nextSection = newsSection.nextElementSibling;
+        if (nextSection) {
+            nextSection.scrollIntoView({ behavior: 'smooth' });
+        }
+    }
+
+    if (prevNewsBtn) {
+        prevNewsBtn.addEventListener('click', () => {
+            goToPrevNews();
+            resetNewsTimer();
+        });
+    }
+
+    if (nextNewsBtn) {
+        nextNewsBtn.addEventListener('click', () => {
+            goToNextNews();
+            resetNewsTimer();
+        });
+    }
+
+    newsCards.forEach((card, index) => {
+        card.addEventListener('click', () => {
+            setNewsSlide(index);
+            resetNewsTimer();
+        });
+    });
+
+    if (newsCarousel) {
+        newsCarousel.addEventListener('touchend', () => {
+            const now = new Date().getTime();
+            if (now - lastTap < 300) {
+                skipNewsSection();
+            }
+            lastTap = now;
+        });
+    }
+
+    renderNewsIndicators();
+    setNewsSlide(0, false);
+    resetNewsTimer();
+    startNewsAutoAdvance();
+});
+
+</script>
+</body>
+</html>
