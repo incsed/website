@@ -417,6 +417,13 @@ nav .logo .logo-svg {
             color: #1a1a1aff;
         }
 
+        .btn.btn-disabled {
+            pointer-events: none;
+            opacity: 0.5;
+            cursor: not-allowed;
+            filter: grayscale(0.05);
+        }
+
         .btn-primary:hover {
             background-color: #b87b4fff;
             transform: translateY(-2px);
@@ -1063,6 +1070,250 @@ nav .logo .logo-svg {
 @media (max-width: 768px) {
     .hero-parallax-bg { background-attachment: scroll; }
     .hero { height: 70vh; }
+}
+
+.news-carousel-section {
+    width: 100%;
+    padding: 80px 0;
+    background: linear-gradient(180deg, rgba(5,8,36,0.95), rgba(12,19,65,0.98));
+    color: #fff;
+}
+
+.news-carousel-inner {
+    position: relative;
+}
+
+.news-section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.news-section-header .section-label {
+    display: inline-block;
+    font-size: 1rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.78);
+}
+
+.news-timer {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    width: 56px;
+    height: 56px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 4;
+}
+
+.news-timer i {
+    color: var(--accent);
+}
+
+.news-wheel {
+    width: 40px;
+    height: 40px;
+    transform: rotate(-90deg);
+    display: block;
+}
+
+.news-wheel .wheel-fg {
+    stroke-dasharray: 100;
+    stroke-dashoffset: 100;
+    transition: stroke-dashoffset 0.2s linear;
+}
+
+.news-wheel.animating .wheel-fg {
+    animation: newsWheelProgress 4s linear forwards;
+}
+
+@keyframes newsWheelProgress {
+    from { stroke-dashoffset: 100; }
+    to { stroke-dashoffset: 0; }
+}
+
+.news-carousel {
+    position: relative;
+    overflow: hidden;
+}
+
+.news-carousel-track {
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    padding: 0;
+}
+
+.news-carousel-track::-webkit-scrollbar {
+    display: none;
+}
+
+.news-card {
+    position: relative;
+    min-width: 100%;
+    flex: 0 0 100%;
+    height: 420px;
+    border-radius: 0; /* full-bleed banners */
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+    scroll-snap-align: center;
+    box-shadow: none;
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.news-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.65) 100%);
+}
+
+.news-card.active {
+    transform: translateY(-6px);
+    box-shadow: 0 26px 62px rgba(0,0,0,0.32);
+}
+
+.news-card-content {
+    position: absolute;
+    bottom: 24px;
+    left: 24px;
+    right: 24px;
+    z-index: 2;
+    color: #fff;
+}
+
+.news-card-category {
+    display: inline-block;
+    margin-bottom: 0.8rem;
+    font-size: 0.82rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.85);
+}
+
+.news-card h3 {
+    margin: 0 0 0.75rem;
+    font-size: 1.25rem;
+    line-height: 1.3;
+}
+
+.news-card p {
+    margin: 0;
+    color: rgba(255,255,255,0.88);
+    font-size: 0.95rem;
+    line-height: 1.55;
+}
+
+.news-carousel-controls {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1.35rem;
+}
+
+.news-carousel-btn {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background: rgba(255,255,255,0.95);
+    color: #0a122e;
+    cursor: pointer;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.news-carousel-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 20px rgba(0,0,0,0.18);
+}
+
+.news-carousel-indicators {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.news-carousel-indicators button {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255,255,255,0.35);
+    cursor: pointer;
+    transition: background 0.25s ease;
+}
+
+.news-carousel-indicators button.active {
+    background: var(--accent);
+}
+
+@media (max-width: 900px) {
+    .news-carousel-section {
+        padding: 60px 0;
+    }
+    .news-card,
+    .news-card.active {
+        min-width: 100%;
+        flex: 0 0 100%;
+        height: 360px;
+    }
+}
+
+.news-skip-hint {
+    margin: 0 0 1.25rem;
+    padding: 0.75rem 1rem;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.08);
+    color: rgba(255,255,255,0.85);
+    font-size: 0.92rem;
+    text-align: center;
+    border: 1px solid rgba(255,255,255,0.12);
+}
+
+.news-skip-hint .lang-en,
+.news-skip-hint .lang-es {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .news-skip-hint {
+        display: block;
+    }
+    .news-skip-hint .lang-es {
+        display: inline;
+    }
+}
+
+@media (min-width: 769px) {
+    .news-skip-hint {
+        display: none;
+    }
+}
+
+@media (max-width: 680px) {
+    .news-section-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .news-timer {
+        width: 100%;
+        justify-content: center;
+    }
+    .news-carousel-controls {
+        display: none;
+    }
 }
 
 /* Estilo para los iconos de los miembros del equipo */
@@ -2044,6 +2295,77 @@ nav .logo .logo-svg {
     </div>
 </section>
 
+<section id="newsSection" class="news-carousel-section">
+    <div class="news-carousel-inner container">
+        <div class="news-section-header">
+            <div>
+                <span class="section-label lang-es">Noticias</span>
+                <span class="section-label lang-en">News</span>
+            </div>
+            <div class="news-timer" aria-hidden="true">
+                <div class="news-wheel-wrap">
+                    <svg class="news-wheel" viewBox="0 0 36 36" aria-hidden="true">
+                        <circle class="wheel-bg" cx="18" cy="18" r="16" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="3"></circle>
+                        <circle class="wheel-fg" cx="18" cy="18" r="16" fill="none" stroke="var(--accent)" stroke-width="3" stroke-linecap="round" stroke-dasharray="100" stroke-dashoffset="100"></circle>
+                    </svg>
+                </div>
+            </div>
+        </div>
+        <div class="news-skip-hint">
+            <span class="lang-es">Doble toque para saltar esta sección</span>
+            <span class="lang-en">Double-tap to skip this section</span>
+        </div>
+        <div class="news-carousel" id="newsCarousel">
+            <div class="news-carousel-track">
+                <article class="news-card active" style="background-image: url('https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=900&q=80');">
+                    <div class="news-card-content">
+                        <span class="news-card-category lang-es">Lanzamiento</span>
+                        <span class="news-card-category lang-en">Launch</span>
+                        <h3 class="lang-es">Nuevo hub digital para startups</h3>
+                        <h3 class="lang-en">New digital hub for startups</h3>
+                        <p class="lang-es">Contenido inspirado en crecimiento, innovación y experiencia.</p>
+                        <p class="lang-en">Content inspired by growth, innovation, and experience.</p>
+                    </div>
+                </article>
+                <article class="news-card" style="background-image: url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=900&q=80');">
+                    <div class="news-card-content">
+                        <span class="news-card-category lang-es">Evento</span>
+                        <span class="news-card-category lang-en">Event</span>
+                        <h3 class="lang-es">Seminario en línea sobre IA</h3>
+                        <h3 class="lang-en">Online seminar on AI</h3>
+                        <p class="lang-es">Un espacio para aprender sobre soluciones inteligentes.</p>
+                        <p class="lang-en">A space to learn about intelligent solutions.</p>
+                    </div>
+                </article>
+                <article class="news-card" style="background-image: url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=900&q=80');">
+                    <div class="news-card-content">
+                        <span class="news-card-category lang-es">Gobierno</span>
+                        <span class="news-card-category lang-en">Government</span>
+                        <h3 class="lang-es">Apoyo a proyectos científicos</h3>
+                        <h3 class="lang-en">Support for scientific projects</h3>
+                        <p class="lang-es">Financiamiento y consultoría para iniciativas de impacto.</p>
+                        <p class="lang-en">Funding and consulting for impact-driven initiatives.</p>
+                    </div>
+                </article>
+                <article class="news-card" style="background-image: url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=900&q=80');">
+                    <div class="news-card-content">
+                        <span class="news-card-category lang-es">Socios</span>
+                        <span class="news-card-category lang-en">Partners</span>
+                        <h3 class="lang-es">Alianzas estratégicas globales</h3>
+                        <h3 class="lang-en">Global strategic partnerships</h3>
+                        <p class="lang-es">Conecta tu negocio con socios internacionales confiables.</p>
+                        <p class="lang-en">Connect your business with trusted global partners.</p>
+                    </div>
+                </article>
+            </div>
+        </div>
+        <div class="news-carousel-controls">
+            <button class="news-carousel-btn prev-news-btn" aria-label="Anterior noticia">❮</button>
+            <button class="news-carousel-btn next-news-btn" aria-label="Siguiente noticia">❯</button>
+        </div>
+        <div class="news-carousel-indicators" id="newsCarouselIndicators"></div>
+    </div>
+</section>
 
 <!-- <section id="precios" class="container">
     <div class="section-title">
@@ -3608,6 +3930,23 @@ document.addEventListener('DOMContentLoaded', () => {
         // Disable buttons at the ends
         if (prevBtn) prevBtn.disabled = activeIndex === 0;
         if (nextBtn) nextBtn.disabled = activeIndex === cards.length - 1;
+
+        // Disable action buttons inside non-active price cards
+        cards.forEach((card, i) => {
+            const actionButtons = card.querySelectorAll('.btn');
+            const disabled = i !== activeIndex;
+            actionButtons.forEach(btn => {
+                if (disabled) {
+                    btn.classList.add('btn-disabled');
+                    btn.setAttribute('aria-disabled', 'true');
+                    btn.setAttribute('tabindex', '-1');
+                } else {
+                    btn.classList.remove('btn-disabled');
+                    btn.removeAttribute('aria-disabled');
+                    btn.removeAttribute('tabindex');
+                }
+            });
+        });
     }
 
     // Button Events
@@ -3649,6 +3988,163 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Force default presentation layout alignment
     setTimeout(() => scrollToCard(1), 200);
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const newsSection = document.getElementById('newsSection');
+    const newsCarousel = document.getElementById('newsCarousel');
+    const newsTrack = newsCarousel ? newsCarousel.querySelector('.news-carousel-track') : null;
+    const newsCards = document.querySelectorAll('.news-card');
+    const prevNewsBtn = document.querySelector('.prev-news-btn');
+    const nextNewsBtn = document.querySelector('.next-news-btn');
+    const indicatorsContainer = document.getElementById('newsCarouselIndicators');
+    const wheel = document.querySelector('.news-wheel');
+    const wheelFg = wheel ? wheel.querySelector('.wheel-fg') : null;
+
+    let activeNewsIndex = 0;
+    let newsInterval = null;
+    let lastTap = 0;
+
+    function restartWheelAnimation() {
+        if (!wheelFg) return;
+        console.log('restartWheelAnimation called');
+        try {
+            // reset to full dashoffset instantly
+            wheelFg.style.transition = 'none';
+            wheelFg.style.strokeDashoffset = '100';
+            // Small timeout to ensure the style change is applied, then animate to 0 over 4s
+            setTimeout(() => {
+                wheelFg.style.transition = 'stroke-dashoffset 4s linear';
+                wheelFg.style.strokeDashoffset = '0';
+            }, 30);
+        } catch (e) {
+            // fallback to class toggle
+            console.log('wheel restart fallback', e);
+            if (!wheel) return;
+            wheel.classList.remove('animating');
+            void wheel.offsetWidth;
+            wheel.classList.add('animating');
+        }
+    }
+
+    function renderNewsIndicators() {
+        if (!indicatorsContainer) return;
+        indicatorsContainer.innerHTML = '';
+        newsCards.forEach((_, index) => {
+            const dot = document.createElement('button');
+            dot.type = 'button';
+            dot.className = index === activeNewsIndex ? 'active' : '';
+            dot.setAttribute('aria-label', `Slide ${index + 1}`);
+            dot.addEventListener('click', () => {
+                setNewsSlide(index);
+                resetNewsTimer();
+            });
+            indicatorsContainer.appendChild(dot);
+        });
+    }
+
+    function setNewsSlide(index, smooth = true) {
+        if (!newsCarousel || !newsCards[index]) return;
+        activeNewsIndex = ((index % newsCards.length) + newsCards.length) % newsCards.length;
+
+        const card = newsCards[activeNewsIndex];
+        const cardLeft = card.offsetLeft; // offset relative to the track
+        const cardWidth = card.offsetWidth;
+        const visibleWidth = newsCarousel ? newsCarousel.clientWidth : (newsTrack ? newsTrack.clientWidth : 0);
+        const targetScroll = Math.max(0, cardLeft - (visibleWidth - cardWidth) / 2);
+
+        // Scroll the actual scrollable track (not the outer wrapper)
+        if (newsTrack) {
+            newsTrack.scrollTo({ left: targetScroll, behavior: smooth ? 'smooth' : 'auto' });
+        } else if (newsCarousel) {
+            newsCarousel.scrollTo({ left: targetScroll, behavior: smooth ? 'smooth' : 'auto' });
+        }
+
+        newsCards.forEach((item, itemIndex) => {
+            item.classList.toggle('active', itemIndex === activeNewsIndex);
+        });
+
+        if (indicatorsContainer) {
+            indicatorsContainer.querySelectorAll('button').forEach((btn, btnIndex) => {
+                btn.classList.toggle('active', btnIndex === activeNewsIndex);
+            });
+        }
+    }
+
+    function resetNewsTimer() {
+        // restart wheel and restart auto-advance interval
+        restartWheelAnimation();
+        if (newsInterval) clearInterval(newsInterval);
+        startNewsAutoAdvance();
+    }
+
+    function goToNextNews() {
+        // If we're at the last slide, wrap to the first; otherwise advance
+        if (activeNewsIndex >= newsCards.length - 1) {
+            setNewsSlide(0);
+        } else {
+            setNewsSlide(activeNewsIndex + 1);
+        }
+        restartWheelAnimation();
+    }
+
+    function goToPrevNews() {
+        setNewsSlide(activeNewsIndex - 1);
+    }
+
+    function startNewsAutoAdvance() {
+        if (newsInterval) clearInterval(newsInterval);
+        // Start the wheel animation and advance every 4 seconds
+        restartWheelAnimation();
+        newsInterval = setInterval(() => {
+            goToNextNews();
+            restartWheelAnimation();
+        }, 4000);
+    }
+
+    function skipNewsSection() {
+        if (!newsSection) return;
+        const nextSection = newsSection.nextElementSibling;
+        if (nextSection) {
+            nextSection.scrollIntoView({ behavior: 'smooth' });
+        }
+    }
+
+    if (prevNewsBtn) {
+        prevNewsBtn.addEventListener('click', () => {
+            goToPrevNews();
+            resetNewsTimer();
+        });
+    }
+
+    if (nextNewsBtn) {
+        nextNewsBtn.addEventListener('click', () => {
+            goToNextNews();
+            resetNewsTimer();
+        });
+    }
+
+    newsCards.forEach((card, index) => {
+        card.addEventListener('click', () => {
+            setNewsSlide(index);
+            resetNewsTimer();
+        });
+    });
+
+    if (newsCarousel) {
+        newsCarousel.addEventListener('touchend', () => {
+            const now = new Date().getTime();
+            if (now - lastTap < 300) {
+                skipNewsSection();
+            }
+            lastTap = now;
+        });
+    }
+
+    renderNewsIndicators();
+    setNewsSlide(0, false);
+    resetNewsTimer();
+    startNewsAutoAdvance();
 });
 
 </script>
