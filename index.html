@@ -7,8 +7,11 @@
 <link rel="icon" type="image/svg+xml" href="assets/images/incico2.svg">
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Abel&family=Albert+Sans:ital,wght@0,100..900;1,100..900&family=Cabin:ital,wght@0,400..700;1,400..700&family=Crimson+Pro:ital,wght@0,200..900;1,200..900&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Outfit:wght@100..900&family=Pinyon+Script&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Poltawski+Nowy:ital,wght@0,400..700;1,400..700&family=Prompt:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Quattrocento+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 
+  <style>
 /* Estilos del Preloader */
 #preloader {
     position: fixed;
@@ -51,14 +54,17 @@
 }
         :root {
             --primary: #1c9391ff;
-            --accent: rgb(215, 177, 96);
-            --dark: #1a1a2e;
-            --light: #f5f5f5;
-            --text: #333333;
-            --white: #ffffff;
+            --accent: #D9C3A3;
+            /*--dark: #1C1E21;*/
+            --dark: #5C626A;
+            --light: #FAF6F0;
+            --text: #24292F;
+            --white: #FAF6F0;
             --on-primary: #ffffff;
             --section-title-color: var(--dark);
             --topbar-height: 36px;
+            --font-serif: 'Lora', Georgia, serif;
+      --font-sans: 'Inter', -apple-system, sans-serif;
         }
 
         * {
@@ -68,13 +74,21 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+/*            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+ */            font-family: var(--font-sans);
+          font-weight: 400;
             line-height: 1.6;
             color: var(--text);
             background-color: var(--white);
+            -webkit-font-smoothing: antialiased;
         }
 
-        .container {
+h1 {
+  font-family: var(--font-serif);
+  font-weight: 700;
+}
+
+.container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
@@ -357,17 +371,36 @@ nav .logo .logo-svg {
             text-align: center;
         }
 
+        .hero-label {
+      display: inline-block;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #FAF6F0;
+      font-weight: 600;
+      margin-bottom: 1.25rem;
+    }
+
         .hero h1 {
-            font-size: 3rem;
             margin-bottom: 1rem;
-            color: #ffff;
+            color: #FBF9F6;
+
+            font-family: var(--font-serif);
+      font-size: 3.25rem;
+      font-weight: 400;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      max-width: 800px;
+      margin: 0 auto 1.5rem auto;
         }
 
         .hero p {
-            font-size: 1.2rem;
-            max-width: 600px;
-            margin: 0 auto 2rem;
-            color: #ffff;
+            /*max-width: 600px;*/
+            
+            font-size: 1.15rem;
+      color: #EFE7DA;
+      max-width: 580px;
+      margin: 0 auto 2.5rem auto;
         }
 
         .btn {
@@ -1282,11 +1315,11 @@ nav .logo .logo-svg {
         /* Theme variables for dark mode (applied to <html data-theme="dark">) */
         [data-theme="dark"] {
             --primary: #33bdbb;
-            --accent: #d38d5f;
+            --accent: #D1B48C;
             --dark: #e6eef0;
-            --light: #0f1720;
+            --light: #1E2229;;
             --text: #e6eef0;
-            --white: #0b1220;
+            --white: #1E2229;;
             --on-primary: #ffffff;
             --section-title-color: var(--on-primary);
         }
@@ -1382,6 +1415,12 @@ nav .logo .logo-svg {
     transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.5s ease, border-color 0.4s ease;
     opacity: 0.4;
     transform: scale(0.85) rotateY(25deg); /* Default fallback left-hand look */
+
+    color: var(--text);
+      font-size: 0.9rem;
+      line-height: 1.5;
+      margin-bottom: 1.75rem;
+      min-height: 4.5rem;
 }
 
 /* 3D Directional adjustments based on positions relative to current center focus */
@@ -1418,10 +1457,27 @@ nav .logo .logo-svg {
 
 .price-card h3 {
     margin-top: 0;
-    font-size: 1.5rem;
     color: var(--text);
     transition: color 0.3s;
+    
+    text-align: left;
+
+    font-family: var(--font-serif);
+      font-size: 1.75rem;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.01em;
 }
+
+.plan-description {
+      color: var(--dark);
+      font-size: 0.9rem;
+      line-height: 1.5;
+      margin-bottom: 1.75rem;
+      min-height: 4.5rem;
+
+      text-align: justify;
+    }
 
 /* Price keeps your primary brand color consistently */
 .price {
@@ -1429,9 +1485,27 @@ nav .logo .logo-svg {
     font-weight: 800;
     color: var(--primary); /* Primary brand color remains intact */
     margin: 1rem 0;
+
+    display: flex;
+    justify-content: center;
+      align-items: baseline;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
 }
 
-.price span { font-size: 1rem; color: var(--gray); }
+.currency {
+      font-size: 1.25rem;
+      color: var(--text) !important; /* Subtle color for currency symbol */
+      align-self: flex-start;
+      margin-top: 0.25rem;
+    }
+
+.price span { font-size: 1rem; /*color: var(--gray);*/ 
+      font-size: 0.95rem;
+    /*align-items: flex-end;*/
+      margin-left: 0.35rem;
+    }
+
 .price-card ul { list-style: none; padding: 0; margin: 2rem 0; color: var(--gray); }
 .price-card li { margin-bottom: 0.8rem; }
 
@@ -1439,9 +1513,60 @@ nav .logo .logo-svg {
 .price-card .badge {
     opacity: 0.25;
     transition: opacity 0.4s ease;
+
+    display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+     /* border: 1px solid var(--border-linen);*/
+      margin-bottom: 1.25rem;
 }
 
+.divider {
+      border: 0;
+      border-top: 1px solid var(--dark);
+      margin: 2rem 0;
+    }
+
+    /* --- FEATURES LIST --- */
+    .features-title {
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 1.25rem;
+      /*text-align: left;*/
+    }
+
+    .feature-list {
+      list-style: none;
+    }
+
+    .feature-list li {
+      display: flex;
+      align-items: flex-start;
+      font-size: 0.9rem;
+      color: #33383F;
+      margin-bottom: 0.85rem;
+    }
+
+    .icon {
+      width: 16px;
+      height: 16px;
+      color: var(--accent-sage);
+      margin-right: 0.75rem;
+      flex-shrink: 0;
+      margin-top: 0.2rem;
+    }
+
 /* --- DYNAMIC SELECTION HIGHLIGHTS --- */
+.price-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.03);
+        }
 
 /* The card exactly in the center gets the accent focus */
 .price-card.active-center {
@@ -1544,14 +1669,6 @@ nav .logo .logo-svg {
     border-radius: 12px;
     box-shadow: 0 0 0 4px rgba(33, 150, 145, 0.16);
 }
-
-:root {
-    --num: 4; /* total images */
-    --wd: 130; /* width of card element */
-   /* --gap: 20px; */
-}
-
-
 
 /* --- BOTÓN WHATSAPP --- */
 /*
@@ -1766,8 +1883,8 @@ nav .logo .logo-svg {
 		<div class="container clearfix">		
 			<div id="et-info">
 							<span id="et-info-phone"></span>
-							<a href="mailto:contacto@incsed.com"><i class="fas fa-envelope"></i>
-<span id="et-info-email">contacto@incsed.com</span></a>
+							<a href="mailto:b612@incsed.com"><i class="fas fa-envelope"></i>
+<span id="et-info-email">b612@incsed.com</span></a>
                 </div> <!-- #et-info -->
 
                 <!-- Right-aligned social icons for top header -->
@@ -1776,7 +1893,7 @@ nav .logo .logo-svg {
                                 <li>
                     <a href="https://mastodon.social/@incsed" target="_blank" rel="noopener noreferrer" aria-label="Mastodon"><i class="fab fa-mastodon"></i></a></li>
         <li><a href="https://facebook.com/" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f" aria-hidden="true"></i></a></li>
-        <li><a href="https://instagram.com/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a></li>
+        <li><a href="https://instagram.com/incsed.mx" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a></li>
                     </ul>
                 </div>
 		</div> <!-- .container -->
@@ -1829,8 +1946,8 @@ nav .logo .logo-svg {
   <path fill="url(#d)" d="M86.732 158.79c5.281-2.034 11.647-8.631 10.725-14.598-.508-3.289-4.034-4.451-8.063-5.887 8.151-1.264 11.96.327 14.126 4.805 2.05 4.24.03 14.338-17.735 20.53 2.248-2.208 2.438-3.933.946-4.85z" style="shape-inside:url(#rect73849);white-space:pre" transform="translate(-53.002 -98.425)"/>
   <path id="i" fill="url(#e)" d="M99.546 100.55q1.624.514 2.377 2.146.768 1.57.318 3.55-.618 2.724-2.72 4.314-2.034 1.545-4.025.915-1.572-.497-2.325-2.13-.753-1.63-.276-3.735.633-2.785 2.587-4.224 1.968-1.5 4.064-.836m-19.135 65.278c-8.907 3.247-10.7-.689-11.273-1.928q-.739-1.693-.192-4.108c1.17-5.158 6.56-15.043 16.346-33.439.46-.871 2.132-2.645 1.902-4.148-.115-.755-.821-1.423-1.531-1.703-.82-.324-1.577-.145-2.635.227-.44.315-1.11-.772-1.16-1.368-.116-1.366.837-2.954 2.1-3.536 0 0 5.062-1.735 7.606-1.338 1.643.256 3.515.921 4.417 2.319.82 1.27.492 3.536.267 4.527q-.407 1.794-6.859 14.149c-7.024 13.477-10.788 19.829-11.472 22.842-.134 1.499-.108 2.159.663 2.635 1.825 1.129 4.23-.287 6.287-1.385.694-.37.87 1.108.848 1.758-.04 1.182-1.757 3.082-1.757 3.082-1.03.722-3.557 1.415-3.557 1.415z" style="shape-inside:url(#rect73849);white-space:pre" transform="translate(-53.002 -98.425)"/>
   <path fill="url(#f)" d="M80.831 121.3c-5.281 2.034-12.33 8.793-11.59 13.869.45 3.09 3.063 4.683 7.092 6.12-7.525 2.077-12.063-1.684-13.714-6.46-1.906-10.19 11.458-16.078 19.158-18.378-1.438 1.78-2.438 3.933-.946 4.85z" style="shape-inside:url(#rect73849);white-space:pre" transform="translate(-53.002 -98.425)"/>
-  <text xml:space="preserve" fill="#1c9391" font-family="'Droid Sans'" font-size="42.667" letter-spacing="10" style="line-height:1.25;shape-inside:url(#rect1184-0);white-space:pre" transform="matrix(.2201 0 -.09779 .2201 -366.612 -136.892)" word-spacing="0"><tspan x="2204.383" y="792.211"><tspan font-family="Carlito" font-weight="bold">NCERTÆ</tspan></tspan></text>
-  <text xml:space="preserve" fill="#d09662" font-family="'Droid Sans'" font-size="42.667" letter-spacing="10" style="line-height:1.25;shape-inside:url(#rect1185-4);white-space:pre" transform="matrix(.2201 0 -.05898 .2201 -383.452 -127.177)"><tspan x="2204.383" y="792.211"><tspan font-family="Carlito" font-style="italic">EDIS</tspan></tspan></text>
+  <text xml:space="preserve" fill="#1c9391" font-family="'Droid Sans'" font-size="42.667" letter-spacing="15" style="line-height:1.25;shape-inside:url(#rect1184-0);white-space:pre" transform="matrix(.2201 0 -.09779 .2201 -366.612 -136.892)" word-spacing="0"><tspan x="2204.383" y="792.211"><tspan font-family="Montserrat" font-weight="bold">NCERTÆ</tspan></tspan></text>
+  <text xml:space="preserve" fill="#d09662" font-family="'Droid Sans'" font-size="42.667" letter-spacing="15" style="line-height:1.25;shape-inside:url(#rect1185-4);white-space:pre" transform="matrix(.2201 0 -.05898 .2201 -383.452 -127.177)"><tspan x="2204.383" y="792.211"><tspan font-family="Montserrat" font-style="italic">EDIS</tspan></tspan></text>
 </svg>
     
             </div>
@@ -1904,12 +2021,13 @@ nav .logo .logo-svg {
   <path fill="url(#d)" d="M86.732 158.79c5.281-2.034 11.647-8.631 10.725-14.598-.508-3.289-4.034-4.451-8.063-5.887 8.151-1.264 11.96.327 14.126 4.805 2.05 4.24.03 14.338-17.735 20.53 2.248-2.208 2.438-3.933.946-4.85z" style="shape-inside:url(#rect73849);white-space:pre" transform="translate(-53.002 -98.425)"/>
   <path fill="url(#e)" d="M99.546 100.55q1.624.514 2.377 2.146.768 1.57.318 3.55-.618 2.724-2.72 4.314-2.034 1.545-4.025.915-1.572-.497-2.325-2.13-.753-1.63-.276-3.735.633-2.785 2.587-4.224 1.968-1.5 4.064-.836m-19.135 65.278c-8.907 3.247-10.7-.689-11.273-1.928q-.739-1.693-.192-4.108c1.17-5.158 6.56-15.043 16.346-33.439.46-.871 2.132-2.645 1.902-4.148-.115-.755-.821-1.423-1.531-1.703-.82-.324-1.577-.145-2.635.227-.44.315-1.11-.772-1.16-1.368-.116-1.366.837-2.954 2.1-3.536 0 0 5.062-1.735 7.606-1.338 1.643.256 3.515.921 4.417 2.319.82 1.27.492 3.536.267 4.527q-.407 1.794-6.859 14.149c-7.024 13.477-10.788 19.829-11.472 22.842-.134 1.499-.108 2.159.663 2.635 1.825 1.129 4.23-.287 6.287-1.385.694-.37.87 1.108.848 1.758-.04 1.182-1.757 3.082-1.757 3.082-1.03.722-3.557 1.415-3.557 1.415z" style="shape-inside:url(#rect73849);white-space:pre" transform="translate(-53.002 -98.425)"/>
   <path fill="url(#f)" d="M80.831 121.3c-5.281 2.034-12.33 8.793-11.59 13.869.45 3.09 3.063 4.683 7.092 6.12-7.525 2.077-12.063-1.684-13.714-6.46-1.906-10.19 11.458-16.078 19.158-18.378-1.438 1.78-2.438 3.933-.946 4.85z" style="shape-inside:url(#rect73849);white-space:pre" transform="translate(-53.002 -98.425)"/>
-  <text xml:space="preserve" fill="#1c9391" font-family="'Droid Sans'" font-size="42.667" letter-spacing="10" style="line-height:1.25;shape-inside:url(#rect1184-0);white-space:pre" transform="matrix(.2201 0 -.09779 .2201 -366.612 -136.892)" word-spacing="0"><tspan x="2204.383" y="792.211"><tspan font-family="Carlito" font-weight="bold">NCERTÆ</tspan></tspan></text>
-  <text xml:space="preserve" fill="#d09662" font-family="'Droid Sans'" font-size="42.667" letter-spacing="10" style="line-height:1.25;shape-inside:url(#rect1185-4);white-space:pre" transform="matrix(.2201 0 -.05898 .2201 -383.452 -127.177)"><tspan x="2204.383" y="792.211"><tspan font-family="Carlito" font-style="italic">EDIS</tspan></tspan></text>
+  <text xml:space="preserve" fill="#1c9391" font-family="'Droid Sans'" font-size="42.667" letter-spacing="10" style="line-height:1.25;shape-inside:url(#rect1184-0);white-space:pre" transform="matrix(.2201 0 -.09779 .2201 -366.612 -136.892)" word-spacing="0"><tspan x="2204.383" y="792.211"><tspan font-family="Montserrat" font-weight="bold">NCERTÆ</tspan></tspan></text>
+  <text xml:space="preserve" fill="#d09662" font-family="'Droid Sans'" font-size="42.667" letter-spacing="10" style="line-height:1.25;shape-inside:url(#rect1185-4);white-space:pre" transform="matrix(.2201 0 -.05898 .2201 -383.452 -127.177)"><tspan x="2204.383" y="792.211"><tspan font-family="Montserrat" font-style="italic">EDIS</tspan></tspan></text>
 </svg>
     
             </div>
-        
+                    <span class="hero-label lang-es">Tecnología humana</span>
+        <span class="hero-label lang-en">Intelligent Infrastructure</span>
         <h1 class="lang-es">Transforma tu presencia digital</h1>
         <h1 class="lang-en">Transform Your Digital Presence</h1>
         <p class="lang-es">Soluciones expertas en desarrollo, educación virtual y consultoría científica.</p>
@@ -1993,35 +2111,92 @@ nav .logo .logo-svg {
             <ul class="carousel-track">
                 
                 <li class="price-card">
-                    <h3>Clínica</h3>
-                    <span>desde</span>
-                    <div class="price">$499<span>/mes</span></div>
-                    <p>Ideal para consultorios, clínicas de belleza, etc. (Educativo Eventos)</p>
-                    <ul>
-                        <li>Registro de clientes</li>
-                        <li>Manejo de citas</li>
-                        <li>Promociones Personalizadas</li>
-                        <li>Gestión de Redes Sociales</li>
-                        <li>Reporte Mensual</li>
-                        <li>Soporte vía Email</li>
+                    <h3 class="lang-es">Educativo</h3>
+                    <h3 class="lang-en">Educational</h3>
+                    <p class="plan-description">¿Quieres dar cursos en linea, para tu empresa o algún público en particular? Te apoyamos desde la infraestructura hasta la planeación didáctica, para que sólo te concentres en enseñar.</p>
+                     <div class="price"><span class="currency">desde</span>$2499<span>/ mes</span></div>
+                     <a href="#contacto" class="btn btn-secondary" style="background: rgba(255,255,255,0.2); border: 1px solid var(--dark); color: var(--dark)">Elegir Plan</a>
+                   
+                    <hr class="divider" />
+
+                    <div class="card-features">
+          <p class="features-title lang-es">Características</p>
+          <p class="features-title lang-en">Core capabilities</p>
+
+                    <ul class="feature-list">
+                        <li>
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>Registro de clientes</span></li>
+                        <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>Manejo de citas</span></li>
+                        <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>Promociones Personalizadas</span></li>
+                        <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>Gestión de Redes Sociales</span></li>
+                        <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>Reporte Mensual</span></li>
+                        <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>Soporte vía Email</span></li>
                     </ul>
-                    <a href="#contacto" class="btn btn-secondary" style="background: rgba(255,255,255,0.2); border: 1px solid var(--dark); color: var(--dark)">Elegir Plan</a>
+                </li>
+
+                <li class="price-card">
+                    <h3>Clínica</h3>
+                    <p class="plan-description">Ideal para consultorios, clínicas de belleza, etc. (Educativo Eventos)</p>
+                     <div class="price"><span class="currency">desde</span>$499<span>/ mes</span></div>
+                     <a href="#contacto" class="btn btn-secondary" style="background: rgba(255,255,255,0.2); border: 1px solid var(--dark); color: var(--dark)">Elegir Plan</a>
+                   
+                    <hr class="divider" />
+
+                    <div class="card-features">
+          <p class="features-title">Core capabilities</p>
+
+                    <ul class="feature-list">
+                        <li>
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>Registro de clientes</span></li>
+                        <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>Manejo de citas</span></li>
+                        <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>Promociones Personalizadas</span></li>
+                        <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>Gestión de Redes Sociales</span></li>
+                        <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>Reporte Mensual</span></li>
+                        <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>Soporte vía Email</span></li>
+                    </ul>
                 </li>
 
                 <li class="price-card popular">
                     <span class="badge" style="background:var(--accent); color:#1a1a1aff; padding:4px 12px; border-radius:20px; font-size:0.8rem;">RECOMENDADO</span>
                     <br><br>
                     <h3>Profesional</h3>
-                    <span>desde</span>
-                    <div class="price">$999<span>/mes</span></div>
-                    <p>Ideal para pequeñas empresas y startups que buscan establecer su presencia en línea.</p>
-                    <ul>
-                        <li>Todo lo del Básico</li>
-                        <li>SEO Avanzado</li>
-                        <li>Campaña Ads ($200 incl.)</li>
-                        <li>Soporte 24/7</li>
-                    </ul>
+                    <p class="plan-description">Ideal para pequeñas empresas y startups que buscan establecer su presencia en línea.</p>
+                    <div class="price">
+                        <span class="currency">desde</span>
+                     $999<span>/ mes</span></div>
+
                     <a href="#contacto" class="btn btn-secondary" style="background: rgba(255,255,255,0.2); border: 1px solid var(--dark); color: var(--dark)">Elegir Plan</a>
+
+                    <hr class="divider" />
+
+                    <div class="card-features">
+          <p class="features-title">Core capabilities</p>
+                    <ul class="feature-list">
+                        <li>
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>Todo lo del Básico</span></li>
+                        <li>
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>SEO Avanzado</span></li>
+                        <li>
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>Campaña Ads ($200 incl.)</span></li>
+                        <li>                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>Soporte 24/7</span></li>
+                    </ul>
+                    </div>
                 </li>
 
                 <li class="price-card">
@@ -2754,6 +2929,51 @@ nav .logo .logo-svg {
                             <li class="lang-en">Neural networks and deep learning</li>
                             <li class="lang-es">Proyectos prácticos con Python</li>
                             <li class="lang-en">Practical projects with Python</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="course-card">
+                    <div class="course-header">
+                        <h3 class="lang-es">Tecnología para todxs</h3>
+                        <h3 class="lang-en">Technology for everyone</h3>
+                    </div>
+                    <div class="course-body">
+                        <p class="lang-es">Estamos convencidos en cerrar la brecha digital para todas las personas. Te enseñamos desde lo más básico hasta lo último en tecnología de una manera verdaderamente accesible e incluyente. ¡Nos adecuamos a tus necesidades, cursos especiales para personas con y sin discapacidad!
+                            ¡Haz tu negocio accesible para todas las personas!
+                        </p>
+                        <p class="lang-en">We believe in technology for humans, we strive to close the digital gap among people. We will help you to learn everything you need for the new technological landscape. Reach out, we adapt ourselves to your needs. Check out our special courses for people with and without disabilities!</p>
+                        <ul>
+                            <li class="lang-es">Fundamentos de computación</li>
+                            <li class="lang-en">Technology fundamentals</li>
+                            <li class="lang-es">Ofimática e internet, varios niveles</li>
+                            <li class="lang-en">Office  and internet</li>
+                            <li class="lang-es">IA práctica para la vida cotidiana y los negocios</li>
+                            <li class="lang-en">Practical AI for everyday and business</li>
+                            <li class="lang-es">Tecnología y accesibilidad</li>
+                            <li class="lang-en">Accesibility technology</li>                            
+                        </ul>
+                    </div>
+                </div>
+                <div class="course-card">
+                    <div class="course-header">
+                        <h3 class="lang-es">Informática para humanidades</h3>
+                        <h3 class="lang-en">Information Science for humanities</h3>
+                    </div>
+                    <div class="course-body">
+                        <p class="lang-es">No importa tu área de conocimiento, la tecnología es para todas las personas. Hoy más que nunca es necesario abrir el diálogo entre la tecnología y las humanidades para construir un futuro más justo, equitativo e incluyente. ¡Te invitamos a nuestras charlas de discusión donde buscamos derribar las barreras que nos dividen y nuestra responsabilidad para humanizar la tecnología!
+                        </p>
+                        <p class="lang-en">We believe in technology for humans, we strive to close the digital gap among people. We will help you to learn everything you need for the new technological landscape. Reach out, we adapt ourselves to your needs. Check out our special courses for people with and without disabilities!</p>
+                        <ul>
+                            <li class="lang-es">Ética e IA/li>
+                            <li class="lang-en">Ethics and AI</li>
+                            <li class="lang-es">Software libre, conocimiento libre</li>
+                            <li class="lang-en">Free software, free knowledge</li>
+                            <li class="lang-es">Análisis de textos</li>
+                            <li class="lang-en">Text analysis</li>
+                            <li class="lang-es">Arte y nuevas narrativas</li>
+                            <li class="lang-en">Art and new narratives</li>
+                            <li class="lang-es">... y más. Acércate y construyamos juntos este espacio de realidad aumentada</li>
+                            <li class="lang-en">And more. Let's build together this hybrid space!</li>
                         </ul>
                     </div>
                 </div>
